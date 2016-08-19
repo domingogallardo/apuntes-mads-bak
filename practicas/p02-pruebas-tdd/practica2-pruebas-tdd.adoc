@@ -1,0 +1,845 @@
+= Práctica 2 - Pruebas y TDD con Play Framework
+Domingo Gallardo <domingo.gallardo@ua.es>
+:Date:      :docdate:
+:Revision:  0.2
+:lang: es
+:toc:
+:toc-title: Índice
+:toclevels: 3
+:numbered:
+:source-highlighter: pygments
+:icons: font
+:last-update-label!:
+
+ifdef::pdf[]
+:huge-size: scaledwidth="100%"
+:large-size: scaledwidth="66%"
+:normal-size: scaledwidth="50%"
+:small-size: scaledwidth="33%"
+:tiny-size: scaledwidth="25%"
+endif::[]
+
+ifndef::pdf[]
+:huge-size: width="100%"
+:large-size: width="66%"
+:normal-size: width="50%"
+:small-size: width="33%"
+:tiny-size: width="25%"
+endif::[]
+
+Versión:  {revision} ({docdate})
+
+== Objetivos
+
+Esta práctica tiene dos objetivos principales: aprender a utilizar las características de Play Framework relacionadas con las pruebas y utilizar la metodología TDD para añadir funcionalidades a nuestra aplicación. 
+
+La práctica tiene una duración de 3 semanas y la fecha límite de entrega es el 27 de octubre.
+
+Seguiremos trabajando en la aplicación `mads-todolist` que has estado desarrollando en la primera práctica. En el siguiente enlace puedes encontrar la solución de la práctica 1 y el código ejemplo para las partes guiadas de esta práctica 2.
+
+- https://bitbucket.org/domingogallardo/mads-todolist/[Solución práctica 1]
+
+Continuaremos también trabajando con https://git-scm.com[Git] como sistema de control de versiones y https://bitbucket.org[Bitbucket] como repositorio remoto. Intregraremos Git y TDD, haciendo que cada commit tenga un único test.
+
+== Cómo trabajar con una base de datos MySQL
+
+Hasta ahora hemos desarrollado la aplicación usando la base de datos en memoria `H2`. Sin embargo, para poder hacer comprobaciones y demostraciones de la aplicación que estamos desarrollando, es interesante poder trabajar con una base de datos que haga persistente los datos entre distintas ejecuciones de la aplicación. También es recomendable trabajar con bases de datos idénticas a las que utilizaremos en producción.
+
+Para modificar la configuración de la base de datos debemos cambiar las preferencias definidas en el fichero de configuración `application.conf`. Y también debemos modificar la configuración de la unidad de persistencia de JPA. Podemos hacerlo de la siguiente forma, para que sea sencillo alternar entre distintas configuraciones, por ejemplo una configuración de base de datos en memoria H2 y otra con la base de datos MySQL.
+
+Para poder trabajar con MySQL debemos incluir el driver `mysql-connector-java` en las dependencias de la aplicación:
+
+.build.sbt
+[source]
+----
+libraryDependencies ++= Seq(
+   javaJpa,
+   "org.hibernate" % "hibernate-entitymanager" % "4.3.7.Final",
+   "mysql" % "mysql-connector-java" % "5.1.18", # <1>
+   cache,
+   javaWs
+)
+----
+<1> Añadimos la librería `mysql-connector-java-5.1.18` 
+
+La configuración de MySQL que vamos a definir va a acceder a una base de datos `mads` gestionada por un servidor mysql con el usuario `root` y la contraseña `mads`. Esta base de datos y este servidor debe existir en la máquina en la que ejecutamos la aplicación Play. Para instalar MySQL en Linux y crear esta base de datos:
+
+[source]
+----
+$ sudo apt-get install mysql-server
+;;; Añadir contraseña para el usuario root (por ejemplo 'mads')
+$ mysql -u root -p
+Enter password: mads
+mysql> create database mads;
+----
+
+Definimos después dos unidades de persistencia en el fichero `conf/META-INF/persistence.xml`:
+
+.conf/META-INF/persistence.xml
+[source,xml]
+----
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+             version="2.1">
+
+    <!-- Memory persistence Unit -->
+
+    <persistence-unit name="memoryPersistenceUnit" transaction-type="RESOURCE_LOCAL"> # <1>
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <non-jta-data-source>DefaultDS</non-jta-data-source>
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+        </properties>
+    </persistence-unit>
+
+    <!-- MySQL Persistence Unit -->
+
+    <persistence-unit name="mySqlPersistenceUnit" transaction-type="RESOURCE_LOCAL"> # <2>
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <non-jta-data-source>DefaultDS</non-jta-data-source>
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+        </properties>
+    </persistence-unit>
+
+</persistence>
+----
+<1> Unidad de persistencia `memoryPersistenceUnit`
+<2> Unidad de persistencia `mySqlPersistenceUnit`
+
+La unidad de persistencia `memoryPersistenceUnit` define las características de la conexión con la base de datos en memoria H2 y la unidad `mySqlPersistenceUnit` define la conexión con una base de datos MySQL.
+
+Ahora ya es posible definir dos ficheros de configuración de la aplicación, cada uno con una configuración distinta. El fichero `application-mem.conf` con la configuración para trabajar con la base de datos H2 y el fichero `application-mysql.conf` para trabajar con MySQL.
+
+.conf/application-mem.conf
+[source]
+----
+...
+# Database configuration
+# ~~~~~
+# By convention, the default datasource is named `default`
+
+db.default.driver=org.h2.Driver
+db.default.url="jdbc:h2:mem:play"
+# You can expose this datasource via JNDI if needed (Useful for JPA)
+db.default.jndiName=DefaultDS
+
+# Choose the active JPA persistence unit
+jpa.default=memoryPersistenceUnit
+...
+----
+
+.conf/application-mysql.conf
+[source]
+----
+# Database configuration
+# ~~~~~
+# By convention, the default datasource is named `default`
+
+db.default.driver=com.mysql.jdbc.Driver
+db.default.url="jdbc:mysql://localhost:3306/mads"
+db.default.username=root
+db.default.password="mads"
+# You can expose this datasource via JNDI if needed (Useful for JPA)
+db.default.jndiName=DefaultDS
+
+# Choose the active JPA persistence unit
+jpa.default=mySqlPersistenceUnit
+----
+
+Para seleccionar una configuración u otra podemos copiar el fichero correspondiente como fichero `application.conf`. Por ejemplo, para ejecutar la aplicación usando la configuración de MySQL:
+
+[source]
+----
+# Escogemos la base de datos MySQL
+$ cp conf/application-mysql.conf conf/application.conf
+$ activator run 
+----
+
+WARNING: Para trabajar con MySQL debes modificar el tipo de dato de la clave primaria de `Usuario` a `Integer`, ya que MySQL no puede gestionar claves autogeneradas de tipo `String`. Cambia todos los tipos `String` que hagan referencia a este identificador por `Integer`. Puedes ver un ejemplo de los ficheros que hay que modificar en el commit `Actualizada la BD a MySQL` (https://bitbucket.org/domingogallardo/mads-todolist/commits/6cf47a05dc32c618d656aa18ba688dae01561425[enlace]) de la solución subida a Bitbucket.
+
+== Tests en Play Framework
+
+Play Framework en Java utiliza http://junit.org[JUnit] como framework de testing. Los siguientes enlaces proporcionan información inicial sobre testing en Play Framework. No vamos a entrar en profundidad en todas las posibilidades (_mocking_, inyección de dependencias, etc.), sólo aprender lo necesario para definir algunos tests que sean útiles:
+
+- Documentación Play - https://playframework.com/documentation/2.4.x/JavaTest[Testing your application]
+- Documentación Play - https://playframework.com/documentation/2.4.x/JavaFunctionalTest[Writing functional tests]
+- Documentación Play - https://www.playframework.com/documentation/2.4.x/JavaWS[The Play WS API]
+- Play Java API - https://www.playframework.com/documentation/2.4.x/api/java/play/test/Helpers.html[play.test.Helpers]
+- Play Java API - https://www.playframework.com/documentation/2.4.x/api/java/play/mvc/Http.Status.html[play.mvc.Http.Status]
+
+Todos los tests deben incluirse en el directorio `tests`. Podemos lanzar todos los tests con el comando 
+
+[source]
+----
+$ activator test
+----
+
+Y también podemos lanzar sólo los tests definidos en una clase con el comando:
+
+[source]
+----
+$ activator "testOnly miClaseTest"
+----
+
+En Play es posible lanzar tests sobre ejecuciones de la aplicación. De esta forma no es necesario crear _mocks_ ni _stubs_ (aunque es posible hacerlo, si queremos mejorar el rendimiento de la ejecución de los tests). Podemos también configurar en los tests la conexión a la base de datos con la que se lanza el test, haciendo independiente la ejecución del test de la configuración de desarrollo.
+
+Por ejemplo, podemos usar una configuración de desarrollo en la que trabajamso con una base de datos MySQL (como hemos visto anteriormente), y hacer que los tests se ejecuten con una configuración de base de datos en memoria. También podemos utilizar una base de datos de tests en la que hemos añadido casos de prueba que se utilizarán en los tests. Veremos distintos ejemplos en el siguiente apartado.
+
+== Ejemplos de tests
+
+=== Tests en memoria de los _controllers_ usando el API Web Service de Play
+
+Podemos probar los _controllers_ de una aplicación Play creando _ejecuciones al vuelo_ de la aplicación que usan la base de datos de memoria y utilizando el API Web Service para realizar peticiones HTTP. Veamos algunos ejemplos.
+
+==== Test `testFormularioLogin`
+
+El siguiente test comprueba que cuando se realiza una petición a la URL `http://localhost:/login` la aplicación devuelve una página HTML que contiene la cadena `<h1>Login</h1>`.
+
+.test/WebServiceTest.java
+[source,java]
+----
+import org.junit.*;
+
+import play.mvc.*;
+import play.test.*;
+import play.libs.F.*;
+
+import play.libs.ws.*;
+import play.Logger;
+
+import static play.test.Helpers.*;
+import static org.junit.Assert.*;
+
+public class WebServiceTest {
+    @Test
+    public void testFormularioLogin() {
+        running(testServer(3333, fakeApplication(inMemoryDatabase())), () -> { #<1>
+            int timeout = 4000; 
+            WSResponse response = WS.url("http://localhost:3333/login").get().get(timeout); #<2>
+            assertEquals(OK, response.getStatus()); #<3>
+            assertTrue(response.getBody().contains("<h1>Login</h1>")); #<4>
+        });
+    }
+}
+----
+<1> Se crea una aplicación que escucha en el puerto 3333 que usa la base de datos en memoria
+<2> Se lanza una petición GET a la URL `http://localhost:3333/login` y se espera 4000 ms. a que el servidor responda
+<3> Se comprueba el que el estado de la respuesta es OK
+<4> Se comprueba que el cuerpo de la respuesta contiene la cadena `<h1>Login</h1>`
+
+
+==== test `testdoLoginUsuarioNotFound`
+
+En el siguiente test se muestra una petición POST, similar a la que se realiza desde un navegador cuando se envía un formulario HTML. En concreto se comprueba que cuando se intenta hacer login con un usuario no existente se devuelve un error. Como la base de datos se inicializa en cada ejecución, se encontrará vacía al recibir la petición y se producirá el error.
+
+.test/WebServiceTest.java
+[source,java]
+----
+public class WebServiceTest {
+
+    ...
+    
+    @Test
+    public void testdoLoginUsuarioNotFound() {
+        running(testServer(3333, fakeApplication(inMemoryDatabase())), () -> {
+            int timeout = 4000;
+            WSResponse response = WS.url("http://localhost:3333/login")  #<1>
+                            .setContentType("application/x-www-form-urlencoded") #<2>
+                            .post("login=domingo&password=gallardo") #<3>
+                            .get(timeout); #<4>
+            assertEquals(BAD_REQUEST, response.getStatus()); #<5>
+            assertTrue(response.getBody().contains("No existe el usuario")); #<6>
+        });
+    }
+}
+----
+<1> URL a la que se realiza la petición
+<2> Tipo de petición formulario HTML
+<3> Datos del formulario HTML (`login`: `domingogallardo` y `password`: `gallardo`)
+<4> Esperamos 4000 ms. a que la aplicación conteste la petición
+<5> Comprobamos que el estado de la respuesta es `BAD_REQUEST`
+<6> Comprobamos que el cuerpo de la respuesta contiene la cadena `No existe el usuario`
+
+
+==== test `testRegistraNuevoUsuario`
+
+Por último, el siguiente test muestra un ejemplo de una petición POST que tiene éxito. En concreto, se comprueba que tras un registro correcto de un usuario, se redirecciona el cliente a una página que contiene una cadena concreta:
+
+.test/WebServiceTest.java
+[source,java]
+----
+public class WebServiceTest {
+
+    ...
+    
+    @Test
+    public void testRegistraNuevoUsuario() {
+        running(testServer(3333, fakeApplication(inMemoryDatabase())), () -> {
+            int timeout = 4000;
+            WSResponse response = WS.url("http://localhost:3333/registro")
+                        .setFollowRedirects(true) #<1>
+                        .setContentType("application/x-www-form-urlencoded") 
+                        .post("login=domingo&password=gallardo&eMail=domingo.gallardo@ua.es") #<2>
+                        .get(timeout);
+            assertTrue(response.getBody().contains("Listado de tareas del usuario")); #<3>
+        });
+    }
+}
+----
+<1> Se fuerza a seguir la redirección que debe llegar en la respuesta al POST
+<2> POST con los datos del usuario a registrar
+<3> Se comprueba que la respuesta de la redirección contiene la cadena `Listado de tareas del usuario`
+
+
+=== Tests en memoria de la lógica de negocio
+
+Para probar las clases de la capa de negocio (incluidas en el package `models`) Play permite también crear una aplicación en funcionamiento y llamar a las propias clases Java para comprobar que funcionan como deberían.
+
+==== Test `testfindAllUsuariosDevuelveListaVacia`
+
+En el siguiente test podemos comprobar un ejemplo de utilización del método `play.test.Helpers.fakeApplication()` que permite crear una aplicación al vuelo que utiliza una base de datos en memoria. Una vez creada la aplicación, se pueden lanzar métodos de la capa de negocio y comprobar los resultados. Si estos métodos trabajan con la base de datos, hay que encapsular la invocación dentro de una transacción.
+
+.test/WithFakeApplicationTest.java
+[source,java]
+----
+import org.junit.*;
+import play.test.*;
+import play.Application;
+import play.mvc.*;
+import static play.test.Helpers.*;
+import static org.junit.Assert.*;
+
+import play.db.jpa.*;
+import java.util.List;
+import models.*;
+
+public class WithFakeApplicationTest {
+
+    @Test
+    public void testfindAllUsuariosDevuelveListaVacia() {
+        running (fakeApplication(inMemoryDatabase()), () -> { #<1>
+            JPA.withTransaction(() -> { #<2>
+                List<Usuario> listaUsuarios = UsuarioService.findAllUsuarios(); #<3>
+                assertTrue(listaUsuarios.isEmpty()); #<4>
+            });
+        });
+    }
+}
+----
+<1> Se crea una aplicación que utiliza la base de datos en memoria
+<2> Se abre una transacción
+<3> Se invoca al método `UsuarioService.findAllUsuarios()`
+<4> Se comprueba que el resultado es una lista vacía
+
+
+==== Test `testfindAllUsuariosDevuelveUnUsuario`
+
+En el siguiente test podemos comprobar un ejemplo de utilización del método `play.test.Helpers.fakeApplication()` que permite crear una aplicación al vuelo que utiliza una base de datos en memoria. Una vez creada la aplicación, se pueden lanzar métodos de la capa de negocio y comprobar los resultados. Si estos métodos trabajan con la base de datos, hay que encapsular la invocación dentro de una transacción.
+
+.test/WithFakeApplicationTest.java
+[source,java]
+----
+public class WithFakeApplicationTest {
+
+    ...
+    
+    @Test
+    public void testfindAllUsuariosDevuelveUnUsuario() {
+        running (fakeApplication(inMemoryDatabase()), () -> {
+            JPA.withTransaction(() -> {
+                Usuario usuario = new Usuario(); #<1>
+                usuario.login = "pepe";
+                usuario.password = "pepe"; 
+                UsuarioService.grabaUsuario(usuario); #<2>
+                List<Usuario> listaUsuarios = UsuarioService.findAllUsuarios(); #<3>
+                assertTrue(listaUsuarios.size() == 1); #<4>
+            });
+        });
+    }
+}
+----
+<1> Se crea un `Usuario` al que después se va a inicializar su `login` y `password`
+<2> Se llama al método `UsuarioService.grabaUsuario()` con el usuario recién creado
+<3> Se consulta la lista de usuarios
+<4> Se comprueba que la lista de usuarios tiene un elemento (se ha inicializado vacía y se ha añadido el nuevo usuario)
+
+=== Tests utilizando una base de datos de prueba
+
+Por último, vamos a mostrar cómo realizar tests utilizando una base de datos de prueba mediante la librería DbUnit. 
+
+Empezamos creando una base de datos nueva vacía, llamada `mads_test`:
+
+[source]
+----
+$ mysql -u root -p
+Enter password: mads
+mysql> create database mads_test;
+----
+
+Para trabajar con DbUnit hay que añadir sus librerías en las dependencias de la aplicación:
+
+.build.sbt
+[source]
+----
+...
+libraryDependencies ++= Seq(
+  javaJpa,
+  "org.hibernate" % "hibernate-entitymanager" % "4.3.7.Final",
+  "mysql" % "mysql-connector-java" % "5.1.18",
+  "org.dbunit" % "dbunit" % "2.4.9", #<1>
+  cache,
+  javaWs
+)
+----
+<1> Se añade la dependencia de `dbunit-2.4.9`
+
+Creamos el fichero con el _dataset_ que vamos a utilizar en el test y con el que se va a llenar la base de datos de prueba. En el directorio `test/resources` creamos el siguiente fichero `usuario_service_dataset_1.xml` en el que se definen los datos de prueba que llenarán la base de datos. En este caso un único usuario:
+
+.test/resources/usuario_service_dataset_1.xml
+[source,xml]
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+  <Usuario id="1" login="anabel.perez" password="perez" eMail="anabel.perez@gmail.com"/>
+</dataset>
+----
+
+Por último, ya podemos definir un test en el que se cargan estos datos usando DbUnit y se comprueban las funcionalidades de la aplicación con ellos:
+
+.test/UsuarioServiceIntegrationTests.java
+[source, java]
+----
+import org.junit.*;
+import play.test.*;
+import play.Application;
+import play.mvc.*;
+import static play.test.Helpers.*;
+import static org.junit.Assert.*;
+import play.db.jpa.*;
+import java.util.List;
+import models.*;
+import org.dbunit.*;
+import org.dbunit.dataset.*;
+import org.dbunit.dataset.xml.*;
+import java.util.HashMap;
+import java.io.FileInputStream;
+
+public class UsuarioServiceIntegrationTests {
+
+    Application app; #<1>
+    JndiDatabaseTester databaseTester; #<2>
+
+    // Devuelve los settings necesarios para crear la aplicación fake
+    // usando la base de datos de integración
+    private static HashMap<String, String> settings() { #<3>
+        HashMap<String, String> settings = new HashMap<String, String>();
+        settings.put("db.default.url", "jdbc:mysql://localhost:3306/mads_test");
+        settings.put("db.default.username", "root");
+        settings.put("db.default.password", "mads");
+        settings.put("db.default.jndiName", "DefaultDS");
+        settings.put("jpa.default", "mySqlPersistenceUnit");
+        return(settings);
+    }
+
+    // Crea la conexión con la base de datos de prueba y
+    // la inicializa con las tablas definidas por las entidades JPA
+    @BeforeClass #<4>
+    public static void createTables() {
+        Application fakeApp = Helpers.fakeApplication(settings()); 
+        // Abrimos una transacción para que JPA cree en la BD
+        // las tablas correspondientes a las entidades
+        running (fakeApp, () -> { #<5>
+            JPA.withTransaction(() -> {});
+        });
+    }
+
+    // Se ejecuta antes de cada tests, inicializando la BD con los
+    // datos del dataset
+    @Before #<6>
+    public void inicializaBaseDatos() throws Exception {
+        app = Helpers.fakeApplication(settings()); 
+        databaseTester = new JndiDatabaseTester("DefaultDS"); #<7>
+        IDataSet initialDataSet = new FlatXmlDataSetBuilder().build(new
+            FileInputStream("test/resources/usuario_service_dataset_1.xml")); #<8>
+        databaseTester.setDataSet(initialDataSet); #<9>
+        databaseTester.onSetup();
+    }
+
+    @After
+    public void cierraBaseDatos() throws Exception {
+        databaseTester.onTearDown();
+    }
+
+    @Test
+    public void testfindAllUsuariosDevuelveUnUsuario() {
+        running (app, () -> { #<10>
+            JPA.withTransaction(() -> {
+                List<Usuario> listaUsuarios = UsuarioService.findAllUsuarios();
+                assertTrue(listaUsuarios.size() == 1);
+            });
+        });
+    }
+}
+----
+<1> Aplicación que se inicializa en cada test
+<2> Conexión a la base de datos que se llena antes de cada test
+<3> Settings de la aplicación para que se conecte a la base de datos de prueba
+<4> La anotación `@BeforeClass` hace que el método se ejecute sólo una vez, antes de todos los tests para inicializar la BD
+<5> Abrimos una transacción en la aplicación para obligar a JPA a crear las tablas correspondientes a las entidades
+<6> La anotación `@Before` hace que el método se ejecute antes de cada test para vaciar la BD y llenarla con los datos del dataset
+<7> Obtenemos una referencia a la base de datos de prueba a través de su nombre JNDI
+<8> Obtenemos el dataset
+<9> Cargamos el dataset en la base de datos de prueba
+<10> Se inicializa la aplicación con la base de datos de prueba llena con todos los datos y lanzamos el test en ella
+
+== Realización de la práctica
+
+=== Tests en memoria de la aplicación existente
+
+Debes realizar, tomando como ejemplo los tests vistos en los apartados anteriores, los siguientes tests que prueben distintas características de la aplicación `mads-todolist` que has desarrollado en la primera práctica:
+
+- al menos 6 tests de la capa de controladores HTTP con el API WS
+- al menos 6 tests de la capa de servicios y modelos
+
+Todos los tests se deben diseñar usando la base de datos en memoria, que no contiene inicialmente ningún dato. Puedes usar los tests anteriores como unos de los 6 que tienes que desarrollar.
+
+Incluye todos los tests en una nueva rama, y realiza un commit para cada test.
+
+=== Desarrollo de nuevas características con TDD
+
+Desarrolla utilizando TDD (_Test Driven Design_) todas las características necesarias para realizar un *CRUD de tareas de usuarios*:
+
+- Añade las nuevas features que vayas desarrollando en el backlog que tienes en la hoja de cálculo Google compartida conmigo.
+- Al igual que hicimos en la práctica 1, cada característica debe desarrollarse en una rama independiente.
+- Haremos un fichero de test por característica, que contendrá todos los tests necesarios para implementar la característica y se denominará con un nombre similar al de la característica que queremos implementar.
+- En el fichero de test se incluirán tests de la capa de negocio y tests de la capa de _controller_. Deberás realizar un enfoque de _dentro a fuera_, realizando primero los tests de las capas interiores de la aplicación y terminando con los tests sobre los _controllers_.
+- Cada test, junto con el código desarrollado para pasarlo, irá en un commit.
+- Es posible hacer commits con refactorizaciones (recuerda el ciclo de TDD: Test, Codigo y Refactorización).
+- Utiliza la base de datos de prueba para poder hacer pruebas con datos ya en la base de datos.
+
+==== Ejemplo de característica: Listado de tareas
+
+En la https://bitbucket.org/domingogallardo/mads-todolist/commits/all[aplicación de Bitbucket] puedes comprobar un ejemplo de desarrollo de la primera característica: *listado de tareas*.
+
+En esta característica queremos desarrollar la página con el listado de tareas de un usuario, que se debe devolver cuando se haga una petición GET a la URL correspondiente a las tareas del usuario. Por ejemplo, si accedemos a la URL `/usuarios/1/tareas` se devolverá un listado con todas las tareas del usuario 1.
+
+Para implementar esta característica usando `TDD` crearemos el fichero de test `test/ListadoTareasTests.java` en el que iremos añadiendo los distintos tests,  desde los de la capa más interior que contiene las entidades (los objetos de la base de datos), el DAO y el _controller_, hasta los de la capa más exterior que comprueba el _controller_.
+
+En cada test añadido completaremos el código de la aplicación necesario para que el test deje de fallar.
+
+===== Abrimos la característica en la rama `master`
+
+Empezamos creando una rama con la característica que vamos a codificar:
+
+[source]
+----
+$ git checkout -b feature10
+----
+
+Y vamos progresando paso a paso en esta rama haciendo commits con cada uno de los test y su solución.
+
+===== Test 1: `testFindTareaDevuelveUnaTarea`
+
+En este test creamos el _dataset_ y la clase `ListadoTareasTests` en la que vamos a ir añadiendo todos los tests. En esta clase inicializamos todos los elementos necesarios para que los tests se realicen utilizando los datos del _dataset_ añadidos a la base de datos de pruebas (`mads_test`).
+
+Las tareas están asociadas a un usuario. Para ello se define en la tabla `Tarea` la columna `usuarioId` que contiene el identificador del usuario con el que está asociada cada tarea.
+
+.test/resources/tareas_dataset_1.xml
+[source,xml]
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+  <Usuario id="1" login="pepito" password="perez" eMail="pepito.perez@gmail.com"/>
+  <Usuario id="2" login="julia" password="martinez" eMail="julia.martinez@gmail.com"/>
+  <Tarea id="1" usuarioId="1" descripcion="Preparar el trabajo del tema 1 de biología" />
+  <Tarea id="2" usuarioId="1" descripcion="Estudiar el parcial de matemáticas" />
+  <Tarea id="3" usuarioId="1" descripcion="Leer el libro de inglés" />
+  <Tarea id="4" usuarioId="2" descripción="Salir a correr" />
+</dataset>
+----
+
+Creamos la clase `test/ListadoTareasTests.java` con todos los métodos necesarios para cargar el dataset cada vez que se ejecute un test:
+
+
+.test/ListadoTareasTests.java
+[source,java]
+----
+import org.junit.*;
+import play.test.*;
+import play.Application;
+import play.mvc.*;
+import static play.test.Helpers.*;
+import static org.junit.Assert.*;
+import play.db.jpa.*;
+import java.util.List;
+import models.*;
+import org.dbunit.*;
+import org.dbunit.dataset.*;
+import org.dbunit.dataset.xml.*;
+import java.util.HashMap;
+import java.io.FileInputStream;
+
+
+import play.libs.ws.*;
+
+public class ListadoTareasTests {
+
+    JndiDatabaseTester databaseTester;
+    Application app;
+
+    // Devuelve los settings necesarios para crear la aplicación fake
+    // usando la base de datos de integración
+    private static HashMap<String, String> settings() {
+        HashMap<String, String> settings = new HashMap<String, String>();
+        settings.put("db.default.url", "jdbc:mysql://localhost:3306/mads_test");
+        settings.put("db.default.username", "root");
+        settings.put("db.default.password", "mads");
+        settings.put("db.default.jndiName", "DefaultDS");
+        settings.put("jpa.default", "mySqlPersistenceUnit");
+        return(settings);
+    }
+
+    // Crea la conexión con la base de datos de prueba y
+    // la inicializa con las tablas definidas por las entidades JPA
+    @BeforeClass
+    public static void createTables() {
+        Application fakeApp = Helpers.fakeApplication(settings());
+        // Abrimos una transacción para que JPA cree en la BD
+        // las tablas correspondientes a las entidades
+        running (fakeApp, () -> {
+            JPA.withTransaction(() -> {});
+        });
+    }
+
+    // Se ejecuta antes de cada tests, inicializando la BD con los
+    // datos del dataset
+    @Before
+    public void inicializaBaseDatos() throws Exception {
+        app = Helpers.fakeApplication(settings());
+        databaseTester = new JndiDatabaseTester("DefaultDS");
+        IDataSet initialDataSet = new FlatXmlDataSetBuilder().build(new
+            FileInputStream("test/resources/tareas_dataset_1.xml"));
+        databaseTester.setDataSet(initialDataSet);
+        databaseTester.onSetup();
+    }
+
+    @After
+    public void cierraBaseDatos() throws Exception {
+        databaseTester.onTearDown();
+    }
+----
+
+Añadimos el test que busca una tarea con un identificador y comprueba que sus datos son los correctos. En el test comprobamos la descripción de la tarea y el usuario asociado:
+
+.test/ListadoTareasTests.java
+[source,java]
+----
+    @Test
+    public void testFindTareaDevuelveTarea() {
+        running (app, () -> {
+            JPA.withTransaction(() -> {
+                Tarea tarea = TareaDAO.find(1);
+                assertEquals(tarea.descripcion,"Preparar el trabajo del tema 1 de biología");
+                Usuario usuario = tarea.usuario;
+                assertEquals(usuario.login, "pepito");
+            });
+        });
+    }
+----
+
+Si ahora lanzamos este test comprobaremos que falla:
+
+[source]
+----
+$ activator "testOnly ListadoTareasTests"
+----
+
+Debemos ahora escribir el código que hace pasar el test y hacer un commit cuando lo hayamos terminado. En este código se creará la entidad `Tarea` y se actualizará la entidad `Usuario` con la relación JPA uno a muchos entre usuarios y tareas. También se creará la clase `TareaDAO` en la que se creará el método `find` que busca tareas por su identificador.
+
+En el siguiente enlaces puedes encontrar más información sobre las relaciones entre entidades en JPA:
+
+- http://www.objectdb.com/java/jpa/entity/fields[JPA Entity Fields]
+
+Puedes encontrar el código que resuelve el test en el commit correspondiente en Bitbucket:
+
+- https://bitbucket.org/domingogallardo/mads-todolist/commits/all[Commits de la solución mads-todolist]
+
+Una vez escrito el código que hace que pase el test, añade los ficheros al commit y realiza el commit:
+
+[source]
+----
+$ git status
+$ git add test/ListadoTareasTests.java
+$ git add test/resources/tareas_dataset_1.xml
+$ git add app/models/Tarea.java
+$ git add app/models/TareaDAO.java
+$ git add app/models/Usuario.java
+$ git status
+$ git commit -m "Añadido el test testFindTareaDevuelveTarea"
+----
+
+===== Test 2: `testTareasUsuarioDevuelveSusTareas`
+
+En este segundo test obtenemos las tareas de un usuario y comprobamos que son las correctas.
+
+Es un test algo complicado, porque nos obliga a crear objetos `Tarea` y a definir métodos de comparación entre esos objetos y los obtenidos por la consulta a la base de datos:
+
+.test/ListadoTareasTests.java
+[source,java]
+----
+    ...
+    
+    @Test
+    public void testTareasUsuarioDevuelveSusTareas() {
+        running (app, () -> {
+            JPA.withTransaction(() -> {
+                Usuario usuario = UsuarioDAO.find(1);
+                List<Tarea> tareas = usuario.tareas;
+                assertEquals(tareas.size(), 3);
+                assertTrue(tareas.contains(
+                    new Tarea(usuario, "Preparar el trabajo del tema 1 de biología")));
+                assertTrue(tareas.contains(
+                    new Tarea(usuario, "Estudiar el parcial de matemáticas")));
+                assertTrue(tareas.contains(
+                    new Tarea(usuario, "Leer el libro de inglés")));
+            });
+        });
+    }
+----
+
+Escribimos el código para que el test pase y hacemos un commit.
+
+===== Test 3: `testTareaServiceFindAllTareasDevuelveTodasLasTareas`
+
+Añadimos ahora el test para definir el acceso a la capa de servicio. El test realiza la invocación al método `TareaService.findAllTareasUsuario(usuarioId)` que devuelve las tareas de un usuario definido por su identificador.
+
+El test compara las tareas obtenidas de la consulta a la base de datos con objetos `Tarea` creados asociados a un objeto `Usuario` creado también en el test.
+
+.test/ListadoTareasTests.java
+[source,java]
+----
+    ...
+    @Test
+    public void testTareaServiceFindAllTareasDevuelveTodasLasTareas() {
+        running (app, () -> {
+            JPA.withTransaction(() -> {
+                Integer usuarioId = 1;
+                List<Tarea> tareas = TareaService.findAllTareasUsuario(usuarioId);
+
+                Usuario pepito = new Usuario("pepito", "perez");
+                assertTrue(tareas.contains(
+                    new Tarea(pepito, "Preparar el trabajo del tema 1 de biología")));
+                assertTrue(tareas.contains(
+                    new Tarea(pepito, "Estudiar el parcial de matemáticas")));
+                assertTrue(tareas.contains(
+                    new Tarea(pepito, "Leer el libro de inglés")));
+                });
+        });
+    }    
+----
+
+Escribimos el código para que el test pase y hacemos un commit.
+
+===== Test 4: `testWebPaginaListadoTareas`
+
+Una vez completados los tests que comprueban el funcionamiento de la capa de modelo y de servicio, vamos a crear los tests que prueban la capa del _controller_ HTTP.
+
+Empezamos con un sencillo test para comprobar que cuando se hace una petición GET a `/usuarios/<id>/tareas` se crea una página con la cabecera `Listado de tareas`:
+
+.test/ListadoTareasTests.java
+[source,java]
+----
+    ...
+
+    @Test
+    public void testWebPaginaListadoTareas() {
+        running(testServer(3333, app), () -> {
+            int timeout = 4000;
+            WSResponse response = WS
+                .url("http://localhost:3333/usuarios/1/tareas")
+                .get()
+                .get(timeout);
+            assertEquals(OK, response.getStatus());
+            String body = response.getBody();
+            assertTrue(body.contains("<h2>Listado de tareas</h2>"));
+        });
+    }
+----
+
+Escribimos el código para que el test pase y hacemos un commit.
+
+===== Test 5: `testWebApiListadoTareas`
+
+Y, por último, terminamos con el test que comprueba que el listado de tareas es el que está definido en la base de datos:
+
+.test/ListadoTareasTests.java
+[source,java]
+----
+    ...
+
+    @Test
+    public void testWebApiListadoTareas() {
+        running(testServer(3333, app), () -> {
+            int timeout = 4000;
+            WSResponse response = WS
+                .url("http://localhost:3333/usuarios/1/tareas")
+                .get()
+                .get(timeout);
+            assertEquals(OK, response.getStatus());
+            String body = response.getBody();
+            assertTrue(body.contains(
+                "Preparar el trabajo del tema 1 de biología"));
+            assertTrue(body.contains(
+                "Estudiar el parcial de matemáticas"));
+            assertTrue(body.contains(
+                "Leer el libro de inglés"));
+        });
+    }
+----
+
+Escribimos el código para que el test pase y hacemos un commit.
+
+===== Cerramos la característica
+
+Hacemos un merge en la rama `master` y subimos a Bitbucket
+
+[source]
+----
+$ git checkout master
+$ git merge --no-ff feature10 -m "Merge feature10: Listado de tareas"
+$ git branch -d feature10
+$ git push
+----
+
+==== Siguientes características
+
+Sigue utilizando TDD (Test Driven Design) y Git para desarrollar todas las características que faltan para realizar un CRUD de tareas de usuarios:
+
+- Añadir una nueva tarea a un usuario
+- Modificar una tarea
+- Borrar una tarea
+
+El aspecto final de las páginas debe ser similar al CRUD de usuarios que hemos desarrollado en la práctica 1.
+
+Añade las nuevas features que vayas desarrollando en el backlog que tienes en la hoja de cálculo Google compartida conmigo, anotando allí las indicaciones que quieras resaltar relacionadas con cada característica.
+
+
+== Entrega y evaluación
+
+- Entrega el 27 de octubre
+- Durante el desarrollo debes compartir conmigo:
+-- Repositorio Bitbucket (usuario de Bitbucket: domingogallardo)
+-- Google spreadsheet con el backlog (usuario de Google: domingo.gallardo@gcloud.ua.es)
+- En la fecha de la entrega de debe subir a Moodle un ZIP que contenga el proyecto Play terminado (incluyendo el directorio .git) y un PDF con el backlog.
+
+Para la evaluación se tendrá en cuenta:
+
+- Desarrollo contínuo (commits realizados a lo largo de las 3 semanas)
+- Buen desarrollo y descripción de los cambios (commits bien documentados, ordenados, ramas de características visibles en la historia de commits)
+- Correcto desarrollo de las funcionalidades de la práctica
+- Cuidado en el aspecto, la terminación, control de errores
+- Características adicionales desarrolladas
