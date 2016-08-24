@@ -2,7 +2,7 @@
 
 Materiales del curso 2016-17 de la asignatura _Metodologías Ágiles de Desarrollo de Software_ de la Universidad de Alicante.
 
-La asignatura tiene 15 semanas de clases. Cada semana tiene una clase de teoría y una de prácticas, cada una de ellas con una duración de 2 horas.
+La asignatura se imparte en 15 semanas de clases. Cada semana tiene una clase de teoría y una de prácticas, ambas con una duración de 2 horas.
 
 La distribución semanal de actividades está disponible en la [página de Moodle](https://moodle2016-17.ua.es/moodle/course/view.php?id=927) de la asignatura.
 
@@ -22,7 +22,7 @@ Las sesiones tienen una duración variable, entre 45 y 90 minutos.
   - Mary Poppendieck - [An introduction to lean software development](lecturas/mary-poppendieck_an-introduction-to-lean-software-development.pdf)
 
 ### Bloque 2: Integración y entrega continua (3 semanas)
-
+p
 - S06: [Pruebas ágiles](sesiones/pruebas-agiles/pruebas-agiles.md)
 - S07: [Workflows de Git](sesiones/git-workflows/git-workflows.md)
   - Vincent Driessen - [A successful Git branching model](lecturas/vincent-driessen_a-successful-git-branching-model.pdf)
