@@ -11,13 +11,13 @@
 
 <img src="diapositivas/introduccion-a-mads.005.png" width="800px">
 
-- Hay cambios importantes de orden de los temas con respecto al curso anterior que se deben en gran medida a una reestructuración de las prácticas. Este curso empezamos las prácticas en grupo en la segunda práctica y en ella se pondrá en marcha el sistema de integración continua de nuestra aplicación Play. Por ello es necesario adelantar el tema de integración continua a las semanas 3, 4, 5 y 6.
+- Hay cambios importantes en el orden de los temas con respecto al curso anterior. Se deben en gran medida a una reestructuración de las prácticas. En la segunda práctica ya habrá que trabajar con flujos de trabajo con Git y construir un sistema de integración continua, por lo que es necesario adelantar el tema de **integración continua** a las semanas 3, 4, 5 y 6.
 
-    Se ha retrasado también el tema de **XP y TDD** a las últimas semanas de curso para adelantar los temas de **historias de usuario** y **Scrum y Kanban** y poder también aplicarlos en prácticas.
+    Se ha eliminado una de las prácticas del curso pasado (la de desarrollo utilizando **Test Driven Development** TDD) para poder hacer una práctica 3 más larga. En esta práctica se deberá realizar una iteración completa de desarrollo de la aplicación. Se han adelantado los temas de **historias de usuario** y **Scrum y Kanban** para poder aplicarlos en esta práctica. Y el tema de **XP y TDD** se ha retrasado a las últimas semanas de curso. No porque sea menos importante, ni mucho menos, sino porque no va a dar tiempo da aplicarlo en prácticas (aunque intentaremos compensarlo haciendo alguna kata en vivo de TDD).
 
-- Los grupos para las prácticas deben tener entre 3 y 4 personas.
+- Sólo la primera práctica es individual. Las prácticas 2 y 3 serán en grupo. Los grupos deberán tener entre 3 y 4 personas.
 
-- El primer examen parcial será el 2 de noviembre y se realizará en horario de la clase de teoría. El segundo parcial coincidirá con la fecha oficial del examen de la asignatura. En esas fechas se realizarán los exámenes de teoría y práctica.
+- El primer examen parcial será el 2 de noviembre y se realizará en horario de la clase de teoría. El segundo parcial coincidirá con la fecha oficial del examen de la asignatura. En esas fechas se realizarán los exámenes de teoría y práctica. 
 
 - En cuanto a la evaluación, el **60% por ciento** de la calificación será por la nota en los exámenes parciales y el **40% por las prácticas**. No hay examen final.
 
