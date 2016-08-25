@@ -11,6 +11,16 @@
 
 <img src="diapositivas/introduccion-a-mads.005.png" width="800px">
 
+- Hay cambios importantes de orden de los temas con respecto al curso anterior que se deben en gran medida a una reestructuración de las prácticas. Este curso empezamos las prácticas en grupo en la segunda práctica y en ella se pondrá en marcha el sistema de integración continua de nuestra aplicación Play. Por ello es necesario adelantar el tema de integración continua a las semanas 3, 4, 5 y 6.
+
+    Se ha retrasado también el tema de **XP y TDD** a las últimas semanas de curso para adelantar los temas de **historias de usuario** y **Scrum y Kanban** y poder también aplicarlos en prácticas.
+
+- Los grupos para las prácticas deben tener entre 3 y 4 personas.
+
+- El primer examen parcial será el 2 de noviembre y se realizará en horario de la clase de teoría. El segundo parcial coincidirá con la fecha oficial del examen de la asignatura. En esas fechas se realizarán los exámenes de teoría y práctica.
+
+- En cuanto a la evaluación, el **60% por ciento** de la calificación será por la nota en los exámenes parciales y el **40% por las prácticas**. No hay examen final.
+
 <img src="diapositivas/introduccion-a-mads.006.png" width="800px">
 
 <img src="diapositivas/introduccion-a-mads.007.png" width="800px">

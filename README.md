@@ -22,7 +22,7 @@ Las sesiones tienen una duración variable, entre 45 y 90 minutos.
   - Mary Poppendieck - [An introduction to lean software development](lecturas/mary-poppendieck_an-introduction-to-lean-software-development.pdf)
 
 ### Bloque 2: Integración y entrega continua (3 semanas)
-p
+
 - S06: [Pruebas ágiles](sesiones/pruebas-agiles/pruebas-agiles.md)
 - S07: [Workflows de Git](sesiones/git-workflows/git-workflows.md)
   - Vincent Driessen - [A successful Git branching model](lecturas/vincent-driessen_a-successful-git-branching-model.pdf)
