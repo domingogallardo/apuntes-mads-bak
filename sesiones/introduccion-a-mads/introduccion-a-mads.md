@@ -13,7 +13,7 @@
 
 - Hay cambios importantes en el orden de los temas con respecto al curso anterior. Se deben en gran medida a una reestructuración de las prácticas. En la segunda práctica ya habrá que trabajar con flujos de trabajo con Git y construir un sistema de integración continua, por lo que es necesario adelantar el tema de **integración continua** a las semanas 3, 4, 5 y 6.
 
-    Se ha eliminado una de las prácticas del curso pasado (la de desarrollo utilizando **Test Driven Development** TDD) para poder hacer una práctica 3 más larga. En esta práctica se deberá realizar una iteración completa de desarrollo de la aplicación. Se han adelantado los temas de **historias de usuario** y **Scrum y Kanban** para poder aplicarlos en esta práctica. Y el tema de **XP y TDD** se ha retrasado a las últimas semanas de curso. No porque sea menos importante, ni mucho menos, sino porque no va a dar tiempo da aplicarlo en prácticas (aunque intentaremos compensarlo haciendo alguna kata en vivo de TDD).
+    Se ha eliminado una de las prácticas del curso pasado (la de desarrollo utilizando **Test Driven Development** TDD) para poder hacer una práctica 3 más larga. En esta práctica se deberá realizar una iteración completa de desarrollo de la aplicación. Se han adelantado los temas de **historias de usuario** y **Scrum y Kanban** para poder aplicarlos en esta práctica. Y el tema de **XP y TDD** se ha retrasado a las últimas semanas de curso. No porque sea menos importante, ni mucho menos, sino porque no vamos a tener tiempo para aplicarlo en prácticas (aunque intentaremos compensarlo haciendo alguna kata en vivo de TDD).
 
 - Sólo la primera práctica es individual. Las prácticas 2 y 3 serán en grupo. Los grupos deberán tener entre 3 y 4 personas.
 
