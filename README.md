@@ -53,7 +53,7 @@ Las sesiones tienen una duración variable, entre 45 y 90 minutos.
 
 ## Prácticas
 
-- P01 (3 semanas): Introducción a Play: Play Framework en Java, Trello (estilo Jira), Docker, GitHub, 
+- P01 (3 semanas): [Introducción a Play](practicas/introduccion-play/introduccion-play.md): Play Framework en Java, Trello (estilo Jira), Docker, GitHub, 
 - P02 (4 semanas): Integración continua: Tests en Play, GitFlow, Jenkins
 - P03 (6 semanas): Historias de usuario + Kanban: Tablero Trello con historias de usuario (estado: propuesta, en discusión, aprobada o desechada - estilo Swift Evolution), sistema para discutir la historia (¿canal Slack?)
 
