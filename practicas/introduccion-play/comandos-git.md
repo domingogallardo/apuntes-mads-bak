@@ -39,7 +39,7 @@
     $ git add <fichero o directorio>
     ```
 
-<img src="images/staging-area.png" width="400px">
+<img src="imagenes/staging-area.png" width="400px">
 
 - Hacer un commit de los ficheros en el _stage_:
 
