@@ -1,5 +1,9 @@
 ## Resumen de comandos Git
 
+Comandos principales para trabajar con Git de forma individual. Los comandos relacionados con el trabajo en equipo los veremos en la práctica 2.
+
+En muchos comandos se incluye un enlace al apartado correspondiente del libro [**Pro Git**](https://git-scm.com/book/en/v2). Es un libro totalmente recomendable, deberías bajártelo y guardarlo como material de aprendizaje y de referencia. Está disponible de forma gratuita en múltiples versiones (PDF, eBook, HTML y mobi).
+
 ### Comandos básicos
 
 - Inicializar git en un directorio:
@@ -13,15 +17,16 @@
     $ git commit -m "Versión inicial"
     ```
 
-- Publicar por primera vez el repositorio local en el remoto (en Bitbucket):
+- Publicar por primera vez el repositorio local en el remoto (en GitHub):
 
     ```
-    $ git remote add origin https://<usuario>@bitbucket.org/<usuario>/mads-todolist.git  
-    $ git push -u origin --all
-    $ git push -u origin --tags
+    $ git remote add origin https://github.com/<usuario>/<nombre-repo>.git
+    $ git push -u origin master
     ```
 
-- Comprobar el estado del repositorio local:
+    El nombre del repositorio remoto será `origin` (nombre estándar del repositorio remoto en el caso en el que sólo haya uno). Subimos al repositorio la rama `master` (la rama por defecto que se crea al inicializar el repositorio local).
+
+- Comprobar el estado del repositorio local: 
 
     ```
     $ git status
@@ -39,7 +44,10 @@
     $ git add <fichero o directorio>
     ```
 
-<img src="imagenes/staging-area.png" width="400px">
+    El área de _stage_ también se llama el _index_. Es muy importante entender su funcionamiento para trabajar con Git. El siguiente dibujo muestra su funcionamiento:
+
+    <img src="imagenes/staging-area.png" width="400px">
+
 
 - Hacer un commit de los ficheros en el _stage_:
 
@@ -53,10 +61,16 @@
     $ git reset HEAD <fichero>
     ```
 
-- Añadir hacer un commit de todos los últimos cambios:
+- Se puede combinar en un único comando el `add` y el `commit` en ficheros ya añadidos al control de versiones:
 
     ```
     $ git commit -a -m "Mensaje"
+    ```
+
+    Se puede abreviar como 
+
+    ```
+    $ git commit -am "Mensaje"`
     ```
 
 - Publicar los cambios en el repositorio remoto:
@@ -70,6 +84,14 @@
     ```
     $ git log [--oneline]
     ```
+
+- Comprobar las diferencias entre dos commits:
+
+    ```
+    $ git diff <hash-previo> <hash-nuevo>
+    ```
+
+    Devuelve las cambios que se han introducido desde el commit identificado por <hash-previo> y hasta el <hash-nuevo>.
 
 ### Ramas
 
@@ -106,15 +128,15 @@
 - Comparar dos ramas:
 
     ```
-    $ git diff rama1 rama2
+    $ git diff master nueva-rama
     ```
 
-    El comando `git diff rama1 rama2` devuelve las diferencias entre las ramas `rama1` y `rama2`: las modificaciones que resultarían de mezclar la rama `rama2` en la rama `rama1`.
+    El comando `git diff master nueva-rama` devuelve las diferencias entre las ramas `master` y `nueva-rama`: las modificaciones que resultarían de mezclar la rama `nueva-rama` en la rama `master`.
 
-- Mezclar la rama `rama2` en la rama `rama1` (añade a la `rama1` los commits adicionales de la rama `rama2`):
+- **_Merge_ de ramas**: Mezclar la rama `nueva-rama` en la rama `master` (añade a la `master` los commits adicionales de la rama `nueva-rama`):
 
     ```
-    $ git checkout rama1
+    $ git checkout master
     $ git merge [--no-ff] nueva-rama -m "Mensaje de commit"
     ```
 
@@ -123,32 +145,43 @@
 - Si en la rama que se mezcla y en la actual hay cambios que afectan a las mismas líneas de un fichero, git detecta un conflicto y combina esas líneas conservando las dos versiones y añadiendo la información de la procedencia. Debemos resolver el conflicto: editarlos a mano y volver a hacer add y commit.
 
     ```
-    $ git merge  
+    $ git merge nueva-rama
     CONFLICT (content): Merge conflict in hola.txt  
     Automatic merge failed; fix conflicts and then commit the result.  
     # editar a mano el fichero con conflictos  
     $ git commit -a -m "Arreglado el conflicto en el merge"
-    $ git merge
+    $ git merge nueva-rama
     ```
 
     El comando `git status` después de un merge nos indica qué ficheros no se han mezclado y hay que editar manualmente.
 
-- _Rebase_ de una rama. Si la rama master ha avanzado después de separar una rama alternativa y queremos incorporar esos cambios en la rama alternativa podemos hacer un `git rebase`:
+- **_Rebase_ de una rama**. Si la rama master ha avanzado después de separar una rama alternativa y queremos incorporar esos cambios en la rama alternativa podemos hacer un `git rebase`:
 
     ```
     $ git checkout master  
     # hacemos cambios  
     $ git commit -a -m "Cambios en master"  
-    $ git checkout rama-feature  
+    $ git checkout nueva-rama
     $ git rebase master  
     First, rewinding head to replay your work on top of it...  
     Applying: Corregido bug1  
     Applying: Corregido bug2
     ```
 
-    El comando cambia la historia de la rama: primero la mueve al final de la rama master (rewind head) y a partir de ahí aplica los cambios propios de la rama.
+    El comando cambia la historia de la rama: primero la mueve al final de la rama master (_rewind head_) y a partir de ahí aplica los cambios propios de la rama.
 
-- Si aparecen conflictos al hacer el _rebase_, basta con modificar los ficheros con conflictos, añadirlos y continuar el _rebase_:
+    **IMPORTANTE**: No se debe hacer un _rebase_ de commits que existan en otros repositorios locales de compañeros. Al volver a aplicar los commits sobre los commits rebobinados, se cambia su número de hash (identificador) y se convierten en commits distintos.
+
+    Una vez que hemos hecho el _rebase_ ya podemos añadir los commits de la rama a `master` y tener una historia lineal:
+
+    ```
+    $ git checkout master
+    $ git merge nueva-rama
+    # Borramos la rama una vez mezclada
+    $ git branch -d nueva-rama
+    ```
+
+- Igual que en el _merge_, al hacer un rebase pueden aparecer conflictos al hacer el _rebase_, basta con modificar los ficheros con conflictos, añadirlos y continuar el _rebase_:
 
     ```
     $ git rebase master
@@ -164,7 +197,7 @@
     $ git rebase --continue
     ```
 
-- **IMPORTANTE**: Es posible integrar los cambios de una rama haciendo un _merge_ o haciendo un _rebase_. Ambas estrategias son correctas y cada una tiene sus pros y contras. Nosotros vamos a usar principalmente los _rebases_. Estudia las diferencias entre ambas estrategias en el tutorial de Atlassian [Merging vs. Rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing).
+- **IMPORTANTE**: Es posible integrar los cambios de una rama haciendo un _merge_ o haciendo un _rebase_. Ambas estrategias son correctas y cada una tiene sus pros y contras. Nosotros vamos a usar ambas para aprender su funcionamiento. 
 
 - Log en forma de grafo:
 
@@ -206,7 +239,8 @@
     $ git push origin --delete <branchName>
     ```
 
-=== Modificar la historia
+
+### Modificar la historia
 
 - Modificar el mensaje del último commit. Se abrirá un editor en el que modificar el mensaje. También se puede escribir el mensaje a mano:
 
@@ -214,7 +248,7 @@
     $ git commit --amend [--m "Nuevo mensaje"]
     ```
 
-- Deshacer el último commit (sólo la acción del commit, dejando los ficheros sin modificar):
+- Deshacer el último commit (sólo la acción del commit, dejando los cambios en el _stage_):
 
     ```
     $ git reset --soft HEAD^
@@ -229,17 +263,31 @@
 - Movernos atrás a un commit pasado, mirar los ficheros, crear una nueva rama allí (o no) y volver al commit actual:
 
     ```
-    $ git checkout v0.0  
-    # Ahora estás en un detached HEAD  
+    $ git checkout <hash> (o tag, por ejemplo v2.0)
+    You are in 'detached HEAD' state.
+    # Ahora estás en un detached HEAD
+    $ git branch
+    * (HEAD detached at 594b606)
+    master
+    $ git checkout -b v2.0.1
+    Switched to a new branch 'v2.0.1'
     $ git branch  
-    * (no branch)  
     master  
-    nueva-rama  
-    $ git checkout -b v0.0.1  
-    Switched to a new branch 'v0.0.1'  
-    $ git branch  
-    master  
-    nueva-rama  
-    * v0.0.1  
+    * v2.0.1
     $ git checkout master
     ```
+
+- Movernos atrás a un commit pasado, descartando todos los commits realizados después (**peligroso**)
+
+    ```
+    $ git reset --hard <hash>
+    ```
+
+### Más información
+
+Puedes encontrar más información en los siguientes documentos:
+
+- _Pro Git_ - [Recording Changes to the Repository](https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository)
+- _Pro Git_ - [Basic Branching and Merging](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
+- Tutorial de Atlassian - [Merging vs. Rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)
+-  _Pro Git_ - [Reset Demystified](https://git-scm.com/book/en/v2/Git-Tools-Reset-Demystified#_git_reset)
