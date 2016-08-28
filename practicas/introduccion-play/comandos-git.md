@@ -33,11 +33,13 @@
     $ git diff
     ```
 
-- Añadir un fichero al [_stage_](http://programmers.stackexchange.com/questions/119782/what-does-stage-mean-in-git) (dejarlo listo para el próximo commit):
+- Añadir un fichero al [_stage_](http://programmers.stackexchange.com/questions/119782/what-does-stage-mean-in-git) (añadirlo para el próximo commit):
 
     ```
     $ git add <fichero o directorio>
     ```
+
+<img src="images/staging-area.png" width="400px">
 
 - Hacer un commit de los ficheros en el _stage_:
 
