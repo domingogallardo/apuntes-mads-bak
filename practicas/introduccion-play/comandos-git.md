@@ -2,7 +2,7 @@
 
 Comandos principales para trabajar con Git de forma individual. Los comandos relacionados con el trabajo en equipo los veremos en la práctica 2.
 
-En muchos comandos se incluye un enlace al apartado correspondiente del libro [**Pro Git**](https://git-scm.com/book/en/v2). Es un libro totalmente recomendable, deberías bajártelo y guardarlo como material de aprendizaje y de referencia. Está disponible de forma gratuita en múltiples versiones (PDF, eBook, HTML y mobi).
+Al final del documento se incluyen enlaces a apartados del libro [**Pro Git**](https://git-scm.com/book/en/v2). Es un libro totalmente recomendable, deberías bajártelo y guardarlo como material de aprendizaje y de referencia. Está disponible de forma gratuita en múltiples versiones (PDF, eBook, HTML y mobi).
 
 ### Comandos básicos
 
