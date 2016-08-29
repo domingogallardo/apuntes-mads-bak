@@ -1,6 +1,7 @@
 # Práctica 1: Primera aplicación Play Framework (Java)
 
-[1. Objetivos](1-objetivos)
+[1. Objetivos](#1-objetivos)  
+[2. Aplicación a desarrollar: ToDo List para equipos](##2-aplicación-a-desarrollar-todo-list-para-equipos)  
 
 ## 1. Objetivos
 
