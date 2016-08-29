@@ -1,12 +1,16 @@
 # Práctica 1: Primera aplicación Play Framework (Java)
 
-## Objetivos
+[1. Objetivos](1-objetivos)
+
+## 1. Objetivos
 
 El objetivo principal de esta primera práctica es implementar una aplicación web inicial con [_Play Framework_](https://playframework.com) en Java. Servirá para tomar un primer contacto con esta tecnología, para que podamos centrarnos en las próximas prácticas en aspectos más relacionados con las metodologías de desarrollo.
 
-Comenzaremos también a trabajar con repositorios de código, usuando [Git](https://git-scm.com) como sistema de control de versiones y [Bitbucket](https://bitbucket.org) como repositorio remoto. Desarrollaremos la aplicación de forma iterativa, utilizando una versión simplificada del flujo de trabajo basado en Git denominado [_Gitflow_](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow).
+Comenzaremos también a trabajar con repositorios de código, usuando [Git](https://git-scm.com) como sistema de control de versiones y [GitHub](https://et.org) como repositorio remoto. Desarrollaremos la aplicación de forma iterativa, utilizando una **versión simplificada** del flujo de trabajo basado en Git denominado [_Gitflow_](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow).
 
-## Características de la aplicación
+## 2. Aplicación a desarrollar: ToDo List para equipos
+
+Durante la asignatura desarrollaremos de forma iterativa una aplicación común. Las dos primeras prácticas servirán de base común para aprender a utilizar los lenguajes, _frameworks_, metodologías y herramientas. La tercera práctica será más abierta y cada equipo hará evolucionar la aplicación añadiendo nuevas funcionalidades originales ideadas por el equipo.
 
 ### Problema a resolver
 
@@ -26,7 +30,7 @@ Veamos una descripción de muy alto nivel de la aplicación a desarrollar, descr
 
 Deberemos diseñar y desarrollar una aplicación web que mejore el problema anterior. Iremos desarrollando las características concretas de la aplicación a lo largo de las prácticas. La aplicación tiene como nombre clave **ToDoList**.
 
-### Características a implementar en la práctica
+### Características a implementar en la práctica 1
 
 En esta primera práctica debemos implementar un [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) de usuarios, que nos permita listar, añadir, modificar y eliminar usuarios del sistema.
 
@@ -49,7 +53,7 @@ Tienes libertad en el diseño de las pantallas de la aplicación. Las pantallas 
 <img src="imagenes/detalle-usuario.png" width="500px">
 
 
-## Lenguajes, APIs y frameworks de programación
+## 3. Lenguajes, APIs y frameworks de programación
 
 Para desarrollar la aplicación utilizaremos _Play Framework_ y un conjunto de tecnologías adicionales. Repasamos aquí las características principales e incluimos algunos enlaces para su estudio.
 
@@ -121,7 +125,7 @@ Para hacer más atractivo el diseño de las páginas HTML vamos a usuar el frame
 
 - [Bootstrap components](http://getbootstrap.com/components/)
 
-## Metodología de desarrollo
+## 4. Metodología de desarrollo
 
 Es importante realizar la aplicación siguiendo las indicaciones de este apartado. Se deberá utilizar git como sistema de control de versiones, dejando en la rama principal (_master_) la última versión funcional de la aplicación y creando una rama para implementar cada nueva característica.
 
@@ -157,11 +161,13 @@ Para realizar un desarrollo incremental de la aplicación, iremos definiendo cla
 
 Utilizaremos git para remarcar el caráter incremental. Cuando empecemos a desarrollar una característica crearemos una rama con el nombre del identificador de la característica y desarrollaremos la característica en los commits de esa rama. Cuando hayamos terminado el desarrollo mezclaremos esa rama en la rama principal. De esta forma, en cualquier momento del desarrollo tendremos en la rama _master_ una versión operativa de la aplicación que podríamos enseñar en una demostración. Esta rama principal incluirá todas las características terminadas hasta el momento.
 
-### Bitbucket
+### GitHub
 
-[Bitbucket](https://bitbucket.org) permite trabajar con repositorios git remotos y compartirlos con un máximo de 5 personas. Vamos a utilizar el servicio para crear allí un repositorio remoto copia de nuestro repositorio local, compartido en principio con el profesor (su login es `domingogallardo`). Más adelante crearemos equipos y se compartirá el repositorio del equipo entre todos sus miembros.
+[GitHub](https://github.com) y [Bitbucket](https://bitbucket.org) son servicios que permiten almacenar y gestionar repositorios Git. GitHub es el más conocido, pero tiene la limitación de no permitir repositorios privados. Bitbucket es muy práctico porque permite que  permite crear un número ilimitado de repositorios privados que se pueden compartir con un máximo de 5 personas. 
 
-## Realización de la práctica
+GitHub ha introducido una oferta para estudiantes llamada [Student Developer Pack](https://education.github.com/pack) en la que se incluye la posibilidad de un numero ilimitado de repositorios privados que se pueden compartir también por otras personas. Vamos a usar esta opción en las prácticas. La primera práctica será individual, y tendrás que compartir los repositorios con el profesor (`domingogallardo`). Más adelante crearemos equipos y se compartirán los repositorios con todos sus miembros.
+
+## 5. Realización de la práctica
 
 Para realizar la práctica necesitas lo siguiente:
 
@@ -839,6 +845,7 @@ Configuración de JPA:
 - Durante el desarrollo se debe compartir con el profesor:
   - Repositorio Bitbucket (usuario de Bitbucket: `domingogallardo`)
   - Google spreadsheet con el backlog (usuario de Google: `domingo.gallardo@gcloud.ua.es`)
+- Documentación en Markdown en el directorio `/docs` del repositorio
 - En la fecha de la entrega de debe subir a Moodle un ZIP que contenga el proyecto Play terminado (incluyendo el directorio .git) y un PDF con el backlog.
 
 Para la evaluación se tendrá en cuenta:
