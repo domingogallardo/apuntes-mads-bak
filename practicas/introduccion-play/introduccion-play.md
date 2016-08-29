@@ -1,7 +1,10 @@
 # Práctica 1: Primera aplicación Play Framework (Java)
 
 [1. Objetivos](#1-objetivos)  
-[2. Aplicación a desarrollar: ToDo List para equipos](##2-aplicación-a-desarrollar-todo-list-para-equipos)  
+[2. Aplicación a desarrollar: ToDo List para equipos](#2-aplicación-a-desarrollar-todo-list-para-equipos)  
+[3. Lenguajes, APIs y frameworks de programación](#-3-lenguajes-apis-y-frameworks-de-programación)  
+[4. Metodología de desarrollo](#4-metodología-de-desarrollo)  
+[5. Realización de la práctica](#5-realización-de-la-práctica)  
 
 ## 1. Objetivos
 
