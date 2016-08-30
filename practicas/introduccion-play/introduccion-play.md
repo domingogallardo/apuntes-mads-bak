@@ -145,7 +145,8 @@ Cuando utilicemos git es muy importante realizar unos mensajes de commit claros.
 
 Los commits deben definir cambios coherentes de la aplicación que se desarrolla. No deben tener errores de compilación. El mensaje del commit deberá tener el siguiente formato:
 
-- Descripción de menos de 50 caracteres
+- Código del ticket que estamos implementando (ver más adelante)
+- Descripción de menos de 50 caracteres de los cambios
 - Línea en blanco
 - Cuerpo del commit con una descripción más detallada del mismo. Las líneas deben tener como máximo 72 caracteres.
 
@@ -153,17 +154,28 @@ Los commits deben definir cambios coherentes de la aplicación que se desarrolla
 Un ejemplo:
 
 ```
-$ git commit -m "Bootstrap incluido en plantilla principal
+$ git commit -m "TIC-3 Bootstrap incluido en plantilla principal
 
 Se ha añadido bootstrap en el directorio de assets públicos
 y se ha incluido en la plantilla principal de la aplicación"
 ```
 
+En esta primera práctica el flujo de trabajo de Git se basará en abrir una rama desde `master` por cada _ticket_ y mezclarla en la rama principal con `git merge --no-ff`:
+
+```
+$ git merge --no-ff tic-4-pagina-creacion-usuario
+```
+
+De esta forma quedará claro en la historia de commits del proyecto los cambios introducidos por cada rama.
+
+
 ### Desarrollo incremental
 
-Para realizar un desarrollo incremental de la aplicación, iremos definiendo claramente las características que debe cumplir y las desarrollaremos una a una de forma secuencial. No pasaremos a desarrollar la siguiente característica hasta haber comprobado que funciona la anterior. En el siguiente apartado se presenta una lista con las características que debe tener la práctica. El orden final que utilices en tu desarrollo puede ser distinto al planteado, pero la aplicación final debe contener todas las funcionalidades.
+Para realizar un desarrollo incremental de la aplicación, iremos definiendo claramente las características que debe cumplir y las desarrollaremos una a una de forma secuencial. No pasaremos a desarrollar la siguiente característica hasta haber comprobado que funciona la anterior. En el siguiente apartado se presenta una lista con las características que debe tener la práctica. El orden final que utilices en tu desarrollo puede ser distinto al planteado, pero la aplicación final debe contener todas las funcionalidades. 
 
-Utilizaremos git para remarcar el caráter incremental. Cuando empecemos a desarrollar una característica crearemos una rama con el nombre del identificador de la característica y desarrollaremos la característica en los commits de esa rama. Cuando hayamos terminado el desarrollo mezclaremos esa rama en la rama principal. De esta forma, en cualquier momento del desarrollo tendremos en la rama _master_ una versión operativa de la aplicación que podríamos enseñar en una demostración. Esta rama principal incluirá todas las características terminadas hasta el momento.
+Utilizaremos [Trello](https://trello.com) para registrar los _tickets_ a realizar en la aplicación. Utilizaremos Trello como herramienta de gestión y seguimiento de _issues_ (características, bugs, etc.) a implementar en el proyecto. Podríamos haber usado otra herramienta más profesional, como Jira o Bugzilla, pero las funcionalidades que proporcionan sobrepasan nuestras necesidades.
+
+Utilizaremos git para remarcar el caráter incremental. Cuando empecemos a desarrollar un _ticket_ crearemos una rama con su identificador y su nombre y desarrollaremos su implementación en los commits de esa rama. Cuando hayamos terminado el desarrollo mezclaremos esa rama en la rama master. De esta forma, en cualquier momento del desarrollo tendremos en la rama _master_ una versión operativa de la aplicación que podríamos enseñar en una demostración. Esta rama principal incluirá todas las características terminadas hasta el momento.
 
 ### GitHub
 
@@ -173,15 +185,18 @@ GitHub ha introducido una oferta para estudiantes llamada [Student Developer Pac
 
 ## 5. Realización de la práctica
 
-Para realizar la práctica necesitas lo siguiente:
+Para realizar esta práctica necesitas lo siguiente:
 
 - [Java SE 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 - [Play Framework 2.4.2](https://playframework.com/download)
 - Editor o entorno de desarrollo. Recomendamos [Atom](https://atom.io) o [IntelliJ Community Edition](https://www.jetbrains.com/idea/download/).
+- Cuenta de estudiante en GitHub
 
-### Máquina virtual
+### Pasos previos
 
-Hemos preparado una máquina virtual Virtual Box con LUbuntu 14.04 64 bits y el software necesario ya instado. El usuario de la MV es `mads` y su login también es `mads`.
+#### 1. Máquina virtual
+
+Hay preparada una máquina virtual Virtual Box con LUbuntu 14.04 64 bits y el software necesario ya instado. El usuario de la MV es `mads` y su login también es `mads`.
 
 Puedes descargar la imagen del disco duro de la MV (el fichero .vdi) de las siguientes URLs. Está comprimido en formato multi-part:
 
@@ -198,12 +213,32 @@ $ cat fich.z01 fich.z02 fich.zip > combinado.zip
 $ unzip -FF combinado.zip
 ```
 
-Para trabajar en el laboratorio de prácticas es recomendable que utilices un disco o lápiz USB externo 3.0 en el que guardes la imagen VDI y que utilices este fichero como imagen de una máquina virtual que deberás crear cada vez usando la aplicación VirtualBox instalada en Linux. Cuando termines la sesión deberás **apagar la MV** (¡¡no la dejes en suspensión!!) y desmontar el disco duro externo. Podrás utilizar el disco externo y la imagen para continuar trabajando en casa.
+Para trabajar en el laboratorio de prácticas es recomendable que utilices un disco o lápiz USB externo 3.0 en el que guardes la imagen VDI y que utilices este fichero como imagen de una máquina virtual que deberás crear cada vez usando la aplicación VirtualBox instalada en Linux o Windows. Cuando termines la sesión deberás **apagar la MV** (¡¡no la dejes en suspensión!!) y desmontar el disco duro externo. Podrás utilizar el disco externo y la imagen para continuar trabajando en casa.
 
-Para evitar que puedas perder el código desarrollado (y para poder hacer un seguimiento contínuo del trabajo realizado) deberás subir a bitbucket todos los cambios conformes los vayas programando.
+Para evitar que puedas perder el código desarrollado (y para poder hacer un seguimiento contínuo del trabajo realizado) deberás subir a GitHub todos los cambios conformes los vayas programando.
 
+#### 2. Cuenta de estudiante GitHub
 
-### Guía con los pasos iniciales
+Crea una [cuenta de estudiante](https://education.github.com/pack) en GitHub en la que puedas crear repositorios privados
+
+#### 3. Repositorio de prueba
+
+Debes crear un repositorio llamado `prueba-git` en el que pruebes los [comandos básicos de Git](comandos-git.md). Ve añadiendo ficheros de texto sobre un tema que elijas (por ejemplo películas, series de televisión, libros, etc.) y prueba todos los comandos:
+
+- git add
+- git commit
+- git status
+- git diff
+- git log --oneline
+- creación ramas
+- merge de ramas
+- rebase de ramas (avanzamos el master y la rama, y después hacemos un rebase y un merge de la rama en el master)
+- git log --oneline --graph (para comprobar el grafo de commits)
+- comandos para modificar la historia: cambiar el último mensaje de commit, deshacer el último commit y crear una rama en un punto pasado de la historia
+
+Sube el repositorio a GitHub y compártelo con el profesor.
+
+### Desarrollo de la aplicación `play-todolist`
 
 Detallamos a continuación los primeros pasos de la práctica. Si los sigues con atención comprobarás cómo construir una primera aplicación web con Play Framework. Después deberás continuar realizando la práctica tu solo/a.
 
@@ -213,7 +248,7 @@ En el caso en que no encuentres la solución, no dudes en consultar en el foro d
 
 Veamos los pasos a seguir:
 
-#### Creación de la aplicación inicial `play-todolist`
+#### 4. Creación de la aplicación inicial `play-todolist`
 
 - En la máquina virtual ya está instalado Play Framework y el comando `activator` está en el PATH. Para comprobar dónde se encuentra ubicado, puedes lanzar la siguiente instrucción:
 
@@ -284,9 +319,8 @@ Una vez que tenemos una primera versión en funcionamiento es un buen momento de
     $ git commit -m "Versión inicial"
     ```
 
-#### Bitbucket
+#### 5. GitHub
 
-- Crea una cuenta en Bitbucket
 - Crea el repositorio `mads-todolist`
 - Añade a `domingogallardo` como usuario con permiso de lectura (con la opción Settings del menú de la izquierda y Access Management)
 - Conecta la rama principal del repositorio local con bibucket:
@@ -297,7 +331,21 @@ Una vez que tenemos una primera versión en funcionamiento es un buen momento de
     $ git push -u origin --tags
     ```
 
-#### Primera funcionalidad
+#### 6. Trello
+
+Debes crear una cuenta en Trello y crear un tablero llamado "ToDoList Tickets (Nombre y primer apellido)". Ahí pondremos la información de los _tickets_ que hay que desarrollar en el proyecto. Cada ticket será una tarjeta de Trello que se irá moviendo de una columna (lista) a otra conforme se vaya desarrollando. 
+
+El tablero deberá tener 4 listas:
+
+- **En espera**: tickets disponibles para ser seleccionados y empezar a trabajar en ellos. Tendrán un título y una descripción de un conjunto de cambios a implementar en el proyecto, que se realizarán un una única rama de Git que terminará integrándose en la rama `master`.
+- **Seleccionados**: tickets listos para empezar a desarrollarlos. Deben tener un número de identificación (**TIC-1**, **TIC-2**, **TIC-3**, ...) y una descripción corta, que después irá en el comentario del commit del _merge_ de la rama. 
+- **En marcha**: tickets que están en desarrollo. Deben tener una rama abierta en el repositorio (por ahora en local, porque sólo habrá una persona trabajando en cada ticket).
+- **Terminados**: tickets que ya se han incorporado a la rama `master` y se han subido la repositorio remoto. En la descripción de cada tarjeta se debe incluir un enlace al commit con el _merge_ de la rama (el commit resultante de hacer un `merge --no-ff`) en el repositorio remoto en GitHub.
+
+<img src="imagenes/tickets-trello.png" width="800px">
+
+
+#### 7. Primera funcionalidad
 
 Vamos a crear una primera funcionalidad muy sencilla. Nos va a servir para comprobar el flujo de trabajo con git: crearemos una rama en la que desarrollaremos la característica y después, cuando hayamos comprobado que funciona correctamente, mezclaremos esa rama con la rama principal.
 
@@ -357,7 +405,7 @@ Vamos a crear una primera funcionalidad muy sencilla. Nos va a servir para compr
     $ git commit -m "Añadida página de saludo"
     ```
 
-#### Página de saludo con nombre
+##### Página de saludo con nombre
 
 Vamos ahora a añadir el parámetro `nombre` a la página de saludo.
 
@@ -416,23 +464,22 @@ Vamos ahora a añadir el parámetro `nombre` a la página de saludo.
     $ git push origin --delete <rama>
     ```
 
-## _Backlog_ de la práctica
+#### 8. Siguientes funcionalidades: _Backlog_ guiado de la práctica
 
-A continuación listamos el _backlog_ de características a implementar en esta práctica. Al igual que las pantallas, considera que es un ejemplo. Puedes modificarlo si lo consideras conveniente. El formato del _backlog_ está tomado del libro de Henrik Kniberg [Scrum and XP from the Trenches - 2nd Edition](http://www.infoq.com/minibooks/scrum-xp-from-the-trenches-2).
+A continuación listamos el _backlog_ de características a implementar en esta práctica. Se tratan de características de muy bajo nivel, que pueden implementarse con pocos commits cada una. Deberás crear un ticket (y una rama) para cada una. Al igual que las pantallas, considera que es un ejemplo. Puedes modificarlo si lo consideras conveniente. El formato del _backlog_ está tomado del libro de Henrik Kniberg [Scrum and XP from the Trenches - 2nd Edition](http://www.infoq.com/minibooks/scrum-xp-from-the-trenches-2).
 
-=== Características administración de usuarios
 
-| ID  | Nombre | Demostración | Notas |
-| --- | ------ | ------------ | ----- |
-| feature1 | Página home con saludo | Abrir el navegador en la página raíz del servidor, realizar la petición [http://localhost:9000/saludo?nombre=Pepe](http://localhost:9000/saludo?nombre=Pepe) y comprobar que se devuelve un HTML con un saludo. | Sirve para comprobar que Play está funcionando. |
-| feature2 | Crear usuario | Abrir la URL de creación de un usuario, introducir sus datos y comprobar que se han añadido a la base de datos. | En esta primera práctica vamos a trabajar con una base de datos en memoria. En lugar de comprobar que el usuario se ha añadido en la BD, sacaremos un mensaje de log si todo ha funcionado bien. |
-| feature3 | Incluir Bootstrap | Abrir una página cualquiera de la aplicación y comprobar que el CSS incluye ese framework. | |
-| feature4 | Listar usuarios | Abrir la URL de listado de usuarios y comprobar que aparecen todos los usuarios creados. | La página de listado de usuarios va a ser la página principal de la aplicación, desde la que se van a lanzar el resto de acciones. Incluir un enlace a la acción de crear usuario. |
-| feature5 | Detalle de un usuario | Abrir la URL del usuario (o pinchar en la acción de _detalle_ asociada al usuario) y comprobar que aparecen correctamente todos sus datos. | El formato de la fecha de nacimiento debe ser mm-yy-aaa. |
-| feature6 | Editar usuario | Pinchar en la acción de _editar_ asociada al usuario, realizar alguna modificación de alguno de sus datos y comprobar en el listado y en los detalles que la modificación se ha grabado. | El campo _login_ es obligatorio. Si no se introduce se debe volver al formulario y mostrar un error. |
-| feature7 | Borrar usuario | Pinchar en la acción de borrado asociada al usuario y comprobar que el usuario desparece del listado. | Se debe enviar una petición DELETE a la URL del usuario. Utilizar un script JavaScript. |
+| Nombre | Demostración | Notas |
+| ------ | ------------ | ----- |
+| Página home con saludo | Abrir el navegador en la página raíz del servidor, realizar la petición [http://localhost:9000/saludo?nombre=Pepe](http://localhost:9000/saludo?nombre=Pepe) y comprobar que se devuelve un HTML con un saludo. | Sirve para comprobar que Play está funcionando. |
+| Crear usuario | Abrir la URL de creación de un usuario, introducir sus datos y comprobar que se han añadido a la base de datos. | En esta primera práctica vamos a trabajar con una base de datos en memoria. En lugar de comprobar que el usuario se ha añadido en la BD, sacaremos un mensaje de log si todo ha funcionado bien. |
+| Incluir Bootstrap | Abrir una página cualquiera de la aplicación y comprobar que el CSS incluye ese framework. | |
+| Listar usuarios | Abrir la URL de listado de usuarios y comprobar que aparecen todos los usuarios creados. | La página de listado de usuarios va a ser la página principal de la aplicación, desde la que se van a lanzar el resto de acciones. Incluir un enlace a la acción de crear usuario. |
+| Detalle de un usuario | Abrir la URL del usuario (o pinchar en la acción de _detalle_ asociada al usuario) y comprobar que aparecen correctamente todos sus datos. | El formato de la fecha de nacimiento debe ser mm-yy-aaa. |
+| Editar usuario | Pinchar en la acción de _editar_ asociada al usuario, realizar alguna modificación de alguno de sus datos y comprobar en el listado y en los detalles que la modificación se ha grabado. | El campo _login_ es obligatorio. Si no se introduce se debe volver al formulario y mostrar un error. |
+| Borrar usuario | Pinchar en la acción de borrado asociada al usuario y comprobar que el usuario desparece del listado. | Se debe enviar una petición DELETE a la URL del usuario. Utilizar un script JavaScript. |
 
-### Características de logeo y registro de usuarios
+#### 8. Características de logeo y registro de usuarios
 
 Debes desarrollar una o dos características relacionadas con el logeo y el registro de usuarios. Puedes añadir los cambios que necesites en todos los componentes de la aplicación. Piensa cómo deberían ser las pantallas y qué se debería implementar.
 
@@ -847,16 +894,20 @@ Configuración de JPA:
 
 - La práctica tiene una duración de 3 semanas y debe estar terminada el martes 6 de octubre.
 - Durante el desarrollo se debe compartir con el profesor:
-  - Repositorio Bitbucket (usuario de Bitbucket: `domingogallardo`)
-  - Google spreadsheet con el backlog (usuario de Google: `domingo.gallardo@gcloud.ua.es`)
-- Documentación en Markdown en el directorio `/docs` del repositorio
-- En la fecha de la entrega de debe subir a Moodle un ZIP que contenga el proyecto Play terminado (incluyendo el directorio .git) y un PDF con el backlog.
+    - Repositorio Bitbucket (usuario de Bitbucket: `domingogallardo`)
+    - Tablero trello con los tickets
+- Documentación en Markdown en el directorio `/docs` del repositorio con una descripción del trabajo realizado en la práctica:
+    - Documentación técnica del desarrollo realizado
+    - Funcionalidades adicionales implementadas
+- En la fecha de la entrega de debe subir a Moodle un ZIP que contenga todo el proyecto y dejar la URL al repositorio en GitHub
 
 Para la evaluación se tendrá en cuenta:
 
 - Desarrollo contínuo (commits realizados a lo largo de las 3 semanas)
 - Buen desarrollo y descripción de los cambios (commits bien documentados, ordenados, ramas de características visibles en la historia de commits)
+- Tablero Trello bien ordenado
+- Uso correcto de la nomeclatura (cada rama debe corresponder a un ticket, cada ticket debe tener un número de identificación que debe aparecer en todos los commits y en el merge)
 - Correcto desarrollo de las funcionalidades de la práctica
-- Cuidado en el aspecto, la terminación, control de errores
+- Cuidado en el aspecto de la aplicación, la terminación, control de errores
 - Características adicionales desarrolladas
 
