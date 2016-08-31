@@ -342,20 +342,35 @@ El tablero deberá tener 4 listas:
 - **En marcha**: tickets que están en desarrollo. Deben tener una rama abierta en el repositorio (por ahora en local, porque sólo habrá una persona trabajando en cada ticket).
 - **Terminados**: tickets que ya se han incorporado a la rama `master` y se han subido la repositorio remoto. En la descripción de cada tarjeta se debe incluir un enlace al commit con el _merge_ de la rama (el commit resultante de hacer un `merge --no-ff`) en el repositorio remoto en GitHub.
 
+Un ejemplo de cómo debe estar el tablero a mitad del desarrollo:
+
 <img src="imagenes/tickets-trello.png" width="800px">
 
 
 #### 7. Primera funcionalidad
 
-Vamos a crear una primera funcionalidad muy sencilla. Nos va a servir para comprobar el flujo de trabajo con git: crearemos una rama en la que desarrollaremos la característica y después, cuando hayamos comprobado que funciona correctamente, mezclaremos esa rama con la rama principal.
+Vamos a crear una primera funcionalidad muy sencilla. Nos va a servir para comprobar el flujo de trabajo con Trello y git. 
+
+Empezamos con **Trello**:
+
+- Creamos una tarjeta llamada **Página Home con saludo** en la columna **En espera**. Añadimos una descripción en la tarjeta:
+
+    > Para comprobar que Play está funcionando correctamente crearemos una ruta, un controller y una vista que responda a las peticiones
+    > ```http://localhost:9000/saludo``` y ```http://localhost:9000/saludo?nombre=Pepe```. Se debe devolver a la petición un HTML con un saludo.
+
+- Movemos la tarjeta a la columna **Seleccionados** y añadimos al título de la tarjeta el número de _ticket_: **TIC-1**.
+- Movemos la tarjeta a la columna **En marcha** para indicar que se empieza a implementar la característica.
+- Crearemos entonces una rama en la que desarrollaremos la característica y después, cuando hayamos comprobado que funciona correctamente, mezclaremos esa rama con la rama principal, subiremos los cambios a GitHub y pasaremos la etiqueta a **Terminados**.
+
+Y seguimos desarrollando la característica y usando **Git**:
 
 ##### Página de saludo
 
-- Creamos una rama con el nombre `feature1`:
+- Creamos una rama con el nombre `tic-1-pagina-home-saludo`:
 
     ```
-    $ git checkout -b feature1
-    Switched to a new branch 'feature1'
+    $ git checkout -b tic-1-pagina-home-saludo
+    Switched to a new branch 'tic-1-pagina-home-saludo'
     mads@mads:~/Escritorio/mads-todolist$ git branch
     * feature1
     master
@@ -394,7 +409,7 @@ Vamos a crear una primera funcionalidad muy sencilla. Nos va a servir para compr
     }
     ```
 
-- Comprobamos que se devuelve el saludo al acceder a la página _[http://localhost/saludo](http://localhost/saludo)
+- Comprobamos que se devuelve el saludo al acceder a la página [http://localhost/saludo](http://localhost/saludo)
 
 - Hacemos un commit con los cambios:
 
@@ -402,7 +417,7 @@ Vamos a crear una primera funcionalidad muy sencilla. Nos va a servir para compr
     ```
     $ git status
     $ git add app/views/saludo.scala.html
-    $ git commit -m "Añadida página de saludo"
+    $ git commit -m "TIC-1 Añadida página de saludo"
     ```
 
 ##### Página de saludo con nombre
@@ -440,16 +455,16 @@ Vamos ahora a añadir el parámetro `nombre` a la página de saludo.
 - Por último, realizamos el commit y, como hemos terminado la característica, mezclamos la rama con la principal y borramos la rama
 
     ```
-    $ git commit -a -m "Añadido parametro nombre a la pagia de saludo"
+    $ git commit -a -m "TIC-1 Añadido parametro nombre a la pagia de saludo"
     $ git checkout master
-    $ git merge --no-ff feature1 -m "Terminada la página de saludo"
-    $ git branch -d feature1
+    $ git merge --no-ff tic-1-pagina-home-saludo -m "TIC-1 Merge Página home de saludo"
+    $ git branch -d tic-1-pagina-home-saludo
     ```
 
 - Subimos los cambios a Bitbucket:
 
     ```
-    $ git push -all
+    $ git push 
     ```
 
 - Si tuviéramos que subir los cambios sin haber mezclado la rama, deberíamos subir la rama al repositorio remoto:
@@ -479,13 +494,17 @@ A continuación listamos el _backlog_ de características a implementar en esta 
 | Editar usuario | Pinchar en la acción de _editar_ asociada al usuario, realizar alguna modificación de alguno de sus datos y comprobar en el listado y en los detalles que la modificación se ha grabado. | El campo _login_ es obligatorio. Si no se introduce se debe volver al formulario y mostrar un error. |
 | Borrar usuario | Pinchar en la acción de borrado asociada al usuario y comprobar que el usuario desparece del listado. | Se debe enviar una petición DELETE a la URL del usuario. Utilizar un script JavaScript. |
 
-#### 8. Características de logeo y registro de usuarios
+#### 8. Característica adicional: registro y logeo de nuevos usuarios
 
-Debes desarrollar una o dos características relacionadas con el logeo y el registro de usuarios. Puedes añadir los cambios que necesites en todos los componentes de la aplicación. Piensa cómo deberían ser las pantallas y qué se debería implementar.
+Las características anteriores son características "de juguete" con las que probamos el funcionamiento de Play. En el caso de que la aplicación estuviera en producción estas características de gestión de usuarios deberían estar protegidas y sólo podría utilizarlas el usuario administrador.
 
-## Detalles de diseño e implementación 
+Debes implementar ahora  una característica "real": **registro y logeo de nuevos usuarios**. Debes ampliar la aplicación para permitir que nuevos usuarios de la aplicación puedan crear cuentas y logearse. Debes definir los _tickets_ que consideres necesarios. Puedes añadir los cambios que necesites en todos los componentes de la aplicación. 
 
-A continuación puedes encontrar ejemplos de código que te ayudarán a implementar la aplicación. 
+Piensa cómo deberían ser las pantallas y qué se debería implementar.
+
+## Detalles de diseño e implementación
+
+A continuación puedes encontrar ejemplos de código que te ayudarán a implementar la aplicación.
 
 **No copies y pegues todo el código de un fichero de golpe, sino sólo lo necesario para completar la característica que estés desarrollando.**
 
