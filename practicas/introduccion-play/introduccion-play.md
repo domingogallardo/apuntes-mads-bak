@@ -10,11 +10,11 @@
 
 El objetivo principal de esta primera práctica es implementar una aplicación web inicial con [_Play Framework_](https://playframework.com) en Java. Servirá para tomar un primer contacto con esta tecnología, para que podamos centrarnos en las próximas prácticas en aspectos más relacionados con las metodologías de desarrollo.
 
-Comenzaremos también a trabajar con repositorios de código, usuando [Git](https://git-scm.com) como sistema de control de versiones y [GitHub](https://et.org) como repositorio remoto. Desarrollaremos la aplicación de forma iterativa, utilizando una **versión simplificada** del flujo de trabajo basado en Git denominado [_Gitflow_](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow).
+Comenzaremos también a trabajar con repositorios de código, usuando [Git](https://git-scm.com) como sistema de control de versiones y [GitHub](https://github.com) como repositorio remoto. Desarrollaremos la aplicación de forma iterativa, utilizando un flujo de trabajo Git denominado [_feature branch_](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow) en el que cada característica nueva se implementa en una rama separada que después se mezcla con la rama principal de desarrollo.
 
 ## 2. Aplicación a desarrollar: ToDo List para equipos
 
-Durante la asignatura desarrollaremos de forma iterativa una aplicación común. Las dos primeras prácticas servirán de base común para aprender a utilizar los lenguajes, _frameworks_, metodologías y herramientas. La tercera práctica será más abierta y cada equipo hará evolucionar la aplicación añadiendo nuevas funcionalidades originales ideadas por el equipo.
+Durante la asignatura desarrollaremos de forma iterativa una aplicación común. Las dos primeras prácticas servirán de base común para aprender a utilizar los lenguajes, _frameworks_, metodologías y herramientas. La tercera práctica será más abierta y cada equipo hará evolucionar la aplicación añadiendo nuevas funcionalidades originales ideadas por el propio equipo.
 
 ### Problema a resolver
 
@@ -79,34 +79,34 @@ Un libro imprescindible sobre HTTP que debe estar en la biblioteca de cualquier 
 
 [Play Framework](https://playframework.com) es un framework de desarrollo rápido de aplicaciones web disponible en los lenguajes Java y Scala. Vamos a utilizar la versión Java. El framework proporciona un soporte de ejecución que tiene como base el servidor [Netty](http://netty.io). Con este soporte es posible diseñar y poner en marcha distintos tipos de aplicaciones: servicios HTTP, servicios HTTP asíncronos basados en websockets, aplicaciones asíncronas basadas en eventos, etc. El modelo de ejecución es similar al modelo de programación reactiva asíncrona que ha popularizado JavaScript y el servidor **Node.js**. Nosotros vamos a implementar una aplicación tradicional que implementa un servicio HTTP.
 
-Todas las prácticas de la asignatura las vamos a implementar en la última versión (2.4) [Play Framework en Java](https://www.playframework.com/documentation/2.4.x/JavaHome). Para entender el funcionamiento de esta primera práctica es necesario consultar la siguiente documentación del framework:
+Todas las prácticas de la asignatura las vamos a implementar en la última versión (2.5) [Play Framework en Java](https://www.playframework.com/documentation/2.5.x/JavaHome). Para entender el funcionamiento de esta primera práctica es necesario consultar la siguiente documentación del framework:
 
 Sobre la instalación y el funcionamiento de Play:
 
-- [Installing Play](https://playframework.com/documentation/2.4.x/Installing)
-- [Creating a new application](https://playframework.com/documentation/2.4.x/NewApplication)
-- [Using the Play console](https://playframework.com/documentation/2.4.x/PlayConsole)
-- [Anatomy of a Play application](https://playframework.com/documentation/2.4.x/Anatomy)
+- [Installing Play](https://playframework.com/documentation/2.5.x/Installing)
+- [Creating a new application](https://playframework.com/documentation/2.5.x/NewApplication)
+- [Using the Play console](https://playframework.com/documentation/2.5.x/PlayConsole)
+- [Anatomy of a Play application](https://playframework.com/documentation/2.5.x/Anatomy)
 
 Sobre peticiones y respuestas HTTP:
 
-- [Actions, Controllers and Results](https://www.playframework.com/documentation/2.4.x/JavaActions)
-- [HTTP routing](https://www.playframework.com/documentation/2.4.x/JavaRouting)
-- [Flash scope](https://www.playframework.com/documentation/2.4.x/JavaSessionFlash#Flash-scope)
+- [Actions, Controllers and Results](https://www.playframework.com/documentation/2.5.x/JavaActions)
+- [HTTP routing](https://www.playframework.com/documentation/2.5.x/JavaRouting)
+- [Flash scope](https://www.playframework.com/documentation/2.5.x/JavaSessionFlash#Flash-scope)
 
 Sobre plantillas:
 
-- [The template engine](https://www.playframework.com/documentation/2.4.x/JavaTemplates)
-- [Common template use cases](https://www.playframework.com/documentation/2.4.x/JavaTemplateUseCases)
+- [The template engine](https://www.playframework.com/documentation/2.5.x/JavaTemplates)
+- [Common template use cases](https://www.playframework.com/documentation/2.5.x/JavaTemplateUseCases)
 
 Sobre envío de datos de formularios:
 
-- [Handling form submission](https://www.playframework.com/documentation/2.4.x/JavaForms)
-- [Rendering an <input> element](https://www.playframework.com/documentation/2.4.x/JavaFormHelpers#Rendering-an-<input>-element)
+- [Handling form submission](https://www.playframework.com/documentation/2.5.x/JavaForms)
+- [Rendering an <input> element](https://www.playframework.com/documentation/2.5.x/JavaFormHelpers#Rendering-an-%3Cinput%3E-element)
 
 Sobre el acceso a datos mediante JPA
 
-- [Integrating with JPA](https://www.playframework.com/documentation/2.4.x/JavaJPA)
+- [Integrating with JPA](https://www.playframework.com/documentation/2.5.x/JavaJPA)
 
 ### Java Persistence API (JPA)
 
@@ -125,7 +125,7 @@ No es necesario estudiar todos los tutoriales. El objetivo de las prácticas no 
 
 ### Bootstrap
 
-Para hacer más atractivo el diseño de las páginas HTML vamos a usuar el framework CSS http://getbootstrap.com/getting-started/[Bootstrap]. Es conveniente tener a mano su documentación, en concreto la lista de componentes:
+Para hacer más atractivo el diseño de las páginas HTML vamos a usuar el framework CSS [Bootstrap](http://getbootstrap.com/getting-started/). Es conveniente tener a mano su documentación, en concreto la lista de componentes:
 
 - [Bootstrap components](http://getbootstrap.com/components/)
 
@@ -236,7 +236,7 @@ Crea una [cuenta de estudiante](https://education.github.com/pack) en GitHub en 
 
 #### 3. Repositorio de prueba
 
-Debes crear un repositorio llamado `prueba-git` en el que pruebes los [comandos básicos de Git](comandos-git.md). Ve añadiendo ficheros de texto sobre un tema que elijas (por ejemplo películas, series de televisión, libros, etc.) y prueba todos los comandos:
+Debes crear un repositorio llamado `mads-prueba-git` en el que pruebes los [comandos básicos de Git](comandos-git.md). Ve añadiendo ficheros de texto sobre un tema que elijas (por ejemplo películas, series de televisión, libros, etc.) y prueba todos los comandos:
 
 - git add
 - git commit
@@ -528,8 +528,8 @@ Piensa cómo deberían ser las pantallas y qué se debería implementar.
 ## Entrega y evaluación
 
 - La práctica tiene una duración de 3 semanas y debe estar terminada el martes 6 de octubre.
-- Durante el desarrollo se debe compartir con el profesor:
-    - Repositorio Bitbucket (usuario de Bitbucket: `domingogallardo`)
+- Durante el desarrollo se debe compartir con el profesor (usuario: `domingogallardo`)
+    - Repositorios GitHub: `mads-prueba-git` y `mads-todolist`
     - Tablero trello con los tickets
 - Documentación en Markdown en el directorio `/docs` del repositorio con una descripción del trabajo realizado en la práctica:
     - Documentación técnica del desarrollo realizado
