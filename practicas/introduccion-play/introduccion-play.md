@@ -196,15 +196,15 @@ Para realizar esta práctica necesitas lo siguiente:
 
 #### 1. Máquina virtual
 
-Hay preparada una máquina virtual Virtual Box con LUbuntu 14.04 64 bits y el software necesario ya instado. El usuario de la MV es `mads` y su login también es `mads`.
+Hemos preparado una máquina virtual Virtual Box con Ubuntu 14.04 64 bits y el software necesario ya instado. El usuario de la MV es `mads` y su login también es `mads`.
 
 Puedes descargar la imagen del disco duro de la MV (el fichero .vdi) de las siguientes URLs. 
 
-En un único archivo:
+En un único archivo ZIP:
 
 - [MADS-2016-17.vdi.zip](http://www.dccia.ua.es/dccia/inf/asignaturas/MADS/software/MADS-2016-17.vdi.zip) (3,3 GB)
 
-En varios archivos, comprimido en formato multi-part:
+En varios archivos, comprimido en formato ZIP multi-part:
 
 - [MADS-2016-17.vdi.multipart.z01](http://www.dccia.ua.es/dccia/inf/asignaturas/MADS/software/MADS-2016-17.vdi.multipart.z01) (1,1 GB)
 - [MADS-2016-17.vdi.multipart.z02](http://www.dccia.ua.es/dccia/inf/asignaturas/MADS/software/MADS-2016-17.vdi.multipart.z02) (1,1 GB)
@@ -217,7 +217,7 @@ $ cat MADS-2016-17.vdi.multipart.* > combinado.zip
 $ unzip combinado.zip
 ```
 
-También es posible utilizar alguna aplicación para esto:
+También es posible utilizar alguna aplicación:
 
 - [The Unarchiver](https://itunes.apple.com/us/app/the-unarchiver/id425424353?mt=12) en **Mac OS X**.
 - [7-zip](http://www.7-zip.org/download.html) en **Microsoft Windows**.
