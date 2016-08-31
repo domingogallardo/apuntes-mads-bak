@@ -210,16 +210,17 @@ En varios archivos, comprimido en formato multi-part:
 - [MADS-2016-17.vdi.multipart.z02](http://www.dccia.ua.es/dccia/inf/asignaturas/MADS/software/MADS-2016-17.vdi.multipart.z02) (1,1 GB)
 - [MADS-2016-17.vdi.multipart.zip](http://www.dccia.ua.es/dccia/inf/asignaturas/MADS/software/MADS-2016-17.vdi.multipart.zip) (1,1 GB)
 
-Para descomprimir en **Mac OS** o en Linux un fichero multi-part desde línea de comando
+Para descomprimir en **Mac OS X** o en **Linux** un fichero multi-part desde línea de comando
 
 ```
 $ cat MADS-2016-17.vdi.multipart.* > combinado.zip
 $ unzip combinado.zip
 ```
 
-En Mac también se puede hacer utilizando alguna utilidad como [The Unarchiver](https://itunes.apple.com/us/app/the-unarchiver/id425424353?mt=12)
+También es posible utilizar alguna aplicación para esto:
 
-En **Microsoft Windows** se pueden usar la utilidad [7-zip](http://www.7-zip.org/download.html).
+- [The Unarchiver](https://itunes.apple.com/us/app/the-unarchiver/id425424353?mt=12) en **Mac OS X**.
+- [7-zip](http://www.7-zip.org/download.html) en **Microsoft Windows**.
 
 **Trabajo en el laboratorio con la máquina virtual**
 
@@ -227,7 +228,7 @@ Para trabajar en los ordenadores del laboratorio debes usar VirtualBox (está in
 
 Cada vez que empieces a trabajar deberás crear una máquina linux de 64 bits que use como disco duro el fichero .vdi. Asegúrate de crear la máquina con la memoria suficiente (2 GB mínimo) y con un mínimo de 2 procesadores.Cuando termines la sesión deberás **apagar la MV** (¡¡no la dejes en suspensión!!) y desmontar el disco duro externo. Podrás utilizar el disco externo y la imagen para continuar trabajando en casa.
 
-Debes **subir a GitHub todos los cambios conformes los vayas programando**. De esta forma evitas perder el código y quedará grabado tu trabajo continuo para poder hacer un seguimiento de la práctica.
+Debes **subir a GitHub todos los cambios conforme los vayas programando**. De esta forma evitas perder el código y quedará grabado tu trabajo continuo para poder hacer un seguimiento de la práctica.
 
 #### 2. Cuenta de estudiante GitHub
 
