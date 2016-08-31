@@ -198,24 +198,36 @@ Para realizar esta práctica necesitas lo siguiente:
 
 Hay preparada una máquina virtual Virtual Box con LUbuntu 14.04 64 bits y el software necesario ya instado. El usuario de la MV es `mads` y su login también es `mads`.
 
-Puedes descargar la imagen del disco duro de la MV (el fichero .vdi) de las siguientes URLs. Está comprimido en formato multi-part:
+Puedes descargar la imagen del disco duro de la MV (el fichero .vdi) de las siguientes URLs. 
 
-- [MADS_2015-16.vdi.z01](http://www.dccia.ua.es/dccia/inf/asignaturas/MADS/software/MADS_2015-16.vdi.z01) (1.024 MB)
-- [MADS_2015-16.vdi.z02](http://www.dccia.ua.es/dccia/inf/asignaturas/MADS/software/MADS_2015-16.vdi.z02) (1.023 MB)
-- [MADS_2015-16.vdi.z03](http://www.dccia.ua.es/dccia/inf/asignaturas/MADS/software/MADS_2015-16.vdi.z03) (1.024 MB)
-- [MADS_2015-16.vdi.z04](http://www.dccia.ua.es/dccia/inf/asignaturas/MADS/software/MADS_2015-16.vdi.z04) (1.024 MB)
-- [MADS_2015-16.vdi.zip](http://www.dccia.ua.es/dccia/inf/asignaturas/MADS/software/MADS_2015-16.vdi.zip) (123 MB)
+En un único archivo:
 
-Para descomprimir en **Ubuntu Linux** un fichero multi-part:
+- [MADS-2016-17.vdi.zip](http://www.dccia.ua.es/dccia/inf/asignaturas/MADS/software/MADS-2016-17.vdi.zip) (3,3 GB)
+
+En varios archivos, comprimido en formato multi-part:
+
+- [MADS-2016-17.vdi.multipart.z01](http://www.dccia.ua.es/dccia/inf/asignaturas/MADS/software/MADS-2016-17.vdi.multipart.z01) (1,1 GB)
+- [MADS-2016-17.vdi.multipart.z02](http://www.dccia.ua.es/dccia/inf/asignaturas/MADS/software/MADS-2016-17.vdi.multipart.z02) (1,1 GB)
+- [MADS-2016-17.vdi.multipart.zip](http://www.dccia.ua.es/dccia/inf/asignaturas/MADS/software/MADS-2016-17.vdi.multipart.zip) (1,1 GB)
+
+Para descomprimir en **Mac OS** o en Linux un fichero multi-part desde línea de comando
 
 ```
-$ cat fich.z01 fich.z02 fich.zip > combinado.zip
-$ unzip -FF combinado.zip
+$ cat MADS-2016-17.vdi.multipart.* > combinado.zip
+$ unzip combinado.zip
 ```
 
-Para trabajar en el laboratorio de prácticas es recomendable que utilices un disco o lápiz USB externo 3.0 en el que guardes la imagen VDI y que utilices este fichero como imagen de una máquina virtual que deberás crear cada vez usando la aplicación VirtualBox instalada en Linux o Windows. Cuando termines la sesión deberás **apagar la MV** (¡¡no la dejes en suspensión!!) y desmontar el disco duro externo. Podrás utilizar el disco externo y la imagen para continuar trabajando en casa.
+En Mac también se puede hacer utilizando alguna utilidad como [The Unarchiver](https://itunes.apple.com/us/app/the-unarchiver/id425424353?mt=12)
 
-Para evitar que puedas perder el código desarrollado (y para poder hacer un seguimiento contínuo del trabajo realizado) deberás subir a GitHub todos los cambios conformes los vayas programando.
+En **Microsoft Windows** se pueden usar la utilidad [7-zip](http://www.7-zip.org/download.html).
+
+**Trabajo en el laboratorio con la máquina virtual**
+
+Para trabajar en los ordenadores del laboratorio debes usar VirtualBox (está instalado tanto en Linux como en Windows) y llevar el fichero .vdi en un disco o lápiz USB externo. 
+
+Cada vez que empieces a trabajar deberás crear una máquina linux de 64 bits que use como disco duro el fichero .vdi. Asegúrate de crear la máquina con la memoria suficiente (2 GB mínimo) y con un mínimo de 2 procesadores.Cuando termines la sesión deberás **apagar la MV** (¡¡no la dejes en suspensión!!) y desmontar el disco duro externo. Podrás utilizar el disco externo y la imagen para continuar trabajando en casa.
+
+Debes **subir a GitHub todos los cambios conformes los vayas programando**. De esta forma evitas perder el código y quedará grabado tu trabajo continuo para poder hacer un seguimiento de la práctica.
 
 #### 2. Cuenta de estudiante GitHub
 
@@ -500,7 +512,9 @@ A continuación listamos el _backlog_ de características a implementar en esta 
 | Editar usuario | Pinchar en la acción de _editar_ asociada al usuario, realizar alguna modificación de alguno de sus datos y comprobar en el listado y en los detalles que la modificación se ha grabado. | El campo _login_ es obligatorio. Si no se introduce se debe volver al formulario y mostrar un error. |
 | Borrar usuario | Pinchar en la acción de borrado asociada al usuario y comprobar que el usuario desparece del listado. | Se debe enviar una petición DELETE a la URL del usuario. Utilizar un script JavaScript. |
 
-Puedes utilizar como guía para el desarrollo el documento en que explicamos la [aplicación inicial en Play](aplicacion-inicial-play.md).
+Puedes utilizar como guía para el desarrollo el código que puedes encontrar en el siguiente [enlace](aplicacion-inicial-play.md). 
+
+**No copies y pegues todo el código de un fichero de golpe, sino sólo lo necesario para completar la característica que estés desarrollando.**
 
 #### 8. Característica adicional: registro y logeo de nuevos usuarios
 
