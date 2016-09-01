@@ -188,7 +188,7 @@ GitHub ha introducido una oferta para estudiantes llamada [Student Developer Pac
 Para realizar esta práctica necesitas lo siguiente:
 
 - [Java SE 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
-- [Play Framework 2.4.2](https://playframework.com/download)
+- [Play Framework 2.5.6](https://playframework.com/download)
 - Editor o entorno de desarrollo. Recomendamos [Atom](https://atom.io) o [IntelliJ Community Edition](https://www.jetbrains.com/idea/download/).
 - Cuenta de estudiante en GitHub
 
@@ -234,7 +234,7 @@ Debes **subir a GitHub todos los cambios conforme los vayas programando**. De es
 
 Crea una [cuenta de estudiante](https://education.github.com/pack) en GitHub en la que puedas crear repositorios privados
 
-#### 3. Repositorio de prueba
+#### 3. Crear repositorio de prueba de Git: `mads-prueba-git`
 
 Debes crear un repositorio llamado `mads-prueba-git` en el que pruebes los [comandos básicos de Git](comandos-git.md). Ve añadiendo ficheros de texto sobre un tema que elijas (por ejemplo películas, series de televisión, libros, etc.) y prueba todos los comandos:
 
@@ -244,8 +244,8 @@ Debes crear un repositorio llamado `mads-prueba-git` en el que pruebes los [coma
 - git diff
 - git log --oneline
 - creación ramas
-- merge de ramas
-- rebase de ramas (avanzamos el master y la rama, y después hacemos un rebase y un merge de la rama en el master)
+- merge de ramas (usando --no-ff)
+- rebase de ramas (avanzamos el master y la rama, y después hacemos un rebase de la rama y un merge --no-ff desde la master)
 - git log --oneline --graph (para comprobar el grafo de commits)
 - comandos para modificar la historia: cambiar el último mensaje de commit, deshacer el último commit y crear una rama en un punto pasado de la historia
 
@@ -267,7 +267,7 @@ Veamos los pasos a seguir:
 
     ```
     $ which activator
-    /home/mads/PlayFramework/activator-dist-1.3.5/activator
+    /opt/activator-1.3.10-minimal/bin/activator
     ```
 
 - Creamos la aplicación base en algún directorio, por ejemplo el escritorio:
@@ -279,10 +279,13 @@ Veamos los pasos a seguir:
 
     Nos mostrará una lista de plantillas, escribimos `play-java` y le damos al nuevo proyecto el nombre `mads-todolist`.
 
-- Se habrá creado el directorio con ese nombre. Nos movemos a él y lanzamos play:
+- Se habrá creado el directorio con ese nombre. Nos movemos a él, hacemos un `ls` para comprobar los directorios y ficheros que se han creado y lanzamos play:
 
     ```
     $ cd mads-todolist
+    $ ls
+    app  build.sbt  libexec  logs     public  target
+    bin  conf       LICENSE  project  README  test
     $ activator run
     ```
 
@@ -290,12 +293,16 @@ Veamos los pasos a seguir:
 
 - Abre el navegador e abre la URL [http:localhost:9000](http:localhost:9000). Verás que play compila los programas fuentes y que responde con una página de saludo:
 
-    <img src="imagenes/pantalla1-play.png" width="500px">
+    <img src="imagenes/pantalla1-play.png" width="700px">
 
-- Estudia cómo funciona la aplicación. Lanza `Atom` y carga el directorio `mads-todolist`. Estudia qué función cumple cada directorio y cada fichero. Comprueba cómo se muestra la frase `"Your new application is ready"` en la acción `index()` en el fichero `app/controllers/Application.java`. Prueba a introducir un error (por ejemplo, quitar las dobles comillas de alguna cadena) y vuelve a recargar la página. Verás que automáticamente Play recompila la aplicación y muestra el error en el propio navegador:
+- Estudia cómo funciona la aplicación. Lanza `Atom` y carga el directorio `mads-todolist`:
+
+    <img src="imagenes/atom-con-play.png" width="500px">
+
+    Estudia qué función cumple cada directorio y cada fichero. Comprueba cómo se muestra la frase `"Your new application is ready"` en la acción `index()` en el fichero `app/controllers/HomeController.java`. Prueba a introducir un error (por ejemplo, quitar las dobles comillas de alguna cadena) y vuelve a recargar la página. Verás que automáticamente Play recompila la aplicación y muestra el error en el propio navegador:
 
 
-    <img src="imagenes/error-play.png" width="500px">
+    <img src="imagenes/error-play.png" width="700px">
 
 - Arregla el error y cambia el mensaje para comprobar que esta función es la define el mensaje que aparece en la plantilla.
 
@@ -323,7 +330,7 @@ Una vez que tenemos una primera versión en funcionamiento es un buen momento de
     fatal: unable to auto-detect email address (got 'mads@mads.(none)')
     ```
 
-    Introducimos nuestro correo electrónico (el que usaremos para autentificarnos en Bitbucket) y nuestro nombre verdadero:
+    Introducimos nuestro correo electrónico (el que usaremos para autentificarnos en GitHub) y nuestro nombre verdadero:
 
 
     ```
@@ -339,9 +346,8 @@ Una vez que tenemos una primera versión en funcionamiento es un buen momento de
 - Conecta la rama principal del repositorio local con bibucket:
 
     ```
-    $ git remote add origin https://<usuario>@bitbucket.org/<usuario>/mads-todolist.git  
-    $ git push -u origin --all
-    $ git push -u origin --tags
+    $ git remote add origin https://<usuario>github.com/<usuario>/mads-todolist.git
+    $ git push -u origin master
     ```
 
 #### 6. Trello
@@ -395,21 +401,26 @@ Y seguimos desarrollando la característica y usando **Git**:
 
     ```
     ...
-    GET     /saludo                     controllers.Application.saludo()
+    GET     /saludo                     controllers.ApplicationController.saludo()
     ...
     ```
 
-- Añadimos la acción `controllers.Application.saludo`:
+- Añadimos la acción `controllers.ApplicationController.saludo`:
 
-    **app/controllers/Application.java**
+    **app/controllers/ApplicationController.java**
 
     ```
-    ...
-    public class Application extends Controller {
-        public Result saludo() {
-        return ok(saludo.render());
+    package controllers;
+
+    import play.mvc.*;
+    import views.html.*;
+
+    public class ApplicationController extends Controller {
+
+       public Result saludo() {
+          return ok(saludo.render());
+       }
     }
-    ...
     ```
 
 - Añadimos la vista `saludo.scala.html`:
@@ -422,14 +433,14 @@ Y seguimos desarrollando la característica y usando **Git**:
     }
     ```
 
-- Comprobamos que se devuelve el saludo al acceder a la página [http://localhost/saludo](http://localhost/saludo)
+- Comprobamos que se devuelve el saludo al acceder a la página [http://localhost:9000/saludo](http://localhost/saludo)
 
 - Hacemos un commit con los cambios:
 
 
     ```
     $ git status
-    $ git add app/views/saludo.scala.html
+    $ git add .
     $ git commit -m "TIC-1 Añadida página de saludo"
     ```
 
@@ -468,13 +479,13 @@ Vamos ahora a añadir el parámetro `nombre` a la página de saludo.
 - Por último, realizamos el commit y, como hemos terminado la característica, mezclamos la rama con la principal y borramos la rama
 
     ```
-    $ git commit -a -m "TIC-1 Añadido parametro nombre a la pagia de saludo"
+    $ git commit -am "TIC-1 Añadido parametro nombre a la página de saludo"
     $ git checkout master
     $ git merge --no-ff tic-1-pagina-home-saludo -m "TIC-1 Merge Página home de saludo"
     $ git branch -d tic-1-pagina-home-saludo
     ```
 
-- Subimos los cambios a Bitbucket:
+- Subimos los cambios a GitHub:
 
     ```
     $ git push 
@@ -495,6 +506,8 @@ Vamos ahora a añadir el parámetro `nombre` a la página de saludo.
 **En Trello**:
 
 Una vez integrada la rama y subidos los cambios a GitHub, moveremos la tarjeta correspondiente a la columna de **Terminados** y **añadiremos en la descripción un enlace al commit con el merge en GitHub.
+
+[Ejemplo de tablero Trello](https://trello.com/b/EBB0IKKS)
 
 De esta forma podremos revisar los cambios introducidos en cada uno de los _tickets_ terminados.
 
