@@ -409,7 +409,7 @@ Y seguimos desarrollando la característica y usando **Git**:
 
     **app/controllers/ApplicationController.java**
 
-    ```
+    ```java
     package controllers;
 
     import play.mvc.*;
@@ -427,7 +427,7 @@ Y seguimos desarrollando la característica y usando **Git**:
 
     **app/views/saludo.scala.html**
 
-    ```
+    ```html
     @main("Hola") {
         <h1>Hola mundo!</h1>
     }
@@ -458,7 +458,7 @@ Vamos ahora a añadir el parámetro `nombre` a la página de saludo.
 
 - Modificamos la acción:
 
-    ```
+    ```java
     public Result saludo(String nombre) {
         return ok(saludo.render(nombre));
     }
@@ -466,7 +466,7 @@ Vamos ahora a añadir el parámetro `nombre` a la página de saludo.
 
 - Modificamos la plantilla:
 
-    ```
+    ```html
     @(nombre: String)
 
     @main("Hola") {
@@ -505,9 +505,9 @@ Vamos ahora a añadir el parámetro `nombre` a la página de saludo.
 
 **En Trello**:
 
-Una vez integrada la rama y subidos los cambios a GitHub, moveremos la tarjeta correspondiente a la columna de **Terminados** y **añadiremos en la descripción un enlace al commit con el merge en GitHub.
+Una vez integrada la rama y subidos los cambios a GitHub, moveremos la tarjeta correspondiente a la columna de **Terminados** y **añadiremos en la descripción un enlace al commit con el merge en GitHub**.
 
-[Ejemplo de tablero Trello](https://trello.com/b/EBB0IKKS)
+Puedes comprobar cómo debe quedar la tarjeta en el tablero que hay [este enlace](https://trello.com/b/EBB0IKKS).
 
 De esta forma podremos revisar los cambios introducidos en cada uno de los _tickets_ terminados.
 
