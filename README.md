@@ -57,10 +57,4 @@ Las sesiones tienen una duración variable, entre 45 y 90 minutos.
 - P02 (4 semanas): Integración continua: Tests en Play, GitFlow, Jenkins, Docker
 - P03 (6 semanas): Historias de usuario + Kanban: Tablero Trello con historias de usuario (estado: propuesta, en discusión, aprobada o desechada - estilo Swift Evolution), sistema para discutir la historia (¿canal Slack?)
 
-Prácticas curso 2015-16:
-
-- P01: [Primera aplicación Play Framework](practicas/p01-primera-aplicacion-play-framework/practica1-primera-aplicacion-play-framework.adoc)
-- P02: [Pruebas con TDD](practicas/p02-pruebas-tdd/practica2-pruebas-tdd.adoc)
-- P03: [Integración continua](practicas/p03-integracion-continua/practica3-integracion-continua.adoc)
-- P04: [Iteración Scrum-Kanban](practicas/p04-iteracion-scrum-kanban/practica4-iteracion-scrum.adoc)
 

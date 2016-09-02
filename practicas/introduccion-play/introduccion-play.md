@@ -286,10 +286,11 @@ Veamos los pasos a seguir:
     $ ls
     app  build.sbt  libexec  logs     public  target
     bin  conf       LICENSE  project  README  test
+    $ activator compile
     $ activator run
     ```
 
-    La primera vez que lanzamos el comando, tardará bastante en arrancar la aplicación porque play comprueba todas las dependencias y se descarga las librerías que no están disponibles en local. Después pondrá el servidor de play a escuchar en el puerto 9000
+    La primera vez que lanzamos el comando `activator compile`, tardará bastante en arrancar la aplicación porque play comprueba todas las dependencias y se descarga las librerías que no están disponibles en local. El comando `activator run` pondrá el servidor de play a escuchar en el puerto 9000. El comando `run` también ejecuta una compilación previa. Podríamos invocarlo directamente sin el primero.
 
 - Abre el navegador e abre la URL [http:localhost:9000](http:localhost:9000). Verás que play compila los programas fuentes y que responde con una página de saludo:
 
