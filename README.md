@@ -6,6 +6,12 @@ La asignatura se imparte en 15 semanas de clases. Cada semana tiene una clase de
 
 La distribución semanal de actividades está disponible en la [página de Moodle](https://moodle2016-17.ua.es/moodle/course/view.php?id=927) de la asignatura.
 
+## Prácticas
+
+- P01 (3 semanas): [Introducción a Play](practicas/introduccion-play/introduccion-play.md): Play Framework en Java, Git y GitHub, Trello (estilo Jira).
+- P02 (4 semanas): Integración continua: Tests en Play, GitFlow, Jenkins, Docker
+- P03 (6 semanas): Historias de usuario + Kanban: Tablero Trello con historias de usuario (estado: propuesta, en discusión, aprobada o desechada - estilo Swift Evolution), sistema para discutir la historia (¿canal Slack?)
+
 ## Diapositivas y lecturas
 
 Las sesiones tienen una duración variable, entre 45 y 90 minutos.
@@ -50,11 +56,5 @@ Las sesiones tienen una duración variable, entre 45 y 90 minutos.
   - Ron Jeffreis - [What is eXtreme Programming](lecturas/ron-jeffreis_what-is-extreme-programming.pdf)
 - S15: [Test Driven Development](sesiones/test-driven-development/test-driven-development.md)
 - S16: Robert C. Martin - [Kata TDD](sesiones/bowling-game-kata/bowling-game-kata.md)
-
-## Prácticas
-
-- P01 (3 semanas): [Introducción a Play](practicas/introduccion-play/introduccion-play.md): Play Framework en Java, Git y GitHub, Trello (estilo Jira).
-- P02 (4 semanas): Integración continua: Tests en Play, GitFlow, Jenkins, Docker
-- P03 (6 semanas): Historias de usuario + Kanban: Tablero Trello con historias de usuario (estado: propuesta, en discusión, aprobada o desechada - estilo Swift Evolution), sistema para discutir la historia (¿canal Slack?)
 
 
