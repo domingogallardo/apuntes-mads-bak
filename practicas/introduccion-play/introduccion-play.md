@@ -424,7 +424,7 @@ Y seguimos desarrollando la característica y usando **Git**:
     }
     ```
 
-- Añadimos la vista `saludo.scala.html`:
+- Añadimos la vista `saludo.scala.html`. El nombre del fichero debe corresponder con el nombre indicado en la acción del controller (añadiendo la extensión `.scala.html`):
 
     **app/views/saludo.scala.html**
 
@@ -465,7 +465,7 @@ Vamos ahora a añadir el parámetro `nombre` a la página de saludo.
     }
     ```
 
-- Modificamos la plantilla:
+- Modificamos la plantilla, añadiendo el parámetro `nombre` de tipo String. Hay que hacer notar que el código que se ejecuta en la plantilla (el precedido con el carácter `@`) es código Scala. 
 
     ```html
     @(nombre: String)
@@ -527,7 +527,7 @@ A continuación listamos el _backlog_ de características a implementar en esta 
 | Editar usuario | Pinchar en la acción de _editar_ asociada al usuario, realizar alguna modificación de alguno de sus datos y comprobar en el listado y en los detalles que la modificación se ha grabado. | El campo _login_ es obligatorio. Si no se introduce se debe volver al formulario y mostrar un error. |
 | Borrar usuario | Pinchar en la acción de borrado asociada al usuario y comprobar que el usuario desparece del listado. | Se debe enviar una petición DELETE a la URL del usuario. Utilizar un script JavaScript. |
 
-Puedes utilizar como guía para el desarrollo el código que puedes encontrar en el siguiente [enlace](aplicacion-inicial-play.md). 
+Puedes utilizar como guía para el desarrollo el código que puedes encontrar en el [repositorio GitHub](https://github.com/domingogallardo/mads-todolist).
 
 **No copies y pegues todo el código de un fichero de golpe, sino sólo lo necesario para completar la característica que estés desarrollando.**
 
