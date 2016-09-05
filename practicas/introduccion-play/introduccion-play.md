@@ -516,6 +516,8 @@ De esta forma podremos revisar los cambios introducidos en cada uno de los _tick
 
 A continuación listamos el _backlog_ de características a implementar en esta práctica. Se tratan de características de muy bajo nivel, que pueden implementarse con pocos commits cada una. Deberás crear un ticket (y una rama) para cada una. Al igual que las pantallas, considera que es un ejemplo. Puedes modificarlo si lo consideras conveniente. El formato del _backlog_ está tomado del libro de Henrik Kniberg [Scrum and XP from the Trenches - 2nd Edition](http://www.infoq.com/minibooks/scrum-xp-from-the-trenches-2).
 
+Puedes utilizar como guía para el desarrollo el código que puedes encontrar en el [repositorio GitHub](https://github.com/domingogallardo/mads-todolist/tree/pistas-practica-1).
+**No copies y pegues todo el código de un fichero de golpe, sino sólo lo necesario para completar la característica que estés desarrollando.**
 
 | Nombre | Demostración | Notas |
 | ------ | ------------ | ----- |
@@ -527,9 +529,9 @@ A continuación listamos el _backlog_ de características a implementar en esta 
 | Editar usuario | Pinchar en la acción de _editar_ asociada al usuario, realizar alguna modificación de alguno de sus datos y comprobar en el listado y en los detalles que la modificación se ha grabado. | El campo _login_ es obligatorio. Si no se introduce se debe volver al formulario y mostrar un error. |
 | Borrar usuario | Pinchar en la acción de borrado asociada al usuario y comprobar que el usuario desparece del listado. | Se debe enviar una petición DELETE a la URL del usuario. Utilizar un script JavaScript. |
 
-Puedes utilizar como guía para el desarrollo el código que puedes encontrar en el [repositorio GitHub](https://github.com/domingogallardo/mads-todolist).
 
-**No copies y pegues todo el código de un fichero de golpe, sino sólo lo necesario para completar la característica que estés desarrollando.**
+
+
 
 #### 8. Característica adicional: registro y logeo de nuevos usuarios
 
