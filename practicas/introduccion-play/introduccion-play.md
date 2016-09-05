@@ -516,7 +516,7 @@ De esta forma podremos revisar los cambios introducidos en cada uno de los _tick
 
 A continuación listamos el _backlog_ de características a implementar en esta práctica. Se tratan de características de muy bajo nivel, que pueden implementarse con pocos commits cada una. Deberás crear un ticket (y una rama) para cada una. Al igual que las pantallas, considera que es un ejemplo. Puedes modificarlo si lo consideras conveniente. El formato del _backlog_ está tomado del libro de Henrik Kniberg [Scrum and XP from the Trenches - 2nd Edition](http://www.infoq.com/minibooks/scrum-xp-from-the-trenches-2).
 
-Puedes utilizar como guía para el desarrollo el código que puedes encontrar en el [repositorio GitHub](https://github.com/domingogallardo/mads-todolist/tree/pistas-practica-1).
+Puedes utilizar como ayuda para el desarrollo el código que puedes encontrar en el [repositorio GitHub](https://github.com/domingogallardo/mads-todolist/tree/pistas-practica-1).
 **No copies y pegues todo el código de un fichero de golpe, sino sólo lo necesario para completar la característica que estés desarrollando.**
 
 | Nombre | Demostración | Notas |

@@ -223,6 +223,19 @@ Al final del documento se incluyen enlaces a apartados del libro [**Pro Git**](h
 
     ```
     $ git push -u origin <rama>
+
+
+- Descargar una rama del repositorio remoto (origin, por ejemplo, el repositorio remoto por defecto)
+
+    ```
+    $ git fetch 
+    $ git checkout -b <rama> origin/<rama>
+    ```
+
+- Consultar ramas locales y conexiones repositorio remoto (origin, por ejemplo)
+
+    ```
+    $ git remote show origin
     ```
 
 - Subir todas las ramas y etiquetas:
