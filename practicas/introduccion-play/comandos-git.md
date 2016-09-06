@@ -158,17 +158,20 @@ Al final del documento se incluyen enlaces a apartados del libro [**Pro Git**](h
 - **_Rebase_ de una rama**. Si la rama master ha avanzado después de separar una rama alternativa y queremos incorporar esos cambios en la rama alternativa podemos hacer un `git rebase`:
 
     ```
+    $ git checkout -b experiment
+    # hacemos cambios
+    $ git commit -m "Cambios en experiment"
     $ git checkout master  
     # hacemos cambios  
     $ git commit -a -m "Cambios en master"  
-    $ git checkout nueva-rama
+    $ git checkout experiment
     $ git rebase master  
     First, rewinding head to replay your work on top of it...  
     Applying: Corregido bug1  
     Applying: Corregido bug2
     ```
 
-    <img src="images/rebase.png" width="600px">
+    <img src="imagenes/rebase.png" width="600px">
 
     El comando cambia la historia de la rama: primero la mueve al final de la rama master (_rewind head_) y a partir de ahí aplica los cambios propios de la rama.
 
