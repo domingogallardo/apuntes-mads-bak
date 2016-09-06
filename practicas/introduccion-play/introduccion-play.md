@@ -6,7 +6,7 @@
 - [4. Metodología de desarrollo](#4-metodología-de-desarrollo)
 - [5. Realización de la práctica](#5-realización-de-la-práctica)
     - [5.1 Pasos previos](#51-pasos-previos)
-    - [5.2 Desarrollo de la aplicación `play-todolist`](#52-desarrollo-de-la-aplicacion-play-todolist)
+    - [5.2 Desarrollo de la aplicación `play-todolist`](#52-desarrollo-de-la-aplicación-play-todolist)
     - [5.3 Primera funcionalidad](#53-primera-funcionalidad)
     - [5.4 Resto de funcionalidades](#54-resto-de-funcionalidades)
     - [5.5 Característica adicional](#55-característica-adicional)
