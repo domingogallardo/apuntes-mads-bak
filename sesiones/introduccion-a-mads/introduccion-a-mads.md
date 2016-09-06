@@ -5,9 +5,19 @@
 
 <img src="diapositivas/introduccion-a-mads.002.png" width="800px">
 
+Enlaces:
+
+- [Ficha de la asignatura](http://cv1.cpd.ua.es/ConsPlanesEstudio/cvFichaAsiEEES.asp?wcodasi=34037&wLengua=C&scaca=2016-17)
+- [Moodle](https://moodle2016-17.ua.es/moodle/course/view.php?id=927)
+- [Apuntes y materiales](https://github.com/domingogallardo/mads-ua)
+
 <img src="diapositivas/introduccion-a-mads.003.png" width="800px">
 
 <img src="diapositivas/introduccion-a-mads.004.png" width="800px">
+
+- [Henry Kniberg](https://www.crisp.se/konsulter/henrik-kniberg) es un gran divulgador de las metodologías ágiles. Trabaja en la actualidad como consultor en Spotify y Lego. Le gusta compartir todo lo que hace y muchos de los libros que ha escrito están en abierto. Vamos a utilizar muchos de sus materiales (diapositivas, vídeos, libros, artículos). Muy recomendable su [blog](http://blog.crisp.se/author/henrikkniberg).
+
+- El ciclo "-> Ideas -> Code -> Data ->" es una versión del [ciclo de mejora continua](https://www.google.com/search?rls=en&biw=1363&bih=789&tbm=isch&q=continuous+improvement+cycle&sa=X&ved=0ahUKEwikmbO9m_vOAhWKbxQKHZ2zAwAQhyYIIw) de las metodologías _lean_.
 
 <img src="diapositivas/introduccion-a-mads.005.png" width="800px">
 
@@ -19,7 +29,7 @@
 
 - El primer examen parcial será el 2 de noviembre y se realizará en horario de la clase de teoría. El segundo parcial coincidirá con la fecha oficial del examen de la asignatura. En esas fechas se realizarán los exámenes de teoría y práctica. 
 
-- En cuanto a la evaluación, el **60% por ciento** de la calificación será por la nota en los exámenes parciales y el **40% por las prácticas**. No hay examen final.
+- En cuanto a la evaluación, el **70% por ciento** de la calificación será por la nota en los exámenes parciales y el **30% por las prácticas**. No hay examen final. Las preguntas serán principalmente de tipo test. Los parciales de la parte de prácticas incluirán preguntas de las tecnologías que se han usado para realizar las prácticas.
 
 <img src="diapositivas/introduccion-a-mads.006.png" width="800px">
 
@@ -36,6 +46,13 @@
 <img src="diapositivas/introduccion-a-mads.012.png" width="800px">
 
 <img src="diapositivas/introduccion-a-mads.013.png" width="800px">
+
+Enlaces:
+
+- [Play Framework](https://www.playframework.com)
+- [GitHub](http://github.com)
+- [Git](https://git-scm.com/book/en/v2)
+- [Docker](https://www.docker.com)
 
 <img src="diapositivas/introduccion-a-mads.014.png" width="800px">
 
