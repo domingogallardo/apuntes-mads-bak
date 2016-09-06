@@ -6,10 +6,11 @@
 - [4. Metodología de desarrollo](#4-metodología-de-desarrollo)
 - [5. Realización de la práctica](#5-realización-de-la-práctica)
     - [5.1 Pasos previos](#51-pasos-previos)
-    - [5.2 Desarrollo de la aplicación `play-todolist`](#52-desarrollo-de-la-aplicación-play-todolist)
-    - [5.3 Primera funcionalidad](#53-primera-funcionalidad)
-    - [5.4 Resto de funcionalidades](#54-resto-de-funcionalidades)
-    - [5.5 Característica adicional](#55-característica-adicional)
+    - [5.2 Repositorio prueba Git](#52-repositorio-prueba-git)
+    - [5.3 Desarrollo de la aplicación `play-todolist`](#53-desarrollo-de-la-aplicación-play-todolist)
+    - [5.4 Primera funcionalidad](#54-primera-funcionalidad)
+    - [5.5 Resto de funcionalidades](#55-resto-de-funcionalidades)
+    - [5.6 Característica adicional](#56-característica-adicional)
 
 ## 1. Objetivos
 
@@ -239,7 +240,7 @@ Debes **subir a GitHub todos los cambios conforme los vayas programando**. De es
 
 Crea una [cuenta de estudiante](https://education.github.com/pack) en GitHub en la que puedas crear repositorios privados
 
-#### Crear repositorio de prueba de Git: `mads-prueba-git`
+### 5.2 Repositorio prueba Git
 
 Debes crear un repositorio llamado `mads-prueba-git` en el que pruebes los [comandos básicos de Git](comandos-git.md). Ve añadiendo ficheros de texto sobre un tema que elijas (por ejemplo películas, series de televisión, libros, etc.) y prueba todos los comandos:
 
@@ -256,7 +257,7 @@ Debes crear un repositorio llamado `mads-prueba-git` en el que pruebes los [coma
 
 Sube el repositorio a GitHub y compártelo con el profesor.
 
-### 5.2 Desarrollo de la aplicación `play-todolist`
+### 5.3 Desarrollo de la aplicación `play-todolist`
 
 Detallamos a continuación los primeros pasos de la práctica. Si los sigues con atención comprobarás cómo construir una primera aplicación web con Play Framework. Después deberás continuar realizando la práctica tu solo/a.
 
@@ -371,7 +372,7 @@ Un ejemplo de cómo debe estar el tablero a mitad del desarrollo:
 
 <img src="imagenes/tickets-trello.png" width="800px">
 
-### 5.3 Primera funcionalidad
+### 5.4 Primera funcionalidad
 
 Vamos a crear una primera funcionalidad muy sencilla. Nos va a servir para comprobar el flujo de trabajo con Trello y git. 
 
@@ -516,7 +517,7 @@ Puedes comprobar cómo debe quedar la tarjeta en el tablero que hay [este enlace
 
 De esta forma podremos revisar los cambios introducidos en cada uno de los _tickets_ terminados.
 
-### 5.4 Resto de funcionalidades
+### 5.5 Resto de funcionalidades
 
 A continuación listamos el _backlog_ de características a implementar en esta práctica. Se tratan de características de muy bajo nivel, que pueden implementarse con pocos commits cada una. Deberás crear un ticket (y una rama) para cada una. Al igual que las pantallas, considera que es un ejemplo. Puedes modificarlo si lo consideras conveniente. El formato del _backlog_ está tomado del libro de Henrik Kniberg [Scrum and XP from the Trenches - 2nd Edition](http://www.infoq.com/minibooks/scrum-xp-from-the-trenches-2).
 
@@ -534,7 +535,7 @@ Puedes utilizar como ayuda para el desarrollo el código que puedes encontrar en
 | Borrar usuario | Pinchar en la acción de borrado asociada al usuario y comprobar que el usuario desparece del listado. | Se debe enviar una petición DELETE a la URL del usuario. Utilizar un script JavaScript. |
 
 
-### 5.5 Característica adicional
+### 5.6 Característica adicional
 
 Por último deberás implementar una características adicional: registro y logeo de nuevos usuarios.
 
