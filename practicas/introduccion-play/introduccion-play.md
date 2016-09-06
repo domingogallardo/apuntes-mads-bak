@@ -1,10 +1,14 @@
 # Práctica 1: Primera aplicación Play Framework (Java)
 
-[1. Objetivos](#1-objetivos)  
-[2. Aplicación a desarrollar: ToDo List para equipos](#2-aplicación-a-desarrollar-todo-list-para-equipos)  
-[3. Lenguajes, APIs y frameworks de programación](#3-lenguajes-apis-y-frameworks-de-programación)  
-[4. Metodología de desarrollo](#4-metodología-de-desarrollo)  
-[5. Realización de la práctica](#5-realización-de-la-práctica)  
+- [1. Objetivos](#1-objetivos)
+- [2. Aplicación a desarrollar: ToDo List para equipos](#2-aplicación-a-desarrollar-todo-list-para-equipos)
+- [3. Lenguajes, APIs y frameworks de programación](#3-lenguajes-apis-y-frameworks-de-programación)
+- [4. Metodología de desarrollo](#4-metodología-de-desarrollo)
+- [5. Realización de la práctica](#5-realización-de-la-práctica)
+    - [5.1. Pasos previos](#5-1-pasos-previos)
+    - [5.2 Primera funcionalidad](#5-2-primera-funcionalidad)
+    - [5.3 Resto de funcionalidades](#5-3-resto-de-funcionalidades)
+    - [5.4 Característica adicional](#5-4-característica-adicional)
 
 ## 1. Objetivos
 
@@ -192,7 +196,7 @@ Para realizar esta práctica necesitas lo siguiente:
 - Editor o entorno de desarrollo. Recomendamos [Atom](https://atom.io) o [IntelliJ Community Edition](https://www.jetbrains.com/idea/download/).
 - Cuenta de estudiante en GitHub
 
-### Pasos previos
+### 5.1 Pasos previos
 
 #### 1. Máquina virtual
 
@@ -366,8 +370,7 @@ Un ejemplo de cómo debe estar el tablero a mitad del desarrollo:
 
 <img src="imagenes/tickets-trello.png" width="800px">
 
-
-#### 7. Primera funcionalidad
+### 5.2 Primera funcionalidad
 
 Vamos a crear una primera funcionalidad muy sencilla. Nos va a servir para comprobar el flujo de trabajo con Trello y git. 
 
@@ -512,7 +515,7 @@ Puedes comprobar cómo debe quedar la tarjeta en el tablero que hay [este enlace
 
 De esta forma podremos revisar los cambios introducidos en cada uno de los _tickets_ terminados.
 
-#### 8. Siguientes funcionalidades: _Backlog_ guiado de la práctica
+### 5.3 Resto de funcionalidades
 
 A continuación listamos el _backlog_ de características a implementar en esta práctica. Se tratan de características de muy bajo nivel, que pueden implementarse con pocos commits cada una. Deberás crear un ticket (y una rama) para cada una. Al igual que las pantallas, considera que es un ejemplo. Puedes modificarlo si lo consideras conveniente. El formato del _backlog_ está tomado del libro de Henrik Kniberg [Scrum and XP from the Trenches - 2nd Edition](http://www.infoq.com/minibooks/scrum-xp-from-the-trenches-2).
 
@@ -530,10 +533,9 @@ Puedes utilizar como ayuda para el desarrollo el código que puedes encontrar en
 | Borrar usuario | Pinchar en la acción de borrado asociada al usuario y comprobar que el usuario desparece del listado. | Se debe enviar una petición DELETE a la URL del usuario. Utilizar un script JavaScript. |
 
 
+### 5.4 Característica adicional
 
-
-
-#### 8. Característica adicional: registro y logeo de nuevos usuarios
+Por último deberás implementar una características adicional: registro y logeo de nuevos usuarios.
 
 Las características anteriores son características "de juguete" con las que probamos el funcionamiento de Play. En el caso de que la aplicación estuviera en producción estas características de gestión de usuarios deberían estar protegidas y sólo podría utilizarlas el usuario administrador.
 
