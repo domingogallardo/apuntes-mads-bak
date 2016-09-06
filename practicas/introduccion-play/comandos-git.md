@@ -223,7 +223,13 @@ Al final del documento se incluyen enlaces a apartados del libro [**Pro Git**](h
 
     ```
     $ git push -u origin <rama>
+    ```
 
+    **Para no tener que escribir la contraseña del repositorio remoto cada vez** puedes utilizar el siguiente comando que la guarda en una caché:
+
+    ```
+    $ git config --global credential.helper cache.
+    ```
 
 - Descargar una rama del repositorio remoto (origin, por ejemplo, el repositorio remoto por defecto)
 
