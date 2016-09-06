@@ -168,11 +168,13 @@ Al final del documento se incluyen enlaces a apartados del libro [**Pro Git**](h
     Applying: Corregido bug2
     ```
 
+    <img src="images/rebase.png" width="600px">
+
     El comando cambia la historia de la rama: primero la mueve al final de la rama master (_rewind head_) y a partir de ahí aplica los cambios propios de la rama.
 
     **IMPORTANTE**: No se debe hacer un _rebase_ de commits que existan en otros repositorios locales de compañeros. Al volver a aplicar los commits sobre los commits rebobinados, se cambia su número de hash (identificador) y se convierten en commits distintos.
 
-    Una vez que hemos hecho el _rebase_ ya podemos añadir los commits de la rama a `master` y tener una historia lineal:
+    Una vez que hemos hecho el _rebase_ ya podemos añadir mover la rama `master` y tener una historia lineal:
 
     ```
     $ git checkout master
@@ -308,5 +310,6 @@ Puedes encontrar más información en los siguientes documentos:
 
 - _Pro Git_ - [Recording Changes to the Repository](https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository)
 - _Pro Git_ - [Basic Branching and Merging](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
+- _Pro Git_ - [Git Branching - Rebasing](https://git-scm.com/book/en/v2/Git-Branching-Rebasing)
 - Tutorial de Atlassian - [Merging vs. Rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)
 -  _Pro Git_ - [Reset Demystified](https://git-scm.com/book/en/v2/Git-Tools-Reset-Demystified#_git_reset)
