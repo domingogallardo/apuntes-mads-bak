@@ -11,6 +11,7 @@
     - [5.4 Primera funcionalidad](#54-primera-funcionalidad)
     - [5.5 Resto de funcionalidades](#55-resto-de-funcionalidades)
     - [5.6 Característica adicional](#56-característica-adicional)
+- [6. Entrega y evaluación](#6-entrega-y-evaluación)
 
 ## 1. Objetivos
 
@@ -545,7 +546,7 @@ Debes implementar ahora  una característica "real": **registro y logeo de nuevo
 
 Piensa cómo deberían ser las pantallas y qué se debería implementar.
 
-## Entrega y evaluación
+## 6. Entrega y evaluación
 
 - La práctica tiene una duración de 3 semanas y debe estar terminada el martes 6 de octubre.
 - Durante el desarrollo se debe compartir con el profesor (usuario: `domingogallardo`)
