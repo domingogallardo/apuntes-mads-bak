@@ -5,10 +5,11 @@
 - [3. Lenguajes, APIs y frameworks de programación](#3-lenguajes-apis-y-frameworks-de-programación)
 - [4. Metodología de desarrollo](#4-metodología-de-desarrollo)
 - [5. Realización de la práctica](#5-realización-de-la-práctica)
-    - [5.1. Pasos previos](#5-1-pasos-previos)
-    - [5.2 Primera funcionalidad](#5-2-primera-funcionalidad)
-    - [5.3 Resto de funcionalidades](#5-3-resto-de-funcionalidades)
-    - [5.4 Característica adicional](#5-4-característica-adicional)
+    - [5.1 Pasos previos](#51-pasos-previos)
+    - [5.2 Desarrollo de la aplicación `play-todolist`](#52-desarrollo-de-la-aplicacion-play-todolist)
+    - [5.3 Primera funcionalidad](#53-primera-funcionalidad)
+    - [5.4 Resto de funcionalidades](#54-resto-de-funcionalidades)
+    - [5.5 Característica adicional](#55-característica-adicional)
 
 ## 1. Objetivos
 
@@ -198,7 +199,7 @@ Para realizar esta práctica necesitas lo siguiente:
 
 ### 5.1 Pasos previos
 
-#### 1. Máquina virtual
+#### Máquina virtual
 
 Hemos preparado una máquina virtual Virtual Box con Ubuntu 14.04 64 bits y el software necesario ya instado. El usuario de la MV es `mads` y su login también es `mads`.
 
@@ -234,11 +235,11 @@ Cada vez que empieces a trabajar deberás crear una máquina linux de 64 bits qu
 
 Debes **subir a GitHub todos los cambios conforme los vayas programando**. De esta forma evitas perder el código y quedará grabado tu trabajo continuo para poder hacer un seguimiento de la práctica.
 
-#### 2. Cuenta de estudiante GitHub
+#### Cuenta de estudiante GitHub
 
 Crea una [cuenta de estudiante](https://education.github.com/pack) en GitHub en la que puedas crear repositorios privados
 
-#### 3. Crear repositorio de prueba de Git: `mads-prueba-git`
+#### Crear repositorio de prueba de Git: `mads-prueba-git`
 
 Debes crear un repositorio llamado `mads-prueba-git` en el que pruebes los [comandos básicos de Git](comandos-git.md). Ve añadiendo ficheros de texto sobre un tema que elijas (por ejemplo películas, series de televisión, libros, etc.) y prueba todos los comandos:
 
@@ -255,7 +256,7 @@ Debes crear un repositorio llamado `mads-prueba-git` en el que pruebes los [coma
 
 Sube el repositorio a GitHub y compártelo con el profesor.
 
-### Desarrollo de la aplicación `play-todolist`
+### 5.2 Desarrollo de la aplicación `play-todolist`
 
 Detallamos a continuación los primeros pasos de la práctica. Si los sigues con atención comprobarás cómo construir una primera aplicación web con Play Framework. Después deberás continuar realizando la práctica tu solo/a.
 
@@ -265,7 +266,7 @@ En el caso en que no encuentres la solución, no dudes en consultar en el foro d
 
 Veamos los pasos a seguir:
 
-#### 4. Creación de la aplicación inicial `play-todolist`
+#### Creación de la aplicación inicial `play-todolist`
 
 - En la máquina virtual ya está instalado Play Framework y el comando `activator` está en el PATH. Para comprobar dónde se encuentra ubicado, puedes lanzar la siguiente instrucción:
 
@@ -344,7 +345,7 @@ Una vez que tenemos una primera versión en funcionamiento es un buen momento de
     $ git commit -m "Versión inicial"
     ```
 
-#### 5. GitHub
+#### GitHub
 
 - Crea el repositorio `mads-todolist`
 - Añade a `domingogallardo` como usuario con permiso de lectura (con la opción Settings del menú de la izquierda y Access Management)
@@ -355,7 +356,7 @@ Una vez que tenemos una primera versión en funcionamiento es un buen momento de
     $ git push -u origin master
     ```
 
-#### 6. Trello
+#### Trello
 
 Debes crear una cuenta en Trello y crear un tablero llamado "ToDoList Tickets (Nombre y primer apellido)". Ahí pondremos la información de los _tickets_ que hay que desarrollar en el proyecto. Cada ticket será una tarjeta de Trello que se irá moviendo de una columna (lista) a otra conforme se vaya desarrollando. 
 
@@ -370,7 +371,7 @@ Un ejemplo de cómo debe estar el tablero a mitad del desarrollo:
 
 <img src="imagenes/tickets-trello.png" width="800px">
 
-### 5.2 Primera funcionalidad
+### 5.3 Primera funcionalidad
 
 Vamos a crear una primera funcionalidad muy sencilla. Nos va a servir para comprobar el flujo de trabajo con Trello y git. 
 
@@ -387,7 +388,7 @@ Empezamos con **Trello**:
 
 Y seguimos desarrollando la característica y usando **Git**:
 
-##### Página de saludo
+#### Página de saludo
 
 - Creamos una rama con el nombre `tic-1-pagina-home-saludo`:
 
@@ -448,7 +449,7 @@ Y seguimos desarrollando la característica y usando **Git**:
     $ git commit -m "TIC-1 Añadida página de saludo"
     ```
 
-##### Página de saludo con nombre
+#### Página de saludo con nombre
 
 Vamos ahora a añadir el parámetro `nombre` a la página de saludo.
 
@@ -515,7 +516,7 @@ Puedes comprobar cómo debe quedar la tarjeta en el tablero que hay [este enlace
 
 De esta forma podremos revisar los cambios introducidos en cada uno de los _tickets_ terminados.
 
-### 5.3 Resto de funcionalidades
+### 5.4 Resto de funcionalidades
 
 A continuación listamos el _backlog_ de características a implementar en esta práctica. Se tratan de características de muy bajo nivel, que pueden implementarse con pocos commits cada una. Deberás crear un ticket (y una rama) para cada una. Al igual que las pantallas, considera que es un ejemplo. Puedes modificarlo si lo consideras conveniente. El formato del _backlog_ está tomado del libro de Henrik Kniberg [Scrum and XP from the Trenches - 2nd Edition](http://www.infoq.com/minibooks/scrum-xp-from-the-trenches-2).
 
@@ -533,7 +534,7 @@ Puedes utilizar como ayuda para el desarrollo el código que puedes encontrar en
 | Borrar usuario | Pinchar en la acción de borrado asociada al usuario y comprobar que el usuario desparece del listado. | Se debe enviar una petición DELETE a la URL del usuario. Utilizar un script JavaScript. |
 
 
-### 5.4 Característica adicional
+### 5.5 Característica adicional
 
 Por último deberás implementar una características adicional: registro y logeo de nuevos usuarios.
 
