@@ -70,17 +70,17 @@ Para desarrollar la aplicación utilizaremos _Play Framework_ y un conjunto de t
 
 ### Aplicación web basada en HTTP
 
-Vamos a utilizar un enfoque basado en servicios REST para definir las rutas de las peticiones. Por ejemplo, para obtener los detalles del usuario con identificador `12` utilizaremos la petición:
+Vamos a utilizar un enfoque basado en **servicios REST** para definir las rutas de las peticiones. Por ejemplo, para obtener los detalles del usuario con identificador `12` utilizaremos la petición:
 
 ```
 GET /usuarios/12
 ```
 
-Pero no implementaremos un servicio REST propiamente dicho, porque queremos desarrollar una aplicación que podamos demostrar y enseñar a los usuarios finales. Por ejemplo, las peticiones no van a devolver objetos JSON, sino páginas HTML que constituyen la interfaz de usuario. Tampoco vamos a ser estrictos en las peticiones. Por ejemplo, en lugar de hacer una petición PUT para modificar un recurso vamos a reutilizar la misma petición POST también van a utilizarse para modificar recursos (no sólo para añadir recursos nuevos).
+Pero no implementaremos un servicio REST propiamente dicho, porque queremos desarrollar una aplicación que podamos demostrar y enseñar a los usuarios finales. Por ejemplo, las peticiones no van a devolver objetos JSON, sino páginas HTML que constituyen la interfaz de usuario. Tampoco vamos a ser estrictos en las peticiones. Por ejemplo, en lugar de hacer una petición PUT para modificar un recurso (por ejemplo, un usuario) vamos a reutilizar la misma petición POST tanto para creación como para modificación.
 
 Eso sí, el desarrollo se va a basar totalmente en las tecnologías HTTP y HTML. Es conveniente repasarlas para tener claros los conceptos más importantes, tanto de HTTP (tipo de petición, códigos de respuesta, elementos de una petición, etc.) como de HTML (formularios, CSS, algo de JavaScript, etc.).
 
-Un libro imprescindible sobre HTTP que debe estar en la biblioteca de cualquier informático es el de O'Reilly: [HTTP - The Definitive Guide](http://shop.oreilly.com/product/9781565925090.do).
+Un libro imprescindible sobre HTTP que debe estar en la biblioteca de cualquier informático es el de O'Reilly: [HTTP - The Definitive Guide](http://shop.oreilly.com/product/9781565925090.do). Un libro interesante sobre HTML y CSS es [HTML&CSS - design and build websites](http://www.htmlandcssbook.com).
 
 ### Play Framework
 
@@ -148,13 +148,12 @@ Git es el sistema de control de versiones más utilizado en la actualidad. Es mu
 - [Atlassian Git Tutorials](https://www.atlassian.com/git/tutorials/): Tutoriales muy orientados al uso de Git con gran cantidad de ejemplos. Es recomendable repasar los tutoriales básicos (_Getting Started_) y los tutoriales _Syncing_ y _Using Branches_ en el apartado _Collaborating_.
 - [Libro de Scott Chacon](https://git-scm.com/book/en/v2): Completo manual con todos los detalles de todos los comandos de Git.
 
-Cuando utilicemos git es muy importante realizar unos mensajes de commit claros. Un mensaje de commit es la forma de comunicar a los compañeros del equipo (en este caso con _el profesor_) qué cambios se han introducido en la aplicación y ponerlos en contexto (explicar por qué se han hecho, dar algún detalle de implementación, etc.). El post [How to Write a Git Commit Message](http://chris.beams.io/posts/git-commit/) explica muy bien esto.
+Cuando utilicemos git es muy importante realizar unos mensajes de commit claros. Un mensaje de commit es la forma de comunicar a los compañeros del equipo qué cambios se han introducido en la aplicación y ponerlos en contexto (explicar por qué se han hecho, dar algún detalle de implementación, etc.). El post [How to Write a Git Commit Message](http://chris.beams.io/posts/git-commit/) explica muy bien esto.
 
 Los commits deben definir cambios coherentes de la aplicación que se desarrolla. No deben tener errores de compilación. El mensaje del commit deberá tener el siguiente formato:
 
 - Código del ticket que estamos implementando (ver más adelante)
 - Descripción de menos de 50 caracteres de los cambios
-- Línea en blanco
 - Cuerpo del commit con una descripción más detallada del mismo. Las líneas deben tener como máximo 72 caracteres.
 
 
@@ -162,12 +161,11 @@ Un ejemplo:
 
 ```
 $ git commit -m "TIC-3 Bootstrap incluido en plantilla principal
-
 Se ha añadido bootstrap en el directorio de assets públicos
 y se ha incluido en la plantilla principal de la aplicación"
 ```
 
-En esta primera práctica el flujo de trabajo de Git se basará en abrir una rama desde `master` por cada _ticket_ y mezclarla en la rama principal con `git merge --no-ff`:
+En esta primera práctica el flujo de trabajo de Git se basará en abrir una rama desde `master` por cada _ticket_ (lo explicaremos más adelante) y mezclarla en la rama principal con `git merge --no-ff`:
 
 ```
 $ git merge --no-ff tic-4-pagina-creacion-usuario
@@ -180,7 +178,7 @@ De esta forma quedará claro en la historia de commits del proyecto los cambios 
 
 Para realizar un desarrollo incremental de la aplicación, iremos definiendo claramente las características que debe cumplir y las desarrollaremos una a una de forma secuencial. No pasaremos a desarrollar la siguiente característica hasta haber comprobado que funciona la anterior. En el siguiente apartado se presenta una lista con las características que debe tener la práctica. El orden final que utilices en tu desarrollo puede ser distinto al planteado, pero la aplicación final debe contener todas las funcionalidades. 
 
-Utilizaremos [Trello](https://trello.com) para registrar los _tickets_ a realizar en la aplicación. Utilizaremos Trello como herramienta de gestión y seguimiento de _issues_ (características, bugs, etc.) a implementar en el proyecto. Podríamos haber usado otra herramienta más profesional, como Jira o Bugzilla, pero las funcionalidades que proporcionan sobrepasan nuestras necesidades.
+Utilizaremos [Trello](https://trello.com) para registrar los _tickets_ a realizar en la aplicación, como herramienta de gestión y seguimiento de _issues_ (características, bugs, etc.) a implementar en el proyecto. Podríamos haber usado otra herramienta más profesional, como Jira o Bugzilla, pero las funcionalidades que proporcionan sobrepasan nuestras necesidades.
 
 Utilizaremos git para remarcar el caráter incremental. Cuando empecemos a desarrollar un _ticket_ crearemos una rama con su identificador y su nombre y desarrollaremos su implementación en los commits de esa rama. Cuando hayamos terminado el desarrollo mezclaremos esa rama en la rama master. De esta forma, en cualquier momento del desarrollo tendremos en la rama _master_ una versión operativa de la aplicación que podríamos enseñar en una demostración. Esta rama principal incluirá todas las características terminadas hasta el momento.
 
@@ -231,9 +229,9 @@ También es posible utilizar alguna aplicación:
 
 **Trabajo en el laboratorio con la máquina virtual**
 
-Para trabajar en los ordenadores del laboratorio debes usar VirtualBox (está instalado tanto en Linux como en Windows) y llevar el fichero .vdi en un disco o lápiz USB externo. 
+Para trabajar en los ordenadores del laboratorio debes usar VirtualBox en Linux (en Windows hay algún problema con las máquinas virtuales de 64 bits) y llevar el fichero .vdi en un disco o lápiz USB externo. 
 
-Cada vez que empieces a trabajar deberás crear una máquina linux de 64 bits que use como disco duro el fichero .vdi. Asegúrate de crear la máquina con la memoria suficiente (2 GB mínimo) y con un mínimo de 2 procesadores.Cuando termines la sesión deberás **apagar la MV** (¡¡no la dejes en suspensión!!) y desmontar el disco duro externo. Podrás utilizar el disco externo y la imagen para continuar trabajando en casa.
+Cada vez que empieces a trabajar deberás crear una máquina linux de 64 bits que use como disco duro el fichero .vdi. Asegúrate de crear la máquina con la memoria suficiente (2 GB mínimo) y con un mínimo de 2 procesadores. Cuando termines la sesión deberás **apagar la MV** (¡¡no la dejes en suspensión!!) y desmontar el disco duro externo. Podrás utilizar el disco externo y la imagen para continuar trabajando en casa.
 
 Debes **subir a GitHub todos los cambios conforme los vayas programando**. De esta forma evitas perder el código y quedará grabado tu trabajo continuo para poder hacer un seguimiento de la práctica.
 
@@ -243,26 +241,28 @@ Crea una [cuenta de estudiante](https://education.github.com/pack) en GitHub en 
 
 ### 5.2 Repositorio prueba Git
 
-Debes crear un repositorio llamado `mads-prueba-git` en el que pruebes los [comandos básicos de Git](comandos-git.md). Ve añadiendo ficheros de texto sobre un tema que elijas (por ejemplo películas, series de televisión, libros, etc.) y prueba todos los comandos:
+Vamos a empezar practicando Git. Debes crear un repositorio llamado `mads-prueba-git` en el que pruebes los comandos básicos de Git. En [estos apuntes de la asignatura](comandos-git.md) puedes encontrar una explicación del funcionamiento de estos comandos. 
+
+Debes crear en el repositorio un mínimo de tres ficheros de texto sobre algún tema que elijas (películas, series de televisión, libros, chistes, etc.) y probar todos los siguientes comandos:
 
 - git add
 - git commit
 - git status
 - git diff
 - git log --oneline
-- creación ramas
+- creación de ramas
 - merge de ramas (usando --no-ff)
 - rebase de ramas (avanzamos el master y la rama, y después hacemos un rebase de la rama y un merge --no-ff desde la master)
 - git log --oneline --graph (para comprobar el grafo de commits)
 - comandos para modificar la historia: cambiar el último mensaje de commit, deshacer el último commit y crear una rama en un punto pasado de la historia
 
-Sube el repositorio a GitHub y compártelo con el profesor.
+Sube el repositorio a GitHub y compártelo con el profesor (`domingogallardo`).
 
 ### 5.3 Desarrollo de la aplicación `play-todolist`
 
 Detallamos a continuación los primeros pasos de la práctica. Si los sigues con atención comprobarás cómo construir una primera aplicación web con Play Framework. Después deberás continuar realizando la práctica tu solo/a.
 
-Cualquier duda que te surja sobre cualquiera de las tecnologías intenta resolverla primero de la forma habitual (consultando _google_ y _stack overflow_). Si la pregunta es sobre Play, comprueba bien que las respuestas se refieren a la versión que estamos utilizando (la 2.4), porque el framework ha cambiado con mucha frecuencia.
+Cualquier duda que te surja sobre cualquiera de las tecnologías intenta resolverla primero de la forma habitual (consultando _google_ y _stack overflow_). Si la pregunta es sobre Play, comprueba bien que las respuestas se refieren a la versión que estamos utilizando (la 2.5), porque el framework ha cambiado con mucha frecuencia.
 
 En el caso en que no encuentres la solución, no dudes en consultar en el foro de la asignatura en Moodle. Te podrá contestar cualquier compañero o el profesor de la asignatura, así podemos aprender estas tecnologías entre todos.
 
@@ -307,12 +307,11 @@ Veamos los pasos a seguir:
 
     <img src="imagenes/atom-con-play.png" width="500px">
 
-    Estudia qué función cumple cada directorio y cada fichero. Comprueba cómo se muestra la frase `"Your new application is ready"` en la acción `index()` en el fichero `app/controllers/HomeController.java`. Prueba a introducir un error (por ejemplo, quitar las dobles comillas de alguna cadena) y vuelve a recargar la página. Verás que automáticamente Play recompila la aplicación y muestra el error en el propio navegador:
-
+    Estudia qué función cumple cada directorio y cada fichero. Comprueba cómo se muestra la frase `"Your new application is ready"` en la acción `index()` en el fichero `app/controllers/HomeController.java`. Prueba a cambiarla y recarga la página. Verás que Play automáticamente recompila la aplicación y muestra la nueva frase. Prueba después a introducir un error (por ejemplo, quitar las dobles comillas de alguna cadena) y vuelve a recargar la página. Verás que se muestra el error en el propio navegador:
 
     <img src="imagenes/error-play.png" width="700px">
 
-- Arregla el error y cambia el mensaje para comprobar que esta función es la define el mensaje que aparece en la plantilla.
+- Arregla el error y vuelve a cargar la página para comprobar que funciona correctamente.
 
 Una vez que tenemos una primera versión en funcionamiento es un buen momento de crear el repositorio local con git:
 
@@ -360,14 +359,14 @@ Una vez que tenemos una primera versión en funcionamiento es un buen momento de
 
 #### Trello
 
-Debes crear una cuenta en Trello y crear un tablero llamado "ToDoList Tickets (Nombre y primer apellido)". Ahí pondremos la información de los _tickets_ que hay que desarrollar en el proyecto. Cada ticket será una tarjeta de Trello que se irá moviendo de una columna (lista) a otra conforme se vaya desarrollando. 
+Debes crear una cuenta en Trello y crear un tablero llamado "ToDoList Tickets (Nombre y primer apellido)". Ahí pondremos la información de los _tickets_ que hay que desarrollar en el proyecto. Cada ticket será una tarjeta de Trello que se irá moviendo de una columna a otra conforme se vaya desarrollando. 
 
-El tablero deberá tener 4 listas:
+El tablero deberá tener 4 columnas:
 
-- **En espera**: tickets disponibles para ser seleccionados y empezar a trabajar en ellos. Tendrán un título y una descripción de un conjunto de cambios a implementar en el proyecto, que se realizarán un una única rama de Git que terminará integrándose en la rama `master`.
+- **En espera**: tickets disponibles para ser seleccionados y empezar a trabajar en ellos. Tendrán un título y una descripción de un conjunto de cambios a implementar en el proyecto. Estos cambios se realizarán un una única rama de Git que terminará integrándose en la rama `master`.
 - **Seleccionados**: tickets listos para empezar a desarrollarlos. Deben tener un número de identificación (**TIC-1**, **TIC-2**, **TIC-3**, ...) y una descripción corta, que después irá en el comentario del commit del _merge_ de la rama. 
-- **En marcha**: tickets que están en desarrollo. Deben tener una rama abierta en el repositorio (por ahora en local, porque sólo habrá una persona trabajando en cada ticket).
-- **Terminados**: tickets que ya se han incorporado a la rama `master` y se han subido la repositorio remoto. En la descripción de cada tarjeta se debe incluir un enlace al commit con el _merge_ de la rama (el commit resultante de hacer un `merge --no-ff`) en el repositorio remoto en GitHub.
+- **En marcha**: tickets que están en desarrollo. Deben tener una rama abierta en el repositorio.
+- **Terminados**: tickets terminados y que ya se han incorporado a la rama `master`. En la descripción de cada tarjeta se debe incluir un enlace al commit con el _merge_ de la rama (el commit resultante de hacer un `merge --no-ff`) en el repositorio remoto en GitHub.
 
 Un ejemplo de cómo debe estar el tablero a mitad del desarrollo:
 
@@ -388,7 +387,7 @@ Empezamos con **Trello**:
 - Movemos la tarjeta a la columna **En marcha** para indicar que se empieza a implementar la característica.
 - Crearemos entonces una rama en la que desarrollaremos la característica y después, cuando hayamos comprobado que funciona correctamente, mezclaremos esa rama con la rama principal, subiremos los cambios a GitHub y pasaremos la etiqueta a **Terminados**.
 
-Y seguimos desarrollando la característica y usando **Git**:
+Desarrollo de la característica y usando Git:
 
 #### Página de saludo
 
@@ -540,9 +539,13 @@ Puedes utilizar como ayuda para el desarrollo el código que puedes encontrar en
 
 Por último deberás implementar una características adicional: registro y logeo de nuevos usuarios.
 
-Las características anteriores son características "de juguete" con las que probamos el funcionamiento de Play. En el caso de que la aplicación estuviera en producción estas características de gestión de usuarios deberían estar protegidas y sólo podría utilizarlas el usuario administrador.
+Las características anteriores son características "de prueba" con las que probamos el funcionamiento de Play. En el caso de que la aplicación estuviera en producción estas características de gestión de usuarios deberían estar protegidas y sólo podría utilizarlas el usuario administrador. 
 
-Debes implementar ahora  una característica "real": **registro y logeo de nuevos usuarios**. Debes ampliar la aplicación para permitir que nuevos usuarios de la aplicación puedan crear cuentas y logearse. Debes definir los _tickets_ que consideres necesarios. Puedes añadir los cambios que necesites en todos los componentes de la aplicación. 
+Debes implementar ahora una nueva característica: **registro y logeo de nuevos usuarios**. Debes ampliar la aplicación para permitir que nuevos usuarios de la aplicación puedan registrarse (con una pantalla de registro en la que se pide sus datos, su login y una contraseña), y logearse, escribiendo correctamentamente la contraseña. Una vez que el usuario se haya logeado aparecerá una pantalla de saludo. Si el usuario que se registra es un usuario que ya está en la base de datos **sin contraseña** (por ejemplo, porque se ha introducido por el administrador), se actualizarán los datos y se le pedirá que actualize su contraseña. Si el usuario que se registra ya está en la base de datos **con contraseña**, se mostrará un mensaje de error, indicando que el usuario ya existe.
+
+**En ningún caso el administrador podrá asignar contraseñas manualmente. Siempre se le pedirá al usuario una nueva o se creará una de forma aleatoria.**
+
+Debes definir los _tickets_ que consideres necesarios. Puedes añadir los cambios que necesites en todos los componentes de la aplicación. 
 
 Piensa cómo deberían ser las pantallas y qué se debería implementar.
 
@@ -552,10 +555,10 @@ Piensa cómo deberían ser las pantallas y qué se debería implementar.
 - Durante el desarrollo se debe compartir con el profesor (usuario: `domingogallardo`)
     - Repositorios GitHub: `mads-prueba-git` y `mads-todolist`
     - Tablero trello con los tickets
-- Documentación en Markdown en el directorio `/docs` del repositorio con una descripción del trabajo realizado en la práctica:
-    - Documentación técnica del desarrollo realizado
-    - Funcionalidades adicionales implementadas
-- En la fecha de la entrega de debe subir a Moodle un ZIP que contenga todo el proyecto y dejar la URL al repositorio en GitHub
+- Documentación en Markdown en el directorio `/docs` del repositorio con una breve descripción **de la nueva característica**:
+    - Para el desarrollador: documentación técnica con una explicación rápida de los aspectos más importantes de la implementación
+    - Para el usuario: explicación de las funcionalidades implementadas
+- En la fecha de la entrega se debe subir a Moodle un ZIP que contenga todo el proyecto y dejar la URL del repositorio en GitHub
 
 Para la evaluación se tendrá en cuenta:
 
