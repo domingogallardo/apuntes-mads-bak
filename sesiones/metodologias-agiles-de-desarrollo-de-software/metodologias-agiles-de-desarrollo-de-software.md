@@ -25,7 +25,7 @@
 <img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.005.png" width="800px">
 
 - El software es **multidimiensional**, se puede considerar desde muchos puntos de vista. Por eso hay múltiples metáforas, todas ellas correctas porque resaltan uno de sus aspectos.
-- El artículo de Martin Fowler [The new methodology](lecturas/martin-fowler_the-new-methodology.pdf) explica perfectamente por qué la metáfora de la construcción no es buena: el desarrollo de software no es una actividad predictiva, sino **adaptativa** (más sobre ello en otras diapositivas).
+- El artículo de Martin Fowler [The new methodology](../../lecturas/martin-fowler_the-new-methodology.pdf) explica perfectamente por qué la metáfora de la construcción no es buena: el desarrollo de software no es una actividad predictiva, sino **adaptativa** (más sobre ello en otras diapositivas).
 
 <img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.006.png" width="800px">
 
@@ -35,11 +35,11 @@
 
 <img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.007.png" width="800px">
 
-- Obligatorio leer y estudiar el artículo de Martin Fowler [The new methodology](lecturas/martin-fowler_the-new-methodology.pdf) que explica la diferencia entre las ingenierías tradicionales y la ingeniería del software. El artículo también proporciona una buena introducción a las metodologías ágiles (la **nueva metodología**):
+- Obligatorio leer y estudiar el artículo de Martin Fowler [The new methodology](../../lecturas/martin-fowler_the-new-methodology.pdf) que explica la diferencia entre las ingenierías tradicionales y la ingeniería del software. El artículo también proporciona una buena introducción a las metodologías ágiles (la **nueva metodología**):
   - Uno de los puntos más importantes del artículo es el que argumenta que los requerimientos de un proyecto software **no son predecibles**.
   - Es difícil comprobar el valor de una característica software hasta que no se usa de verdad. El software en funcionamiento es un sistema complejo en el que participan usuarios, otro software, datos, etc.
   - La forma de controlar un proceso no predecible es mediante **iteraciones cortas**.
-  - El enlace al artículo de Martin Fowler [es este](http://www.martinfowler.com/articles/newMethodology.html).
+  - El enlace original al artículo de Martin Fowler [es este](http://www.martinfowler.com/articles/newMethodology.html).
 
 <img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.008.png" width="800px">
 
