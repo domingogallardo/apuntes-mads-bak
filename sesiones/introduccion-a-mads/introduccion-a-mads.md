@@ -78,3 +78,5 @@ Todos los libros se encuentran en la biblioteca (en formato físico y/o digital)
 
 <img src="diapositivas/introduccion-a-mads.016.png" width="800px">
 
+- Vamos con un juego: el **reto del malvavisco**. Si lo conocéis no digáis nada para no _spoilearlo_.
+- Después del juego terminaremos con 15 minutos de un vídeo muy interesante, del _agilista_ español **Ángel Medinilla**: [Introducción a Lean y Agile](https://www.youtube.com/watch?v=xUoZakVq6Dg). Iremos viendo fragmentos del vídeo durante varias semanas; se trata de una muy buena introducción a esta primera parte de la asignatura, que complementa muy bien lo que iremos estudiando en las clases de teoría.
