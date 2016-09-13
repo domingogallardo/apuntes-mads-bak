@@ -12,8 +12,6 @@ Herramientas docentes:
 - [Moodle](https://moodle2016-17.ua.es/moodle/course/view.php?id=927): Utilizaremos Moodle para publicar semana a semana enlaces a los materiales en GitHub. También se realizarán las entregas finales de las prácticas (que se deberán ir subiendo también a GitHub). Y utilizaremos el foro de Moodle para poner en común dudas que os puedan surgir cuando estáis realizando los trabajos.
 - [Apuntes y materiales en GitHub](https://github.com/domingogallardo/mads-ua): Los apuntes consisten en ficheros Markdown con algunas explicaciones sobre las diapositivas. Una ventaja de utilizar GitHub es que se podrá consultar los últimos cambios que se hayan introducido en los materiales.
 
-<img src="diapositivas/introduccion-a-mads.003.png" width="800px">
-
 <img src="diapositivas/introduccion-a-mads.004.png" width="800px">
 
 - [Henry Kniberg](https://www.crisp.se/konsulter/henrik-kniberg) es un gran divulgador de las metodologías ágiles. Trabaja en la actualidad como consultor en Spotify y Lego. Le gusta compartir todo lo que hace y muchos de los libros que ha escrito están en abierto. Vamos a utilizar muchos de sus materiales (diapositivas, vídeos, libros, artículos). Muy recomendable su [blog](http://blog.crisp.se/author/henrikkniberg).
@@ -75,8 +73,13 @@ Todos los libros se encuentran en la biblioteca (en formato físico y/o digital)
 - Jez Humble y David Farley: Continuous delivery - [Biblioteca UA](http://gaudi.ua.es/uhtbin/cgisirsi/0/x/0/05?searchdata1=9780321601919)
 - Lisa Crispin: Agile Testing - [Biblioteca UA](http://gaudi.ua.es/uhtbin/cgisirsi/0/x/0/05?searchdata1=9780321534460)
 
+<img src="diapositivas/introduccion-a-mads.015b.png" width="800px">
+
+- Un pequeño debate sobre qué conocéis a priori de las metodologías ágiles. Haremos un resumen en la pizarra.
+
+Terminamos la introducción a la asignatura viendo 15 minutos de un vídeo muy interesante, del _agilista_ español **Ángel Medinilla** ([@angel_m](https://twitter.com/angel_m)): [Introducción a Lean y Agile](https://www.youtube.com/watch?v=xUoZakVq6Dg). Iremos viendo fragmentos del vídeo durante varias semanas; se trata de una muy buena introducción a esta primera parte de la asignatura, que complementa muy bien lo que iremos estudiando en las clases de teoría.
+
 
 <img src="diapositivas/introduccion-a-mads.016.png" width="800px">
 
-- Vamos con un juego: el **reto del malvavisco**. Si lo conocéis no digáis nada para no _spoilearlo_.
-- Después del juego terminaremos con 15 minutos de un vídeo muy interesante, del _agilista_ español **Ángel Medinilla**: [Introducción a Lean y Agile](https://www.youtube.com/watch?v=xUoZakVq6Dg). Iremos viendo fragmentos del vídeo durante varias semanas; se trata de una muy buena introducción a esta primera parte de la asignatura, que complementa muy bien lo que iremos estudiando en las clases de teoría.
+- **!No os vayáis todavía¡**. Falta hacer un juego: el **reto del malvavisco**. Si lo conocéis no digáis nada para no _spoilearlo_.
