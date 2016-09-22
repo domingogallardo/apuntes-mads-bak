@@ -179,6 +179,18 @@
 
 <img src="diapositivas/manifiesto-agil.004.png" width="800px">
 
+- Kent Beck ([Twitter](https://twitter.com/KentBeck))
+- Alistair Cockburn ([Twitter](https://twitter.com/TotherAlistair), [Blog](http://alistair.cockburn.us))
+- Ward Cunningham ([Twitter](https://twitter.com/WardCunningham))
+- Martin Fowler ([Twitter](https://twitter.com/martinfowler), [Blog](http://martinfowler.com))
+- Andrew Hunt ([Twitter](https://twitter.com/pragmaticandy), [Pragmatic Programmer](https://pragprog.com))
+- Ron Jeffries ([Twitter](https://twitter.com/RonJeffries), [Blog](http://ronjeffries.com))
+- Robert C. Martin ([Twitter](https://twitter.com/unclebobmartin), [Clean Code](https://sites.google.com/site/unclebobconsultingllc/))
+- Ken Schwaber ([Twitter](https://twitter.com/kschwaber), [Scrum.org](https://www.scrum.org))
+- Jeff Sutherland ([Twitter](https://twitter.com/jeffsutherland), [Scrum.org](https://www.scrum.org))
+- Dave Thomas ([Twitter](https://twitter.com/pragdave), [Pragmatic Programmer](https://pragprog.com))
+
+
 <img src="diapositivas/manifiesto-agil.005.png" width="800px">
 
 <img src="diapositivas/manifiesto-agil.006.png" width="800px">
