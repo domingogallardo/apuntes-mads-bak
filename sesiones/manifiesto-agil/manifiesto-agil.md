@@ -135,20 +135,20 @@
       éxito tocadas en la _jukebox_ obligan al dueño del bar a pagar
       más royalties.
 
-        Dan tuvo que reescribir una gran parte del software para poner
+    Dan tuvo que reescribir una gran parte del software para poner
     un límite en el número de veces que se promociona una canción,
     dependiendo de los royalties que tiene que pagar. No pudo
     entregarlo al final de iteración, y Tom tuvo que quedar mal con
     los clientes porque esa funcionalidad no estaba implementada.
 
-        Si Dan hubiera entendido todas las implicaciones que tenía
+    Si Dan hubiera entendido todas las implicaciones que tenía
     la historia, y las necesidades y problemas de los clientes, le
     hubiera preguntado más a Tom antes de empezar a codificar. Y al
     revés, si Tom hubiera tomado el tiempo necesario para asegurarse
     de que Dan entendía todos los detalles de la historia antes de que
     empezara a implementarla tampoco hubiera sucedido el problema.
 
-        Pero no tuvieron esa conversación, y el proyecto cayó en el
+    Pero no tuvieron esa conversación, y el proyecto cayó en el
     mismo tipo de problemas que cuando estaban haciendo _waterfall_:
     desarrolladores que hacen suposiciones incorrectas, que saltan a
     programar y que tienen que hacer cambios en el código que podrían
