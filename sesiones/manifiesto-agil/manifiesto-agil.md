@@ -190,22 +190,295 @@
 - Jeff Sutherland ([Twitter](https://twitter.com/jeffsutherland), [Scrum.org](https://www.scrum.org))
 - Dave Thomas ([Twitter](https://twitter.com/pragdave), [Pragmatic Programmer](https://pragprog.com))
 
-
 <img src="diapositivas/manifiesto-agil.005.png" width="800px">
+
+- En el mundo empresarial, se habla de la **misión** de la empresa, a
+  partir de la que se definen una series de **valores**.
+
+Por ejemplo, Starbucks define su
+  [misión y valores](http://www.starbucks.com/about-us/company-information/mission-statement)
+  de la siguiente forma:
+
+- **Misión**: Inspirar y cuidar el espíritu humano - persona a persona,
+      taza a taza y barrio a barrio.
+
+- **Valores**: Con un núcleo formado por nuestros socios, nuestro
+      café y nuestros clientes, vivimos estos valores:
+    - Crear una cultura de calidez y **de pertenencia**, donde todo el mundo
+    es bienvenido.
+    - Actuar con **valentía**, enfrentándose al _status quo_ y encontrando
+    nuevas formas de hacer crecer nuestra empresa y cada uno de
+    nosotros.
+    - Estar **presente y conectar** con transparencia, dignidad y respeto.
+    - Entregar **lo mejor de nosotros** en todo lo que hacemos,
+    pudiendo dar cuenta en todo momento de nuestros resultados.
+    - Nuestro motor es el **desempeño**, a través del cristal del humanismo.
+
+- El desarrollo de software es una actividad principalmente humana, y
+  el manifiesto ágil define unos **valores** que deben guiar ese
+  desarrollo.
+
+- Ejemplo de valor del manifiesto : "Los **individuos y las
+  interacciones** están por encima de los procesos y las herramientas"
 
 <img src="diapositivas/manifiesto-agil.006.png" width="800px">
 
+<img src="diapositivas/manifiesto-agil.006b.png" width="800px">
+
+Ejemplos de prácticas:
+
+- Prácticas del **gestor de proyectos** :
+    - Tableros de tareas
+    - Puntos de historia
+    - Diagramas de quemado (_burndown charts_)
+    - Diagramas de flujo acumulado
+    - Velocidad del proyecto
+    - Estimación
+    - Temas
+    - Priorización
+
+- Prácticas del **lider del equipo**:
+    - Planning Pocker
+    - Retrospectivas
+    - Comunicación osmótica
+    - Sentarse juntos
+    - _Servant leadership_
+
+- Prácticas del **product owner**:
+    - _Backlog_ de producto
+    - Ítem de _backlog_
+    - Historias de usuario
+    - _Ranking_ relativo
+    - Iteración
+    - _Release_
+
+- Prácticas del **desarrollador**:
+    - Refactorización
+    - Programación por parejas
+    - Integración continua
+    - Sistemas de control de versiones
+    - Desarrollo Dirigido por los Tests (TDD)
+
+- Los valores del manifiesto ágil son comunes a las prácticas
+definidas por las distintas metodologías (_Lean_, XP y Scrum):
+
+<img src="metodologias-y-valores.png" width="400px">
+
 <img src="diapositivas/manifiesto-agil.007.png" width="800px">
+
+**1. Individuos e interacciones** sobre procesos y herramientas:
+
+- Las prácticas pueden usarse bien o mal. Es más importante fijarse en
+  los miembros del equipo, sus motivaciones, preferencias e
+  interacciones.
+- Si las personas no "compran" el proceso, éste no va a funcionar.
+- Más importante que una buena documentación es una buena interacción
+  (comunicación continua para que todo el equipo esté informado de las
+  decisiones, temas abiertos, conceptos de negocio, etc.)
+
+**2. Software que funciona** sobre documentación exhaustiva:
+
+- Software que funciona es software que proporciona **valor**. En
+  muchas ocasiones este valor se puede calcular en forma de
+  **dinero**: los clientes ganan más con el software de lo que les ha
+  costado comprarlo. Nosotros ganamos más con él de lo nos ha costado
+  desarrollarlo.
+- Hay mucha documentación necesaria: manuales de usuario,
+  documentación técnica que se va a consultar. Hay que **eliminar la
+  documentación que no se va a usar** y que no aporta nada a lo que ya
+  sabemos. 
+- El **código** es la mejor documentación. En desarrollo TDD, primero se
+  hacen las pruebas y éstas sirven para validar el sistema y para
+  documentar. Los ejemplos de validación hechos por el _product owner_
+  y los clientes son otro ejemplo de documentación imprescindible.
+
+**3. Colaboración con el cliente** frente a negociación de un contrato:
+
+- Esto se aplica también al trabajo dentro de la empresa. Obligar a
+  que "me den el encargo de trabajo por escrito" para poder después
+  cubrirme las espaldas si hay un error **no es un ejemplo de
+  colaboración**. 
+- La flexibilidad y apertura de la colaboración permite cometer fallos
+  sin que nadie se sienta señalado. El equipo es el responsable porque hay un
+  objetivo final en el todos estamos comprometidos.
+- **La _product owner_** es un miembro más del equipo: participa en las
+  reuniones, propone ideas, proporciona ejemplos de prueba y, lo más
+  importante, se siente tan autora del producto final como los demás
+  miembros del equipo.
+
+**4. Responder al cambio** frente a seguir un plan:
+
+- Habrá un plan general, pero **flexible y adaptable** a los cambios que
+  se puedan introducir en el desarrollo (sobre todo si es un proyecto
+  largo).
+- Hay que dejar de ver los cambios como errores y verlos como
+  **oportunidades** de entregar más valor.
+- La actitud del gestor del proyecto debe ser la de estar
+  continuamente comprobando y reaccionando (sobre todo al final de
+  cada iteración), no sólo la de planificar una vez al principio.
 
 <img src="diapositivas/manifiesto-agil.008.png" width="800px">
 
+**1. Our highest priority is to satisfy the customer through early and
+  continuous delivery of valuable software.**
+
+- Tres ideas juntas: lanzar pronto el software, entregar valor
+  continuamente y satisfacer al cliente.
+- Es difícil entender exactamente cómo va a funcionar el software
+  hasta el momento en que **los clientes lo usan**.
+- Por otro lado, para una empresa cliente puede ser difícil trabajar
+  con software incompleto. La empresa debe aprender a valorar la
+  colaboración sobre los contratos. Esto es lo que significa
+  **continuous delivery**.
+
+**2. Welcome changing requirements, even late in development. Agile
+  processes harness change for the customer's competitive advantage.**
+
+- La mayoría de desarrolladores tienen problemas con este principio:
+  **no es fácil** tener que modificar código que ya está hecho. Y menos si
+  no es por nuestra culpa.
+- Hay que verlo desde la perspectiva del cliente. Para el cliente
+  tampoco es fácil pedir un cambio. Muchas veces lo hace por necesidad
+  (ventaja competitiva), porque algo ha cambiado en el negocio.
+- Debemos dejar de pensar en que los cambios son equivocaciones. Son
+  **una forma de aprender**.
+
+**3. Deliver working software frequently, from a couple of weeks to a
+couple of months, with a preference to the shorter timescale.**
+
+- Ya hemos hablado de las ventajas de las iteraciones pequeñas: hay un
+  producto usable al final, todos en el equipo tienen objetivos claros
+  para cada iteración, es más fácil planificar iteración a iteración y
+  tener una visión de más alto nivel.
+- Cuidado, posible problema: perder de vista objetivos a largo plazo y
+  características complejas que necesitan más de una iteración.
+
+**4. Business people and developers must work together daily
+throughout the project.**
+
+- El problema es que la gente de negocio (los clientes) tienen un
+  trabajo que hacer, distinto de ayudar a los desarrolladores. Pero el
+  problema es crítico: cada correo electrónico sin contestar retrasa
+  el proyecto.
+- La gente de negocio debe entender que el equipo va a entregar
+  software valioso para la empresa, que va a solucionar parte de sus
+  problemas y que va a merecer la pena ayudar, y formar parte del
+  equipo (normalmente a través del _product owner_).
+- Por eso es importante que el equipo priorice las características de
+  más valor.
+- Un buen _product owner_ puede ayudar a reducir la cantidad de tiempo
+  que la gente de negocio pasa con el equipo. Puede que sea necesario
+  que se reúnan diariamente, pero las reuniones deben **estar
+  preparadas** y servir principalmente para validar información
+  preparada por el _product owner_.
+
+**5. Build projects around motivated individuals. Give them the
+environment and support they need, and trust them to get the job
+done.**
+
+- Cuidado con "incentivos" que funcionan en contra del equipo como
+  premios por el número de bugs encontrados o el número de líneas
+  escritas.
+- Si cada uno en el equipo intenta cubrirse las espaldas y acusar a
+  otros de los problemas, se genera una **atmósfera perniciosa** para
+  el desarrollo.
+- La motivación por el proyecto que se está desarrollando y la
+  **confianza** son valores que hay que fomentar.
+- El líder del equipo debe aplicar técnicas de trabajo en grupo para
+  conseguir más confianza y sinceridad.
+
 <img src="diapositivas/manifiesto-agil.009.png" width="800px">
 
+**6. The most efficient and effective method of conveying information
+  to and within a development team is face-to-face conversation.**
+
+- Las conversaciones son más valiosas que la documentación.
+- **Respeta el tiempo** de los demás y prepara bien la conversación, para
+  que sea eficiente.
+- El fin último de las conversaciones es crear un **sentimiento de
+  comunidad** de forma que haya un montón de conocimiento implícito que
+  no sea necesario comunicar una y otra vez.
+
+**7. Working software is the primary measure of progress.**
+
+- La mejor forma de medir el progreso del proyecto es comprobando la
+  cantidad de funcionalidades implementadas y probadas.
+- En el momento en que ves el software funcionando, lo
+  "pillas". Puedes comprobar lo que se ha hecho y lo que falta por
+  hacer.
+- Al **probar el software** al final de cada iteración todo el mundo se
+  hace una idea mucho mejor del progreso que al leer informes y
+  diagramas.
+
+**8. Agile processes promote sustainable development. The sponsors,
+developers, and users should be able to maintain a constant pace
+indefinitely.**
+
+- No caer en la práctica habitual de las horas extras y los fines de
+  semana cuando se acerca la fecha de entrega. A largo plazo esto no
+  funciona.
+- El desarrollo iterativo es mucho más realista, porque un ritmo de
+  desarrollo sostenido durante la iteración nos permite estimar mucho
+  más fielmente lo que se va a entregar al final de las dos, cuatro o
+  seis semanas que dure la iteración.
+
+**9. Continuous attention to technical excellence and good design
+ enhances agility.**
+
+- Es importante resolver los bugs **tan pronto como aparecen**. Cuanto
+  más se tarde en eliminar un bug más difícil es hacerlo.
+- Hay que utilizar buenas prácticas de diseño, buenas
+  herramientas. Pero no sobre-diseñar.
+
+**10. Simplicity--the art of maximizing the amount of work not
+ done--is essential.**
+
+- Borrar código no es una operación demasiado destructiva, porque
+  siempre lo puedes recuperar del sistema de control de versiones. Es
+  peor escribir código de más.
+- Cuantas más líneas de código, más dependencias y más difícil
+  solucionar los errores, ampliar las funcionalidades y realizar
+  cambios.
+
 <img src="diapositivas/manifiesto-agil.010.png" width="800px">
+
+**11. The best architectures, requirements, and designs emerge from
+ self-organizing teams.** 
+
+- Lo contrario de un equipo auto-organizado es un equipo que obedece
+  ciegamente los diseños propuestos en un proceso rígido como el de
+  cascada. 
+- En un equipo ágil todo el equipo comparte la responsabilidad de la
+  arquitectura del proyecto.
+- En lugar de un gran diseño al principio de todo, el diseño va
+  **emergiendo de forma incremental**, conforme se van desarrollando
+  historias de usuario (de mayor a menor valor).
+- Esto obliga a usar técnicas de diseño que permitan construir el
+  sistema poco a poco, ampliando los módulos, esquemas de la base de
+  datos, etc.
+
+**12. At regular intervals, the team reflects on how to become more
+ effective, then tunes and adjusts its behavior accordingly.**
+
+- El equipo ágil no sólo debe mejora el software de forma continua,
+  sino que también debe mejorar la propia **forma de construir el
+  software**. 
+- Al principio es algo incómodo hablar de errores y cosas que se han
+  hecho mal. Pero con el tiempo la gente se acostumbra a ello y se
+  convierte en una forma de mejorar a base de hacer críticas
+  constructivas (y valorar lo que se ha hecho bien).
 
 <img src="diapositivas/manifiesto-agil.011.png" width="800px">
 
 <img src="diapositivas/manifiesto-agil.012.png" width="800px">
 
 <img src="diapositivas/manifiesto-agil.013.png" width="800px">
+
+- Enlaces:
+    - [Manifesto for Agile Software Development](http://agilemanifesto.org)
+    - Martin Fowler - [The New Methodology](http://www.martinfowler.com/articles/newMethodology.html)
+    - Martin Fowler - [Writing The Agile Manifesto](http://martinfowler.com/articles/agileStory.html)
+    - Robert Martin - [The Founding of the Agile Alliance](https://sites.google.com/site/unclebobconsultingllc/the-founding-of-the-agile-alliance)
+    - Jeff Sutherland - [Agile Principles and Values](https://msdn.microsoft.com/en-us/library/dd997578.aspx)
+
 
