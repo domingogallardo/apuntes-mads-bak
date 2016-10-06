@@ -9,7 +9,7 @@ aplicación.
 
 Al igual que la primera práctica, el desarrollo de esta práctica será
 individual. Tendrá una duración de 3 semanas, siendo la fecha límite
-de entrega el 25 de octubre.
+de entrega el **25 de octubre**.
 
 Seguiremos trabajando en la aplicación `mads-todolist` que has estado
 desarrollando en la primera práctica.
@@ -29,6 +29,11 @@ trabajar con una base de datos MySQL que no puede gestionar claves
 autogeneradas de este tipo. Debes cambiar por ello la clave primaria
 de `Usuario` a `Integer`.
 
+> Igual que en la práctica anterior, abre un tícket nuevo en Trello y
+> realiza todas las modificaciones en una rama que después debes mezclar
+> con _master_ usando `--no-ff`.
+
+
 ### Configuración de la conexión
 
 Hasta ahora hemos desarrollado la aplicación usando la base de datos
@@ -38,6 +43,9 @@ interesante poder trabajar con una base de datos que haga persistente
 los datos entre distintas ejecuciones de la aplicación. También es
 recomendable trabajar con bases de datos idénticas a las que
 utilizaremos en producción.
+
+> Debes implementar un nuevo tícket, en el que modifiques la base de
+> datos de la aplicación para usar MySQL.
 
 Para modificar la configuración de la base de datos debemos cambiar
 las preferencias definidas en el fichero de configuración
@@ -251,9 +259,9 @@ de datos en memoria. También podemos utilizar una base de datos de
 tests en la que hemos añadido casos de prueba que se utilizarán en los
 tests. Veremos distintos ejemplos en el siguiente apartado.
 
-## Definición de un test en Play Framework
+### Introducción
 
-### JUnit
+#### JUnit
 
 Los tests se construyen usando JUnit:
 
@@ -279,7 +287,7 @@ public class SimpleTest {
 }
 ```
 
-### Aserciones y matchers
+#### Aserciones y matchers
 
 PlayFramework también incluye la librería
 [Hamcrest](http://hamcrest.org/JavaHamcrest/) que permite escribir 
@@ -303,7 +311,7 @@ public class HamcrestTest {
 ```
 
 
-### Mocks
+#### Mocks
 
 Los _mocks_ se usan para aislar los tests unitarios de dependencias
 externas. Por ejemplo, si la clase a probar depende de una clase
@@ -328,4 +336,16 @@ assertEquals("first", mockedList.get(0));
 // verifica la interacción
 verify(mockedList).get(0);
 ```
+
+### Tests con bases de datos
+
+### Tests de la capa `services`
+
+### Tests de la capa `controllers`
+
+
+## Tests a realizar en tu aplicación
+
+
+## Ampliación de la aplicación: tareas usando TDD
 
