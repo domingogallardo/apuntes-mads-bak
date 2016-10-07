@@ -29,10 +29,12 @@ trabajar con una base de datos MySQL que no puede gestionar claves
 autogeneradas de este tipo. Debes cambiar por ello la clave primaria
 de `Usuario` a `Integer`.
 
-> **Nuevo ticket a implementar**: Igual que en la práctica anterior,
-> abre un ticket nuevo en Trello para cambiar la clave primaria de
-> `String` a `Integer`. Realiza todas las modificaciones en una rama
-> que después debes mezclar con _master_ usando `--no-ff`.
+**Nuevo ticket a implementar**
+
+> Igual que en la práctica anterior, abre un ticket nuevo en Trello
+> para cambiar la clave primaria de `String` a `Integer`. Realiza
+> todas las modificaciones en una rama que después debes mezclar con
+> _master_ usando `--no-ff`.
 
 
 ### 2.2. Configuración de la conexión
@@ -45,9 +47,10 @@ los datos entre distintas ejecuciones de la aplicación. También es
 recomendable trabajar con bases de datos idénticas a las que
 utilizaremos en producción.
 
-> **Nuevo ticket a implementar**: Debes implementar un nuevo ticket,
-> en el que modifiques la base de datos de la aplicación para usar
-> MySQL.
+**Nuevo ticket a implementar**
+
+> Debes implementar un nuevo ticket, en el que modifiques la base de
+> datos de la aplicación para usar MySQL.
 
 Para modificar la configuración de la base de datos debemos cambiar
 las preferencias definidas en el fichero de configuración
@@ -263,7 +266,7 @@ tests. Veremos distintos ejemplos en el siguiente apartado.
 
 ### 3.1. Introducción
 
-#### JUnit
+#### 3.1.1. JUnit
 
 Los tests se construyen usando JUnit:
 
@@ -289,7 +292,7 @@ public class SimpleTest {
 }
 ```
 
-#### Aserciones y matchers
+#### 3.1.2. Aserciones y matchers
 
 PlayFramework también incluye la librería
 [Hamcrest](http://hamcrest.org/JavaHamcrest/) que permite escribir 
@@ -313,7 +316,7 @@ public class HamcrestTest {
 ```
 
 
-#### Mocks
+#### 3.1.3. Mocks
 
 Los _mocks_ se usan para aislar los tests unitarios de dependencias
 externas. Por ejemplo, si la clase a probar depende de una clase
@@ -341,7 +344,7 @@ verify(mockedList).get(0);
 
 ### 3.2. Tests con bases de datos y JPA
 
-#### Conexión de JPA con una base de datos en memoria
+#### 3.2.1. Conexión de JPA con una base de datos en memoria
 
 Para verificar código que accede a la base de datos es posible
 inicializar en el propio test una base de datos con el mismo nombre
@@ -356,10 +359,11 @@ sobre el disco duro. Podremos, por ejemplo, ejecutar los tests en
 entornos _cloud_ sin necesidad de configurar una base de datos como
 MySQL. 
 
-> **Nuevo ticket a implementar**: Debes implementar un nuevo ticket,
-> en el que definas el fichero `dao/UsuarioDaoTest.java` que ejecute un
-> mínimo de 5 tests sobre la clase `UsuarioDao` usando una base de
-> datos vacía en memoria.
+**Nuevo ticket a implementar**
+
+> Debes implementar un nuevo ticket, en el que definas el fichero
+> `dao/UsuarioDaoTest.java` que ejecute un mínimo de 5 tests sobre la
+> clase `UsuarioDao` usando una base de datos vacía en memoria.
 
 El siguiente fichero `UsuarioDaoTest.java` muestra cómo hacerlo.
 
@@ -463,15 +467,17 @@ En el fichero mostrado anteriormente hay dos tests. Debes definir tres
 tests adicionales que comprueben otros métodos del DAO.
 
 
-#### Inicialización de la base de datos con DBUnit
+#### 3.2.2. Inicialización de la base de datos con DBUnit
 
 Para poder inicializar la base de datos con un conjunto de datos
 previos es mucho más aconsejable utilizar la librería DBUnit.
 
-> **Nuevo ticket a implementar**: Debes implementar un nuevo ticket,
-> en el que definas el fichero `dao/UsuarioDaoDbUnitTest.java` que
-> ejecute un mínimo de 5 tests sobre la clase `UsuarioDao` usando una
-> base datos en memoria inicializada con DBUnit.
+**Nuevo ticket a implementar**
+
+> Debes implementar un nuevo ticket, en el que definas el fichero
+> `dao/UsuarioDaoDbUnitTest.java` que ejecute un mínimo de 5 tests
+> sobre la clase `UsuarioDao` usando una base datos en memoria
+> inicializada con DBUnit.
 
 Para ello hay que hacer los siguiente cambios:
 
