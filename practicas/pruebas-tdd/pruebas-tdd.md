@@ -24,7 +24,7 @@ desarrollo de la aplicación y contenga y pase sus propios tests.
 ### 2.1. Cambio de clave primaria de `String` a `Integer`
 
 En la práctica 1 el tipo de dato de la clave primaria de `Usuario` lo
-especificamos como `String`. Sin embargo, en la práctica 3 vamos a
+especificamos como `String`. Sin embargo, en esta práctica vamos a
 trabajar con una base de datos MySQL que no puede gestionar claves
 autogeneradas de este tipo. Debes cambiar por ello la clave primaria
 de `Usuario` a `Integer`.
@@ -37,7 +37,7 @@ de `Usuario` a `Integer`.
 > _master_ usando `--no-ff`.
 
 
-### 2.2. Configuración de la conexión
+### 2.2. Configuración de la conexión con MySQL
 
 Hasta ahora hemos desarrollado la aplicación usando la base de datos
 en memoria `H2`. Sin embargo, para poder hacer comprobaciones y
