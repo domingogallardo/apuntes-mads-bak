@@ -655,8 +655,90 @@ tests adicionales que comprueben otros métodos del DAO.
 
 ### 3.3. Tests de la capa de servicios
 
-### 3.4. Tests de la capa de controladores
+Los tests sobre la capa de servicios se hacen de forma similar a los
+de la capa DAO. Podemos usar también DBUnit para inicializar la base
+de datos de memoria con datos de prueba iniciales.
 
+**Nuevo ticket a implementar**
+
+> Debes implementar un nuevo ticket, en el que definas el fichero
+> `services/UsuariosServiceTest.java` que ejecute un mínimo de 5 tests
+> sobre la clase `UsuariosService` usando una base datos en memoria
+> inicializada con DBUnit.
+
+A continuación podemos ver un ejemplo de uno de los tests, en el que
+comprobamos que si intentamos modificar un usuario con un login ya
+existente se lanza una excepción.
+
+El test es interesante porque demuestra una importante característica
+de JPA: si estamos dentro de una transacción las entidades devueltas por
+los métodos del servicio están conectadas a la base de datos. Esta
+conexión hace que si modificamos uno de sus atributos, automáticamente
+se modifica la base de datos. 
+
+Por ejemplo, el siguiente código no funcionaría bien, porque el objeto
+`usuario` devuelto por `findUsuario()` está conectado a la base de
+datos y JPA actualizará la base de datos cuando modifiquemos sus
+atributos. 
+
+```java
+    // 
+    // CÓDIGO ERRÓNEO, NO COPIAR
+    //
+    // 
+    jpa.withTransaction(() -> {
+        Usuario usuario = UsuariosService.findUsuario(2);
+
+        // Modificamos el login por uno ya existente en
+        // la base de datos.
+
+        usuario.login = "juan";
+
+        // Pero está mal: al estar el usuario conectado 
+        // a la base de datos se actualiza el login en la base 
+        // de datos justo en este momento, antes de llamar 
+        // al método modificaUsuario.
+
+        try {
+            UsuariosService.modificaUsuario(usuario);
+            fail("No se ha lanzado excepción login ya existe");
+        } catch (UsuariosException ex) {
+        }
+    });
+```
+
+Una forma de corregir el código anterior es copiar los datos del
+usuario conectado a otro dato nuevo, que no haya sido devuelto por JPA
+y que esté desconectado de la base de datos. Para ello definimos un
+nuevo método `copy()` en la clase `Usuario`, que únicamente crea un
+usuario nuevo y copia sus datos.
+
+```java
+    @Test
+    public void actualizaUsuarioLanzaExcepcionSiLoginYaExiste() {
+        jpa.withTransaction(() -> {
+            Usuario usuario = UsuariosService.findUsuario(2);
+
+            // Copiamos el objeto usuario para crear un objeto igual
+            // pero desconectado de la base de datos. De esta forma,
+            // cuando modificamos sus atributos JPA no actualiza la
+            // base de datos.
+
+            Usuario desconectado = usuario.copy();
+
+            // Cambiamos el login por uno ya existente
+            desconectado.login = "juan";
+
+            try {
+                UsuariosService.modificaUsuario(desconectado);
+                fail("No se ha lanzado excepción login ya existe");
+            } catch (UsuariosException ex) {
+            }
+        });
+    }
+```
+
+Escribe cuatro tests más que comprueben los métodos de la clase `UsuariosService`.
 
 ## 4. Ampliación de la aplicación: tareas usando TDD
 
