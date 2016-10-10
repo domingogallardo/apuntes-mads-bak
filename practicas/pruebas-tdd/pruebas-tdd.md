@@ -207,20 +207,14 @@ framework de testing. Los siguientes enlaces proporcionan información
 inicial sobre testing en Play Framework. No vamos a entrar en
 profundidad en todas las posibilidades (_mocking_, inyección de
 dependencias, etc.), sólo aprender lo necesario para definir algunos
-tests que sean útiles:
+tests que sean útiles.
 
-- Documentación Play -
-  [Testing your application](https://playframework.com/documentation/2.5.x/JavaTest)
-- Documentación Play -
-  [Writing functional tests](https://playframework.com/documentation/2.5.x/JavaFunctionalTest)
-- Documentación Play -
-  [Testing with databases](https://playframework.com/documentation/2.5.x/JavaTestingWithDatabases)
-- Documentación Play -
-  [The Play WS API](https://www.playframework.com/documentation/2.5.x/JavaWS)
-- Play Java API -
-  [play.test.Helpers](https://www.playframework.com/documentation/2.5.x/api/java/play/test/Helpers.html)
-- Play Java API -
-  [play.mvc.Http.Status](https://www.playframework.com/documentation/2.5.x/api/java/play/mvc/Http.Status.html)
+A pesar que Play permite una gran flexibilidad a la hora de testear
+sus distintos elementos, sólo vamos a realizar tests de la **capa de
+persistencia** (DAO) y de la **capa de servicios**.
+
+- [Testing your application](https://playframework.com/documentation/2.5.x/JavaTest)
+- [Testing with databases](https://playframework.com/documentation/2.5.x/JavaTestingWithDatabases)
 
 Todos los tests deben incluirse en el directorio `tests`. Podemos
 lanzar todos los tests desde la consola Activator
@@ -520,7 +514,7 @@ public class Usuario {
 Definimos en los datos iniciales de la base de datos en un fichero de
 configuración XML.
 
-**Fichero `test/resources/usuario_dataset.xml`**:
+**Fichero `test/resources/usuarios_dataset.xml`**:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -580,7 +574,7 @@ public class UsuarioDaoDbUnitTest {
     public void initData() throws Exception {
         databaseTester = new JndiDatabaseTester("DefaultDS");
         IDataSet initialDataSet = new FlatXmlDataSetBuilder().build(new
-        FileInputStream("test/resources/usuario_dataset.xml"));
+        FileInputStream("test/resources/usuarios_dataset.xml"));
         databaseTester.setDataSet(initialDataSet);
         databaseTester.onSetup();
     }
@@ -738,7 +732,551 @@ usuario nuevo y copia sus datos.
     }
 ```
 
-Escribe cuatro tests más que comprueben los métodos de la clase `UsuariosService`.
+Escribe cuatro tests más que comprueben los métodos de la clase
+`UsuariosService`.
 
-## 4. Ampliación de la aplicación: tareas usando TDD
+## 4. Ampliación de la aplicación: CRUD de tareas usando TDD
+
+La última parte de la práctica consiste en desarrollar, utilizando TDD
+(_Test Driven Design_) las funcionalidades necesarias para realizar un
+CRUD de tareas de usuarios.
+
+Un resumen de lo que deberás hacer en esta parte de la práctica:
+
+- Añadirás una a una nuevas tarjetas en Trello correspondientes a las
+  nuevas funcionalidades que vayas desarrollando.
+- Al igual que hicimos en la práctica 1, cada ticket debe
+  desarrollarse en una rama independiente que después se mezcla con la
+  rama master.
+- Se definirá un fichero de test por cada funcionalidad, que contendrá
+  todos los tests necesarios para implementar la funcionalidad y se
+  denominará con un nombre similar al de la funcionalidad que queremos
+  implementar.
+- En el fichero de test se incluirán tests de la capa DAO y de capa de
+  servicios. Deberás realizar un enfoque de dentro a fuera, realizando
+  primero los tests de la capa DAO y después la de servicios.
+- Cada test, junto con el código desarrollado para pasarlo, irá en un
+  commit.
+- Es posible hacer commits con refactorizaciones (recuerda el ciclo de
+  TDD: Test, Codigo y Refactorización).
+- Utilizarás DBUnit y una base de datos de memoria para poder hacer
+  pruebas con datos iniciales. Utilizaremos un nuevo fichero
+  `tareas_dataset.xml`.
+
+Implementaremos cada característica utilizando el ciclo de desarrollo
+de TDD:
+
+1. Escribir un test que falla
+2. Escribir el código que hace que el test deje de fallar
+3. Refactorizar el código de los tests y el código escrito (sin
+   añadir nuevos tests, ni nuevas funcionalidades).
+4. Volver al paso 1
+
+Veamos como ejemplo el desarrollo completo de la primera
+funcionalidad: **listado de tareas de un usuario**.
+
+### 4.1 Primera funcionalidad: listado de tareas
+
+En esta característica queremos desarrollar la página con el listado
+de tareas de un usuario, que se debe devolver cuando se haga una
+petición GET a la URL correspondiente a las tareas del usuario. Por
+ejemplo, si accedemos a la URL `/usuarios/1/tareas` se devolverá un
+listado con todas las tareas del usuario `1`.
+
+Para implementar esta característica usando TDD crearemos el fichero
+de test `test/ListadoTareasTests.java` en el que iremos añadiendo los
+distintos tests, desde los de la capa más interior que contiene las
+entidades (los objetos de la base de datos), el DAO y el servicio.
+
+Creamos una tarjeta en Trello con el nombre **Listado de tareas**,
+le damos el número de _ticket_ correspondiente. Supongamos que es el
+número 20.
+
+Abrimos una rama en el repositorio en el que iremos añadiendo los
+commits de la funcionalidad (uno por cada test). En todos los commits
+usaremos el número de ticket anterior.
+
+```
+$ git checkout -b tic-20
+```
+
+Empezamos ahora a usar TDD para implementar la funcionalidad. El
+primer test nos servirá para definir los elementos básicos de la
+entidad `Tarea`.
+
+Creamos un fichero `test/resources/tareas_dataset.xml`, en el que
+definiremos los datos que cargaremos con DBUnit en la base de datos de prueba:
+
+**Fichero `test/resources/tareas_dataset.xml`**:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <Usuario id="1" login="juan" nombre="Juan" apellidos="Gutierrez"
+        eMail="juan.gutierrez@gmail.com" fechaNacimiento="1993-12-10"/>
+    <Usuario id="2" login="anabel" nombre="Anabel" eMail="anabel.perez@gmail.com"/>
+    <Tarea id="1" descripcion="Preparar el trabajo del tema 1 de biología" />
+    <Tarea id="2" descripcion="Estudiar el parcial de matemáticas" />
+    <Tarea id="3" descripcion="Leer el libro de inglés" />
+    <Tarea id="4" descripcion="Salir a correr" />
+</dataset>
+```
+
+Vemos que cada tarea tiene, inicialmente, un identificador y una
+descripción. Iremos ampliando estos datos en las distintas
+iteraciones. 
+
+Creamos el fichero `test/ListadoTareasTest.java` en el que iremos
+escribiendo uno a uno los tests que implementarán la
+funcionalidad. 
+
+#### Primer test
+
+Empezamos definiendo el código que carga las tareas en la base de
+datos de memoria y el test más sencillo posible: buscar una tarea por
+su identificador.
+
+**Fichero `test/ListadoTareasTest.java`**:
+
+```java
+import play.db.Database;
+import play.db.Databases;
+import play.db.jpa.*;
+import org.junit.*;
+import org.dbunit.*;
+import org.dbunit.dataset.*;
+import org.dbunit.dataset.xml.*;
+import java.io.FileInputStream;
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import models.*;
+
+public class ListadoTareasTest {
+
+    static Database db;
+    static JPAApi jpa;
+    JndiDatabaseTester databaseTester;
+
+    @BeforeClass
+    static public void initDatabase() {
+        db = Databases.inMemoryWith("jndiName", "DefaultDS");
+        // Necesario para inicializar el nombre JNDI de la BD
+        db.getConnection();
+        // Se activa la compatibilidad MySQL en la BD H2
+        db.withConnection(connection -> {
+            connection.createStatement().execute("SET MODE MySQL;");
+        });
+        jpa = JPA.createFor("memoryPersistenceUnit");
+    }
+
+    @Before
+    public void initData() throws Exception {
+        databaseTester = new JndiDatabaseTester("DefaultDS");
+        IDataSet initialDataSet = new FlatXmlDataSetBuilder().build(new
+        FileInputStream("test/resources/tareas_dataset.xml"));
+        databaseTester.setDataSet(initialDataSet);
+        databaseTester.onSetup();
+    }
+
+    @After
+    public void clearData() throws Exception {
+        databaseTester.onTearDown();
+    }
+
+    @AfterClass
+    static public void shutdownDatabase() {
+        jpa.shutdown();
+        db.shutdown();
+    }
+
+    @Test
+    public void findTareaPorId() {
+        jpa.withTransaction(() -> {
+            Tarea tarea = TareaDAO.find(1);
+            assertThat(tarea.descripcion, equalTo("Preparar el trabajo del tema 1 de biología"));
+        });
+    }
+}
+```
+
+Si ahora lanzamos este test comprobaremos que falla:
+
+```
+$ activator "testOnly ListadoTareasTests"
+```
+
+Debemos ahora escribir el código que hace pasar el test y hacer un
+commit cuando lo hayamos terminado. Si seguimos la metodología TDD al
+pie de la letra, deberemos escribir **sólo el código estrictamente
+necesario** que haga pasar el test. 
+
+En este código se crearán la entidad `models.Tarea` y la clase
+`models.TareaDAO` en la que se creará el método `find()` que busca
+tareas por su identificador.
+
+Al utilizar JPA, y haber definido en el fichero de configuración
+`META-INF/persistence.xml` la propiedad `hibernate.hbm2ddl.auto` con
+el valor `update`, se actualizará automáticamente el esquema de la
+base de datos a partir de la clase `Tarea`. Esta característica no
+debería utilizarse en producción, sólo en desarrollo.
+
+El código es el siguiente:
+
+**Fichero `models/Tarea.java`**:
+
+```java
+package models;
+
+import java.util.Date;
+import javax.persistence.*;
+import play.data.validation.Constraints;
+import play.data.format.*;
+
+@Entity
+public class Tarea {
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    public Integer id;
+    @Constraints.Required
+    public String descripcion;
+
+    // Un constructor vacío necesario para JPA
+    public Tarea() {}
+
+    // El constructor principal con los campos obligatorios
+    public Tarea(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String toString() {
+        return String.format("Tarea id: %s descripcion: %s", id, descripcion);
+    }
+}
+```
+
+**Fichero `models/TareaDAO.java`**:
+
+```java
+package models;
+
+import play.*;
+import play.mvc.*;
+import play.db.jpa.*;
+import javax.persistence.*;
+
+public class TareaDAO {
+    public static Tarea find(Integer idTarea) {
+        return JPA.em().find(Tarea.class, idTarea);
+    }
+}
+```
+
+Probamos que pasa correctamente el test y hacemos un commit:
+
+```
+$ git add .
+$ git commit -m "TIC-XX Entidad Tarea y método find en DAO"
+```
+
+#### Segundo test
+
+Añadimos a ahora un nuevo test, en el que comparamos entidades con y
+sin identificadores:
+
+En el **fichero `test/ListadoTareasTest.java`**:
+
+```java
+    @Test
+    public void compararTareas() {
+        jpa.withTransaction(() -> {
+            Tarea tarea1 = TareaDAO.find(1);
+
+            // Creamos una copia de la tarea1
+            // (otro objeto con los mismos atributos)
+            Tarea tarea2 = tarea1.copy();
+            assertEquals(tarea1, tarea2);
+
+            // Creamos una tarea con la misma descripción,
+            // pero sin id
+            Tarea tarea3 = new Tarea(tarea1.descripcion);
+            assertEquals(tarea1, tarea3);
+        });
+    }
+```
+
+Para conseguir que pase el test añadimos en la clase `Tarea` el código
+necesario para comparar tareas correctamente:
+
+En el **fichero `models/Tarea.java`**:
+
+```java
+    public Tarea copy() {
+        Tarea nueva = new Tarea(this.descripcion);
+        nueva.id = this.id;
+        return nueva;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = prime + ((descripcion == null) ? 0 : descripcion.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (getClass() != obj.getClass()) return false;
+        Tarea other = (Tarea) obj;
+        // Si tenemos los ID, comparamos por ID
+        if (id != null && other.id != null)
+            return (id == other.id);
+        // sino comparamos por campos obligatorios
+        else {
+            if (descripcion == null) {
+                if (other.descripcion != null) return false;
+            } else if (!descripcion.equals(other.descripcion)) return false;
+        }
+        return true;
+    }
+```
+
+#### Tercer test
+
+Hasta ahora hemos definido tareas independientes. Pero esto no es lo
+que queremos. Queremos que las tareas estén asociadas a usuarios, de
+forma que podamos recuperar, por ejemplo, todas las tareas asociadas
+al usuario 1. Por ahora una tarea sólo podrá estar asociada a un único
+usuario. 
+
+En JPA esto se consigue definiendo una **relación uno-a-muchos** entre
+`Usuario` y `Tarea`. Un usuario está relacionado con muchas tareas y
+cada tarea está relacionada con un único usuario. Para ello deberemos
+usar la anotación
+[OneToMany](http://www.objectdb.com/java/jpa/entity/fields) en las
+entidades implicadas en la relación.
+
+La anotación generará en la tabla de tareas una columna con una clave
+ajena hacia el identificador de usuario asociada a la tarea.
+
+Vamos entonces a modificar el dataset de prueba y a escribir el test
+que debe pasarse.
+
+**Fichero `test/resources/tareas_dataset.xml`**:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <Usuario id="1" login="juan" nombre="Juan" apellidos="Gutierrez"
+        eMail="juan.gutierrez@gmail.com" fechaNacimiento="1993-12-10"/>
+    <Usuario id="2" login="anabel" nombre="Anabel" eMail="anabel.perez@gmail.com"/>
+    <Tarea id="1" usuarioId="1" descripcion="Preparar el trabajo del tema 1 de biología" />
+    <Tarea id="2" usuarioId="1" descripcion="Estudiar el parcial de matemáticas" />
+    <Tarea id="3" usuarioId="1" descripcion="Leer el libro de inglés" />
+    <Tarea id="4" usuarioId="2" descripcion="Salir a correr" />
+</dataset>
+```
+
+En el test buscaremos una tarea y comprobaremos que el usuario de esa
+tarea coincide con el que debe:
+
+**Fichero `test/ListadoTareasTest.java`**:
+
+```java
+    @Test
+    public void obtenerUsuarioDeTarea() {
+        jpa.withTransaction(() -> {
+            Tarea tarea = TareaDAO.find(1);
+            Usuario usuario = UsuarioDAO.find(1);
+            assertEquals(tarea.usuario, usuario);
+        });
+    }
+```
+
+Escribimos el código para que el test pase:
+
+**Fichero `models/Usuario.java`**:
+
+```java
+import java.util.List;
+import java.util.ArraySet;
+
+@Entity
+public class Usuario {
+    ...
+    @OneToMany(mappedBy="usuario")
+    public List<Tarea> tareas = new ArrayList<Tarea>();
+}
+```
+
+La anotación `mappedBy` indica el nombre del campo en el otro lado de
+la relación que se mapea con la columna que contiene la clave ajena
+(en este caso el campo `usuario` de la `Tarea`).
+
+**Fichero `models/Tarea.java`**:
+
+```java
+@Entity
+public class Tarea {
+    ...
+    @ManyToOne
+    @JoinColumn(name="usuarioId")
+    public Usuario usuario;
+}
+```
+
+La anotación `@JoinColumn(name="usuarioId")` indica que el campo
+`usuario` se mapea con la columna `usuarioId` de la tabla `Tarea` y
+que es una clave ajena a la tabla `Usuario`.
+
+#### Cuarto test
+
+En el cuarto test queremos poder recuperar la lista de todas las
+tareas de un usuario, accediendo al campo `tareas` del mismo:
+
+
+**Fichero `test/ListadoTareasTest.java`**:
+
+```java
+    @Test
+    public void obtenerTareasDeUsuario() {
+        jpa.withTransaction(() -> {
+            Usuario usuario = UsuarioDAO.find(1);
+            assertEquals(usuario.tareas.size(), 3);
+        });
+    }
+```
+
+Esta vez no hace falta implementar nada, porque una de las
+características de JPA es que podemos acceder a los elementos de la
+colección en una relación uno-a-muchos, siempre que estemos dentro de
+la misma transacción en la que se ha recuperado el objeto que contiene
+la relación (el usuario en este caso). 
+
+JPA recupera esos elementos de forma _perezosa_ y cuando se accede a
+la colección se realiza la consulta a la base de datos y se recuperan
+todos los elementos de la relación (todas las tareas, en este caso).
+
+##### Quinto y último test
+
+Definimos el último test, en el que especificamos el funcionamiento
+del servicio `TareasService`:
+
+```java
+
+    @Test
+    public void listadoTareasService() {
+        jpa.withTransaction(() -> {
+            List<Tarea> tareas = TareasService.listaTareasUsuario(1);
+            assertEquals(tareas.size(), 3);
+            
+            // Comprobamos que las tareas se devuelven ordenadas por id
+
+            Tarea anterior = null;
+            for (Tarea t : tareas) {
+                if (anterior != null) {
+                    assertTrue(anterior.id < t.id);
+                    anterior = t;
+                }
+            }
+        });
+    }
+```
+
+Y escribimos el código para pasar el test.
+
+**Fichero `services/TareasService.java`**:
+
+```java
+package services;
+
+import java.util.List;
+import java.util.ArrayList;
+
+import models.*;
+
+public class TareasService {
+
+    public static List<Tarea> listaTareasUsuario(Integer usuarioId) {
+        Usuario usuario = UsuarioDAO.find(usuarioId);
+        if (usuario != null) {
+            return usuario.tareas;
+        } else {
+            throw new UsuariosException("Usuario no encontrado");
+        }
+    }
+}
+```
+
+#### Controller y vista
+
+Termina tú de implementar el controller y la vista con las tareas de
+un usuario. Esta parte hazla sin tests, como hiciste el controller
+`UsuariosController`.
+
+Para comprobar que funciona correctamente debes ejecutar la
+aplicación trabajando sobre la base de datos MySQL para que se
+modifique el esquema de datos con la nueva tabla. 
+
+Y añadir manualmente un par de tareas en la base de datos MySQL:
+
+```
+$ mysql -u root -p 
+password: mads
+mysql> use mads;
+mysql> show tables;
++----------------+
+| Tables_in_mads |
++----------------+
+| Tarea          |
+| Usuario        |
++----------------+
+mysql> insert into Tarea (id, usuarioId, descripcion) 
+values (1, 1, 'Preparar el trabajo del tema 1 de biología');
+mysql> insert into Tarea (id, usuarioId, descripcion) 
+values (2, 1, 'Estudiar el parcial de matemáticas');
+```
+
+Una vez implementado el controller y la vista debes hacer un último
+commit y un merge de la rama en la rama master (con la opción
+--no-ff).
+
+
+### 4.2 Siguientes funcionalidades
+
+Implementa usando TDD sobre las capas DAO y servicios las siguientes
+funcionalidades CRUD:
+
+- Añadir tarea a un usuario
+- Editar tarea de un usuario
+- Borrar tarea de un usuario
+
+Hazlo igual que el ejemplo anterior: una tarjeta para cada
+funcionalidad y un commit para test y el código para pasarlo.
+
+El controller, las vistas, y los formularios pueden ser similares a
+los que usaste en la práctica 1 con el CRUD de usuarios.
+
+
+## 5. Entrega y evaluación
+
+- La práctica tiene una duración de 3 semanas y debe estar terminada
+  el **martes 25 de octubre**.
+- Durante el desarrollo se debe añadir el código en el repositorio en
+  GitHub `mads-todolist` compartido con el profesor, y los tickets en
+  el tablero Trello compartido con el profesor.
+- En la fecha de la entrega se debe subir a Moodle un ZIP que contenga todo el proyecto y dejar la URL del repositorio en GitHub
+
+Para la evaluación se tendrá en cuenta:
+
+- Desarrollo contínuo (commits realizados a lo largo de las 3 semanas)
+- Buen desarrollo y descripción de los cambios (commits bien documentados, ordenados, ramas de características visibles en la historia de commits)
+- Tablero Trello bien ordenado
+- Uso correcto de la nomeclatura y de TDD 
+- Correcto desarrollo de las funcionalidades de la práctica
+- Cuidado en el aspecto de la aplicación, la terminación, control de errores
+- Características adicionales desarrolladas
 
