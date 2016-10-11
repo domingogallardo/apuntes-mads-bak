@@ -1,4 +1,19 @@
+
 # Práctica 2: Pruebas y TDD con Play Framework
+
+- [1. Objetivos](#1-objetivos)
+- [2. Conexión a base de datos MySQL](#2-conexión-a-base-de-datos-mysql)
+    - [2.1. Cambio de clave primaria de String a Integer](#21-cambio-de-clave-primaria-de-string-a-integer)
+    - [2.2. Configuración de la conexión con MySQL](#22-configuración-de-la-conexión-con-mysql)
+    - [2.3. Comprobación del funcionamiento](#23-comprobación-del-funcionamiento)
+- [3. Tests en Play Framework](#3-tests-en-play-framework)
+    - [3.1. Introducción](#31-introducción)
+    - [3.2. Tests con bases de datos y JPA](#32-tests-con-bases-de-datos-y-jpa)
+    - [3.3. Tests de la capa de servicios](#33-tests-de-la-capa-de-servicios)
+- [4. Ampliación de la aplicación: CRUD de tareas usando TDD](#4-ampliación-de-la-aplicación-crud-de-tareas-usando-tdd)
+    - [4.1. Primera funcionalidad: listado de tareas](#41-primera-funcionalidad-listado-de-tareas)
+    - [4.2. Siguientes funcionalidades](#42-siguientes-funcionalidades)
+- [5. Entrega y evaluación](#5-entrega-y-evaluación)
 
 ## 1. Objetivos
 
