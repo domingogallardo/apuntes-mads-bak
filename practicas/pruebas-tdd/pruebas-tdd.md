@@ -675,9 +675,13 @@ de datos de memoria con datos de prueba iniciales.
 > sobre la clase `UsuariosService` usando una base datos en memoria
 > inicializada con DBUnit.
 
-A continuación podemos ver un ejemplo de uno de los tests, en el que
-comprobamos que **si intentamos modificar un usuario con un login ya
-existente se debe lanzar una excepción**.
+El primer test que debes implementar es uno en el que se compruebe que
+**si intentamos modificar un usuario con un login ya existente se debe
+lanzar una excepción**. Para que el test funcione correctamente tienes
+que modificar el método `UsuariosService.modificaUsuario()` para que
+lance una excepción de tipo `UsuariosException` si se ha modificado el
+login que se pasa como parámetro a uno que ya existe en la base de
+datos.
 
 El test es interesante porque demuestra una importante característica
 de JPA: si estamos dentro de una transacción las entidades devueltas por
