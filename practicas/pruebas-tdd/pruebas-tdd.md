@@ -676,8 +676,8 @@ de datos de memoria con datos de prueba iniciales.
 > inicializada con DBUnit.
 
 A continuación podemos ver un ejemplo de uno de los tests, en el que
-comprobamos que si intentamos modificar un usuario con un login ya
-existente se lanza una excepción.
+comprobamos que **si intentamos modificar un usuario con un login ya
+existente se debe lanzar una excepción**.
 
 El test es interesante porque demuestra una importante característica
 de JPA: si estamos dentro de una transacción las entidades devueltas por
@@ -686,9 +686,13 @@ conexión hace que si modificamos uno de sus atributos, automáticamente
 se modifica la base de datos. 
 
 Por ejemplo, el siguiente código no funcionaría bien, porque el objeto
-`usuario` devuelto por `findUsuario()` está conectado a la base de
-datos y JPA actualizará la base de datos cuando modifiquemos sus
-atributos. 
+`usuario` devuelto por `findUsuario()` **está conectado** a la base de
+datos y JPA actualizará la base de datos cuando modifiquemos alguno de
+sus atributos. En concreto, se modifica el login antes de invocar al
+método `modificaUsuario()` y cuando `modificaUsuario()` hace la
+comprobación de si el login está repetido, en la base de datos ya hay
+dos usuarios con el login 'juan'.
+
 
 ```java
     // 
