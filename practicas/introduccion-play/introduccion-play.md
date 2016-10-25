@@ -552,6 +552,8 @@ Piensa cómo deberían ser las pantallas y qué se debería implementar.
 ## 6. Entrega y evaluación
 
 - La práctica tiene una duración de 3 semanas y debe estar terminada el martes 4 de octubre.
+- La calificación de la práctica tiene un peso de un 10% en la nota
+  final de la asignatura.
 - Durante el desarrollo se debe compartir con el profesor (usuario: `domingogallardo`)
     - Repositorios GitHub: `mads-prueba-git` y `mads-todolist`
     - Tablero trello con los tickets

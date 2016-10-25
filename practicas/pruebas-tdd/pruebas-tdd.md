@@ -1314,6 +1314,8 @@ los que usaste en la práctica 1 con el CRUD de usuarios.
 
 - La práctica tiene una duración de 3 semanas y debe estar terminada
   el **martes 25 de octubre**.
+- La calificación de la práctica tiene un peso de un 5% en la nota
+  final de la asignatura.
 - Durante el desarrollo se debe añadir el código en el repositorio en
   GitHub `mads-todolist` compartido con el profesor, y los tickets en
   el tablero Trello compartido con el profesor.

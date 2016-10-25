@@ -10,7 +10,7 @@ La distribución semanal de actividades está disponible en la [página de Moodl
 
 - P01 (3 semanas): [Introducción a Play](practicas/introduccion-play/introduccion-play.md): Play Framework en Java, Git y GitHub, Trello (estilo Jira).
 - P02 (3 semanas): [Tests en Play y TDD](practicas/pruebas-tdd/pruebas-tdd.md): Tests en Play Framework y TDD
-- P03 (2 semanas): Integración continua: GitFlow y Travis
+- P03 (3 semanas): [Integración continua y trabajo en equipo](practicas/integracion-continua/integracion-continua.md): Integración continua con Travis, flujo de trabajo Git y Trello modificado para el trabajo en equipo, uso de _pull requests_.
 - P04 (6 semanas): Historias de usuario + Kanban: Tablero Trello con historias de usuario (estado: propuesta, en discusión, aprobada o desechada - estilo Swift Evolution), sistema para discutir la historia (¿canal Slack?)
 
 ## Diapositivas y lecturas
