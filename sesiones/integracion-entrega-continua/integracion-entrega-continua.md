@@ -107,4 +107,8 @@
 
 <img src="diapositivas/integracion-entrega-continua.054.png" width="800px">
 
+<img src="diapositivas/integracion-entrega-continua.055.png" width="800px">
+
+<img src="diapositivas/integracion-entrega-continua.056.png" width="800px">
+
 

@@ -31,10 +31,10 @@ Las sesiones tienen una duración variable, entre 45 y 90 minutos.
 ### Bloque 2: Integración y entrega continua (3 semanas)
 
 - S06: [Pruebas ágiles](sesiones/pruebas-agiles/pruebas-agiles.md)
-- S07: [Workflows de Git](sesiones/git-workflows/git-workflows.md)
-  - Vincent Driessen - [A successful Git branching model](lecturas/vincent-driessen_a-successful-git-branching-model.pdf)
-- S08: [Integración y entrega continua](sesiones/integracion-entrega-continua/integracion-entrega-continua.md)
+- S07: [Integración y entrega continua](sesiones/integracion-entrega-continua/integracion-entrega-continua.md)
   - Martin Fowler - [Continuous Integration](lecturas/martin-fowler_continuous-integration.pdf)
+- S08: [Workflows de Git](sesiones/git-workflows/git-workflows.md)
+  - Vincent Driessen - [A successful Git branching model](lecturas/vincent-driessen_a-successful-git-branching-model.pdf)
 - S09: [Herramientas de integración continua](sesiones/herramientas-integracion-continua/herramientas-integracion-continua.md)
 
 ### Bloque 3: Historias de usuario (1 semana)
