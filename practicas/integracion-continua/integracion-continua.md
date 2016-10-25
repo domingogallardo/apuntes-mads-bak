@@ -1,20 +1,19 @@
 
 # Práctica 3: Integración continua y trabajo en equipo
 
-- [1. Objetivos]()
-- [2. Conectar el proyecto `mads-todolist` con Travis]()
-    - [2.1. Cómo darse de alta en Travis]()
-    - [2.2. Cómo configurar el build en Travis]()
-- [3. Formación de equipos]()
-- [4. Nuevo flujo de trabajo en Trello y GitHub]()
-    - [4.1. Rama remota en la que trabajan más de un compañero]()
-    - [4.2. Pull request en GitHub]()
-- [5. Representación de _features_ en Trello]()
-- [6. Desarrollo de 3 features en equipo]()
-    - [6.1. Feature 1: Login, registro y tareas]()
-    - [6.2. Feature 2: Proyectos]()
-    - [6.3. Feature 3: Acerca de]()
-- [7. Entrega y evaluación]()
+- [1. Objetivos](#1-objetivos-y-resumen-de-la-práctica)
+- [2. Conectar el proyecto `mads-todolist` con Travis](#2-conectar-el-proyecto-mads-todolist-con-travis)
+    - [2.1. Cómo darse de alta en Travis](#21-cómo-darse-de-alta-en-travis-y-conectar-el-repositorio)
+    - [2.2. Cómo configurar el build en Travis](#22-cómo-configurar-el-build-en-travis)
+- [3. Formación de equipos](#3-formación-de-equipos)
+- [4. Nuevo flujo de trabajo en Trello y GitHub](#4-nuevo-flujo-de-trabajo-en-trello-y-github)
+    - [4.1. Rama remota en la que trabajan más de un compañero](#41-rama-remota-en-la-que-trabajan-más-de-un-compañero)
+    - [4.2. Pull request en GitHub](#42-pull-request-en-github)
+- [5. Representación de _features_ en Trello](#5-representación-de-features-en-trello)
+- [6. Desarrollo de 3 features en equipo](#6-desarrollo-de-3-features-en-equipo)
+    - [6.1. Feature 1: Login, registro y tareas](#61-feature-1-login-registro-y-tareas)
+    - [6.2. Feature 2: Proyectos](#62-feature-2-proyectos)
+- [7. Entrega y evaluación](#7-entrega-y-evaluación)
 
 ## 1. Objetivos y resumen de la práctica
 
