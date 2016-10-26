@@ -159,10 +159,11 @@ También se puede borrar desde la web de GitHub en la página de _branches_.
 
 ## 4. Nuevo flujo de trabajo en Trello y GitHub
 
-> **Tareas a realizar**: Probar el trabajo en una rama compartida y el
+> **Tareas a realizar**: 
+> (1) Probar el trabajo en una rama compartida y el
 > pull request usando el repositorio prueba-git.  
 >
-> Probar el nuevo flujo de trabajo completo con un nuevo ticket en el
+> (2) Probar el nuevo flujo de trabajo completo con un nuevo ticket en el
 > que se deberá añadir al proyecto una página "Acerca de" con la lista
 > de miembros del equipo y la fecha y el número de versión (1.0).
 
@@ -296,12 +297,16 @@ con repositorios remotos.
 - Una vez creado el pull request en GitHub se puede seguir subiendo
 cambios a la rama que se quiere mezclar.
 
-- Mezclaremos el pull request con master desde GitHub.
+- Los miembros del equipo revisan el código en el pull request. Al
+  final, todos los miembros del equipo deben dar el OK.
+
+- El responsable del ticket mezclará el pull request con master desde
+  GitHub.
 
 - Justo antes de mezclar el pull request, cuando ya se ha tomado la
-  decisión de hacerlo y nadie tiene que subir más cambios, haremos un
+  decisión de hacerlo y nadie tiene que subir más cambios, hará un
   _rebase_ con master para asegurarnos que el pull request se
-  introduce en cabeza de master. 
+  introduce en cabeza de master.
 
     ```
     $ git checkout master
