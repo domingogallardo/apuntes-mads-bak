@@ -159,10 +159,12 @@ También se puede borrar desde la web de GitHub en la página de _branches_.
 
 ## 4. Nuevo flujo de trabajo en Trello y GitHub
 
-> **Tarea a realizar**: Probar el nuevo flujo de trabajo con un nuevo
-> ticket en el que se añade al proyecto una página "Acerca de" con la
-> lista de miembros del equipo y la fecha y el número de versión
-> (1.0).
+> **Tareas a realizar**: Probar el trabajo en una rama compartida y el
+> pull request usando el repositorio prueba-git.  
+>
+> Probar el nuevo flujo de trabajo completo con un nuevo ticket en el
+> que se deberá añadir al proyecto una página "Acerca de" con la lista
+> de miembros del equipo y la fecha y el número de versión (1.0).
 
 Como ya tenemos equipos de trabajo, debemos adaptar el flujo de
 trabajo tanto en Trello como en GitHub a más de una persona.
@@ -192,12 +194,163 @@ de trabajo.
 
 ### 4.1. Rama remota en la que trabajan más de un compañero
 
+Veamos algunos comandos de Git relacionados con el trabajo compartido
+con repositorios remotos.
+
+- Subir una rama al repositorio remoto:
+
+    ```
+    $ git checkout -b nueva-rama
+    $ git push -u origin nueva-rama
+    ```
+
+- Descargar una rama del repositorio remoto:
+
+    ```
+    $ git fetch 
+    $ git checkout -b nueva-rama origin/nueva-rama
+    ```
+
+    El comando `git fetch` se descarga todos los cambios pero no los
+    mezcla con las ramas locales. Los deja en ramas cacheadas a las
+    que les da el nombre del servidor y la rama
+    (`origin/nueva-rama`). 
+
+    En el caso del comando anterior, una vez cacheada la rama
+    `origin/nueva-rama` se crea la `nueva-rama` local con todos sus
+    commits.
+
+- Actualizar una rama con cambios que otros compañeros han subido al
+  repositorio remoto:
+
+    ```
+    $ git checkout nueva-rama
+    $ git pull
+    ```
+
+    El comando `git pull` es equivalente a un `git fetch` seguido de
+    un `git merge`. Algunos recomiendan no usar `git pull`, sino hacer
+    siempre el merge manual. Por ejemplo:
+
+    ```
+    $ git checkout nueva-rama
+    $ git fetch
+    $ git merge origin/nueva-rama
+    ```
+
+- Subir cambios de la rama actual:
+
+    ```
+    (estando en la rama que queremos subir)
+    $ git push
+    ```
+
+    El comando `git push` funcionará correctamente sin más parámetros
+    si previamente hemos subido la rama con un `git push -u`.
+
+- Comprobar el estado de las ramas locales y remotas:
+
+    ```
+    $ git branch -vv
+    ```
+
+    Este comando no accede directamente al servidor, sino que muestra
+    la información de la última vez que se accedió a él. Si queremos
+    la información actualizada podemos hacer un `git fetch --all`
+    antes:
+
+    ```
+    $ git fetch --all
+    $ git branch -vv
+    ```
+
+    Es importante recordar que `git fetch` (a diferencia de `git
+    pull`) no modifica los repositorios locales, sino que baja las
+    ramas remotas cachés locales.
+
+- Información de los repositorios remotos:
+
+    ```
+    $ git remote show origin
+    ```
+
+    Proporciona información del repositorio remoto, todas sus ramas,
+    del local y de la conexión entre ambos.
+
+    ```
+    git remote -v update
+    ```
+
+    Proporciona información del estado de las ramas remotas y locales
+    (si están actualizadas o hay cambios en algunas no bajadas o
+    subidas).
+
+- Borrado de ramas remotas:
+
+    ```
+    $ git push origin --delete nueva-rama
+    ```
+
 ### 4.2. Pull request en GitHub
 
+- Una vez creado el pull request en GitHub se puede seguir subiendo
+cambios a la rama que se quiere mezclar.
+
+- Mezclaremos el pull request con master desde GitHub.
+
+- Justo antes de mezclar el pull request, cuando ya se ha tomado la
+  decisión de hacerlo y nadie tiene que subir más cambios, haremos un
+  _rebase_ con master para asegurarnos que el pull request se
+  introduce en cabeza de master. 
+
+    ```
+    $ git checkout master
+    $ git pull
+    $ git checkout nueva-rama
+    $ git rebase master
+    # lanzamos los tests para comprobar que todo funciona OK
+    # y subimos la rama a GitHub (tenemos que usar --force por el rebase)
+    $ git push --force
+    ```
 
 ## 5. Representación de _features_ en Trello
 
-Una _feature_ va a agrupar varios tickets.
+Una _feature_ (funcionalidad) va a agrupar varios tickets. Vamos a
+guardar las _features_ en el mismo tablero, pero usando **etiquetas**
+para poder visualizarlas y filtrarlas fácilmente. También utilizaremos
+una nomenclatura especial para numerarlas.
+
+Cada funcionalidad en desarrollo tendrá una etiqueta específica, que
+pondremos en todos los tickets de esa funcionalidad. De esta forma
+podemos filtrar por esa etiqueta y observar rápidamente todos los
+tickets asociados.
+
+Todas las funcionalidades (en cualquier estado: en espera, desarrollo
+o terminadas) tendrán una etiqueta especial denominada `Feature`
+(color amarillo). Sólo se debe asignar esa etiqueta a las
+funcionalidades, no a los tickets asociadas. De esta forma podremos
+filtrar por esa etiqueta y observar sólo las funcionalidades que hay
+en el tablero.
+
+En cuanto a la **nomenclatura**, precederemos el nombre de la
+funcionalidad con el prefijo "FT-1", "FT-2", ... (de _FeaTure_). Y los
+tickets asociados a cada funcionalidad los numeraremos con dos
+números: primero el correspondiente a la funcionalidad y después un
+número correlativo correspondiente al número de ticket. Por ejemplo:
+"TIC-1.1", "TIC-1.2".
+
+Por ejemplo, podríamos definir la funcionalidad "FT-1 Gestión
+básica de tareas" con la descripción:
+
+```
+FT-1 Gestión básica de tareas:
+Un usuario deberá poder listar, añadir, borrar y modificar tareas,
+para poder visualizar las tareas que está realizando
+```
+
+Y esta funcionalidad podría tener los siguientes tickets: "TIC-1.1
+Entidad tarea", "TIC-1.2 Añadir tarea por usuario", "TIC-1.3 Listar
+tareas de un usuario", ...
 
 ## 6. Desarrollo de 3 features en equipo
 
