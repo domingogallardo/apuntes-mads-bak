@@ -49,9 +49,6 @@ Travis se conecta con GitHub y lanza un proceso de _build_ que
 descarga, construye y prueba todas las ramas del repositorio cada vez
 que se realiza algún nuevo commit en alguna de ellas.
 
-La imagen final del `README.md` deberá ser similar a la siguiente:
-
-<img src="imagenes/readme.png" width="500px">
 
 Una vez hecha la integración con Travis se podrá comprobar en cada
 commit de GitHub si han pasado los tests correctamente:
@@ -148,24 +145,46 @@ $ git push origin --delete tic-20-integracion-travis
 
 También se puede borrar desde la web de GitHub en la página de _branches_.
 
+
+### 2.3. Modificación del README del proyecto
+
+Por último, una vez que la rama master esté pasando los tests
+correctamente en Travis, renombra el fichero `README` a `README.md`
+(Markdown) y modifica su contenido para que muestre una presentación
+del repositorio en la que aparezca la imagen del estado del último
+build realizado en Travis.
+
+La imagen final del `README.md` deberá ser similar a la siguiente:
+
+<img src="imagenes/readme.png" width="500px">
+
+Puedes consultar cómo embeber esta imagen en la página de
+documentación de Travis
+[Embedding Status Images](https://docs.travis-ci.com/user/status-images/).
+
 ## 3. Formación de equipos
 
 > **Tarea a realizar**: Formar un equipo de 3 o 4 personas, subir la
 > composición al foro de Moodle. Seleccionar el repositorio que va a
 > usar el equipo y añadir los miembros tanto en GitHub como en el
 > tablero Trello del repositorio. Por último cambiar el nombre del
-> proyecto Trello y llamarlo **TodoList (Equipo 1)**
+> proyecto Trello y llamarlo **TodoList (Equipo &lt;número&gt;)**
 
 
 ## 4. Nuevo flujo de trabajo en Trello y GitHub
 
-> **Tareas a realizar**: 
-> (1) Probar el trabajo en una rama compartida y el
-> pull request usando el repositorio prueba-git.  
+> **Tareas a realizar**:
 >
-> (2) Probar el nuevo flujo de trabajo completo con un nuevo ticket en el
-> que se deberá añadir al proyecto una página "Acerca de" con la lista
-> de miembros del equipo y la fecha y el número de versión (1.0).
+> (1) Probar en el repositorio prueba-git el nuevo flujo de trabajo en
+> el que todos los miembros del equipo trabajen sobre una rama
+> compartida en el repositorio remoto y terminen integrando los
+> cambios usando un pull request.
+>
+> (2) Probar en el repositorio mads-todolist el nuevo flujo de trabajo
+> creando un nuevo ticket en el que se deberá añadir al proyecto una
+> página "Acerca de" con la lista de miembros del equipo y la fecha y
+> el número de versión (1.0). Todos los miembros del equipo deberán
+> participar en el ticket y añadir cada uno su nombre a la lista.
 
 Como ya tenemos equipos de trabajo, debemos adaptar el flujo de
 trabajo tanto en Trello como en GitHub a más de una persona.
@@ -175,7 +194,9 @@ Cambiaremos lo siguiente:
 - **Selección en Trello**: Al pasar un ticket de "Seleccionado" a "En
   marcha" se debe asignar un responsable.
 - **Nueva rama con el ticket**: El responsable será el que abra una
-  rama nueva para el desarrollo del ticket y la subirá a GitHub.
+  rama nueva para el desarrollo del ticket y la subirá a
+  GitHub. También añadirá la URL de la rama a la descripción de la
+  tarjeta de Trello.
 - **Desarrollo**: Se trabaja en la rama. Cualquier compañero puede
   unirse al ticket y trabajar junto con el responsable.
 - **Pull request**: Cuando el ticket se ha terminado, el responsable
@@ -189,6 +210,9 @@ Cambiaremos lo siguiente:
   responsable de la tarea integra el pull request en master haciendo
   previamente un rebase para actualizar los cambios que otros hayan
   podido subir a master.
+- **Actualización de los repositorios locales**: Todos hacen un `pull`
+  en `master` para actualizar los cambios del pull request. Y se borra
+  la rama local ya integrada.
 
 A continuación explicamos con más detalle algunos aspectos del flujo
 de trabajo.
@@ -294,29 +318,39 @@ con repositorios remotos.
 
 ### 4.2. Pull request en GitHub
 
-- Una vez creado el pull request en GitHub se puede seguir subiendo
-cambios a la rama que se quiere mezclar.
+Para crear un pull request se debe pulsar el botón `New pull request`
+en la pantalla de ramas de GitHub:
 
-- Los miembros del equipo revisan el código en el pull request. Al
-  final, todos los miembros del equipo deben dar el OK.
+<img src="imagenes/pull-request1.png" width="800px">
 
-- El responsable del ticket mezclará el pull request con master desde
-  GitHub.
+Se crea un nuevo pull request:
 
-- Justo antes de mezclar el pull request, cuando ya se ha tomado la
-  decisión de hacerlo y nadie tiene que subir más cambios, hará un
-  _rebase_ con master para asegurarnos que el pull request se
-  introduce en cabeza de master.
+<img src="imagenes/pull-request2.png" width="800px">
 
-    ```
-    $ git checkout master
-    $ git pull
-    $ git checkout nueva-rama
-    $ git rebase master
-    # lanzamos los tests para comprobar que todo funciona OK
-    # y subimos la rama a GitHub (tenemos que usar --force por el rebase)
-    $ git push --force
-    ```
+Hay que hacer notar que una vez creado el pull request en GitHub se
+puede seguir subiendo cambios a la rama que se quiere mezclar. El pull
+request se actualizará con los cambios que se suban a la rama. Pasa
+igual con los cambios subidos a master.
+
+Los miembros del equipo revisan el código en el pull request. Al
+final, todos los miembros del equipo deben dar el OK.
+
+El responsable del ticket mezclará el pull request con master desde
+GitHub. Justo antes de mezclar el pull request, cuando ya se ha tomado
+la decisión de hacerlo y nadie tiene que subir más cambios, **hará un
+_rebase_ con master** para asegurarse que el pull request se
+introduce en cabeza de master:
+
+
+```
+$ git checkout master
+$ git pull
+$ git checkout nueva-rama
+$ git rebase master
+# lanzamos los tests para comprobar que todo funciona OK
+# y subimos la rama a GitHub (tenemos que usar --force por el rebase)
+$ git push --force
+```
 
 ## 5. Representación de _features_ en Trello
 
