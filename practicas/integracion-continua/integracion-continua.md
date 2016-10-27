@@ -391,20 +391,56 @@ Y esta funcionalidad podría tener los siguientes tickets: "TIC-1.1
 Entidad tarea", "TIC-1.2 Añadir tarea por usuario", "TIC-1.3 Listar
 tareas de un usuario", ...
 
-## 6. Desarrollo de 3 features en equipo
+Las siguientes imágenes muestran un ejemplo.
 
-### 6.1. Feature 1: Login, registro y tareas
+Suponemos que se ha definido una funcionalidad llamada "FT-1 CRUD
+Tareas" y que hemos creado 4 tickets: 
+
+- "TIC-1.1 Listar tareas de usuario" (terminado)
+- "TIC-1.2 Añadir tarea a usuario" (en pull request)
+- "TIC-1.3 Borrar tarea de un usuario" (en pull request)
+- "TIC-1.4 Editar tarea de usuario" (en marcha). 
+
+El tablero se vería de la siguiente forma:
+
+<img src="imagenes/tablero-features.png" width="800px">
+
+Las etiquetas creadas son las siguientes:
+
+<img src="imagenes/etiquetas.png" width="250px">
+
+Las etiquetas son muy útiles para filtrar las tarjetas. Por ejemplo,
+podemos definir un filtro para mostrar únicamente la etiqueta "CRUD
+Tareas" (y sus tickets):
+
+<img src="imagenes/filtro-feature-1.png" width="800px">
+
+El filtro es el siguiente:
+
+<img src="imagenes/filtro-feature.png" width="250px">
+
+También podríamos ver sólo las tarjetas de tipo _Feature_:
+
+<img src="imagenes/filtro-features.png" width="700px">
+
+## 6. Desarrollo de 2 features en equipo
+
+Utilizando el flujo de trabajo visto, tenéis que implementar y
+documentar dos funcionalidades nuevas.
+
+### 6.1. Feature 1: Login, registro y tamaño estimado de tareas
 
 Tamaño: pequeño.
 
-**Funcionalidad**: Un usuario podrá utilizar la aplicación para logearse,
-gestionar sus tareas y sus datos y salir. 
+**Funcionalidad**: Un usuario podrá utilizar la aplicación para
+logearse, gestionar sus tareas y sus datos y salir. Se puede asignar
+un tamaño estimado a cada tarea. El tamaño puede tener uno de los
+siguientes valores: pequeño, mediano o grande.
 
 Las pantallas deben estar organizadas de forma que la navegación por
 las distintas opciones sea sencilla y lógica. No gestionaremos la
 seguridad (proteger las URLs para que sólo un usuario puede acceder a
 sus datos), eso lo dejamos para el futuro.
-
 
 ### 6.2. Feature 2: Proyectos 
 
