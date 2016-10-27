@@ -332,9 +332,10 @@ puede seguir subiendo cambios a la rama que se quiere mezclar. El pull
 request se actualizará con los cambios que se suban a la rama. Pasa
 igual con los cambios subidos a master.
 
-Los miembros del equipo revisan el código en el pull request
-([Reviewing proposed changes in a pull request](https://help.github.com/articles/reviewing-proposed-changes-in-a-pull-request/). Al
-final, todos los miembros del equipo deben dar el OK.
+Los miembros del equipo revisan el código en el pull request (consultar
+documentación en GitHub:
+[Reviewing proposed changes in a pull request](https://help.github.com/articles/reviewing-proposed-changes-in-a-pull-request/)). Al
+final, todos los miembros del equipo deben dar el OK, añadiendo una reacción.
 
 El responsable del ticket mezclará el pull request con master desde
 GitHub. Justo antes de mezclar el pull request, cuando ya se ha tomado
