@@ -9,11 +9,13 @@
 - [4. Nuevo flujo de trabajo en Trello y GitHub](#4-nuevo-flujo-de-trabajo-en-trello-y-github)
     - [4.1. Rama remota en la que trabajan más de un compañero](#41-rama-remota-en-la-que-trabajan-más-de-un-compañero)
     - [4.2. Pull request en GitHub](#42-pull-request-en-github)
+    - [4.3. Configuración de la rama production y publicación de v1.0](#43-configuración-de-la-rama-production-y-publicación-de-v10)
 - [5. Representación de _features_ en Trello](#5-representación-de-features-en-trello)
 - [6. Desarrollo de 3 features en equipo](#6-desarrollo-de-3-features-en-equipo)
     - [6.1. Feature 1: Login, registro y tareas](#61-feature-1-login-registro-y-tareas)
     - [6.2. Feature 2: Proyectos](#62-feature-2-proyectos)
-- [7. Entrega y evaluación](#7-entrega-y-evaluación)
+- [7. Publicación de la versión 1.1](#7-publicación-de-la-versión-11)
+- [8. Entrega y evaluación](#8-entrega-y-evaluación)
 
 ## 1. Objetivos y resumen de la práctica
 
@@ -33,7 +35,7 @@ En esta práctica se pretende conseguir:
 > para que realice el build del proyecto y pase los tests en todas las
 > ramas del mismo.  Deberás modificar el proyecto incluyendo la
 > configuración para Travis y modificando el README.md para que
-> incluya el icono del estado del último build de la rama master.
+> incluya el icono del estado del último build de la rama `master`.
 > Deberás realizar todo ello en un **nuevo ticket** abierto en Trello
 > llamado "Integración con Travis".
 
@@ -126,7 +128,7 @@ en tiempo real la ejecución de los tests, en el frontal de Travis y en
 Cuando pasen correctamente los tests (tarda unos 6 minutos la primera
 vez y menos de 3 las siguientes) podrás ver el tick en el commit de GitHub.
 
-Ahora ya puedes hacer el **merge con master**, subir master y borrar la
+Ahora ya puedes hacer el **merge con `master`**, subir `master` y borrar la
 rama local:
 
 ```
@@ -148,7 +150,7 @@ También se puede borrar desde la web de GitHub en la página de _branches_.
 
 ### 2.3. Modificación del README del proyecto
 
-Por último, una vez que la rama master esté pasando los tests
+Por último, una vez que la rama `master` esté pasando los tests
 correctamente en Travis, renombra el fichero `README` a `README.md`
 (Markdown) y modifica su contenido para que muestre una presentación
 del repositorio en la que aparezca la imagen del estado del último
@@ -186,9 +188,9 @@ documentación de Travis
 > un número de versión genérico (1.x). Todos los miembros del equipo deberán
 > participar en el ticket y añadir cada uno su nombre a la lista.
 >
-> (3) Crear una rama remota long-lived llamada **production** en la
+> (3) Crear una rama remota long-lived llamada **`production`** en la
 > que se publicará las sucesivas releases del proyecto (es la rama que
-> GitFlow llama _master_) y publicar en ella la versión 1.0.
+> GitFlow llama `master`) y publicar en ella la versión 1.0.
 
 Como ya tenemos equipos de trabajo, debemos adaptar el flujo de
 trabajo tanto en Trello como en GitHub a más de una persona.
@@ -211,9 +213,9 @@ Cambiaremos lo siguiente:
   el pull request. Al final, todos los miembros del equipo deben dar
   el OK.
 - **Integración del pull request**: Cuando todos dan el OK, el
-  responsable de la tarea integra el pull request en master haciendo
+  responsable de la tarea integra el pull request en `master` haciendo
   previamente un rebase para actualizar los cambios que otros hayan
-  podido subir a master.
+  podido subir a `master`.
 - **Actualización de los repositorios locales**: Todos hacen un `pull`
   en `master` para actualizar los cambios del pull request. Y se borra
   la rama local ya integrada.
@@ -334,18 +336,18 @@ Se crea un nuevo pull request:
 Hay que hacer notar que una vez creado el pull request en GitHub se
 puede seguir subiendo cambios a la rama que se quiere mezclar. El pull
 request se actualizará con los cambios que se suban a la rama. Pasa
-igual con los cambios subidos a master.
+igual con los cambios subidos a `master`.
 
 Los miembros del equipo revisan el código en el pull request (consultar
 documentación en GitHub:
 [Reviewing proposed changes in a pull request](https://help.github.com/articles/reviewing-proposed-changes-in-a-pull-request/)). Al
 final, todos los miembros del equipo deben dar el OK, añadiendo una reacción.
 
-El responsable del ticket mezclará el pull request con master desde
+El responsable del ticket mezclará el pull request con `master` desde
 GitHub. Justo antes de mezclar el pull request, cuando ya se ha tomado
 la decisión de hacerlo y nadie tiene que subir más cambios, **hará un
-_rebase_ con master** para asegurarse que el pull request se
-introduce en cabeza de master:
+_rebase_ con `master`** para asegurarse que el pull request se
+introduce en cabeza de `master`:
 
 
 ```
@@ -365,19 +367,19 @@ trabajo GitFlow. Pero vamos a introducir alguna variante en la
 nomenclatura de las ramas.
 
 En la versión original de GitFlow se publican las distintas versiones
-del proyecto en la rama _long-lived_ master y se hace el desarrollo en
-la rama _develop_. Nosotros vamos a adoptar esta idea, pero cambiando
+del proyecto en la rama _long-lived_ `master` y se hace el desarrollo en
+la rama `develop`. Nosotros vamos a adoptar esta idea, pero cambiando
 el nombre de las ramas. La rama de desarrollo será la rama
-**_master_** en la que hemos trabajado desde el principio, y la rama
-con las versiones lanzadas la llamaremos **_production_**.
+**`master`** en la que hemos trabajado desde el principio, y la rama
+con las versiones lanzadas la llamaremos **`production`**.
 
 El equipo elegirá un responsable de integración que se encargue de
-crear la rama **production** y publicar en ella la primera versión
+crear la rama **`production`** y publicar en ella la primera versión
 **v1.0** del proyecto. Se **creará en Trello una tarjeta** con la
 tarea "Lanzar release v1.0" que tendrá como responsable esta persona
 escogida.
 
-Una vez que se ha integrado en master el pull request con la página
+Una vez que se ha integrado en `master` el pull request con la página
 "Acerca de" que contiene la lista de desarrolladores del proyecto y el
 número de versión genérico "Versión 1.x", el responsable de
 integración deberá hacer lo siguiente:
