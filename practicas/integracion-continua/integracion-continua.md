@@ -182,9 +182,13 @@ documentación de Travis
 >
 > (2) Probar en el repositorio mads-todolist el nuevo flujo de trabajo
 > creando un nuevo ticket en el que se deberá añadir al proyecto una
-> página "Acerca de" con la lista de miembros del equipo y la fecha y
-> el número de versión (1.0). Todos los miembros del equipo deberán
+> página "Acerca de" con la lista de miembros del equipo y
+> un número de versión genérico (1.x). Todos los miembros del equipo deberán
 > participar en el ticket y añadir cada uno su nombre a la lista.
+>
+> (3) Crear una rama remota long-lived llamada **production** en la
+> que se publicará las sucesivas releases del proyecto (es la rama que
+> GitFlow llama _master_) y publicar en ella la versión 1.0.
 
 Como ya tenemos equipos de trabajo, debemos adaptar el flujo de
 trabajo tanto en Trello como en GitHub a más de una persona.
@@ -354,6 +358,46 @@ $ git rebase master
 $ git push --force
 ```
 
+## 4.3. Configuración de la rama production y publicación de v1.0
+
+El flujo de trabajo que estamos siguiendo es muy similar al flujo de
+trabajo GitFlow. Pero vamos a introducir alguna variante en la
+nomenclatura de las ramas.
+
+En la versión original de GitFlow se publican las distintas versiones
+del proyecto en la rama _long-lived_ master y se hace el desarrollo en
+la rama _develop_. Nosotros vamos a adoptar esta idea, pero cambiando
+el nombre de las ramas. La rama de desarrollo será la rama
+**_master_** en la que hemos trabajado desde el principio, y la rama
+con las versiones lanzadas la llamaremos **_production_**.
+
+El equipo elegirá un responsable de integración que se encargue de
+crear la rama **production** y publicar en ella la primera versión
+**v1.0** del proyecto. Se **creará en Trello una tarjeta** con la
+tarea "Lanzar release v1.0" que tendrá como responsable esta persona
+escogida.
+
+Una vez que se ha integrado en master el pull request con la página
+"Acerca de" que contiene la lista de desarrolladores del proyecto y el
+número de versión genérico "Versión 1.x", el responsable de
+integración deberá hacer lo siguiente:
+
+- Crear la rama `production` y publicarla en GitHub.
+- Crear la rama local `release-v1.0`.
+- Realizar en esta rama los cambios específicos de la versión. En
+  nuestro caso, basta con cambiar en la página "Acerca de" "Versión
+  1.x" por "Versión 1.0" y añadir la fecha de publicación de la
+  versión.
+- Publicar la rama `release-v1.0` en GitHub. y hacer un pull request
+  sobre `production`.
+
+Una vez hecho esto ya se puede borrar la rama `release-v1.0` y la rama
+`production` estará actualizada a la nueva versión. El pull request
+contendrá la información de todos los cambios introducidos.
+
+La rama `production` también será integrada por Travis. Debemos
+comprobar que pasan todos los tests.
+
 ## 5. Representación de _features_ en Trello
 
 Una _feature_ (funcionalidad) va a agrupar varios tickets. Vamos a
@@ -430,6 +474,14 @@ También podríamos ver sólo las tarjetas de tipo _Feature_:
 Utilizando el flujo de trabajo visto, tenéis que implementar y
 documentar dos funcionalidades nuevas.
 
+Junto con cada _feature_ se debe incluir una documentación técnica y
+de usuario que explica brevemente los cambios introducidos por la
+funcionalidad. En la documentación técnica se debe explicar los
+cambios añadidos en cada una de las capas de la aplicación. Y en la
+documentación de usuario una breve explicación de la funcionalidad con
+alguna imagen explicativa de las pantallas y elementos de interacción
+que intervienen.
+
 ### 6.1. Feature 1: Login, registro y tamaño estimado de tareas
 
 Tamaño: pequeño.
@@ -456,8 +508,16 @@ El usuario podrá crear, cambiar el nombre y borrar proyectos. Deberá
 poder asignar tareas a proyectos y presentar de forma organizada las
 tareas, ordenadas por proyectos.
 
+### 7. Publicación de la versión 1.1
 
-## 7. Entrega y evaluación
+**Una vez terminada la documentación** (la documentación debe estar
+incluida en la release) el responsable de integración abrirá la nueva
+rama `release-v1.1`, hará allí los cambios propios de la release (el
+número de versión y la fecha de publicación) y realizará el pull
+request para publicar la versión en `production`.
+
+
+## 8. Entrega y evaluación
 
 - La práctica tiene una duración de 3 semanas y debe estar terminada
   el **martes 15 de noviembre**.
