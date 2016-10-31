@@ -29,3 +29,13 @@
 
 <img src="diapositivas/git-workflows.014.png" width="800px">
 
+<img src="diapositivas/git-workflows.015.png" width="800px">
+
+<img src="diapositivas/git-workflows.016.png" width="800px">
+
+<img src="diapositivas/git-workflows.017.png" width="800px">
+
+<img src="diapositivas/git-workflows.018.png" width="800px">
+
+<img src="diapositivas/git-workflows.019.png" width="800px">
+
