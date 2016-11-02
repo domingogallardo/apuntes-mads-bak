@@ -71,7 +71,7 @@ $ docker images
 Ejecutamos una imagen:
 
 ```
-$ run docker/whalesay cowsay Hello world!!!
+$ docker run docker/whalesay cowsay Hello world
 ```
 
 Para generar el mensaje se producen los siguientes pasos:
@@ -152,7 +152,7 @@ Creamos un directorio:
 
 ```
 $ mkdir midocker
-$ cd mydockerbuild
+$ cd midocker
 ```
 
 Editamos el fichero **Dockerfile**
@@ -180,6 +180,29 @@ python              2.7                 b5c7fb15c9cb        3 months ago        
 hello-world         latest              c54a2cc56cbb        4 months ago        1.848 kB
 docker/whalesay     latest              6b362a9f73eb        17 months ago       247 MB
 ```
+
+Y ya podemos ejecutar el contenedor:
+
+```
+$ docker run docker-whale
+ ________________________________________ 
+/ The farther you go, the less you know. \
+|                                        |
+\ -- Lao Tsu, "Tao Te Ching"             /
+ ---------------------------------------- 
+    \
+     \
+      \     
+                    ##        .            
+              ## ## ##       ==            
+           ## ## ## ##      ===            
+       /""""""""""""""""___/ ===        
+  ~~~ {~~ ~~~~ ~~~ ~~~~ ~~ ~ /  ===- ~~~   
+       \______ o          __/            
+        \    \        __/             
+          \____\______/   
+```
+
 
 ## Servidor web
 
