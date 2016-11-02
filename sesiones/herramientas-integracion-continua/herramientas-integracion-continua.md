@@ -5,7 +5,13 @@
 
 <img src="diapositivas/herramientas-integracion-continua.002.png" width="800px">
 
+- [Bamboo](https://www.atlassian.com/software/bamboo)
+- [Jenkins](https://jenkins.io/index.html)
+- [Travis](https://travis-ci.org)
+
 <img src="diapositivas/herramientas-integracion-continua.003.png" width="800px">
+
+- [Continuous delivery with maven](http://www.slideshare.net/wakaleo/continuous-deliverywithmaven)
 
 <img src="diapositivas/herramientas-integracion-continua.004.png" width="800px">
 
@@ -26,8 +32,6 @@
 <img src="diapositivas/herramientas-integracion-continua.012.png" width="800px">
 
 <img src="diapositivas/herramientas-integracion-continua.013.png" width="800px">
-
-
 
 <img src="diapositivas/herramientas-integracion-continua.014.png" width="800px">
 
@@ -134,16 +138,15 @@ $ docker ps
 CONTAINER ID  IMAGE         COMMAND               CREATED        STATUS       PORTS NAMES
 ```
 
-
-
 <img src="diapositivas/herramientas-integracion-continua.026.png" width="800px">
 
 <img src="diapositivas/herramientas-integracion-continua.027.png" width="800px">
 
 <img src="diapositivas/herramientas-integracion-continua.028.png" width="800px">
 
-<img src="diapositivas/herramientas-integracion-continua.029.png" width="800px">
+- [https://hub.docker.com](https://hub.docker.com)
 
+<img src="diapositivas/herramientas-integracion-continua.029.png" width="800px">
 
 
 ## Construir una imagen propia
@@ -345,21 +348,5 @@ actualiza también en el contenedor.
 
 <img src="diapositivas/herramientas-integracion-continua.030.png" width="800px">
 
-<img src="diapositivas/herramientas-integracion-continua.031.png" width="800px">
-
-<img src="diapositivas/herramientas-integracion-continua.032.png" width="800px">
-
-<img src="diapositivas/herramientas-integracion-continua.033.png" width="800px">
-
-<img src="diapositivas/herramientas-integracion-continua.034.png" width="800px">
-
-<img src="diapositivas/herramientas-integracion-continua.035.png" width="800px">
-
-<img src="diapositivas/herramientas-integracion-continua.036.png" width="800px">
-
-<img src="diapositivas/herramientas-integracion-continua.037.png" width="800px">
-
-<img src="diapositivas/herramientas-integracion-continua.038.png" width="800px">
-
-<img src="diapositivas/herramientas-integracion-continua.039.png" width="800px">
+- [Travis - Using Docker in builds](https://docs.travis-ci.com/user/docker/)
 

@@ -11,6 +11,8 @@
 
 <img src="diapositivas/git-workflows.005.png" width="800px">
 
+- [Git Branching - Basic Branching and Merging](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
+
 <img src="diapositivas/git-workflows.006.png" width="800px">
 
 <img src="diapositivas/git-workflows.007.png" width="800px">
@@ -21,9 +23,15 @@
 
 <img src="diapositivas/git-workflows.010.png" width="800px">
 
+- [Atlassian - Comparing Workflows](https://www.atlassian.com/git/tutorials/comparing-workflows/)
+
 <img src="diapositivas/git-workflows.011.png" width="800px">
 
+- [Atlassian - Feature Branch Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow)
+
 <img src="diapositivas/git-workflows.012.png" width="800px">
+
+- [Vincent Driessen - A sucessful Git branching model](http://nvie.com/posts/a-successful-git-branching-model/)
 
 <img src="diapositivas/git-workflows.013.png" width="800px">
 
@@ -37,5 +45,12 @@
 
 <img src="diapositivas/git-workflows.018.png" width="800px">
 
+- [GitFlow considered harmful](http://endoflineblog.com/gitflow-considered-harmful)
+- [Follow-up to 'GitFlow considered harmful'](http://endoflineblog.com/follow-up-to-gitflow-considered-harmful)
+- [A succesful Git branching model considered harmful](https://barro.github.io/2016/02/a-succesful-git-branching-model-considered-harmful/)
+
 <img src="diapositivas/git-workflows.019.png" width="800px">
 
+- [Atlassian Git tutorials - Syncing](https://www.atlassian.com/git/tutorials/syncing/)
+- [Atlassian - Comparing Workflows](https://www.atlassian.com/git/tutorials/comparing-workflows/)
+- [Vincent Driessen - A sucessful Git branching model](http://nvie.com/posts/a-successful-git-branching-model/)
