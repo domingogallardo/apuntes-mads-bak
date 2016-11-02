@@ -1,5 +1,5 @@
 
-## Flujos de trabajo en Git
+## Flujos de trabajo con Git
 
 <img src="diapositivas/git-workflows.001.png" width="800px">
 
