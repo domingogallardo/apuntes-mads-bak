@@ -1,8 +1,8 @@
 
 # Mapping de historias de usuario
 
-- [1. Presentación de Jeff Patton]()
-- [2. Workshop práctico `TodoList`]()
+- [1. Presentación de Jeff Patton](#1-presentación-de-jeff-patton)
+- [2. Workshop práctico `TodoList`](#2-workshop-práctico-todolist)
 
 ## 1. Presentación de Jeff Patton
 
