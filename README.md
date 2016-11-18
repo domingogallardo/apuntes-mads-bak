@@ -15,7 +15,7 @@ La distribución semanal de actividades está disponible en la [página de Moodl
 
 ## Diapositivas y lecturas
 
-Las sesiones tienen una duración variable, entre 45 y 90 minutos.
+Las sesiones tienen una duración variable, entre 45 y 120 minutos.
 
 ### Bloque 1: Valores y principios ágiles (3 semanas)
 
@@ -42,20 +42,15 @@ Las sesiones tienen una duración variable, entre 45 y 90 minutos.
 - S10: [Historias de usuario](sesiones/historias-de-usuario/historias-de-usuario.md)
 - S11: Jeff Patton - [User Story Mapping](sesiones/mapping-de-historias-de-usuario/mapping-de-historias-de-usuario.md)
 
-### Bloque 4: Scrum y Kanban (2,5 semanas)
+### Bloque 4: Scrum, Kanban y XP (4 semanas)
 
 - S12: [Scrum](sesiones/scrum/scrum.md)
   - Schwaber y Sutherland - [The Scrum Guide](lecturas/schwaver-sutherland_scrum-guide.pdf)
   - Henrik Kniberg - [Agile Product Ownership in a Nutshell](lecturas/henrik-kniberg_agile-product-ownership.pdf)
 - S13: [Kanban](sesiones/kanban/kanban.md)
   - Henrik Kniberg - [Kanban and Scrum](lecturas/henrik-kniberg-kanban-and-scrum.pdf)
-
-### Bloque 5: XP y TDD (2,5 semanas)
-
 - S14: [eXtreme Programming](sesiones/extreme-programming/extreme-programming.md)
-  - Kent Beck - [Taming complexity with reversibility](lecturas/kent-beck_taming-complexity-with-reversibility.pdf)
   - Ron Jeffreis - [What is eXtreme Programming](lecturas/ron-jeffreis_what-is-extreme-programming.pdf)
-- S15: [Test Driven Development](sesiones/test-driven-development/test-driven-development.md)
-- S16: Robert C. Martin - [Kata TDD](sesiones/bowling-game-kata/bowling-game-kata.md)
+- S15: Escalar Agile - ¿Cómo coordinar múltiples equipos ágiles?
 
 
