@@ -15,7 +15,7 @@ La distribución semanal de actividades está disponible en la [página de Moodl
 
 ## Diapositivas y lecturas
 
-Las sesiones tienen una duración variable, entre 45 y 120 minutos.
+Las sesiones tienen una duración variable, entre 45 y 90 minutos.
 
 ### Bloque 1: Valores y principios ágiles (3 semanas)
 
