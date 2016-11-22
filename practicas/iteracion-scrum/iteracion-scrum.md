@@ -1,5 +1,10 @@
 # Práctica 4: Sprint de Scrum 
 
+- [1. Objetivos y resumen de la práctica](#1-objetivos-y-resumen-de-la-práctica)
+- [2. Planificación del sprint](#2-planificación-del-sprint)
+- [3. Desarrollo del sprint usando Scrum](#3-desarrollo-del-sprint-usando-scrum)
+- [4. Entrega y evaluación](#4-entrega-y-evaluación)
+
 ## 1. Objetivos y resumen de la práctica
 
 En esta práctica seguiremos trabajando con los mismos equipos y
@@ -21,7 +26,7 @@ Además, aplicaremos algunos elementos de Scrum:
 - Revisión del sprint (se hará en la última clase de teoría de la asignatura)
 - Retrospectiva del sprint
 
-## Planificación del sprint
+## 2. Planificación del sprint
 
 El equipo, junto con el profesor, seleccionará las historias de
 usuario a realizar en la iteración y estimará su tamaño. Podrán
@@ -73,7 +78,7 @@ que hemos estado comentando) para empezar ya a trabajar.
 Tomar nota del desarrollo de la reunión, para documentarla en el
 informe final de la práctica.
 
-## Desarrollo del sprint usando Scrum
+## 3. Desarrollo del sprint usando Scrum
 
 Se deberán realizar los siguientes eventos definidos por Scrum,
 tomando nota y redactando un informe con la fecha de la reunión, su
@@ -116,7 +121,7 @@ Resumen del desarrollo:
   suman a las que hay en las propias columnas.
 - Seguimos usando Travis para la integración continua.
 
->> Al final del desarrollo se deberá publicar la nueva versión en la
+> Al final del desarrollo se deberá publicar la nueva versión en la
 >rama `production`.
 
 ### Documentación del desarrollo
@@ -124,12 +129,13 @@ Resumen del desarrollo:
 - Documentar las reuniones anteriores, para incluir un informe en el documento.
 - Documentar la evolución del tablero Trello y alguna métrica del desarrollo.
 
-## Entrega y evaluación
+## 4. Entrega y evaluación
 
-La práctica tiene una duración de 4 semanas. Se realizará una revisión
-del sprint de 10 minutos en clase de teoría del 21 de diciembre
-(presentación de las funcionalidades introducidas y demo) y se
-entregará el viernes 23 de diciembre.
+La práctica tiene una duración de 4 semanas:
+- Se realizará una **revisión del sprint** de 10 minutos en **clase de
+teoría del 21 de diciembre** (presentación de las funcionalidades
+introducidas y demo).  
+- La fecha límite de entrega es el **viernes 23 de diciembre**.
 
 Se deberá entregar:
 
