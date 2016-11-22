@@ -140,7 +140,7 @@ introducidas y demo).
 Se deberá entregar:
 
 - Repositorio GitHub
-- Informe de la práctica deberá (fichero markdown en carpeta `doc` del
+- Informe de la práctica (fichero markdown en carpeta `doc` del
   proyecto) con al menos:
     - Historias de usuario escogidas para el sprint (copiar la
       descripción y las condiciones de satisfacción tal y como se
