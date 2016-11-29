@@ -106,7 +106,7 @@ Resumen del desarrollo:
 - En Trello, numeramos los tickets con el número de _feature_ y usamos
   las etiquetas como lo hemos hecho en la práctica 2.
 - Columnas en Trello:
-    - **Seleccionados** - _Ticket_ listo para el desarrollo
+    - **Seleccionados** - _Ticket_ listo para el desarrollo. 
     - **En desarrollo** - Ticket en desarrollo. Cada ticket debe corresponderse con una rama de Git.
     - **En desarrollo - Done** - Se ha terminado el desarrollo y los tests unitarios.
     - **Integración** - Se ha lanzado el _pull request_ pidiendo la integración del _ticket_ en la rama `master`.
@@ -118,7 +118,11 @@ Resumen del desarrollo:
   `Integración` y `Pruebas funcionales`. No se podrá incluir en esas
   columnas más tarjetas que las definidas en el número límite de
   WIP. Las tarjetas en las columnas _done_ correspondientes también se
-  suman a las que hay en las propias columnas.
+  suman a las que hay en las propias columnas. El límite WIP va a
+  depender del número de integrantes del equipo. Si se define un
+  límite WIP demasiado bajo habrá personas ociosas, mientras que si se
+  define un límite WIP demasiado alto habrá acumulación de tareas sin
+  terminar.
 - Seguimos usando Travis para la integración continua.
 
 > Al final del desarrollo se deberá publicar la nueva versión en la
