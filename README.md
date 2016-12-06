@@ -1,6 +1,6 @@
 # Metodologías Ágiles de Desarrollo de Software
 
-Materiales del curso 2016-17 de la asignatura _Metodologías Ágiles de Desarrollo de Software_ de la Universidad de Alicante.
+Materiales del curso 2016-17 de la asignatura _[Metodologías Ágiles de Desarrollo de Software](http://cv1.cpd.ua.es/ConsPlanesEstudio/cvFichaAsiEEES.asp?wCodEst=C203&wcodasi=34037&wLengua=C&scaca=2016-17)_ de la Universidad de Alicante.
 
 La asignatura se imparte en 15 semanas de clases. Cada semana tiene una clase de teoría y una de prácticas, ambas con una duración de 2 horas.
 
