@@ -48,9 +48,10 @@ Las sesiones tienen una duración variable, entre 45 y 90 minutos.
   - Schwaber y Sutherland - [The Scrum Guide](lecturas/schwaver-sutherland_scrum-guide.pdf)
   - Henrik Kniberg - [Agile Product Ownership in a Nutshell](lecturas/henrik-kniberg_agile-product-ownership.pdf)
 - S13: [Kanban](sesiones/kanban/kanban.md)
+- S14: [Kanban vs. Scrum](sesiones/kanban-y-scrum/kanban-y-scrum.md)
   - Henrik Kniberg - [Kanban and Scrum](lecturas/henrik-kniberg-kanban-and-scrum.pdf)
-- S14: [eXtreme Programming](sesiones/extreme-programming/extreme-programming.md)
+- S15: [eXtreme Programming](sesiones/extreme-programming/extreme-programming.md)
   - Ron Jeffreis - [What is eXtreme Programming](lecturas/ron-jeffreis_what-is-extreme-programming.pdf)
-- S15: Escalar Agile - ¿Cómo coordinar múltiples equipos ágiles?
+- S16: Escalar Agile - ¿Cómo coordinar múltiples equipos ágiles?
 
 
