@@ -52,6 +52,5 @@ Las sesiones tienen una duración variable, entre 45 y 90 minutos.
   - Henrik Kniberg - [Kanban and Scrum](lecturas/henrik-kniberg-kanban-and-scrum.pdf)
 - S15: [eXtreme Programming](sesiones/extreme-programming/extreme-programming.md)
   - Ron Jeffreis - [What is eXtreme Programming](lecturas/ron-jeffreis_what-is-extreme-programming.pdf)
-- S16: Escalar Agile - ¿Cómo coordinar múltiples equipos ágiles?
-
+- S16: [Escalar Ágil](sesiones/escalar-agil/escalar-agil.md) - ¿Cómo coordinar múltiples equipos ágiles?
 
