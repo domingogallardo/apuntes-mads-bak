@@ -8,10 +8,10 @@ La distribución semanal de actividades está disponible en la [página de Moodl
 
 ## Prácticas
 
-- P01 (3 semanas): [Introducción a Play](practicas/introduccion-play/introduccion-play.md): Play Framework en Java, Git y GitHub, Trello (estilo Jira).
-- P02 (3 semanas): [Tests en Play y TDD](practicas/pruebas-tdd/pruebas-tdd.md): Tests en Play Framework y TDD
-- P03 (3 semanas): [Integración continua y trabajo en equipo](practicas/integracion-continua/integracion-continua.md): Integración continua con Travis, flujo de trabajo Git y Trello modificado para el trabajo en equipo, uso de _pull requests_.
-- P04 (4 semanas): [Sprint de Scrum para realizar una iteración de desarrollo](practicas/iteracion-scrum/iteracion-scrum.md): seleccionamos las historias de usuario de un ejercicio de _mapping de historias de usuario_ y las desarrollamos durante una iteración de Scrum, practicando alguno de sus elementos (artefactos, reuniones). Mejoraremos también el tablero de Trello para acercarlo más a un tablero de Kanban.
+- P01 (3 semanas): [Introducción a Play](practicas/01-introduccion-play/introduccion-play.md): Play Framework en Java, Git y GitHub, Trello (estilo Jira).
+- P02 (3 semanas): [Tests en Play y TDD](practicas/02-pruebas-tdd/pruebas-tdd.md): Tests en Play Framework y TDD
+- P03 (3 semanas): [Integración continua y trabajo en equipo](practicas/03-integracion-continua/integracion-continua.md): Integración continua con Travis, flujo de trabajo Git y Trello modificado para el trabajo en equipo, uso de _pull requests_.
+- P04 (4 semanas): [Sprint de Scrum para realizar una iteración de desarrollo](practicas/04-iteracion-scrum/iteracion-scrum.md): seleccionamos las historias de usuario de un ejercicio de _mapping de historias de usuario_ y las desarrollamos durante una iteración de Scrum, practicando alguno de sus elementos (artefactos, reuniones). Mejoraremos también el tablero de Trello para acercarlo más a un tablero de Kanban.
 
 ## Diapositivas y lecturas
 
