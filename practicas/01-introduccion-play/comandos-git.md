@@ -32,7 +32,8 @@ Al final del documento se incluyen enlaces a apartados del libro [**Pro Git**](h
     $ git status
     ```
 
-- Comprobar las diferencias entre los ficheros modificados y el último commit:
+- Comprobar las diferencias entre los ficheros modificados en el
+  directorio de trabajo y el último commit:
 
     ```
     $ git diff
@@ -73,16 +74,25 @@ Al final del documento se incluyen enlaces a apartados del libro [**Pro Git**](h
     $ git commit -am "Mensaje"`
     ```
 
+- Eliminar todos los cambios realizados en el directorio, volviendo al
+  último commit:
+  
+  ```
+  $ git checkout .
+  ```
+
 - Publicar los cambios en el repositorio remoto:
 
     ```
     $ git push
     ```
 
-- Consultar los mensajes de los commits (toda la historia de la rama actual). La opción `--oneline` muestra sólo la primera línea del mensaje:
+- Consultar los mensajes de los commits (toda la historia de la rama
+  actual). La opción `--oneline` muestra sólo la primera línea del
+  mensaje y la opción `--graph` muestra el grafo de dependencias:
 
     ```
-    $ git log [--oneline]
+    $ git log [--oneline] [--graph]
     ```
 
 - Comprobar las diferencias entre dos commits:
@@ -92,30 +102,38 @@ Al final del documento se incluyen enlaces a apartados del libro [**Pro Git**](h
     ```
 
     Devuelve las cambios que se han introducido desde el commit identificado por <hash-previo> y hasta el <hash-nuevo>.
+    
 
 ### Ramas
+
+Es muy importante entender que las ramas en Git son como etiquetas
+móviles. La rama en la que estamos se actualiza de posición cada vez
+que hacemos un nuevo commit. Git mantiene en la referencia `HEAD` la
+rama actual.
+
+<img src="images/ramas.png" width="500px"/>
 
 - Crear una rama nueva:
 
     ```
-    $ git checkout -b nueva-rama  
-    M   hola.txt (si hay cambios en el espacio de trabajo se llevan a la nueva rama)  
+    $ git checkout -b nueva-rama
+    M   hola.txt (si hay cambios en el espacio de trabajo se llevan a la nueva rama)
     Switched to a new branch 'nueva-rama'
     ```
 
 - Listar las ramas de un repositorio:
 
     ```
-    $ git branch  
-    master  
-    * nueva-rama  
+    $ git branch
+    master
+    * nueva-rama
     $ git commit -a -m "Confirmamos los cambios en la nueva rama"
     ```
 
 - Moverse a otra rama:
 
     ```
-    $ git checkout master  
+    $ git checkout master
     Switched to branch 'master'
     ```
 
