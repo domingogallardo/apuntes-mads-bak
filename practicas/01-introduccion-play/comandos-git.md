@@ -111,7 +111,7 @@ móviles. La rama en la que estamos se actualiza de posición cada vez
 que hacemos un nuevo commit. Git mantiene en la referencia `HEAD` la
 rama actual.
 
-<img src="images/ramas.png" width="500px"/>
+<img src="imagenes/ramas.png" width="500px"/>
 
 - Crear una rama nueva:
 
