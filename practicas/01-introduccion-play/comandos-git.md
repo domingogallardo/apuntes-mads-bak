@@ -78,7 +78,8 @@ Al final del documento se incluyen enlaces a apartados del libro [**Pro Git**](h
   último commit:
   
   ```
-  $ git checkout .
+  $ git reset --hard HEAD
+  $ git clean -fd (si se ha añadido algún fichero)
   ```
 
 - Publicar los cambios en el repositorio remoto:

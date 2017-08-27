@@ -1,3 +1,35 @@
+<!--
+
+Dejamos las pruebas con Git para la práctica 2.
+
+### 5.2 Repositorio prueba Git
+
+Vamos a empezar practicando Git. Debes crear un repositorio llamado
+`mads-prueba-git` en el que pruebes los comandos básicos de Git. En
+[estos apuntes de la asignatura](comandos-git.md) puedes encontrar una
+explicación del funcionamiento de estos comandos.
+
+Debes crear en el repositorio un mínimo de tres ficheros de texto
+sobre algún tema que elijas (películas, series de televisión, libros,
+chistes, etc.) y probar todos los siguientes comandos:
+
+- git add
+- git commit
+- git status
+- git diff
+- git log --oneline
+- creación de ramas
+- merge de ramas (usando --no-ff)
+- rebase de ramas (avanzamos el master y la rama, y después hacemos un rebase de la rama y un merge --no-ff desde la master)
+- git log --oneline --graph (para comprobar el grafo de commits)
+- comandos para modificar la historia: cambiar el último mensaje de commit, deshacer el último commit y crear una rama en un punto pasado de la historia
+
+Sube el repositorio a GitHub y compártelo con el profesor
+(`domingogallardo`).
+
+
+-->
+
 
 # Práctica 2: Pruebas y TDD con Play Framework
 

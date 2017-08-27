@@ -1,4 +1,6 @@
-# Práctica 1: Primera aplicación Play Framework (Java)
+# Práctica 1: Primera aplicación Play Framework Java
+
+<!--
 
 - [1. Objetivos](#1-objetivos)
 - [2. Aplicación a desarrollar: ToDo List para equipos](#2-aplicación-a-desarrollar-todo-list-para-equipos)
@@ -13,85 +15,139 @@
     - [5.6 Característica adicional](#56-característica-adicional)
 - [6. Entrega y evaluación](#6-entrega-y-evaluación)
 
-## 1. Objetivos
+-->
 
-El objetivo principal de esta primera práctica es implementar una aplicación web inicial con [_Play Framework_](https://playframework.com) en Java. Servirá para tomar un primer contacto con esta tecnología, para que podamos centrarnos en las próximas prácticas en aspectos más relacionados con las metodologías de desarrollo.
+## 1. Objetivos y resumen de la aplicación a desarrollar
 
-Comenzaremos también a trabajar con repositorios de código, usuando [Git](https://git-scm.com) como sistema de control de versiones y [GitHub](https://github.com) como repositorio remoto. Desarrollaremos la aplicación de forma iterativa, utilizando un flujo de trabajo Git denominado [_feature branch_](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow) en el que cada característica nueva se implementa en una rama separada que después se mezcla con la rama principal de desarrollo.
+En la primera práctica de la asignatura vamos a desarrollar paso a
+paso una aplicación web con
+_Play Framework_ en Java siguiendo una
+estricta metodología de desarrollo usando Git y GitHub.
 
-## 2. Aplicación a desarrollar: ToDo List para equipos
-
-Durante la asignatura desarrollaremos de forma iterativa una aplicación común. Las dos primeras prácticas servirán de base común para aprender a utilizar los lenguajes, _frameworks_, metodologías y herramientas. La tercera práctica será más abierta y cada equipo hará evolucionar la aplicación añadiendo nuevas funcionalidades originales ideadas por el propio equipo.
-
-### Problema a resolver
-
-Veamos una descripción de muy alto nivel de la aplicación a desarrollar, describiendo un supuesto práctico que plantea el problema que queremos resolver. 
-
-**Gestión de tareas en una _startup_**
-
->Una _startup_ recién creada ha crecido rápidamente y quiere organizar mejor el trabajo de sus empleados. La empresa tiene un sistema de organización ágil, con equipos multifuncionales constituidos alrededor de proyectos en desarrollo, en los que participan desarrolladores de software, diseñadores, _product managers_, responsables de marketing, etc.
-
->La empresa quiere ofrecer a sus trabajadores una aplicación web con la que puedan gestionar las tareas pendientes del trabajo, que permita realizar acciones como:
-
->- añadir tareas a realizar
->- marcar tareas como terminadas
->- ...
-
->La empresa pretende que con el uso de la aplicación se mejore la organización y la comunicación entre todos los miembros de los equipos.
-
-Deberemos diseñar y desarrollar una aplicación web que mejore el problema anterior. Iremos desarrollando las características concretas de la aplicación a lo largo de las prácticas. La aplicación tiene como nombre clave **ToDoList**.
-
-### Características a implementar en la práctica 1
-
-En esta primera práctica debemos implementar un [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) de usuarios, que nos permita listar, añadir, modificar y eliminar usuarios del sistema.
-
-- La página central de esta funcionalidad será un listado de todos los usuarios existentes.
-- En alguna zona de la práctica habrá un enlace a una página para añadir un usuario.
-- En la lista de usuarios, cada usuario tendrá un enlace a las posibles acciones a realizar sobre él: obtener detalles, editar y borrar
-
-Se debe utilizar Bootstrap o algún otro framework CSS para que las páginas tengan un aspecto atractivo.
-
-### Pantallas de la aplicación
-
-Tienes libertad en el diseño de las pantallas de la aplicación. Las pantallas que mostramos a continuación son sólo un ejemplo.
-
-<img src="imagenes/usuarios.png" width="500px">
-
-<img src="imagenes/nuevo-usuario.png" width="500px">
-
-<img src="imagenes/editar-usuario.png" width="500px">
-
-<img src="imagenes/detalle-usuario.png" width="500px">
+La práctica tendrá una duración de tres semanas. Será una práctica
+guiada que deberás realizar de forma individual, siguiendo las
+indicaciones que encontrarás en este documento. Una gran parte del
+código, _issues_, PRs, etc. que vas a tener que realizar en la
+práctica lo encontrarás en el repositorio
+[domingogallardo/mads-todolist-guia](https://github.com/domingogallardo/mads-todolist-guia)
+en GitHub.
 
 
-## 3. Lenguajes, APIs y frameworks de programación
+### Aplicación a desarrollar
 
-Para desarrollar la aplicación utilizaremos _Play Framework_ y un conjunto de tecnologías adicionales. Repasamos aquí las características principales e incluimos algunos enlaces para su estudio.
+Al terminar la práctica habrás desarrollado una aplicación para
+gestionar listas de tareas pendientes de los usuarios de una
+empresa. Se podrán registrar y logear usuarios y los usuarios
+registrados podrán añadir, modificar y borrar tareas pendientes de
+hacer.
 
-### Aplicación web basada en HTTP
+A continuación puedes ver dos de sus pantallas.
 
-Vamos a utilizar un enfoque basado en **servicios REST** para definir las rutas de las peticiones. Por ejemplo, para obtener los detalles del usuario con identificador `12` utilizaremos la petición:
+<table>
+<tr>
+<td><img src="imagenes/login.png" width="700px"/></td>
+</tr>
+<tr>
+<td align="center"> Pantalla de login </td>
+</table>
+
+
+<table>
+<tr>
+<td><img src="imagenes/tareas.png" width="700px"/></td>
+</tr>
+<tr>
+<td align="center"> Pantalla con listado de tareas </td>
+</table>
+
+Iremos desarrollando las características de la aplicación a lo largo
+de las prácticas. La aplicación tiene como nombre clave **SGT**
+(_Sistema de Gestión de Tareas_). El nombre común de la aplicación es
+**ToDoList**.
+
+### Arquitectura de la aplicación
+
+La arquitectura de la aplicación será la típica de una aplicación web
+que refuerza una separación entre presentación, controlador, servicio
+y persistencia:
+
+- La **capa de presentación** contendrá todas las _vistas_ (páginas
+  HTML, CSS).
+- La **capa de controlador** gestionará las peticiones HTTP para realizar
+  acciones como crear una tarea, logearse, etc.
+- La **capa de servicio** proporcionará los métodos Java que implementan
+  los métodos de negocio de la aplicación.
+- La **capa de persistencia** proporcionara las clases repositorio y
+  las entidades persistentes que trabajan con la base de datos.
+
+
+Vamos a utilizar un enfoque basado en **servicios REST** para definir
+las rutas de las peticiones. Por ejemplo, para obtener todas las 
+tareas del usuario con identificador `12` utilizaremos la petición:
 
 ```
-GET /usuarios/12
+GET /usuarios/12/tareas
 ```
 
-Pero no implementaremos un servicio REST propiamente dicho, porque queremos desarrollar una aplicación que podamos demostrar y enseñar a los usuarios finales. Por ejemplo, las peticiones no van a devolver objetos JSON, sino páginas HTML que constituyen la interfaz de usuario. Tampoco vamos a ser estrictos en las peticiones. Por ejemplo, en lugar de hacer una petición PUT para modificar un recurso (por ejemplo, un usuario) vamos a reutilizar la misma petición POST tanto para creación como para modificación.
+Pero no implementaremos un servicio REST propiamente dicho, en el que
+se devolvería la lista de tareas en formato JSON, sino que
+devolveremos páginas HTML que constituyen la interfaz de la
+aplicación. Tampoco seremos estrictos en el formato de las
+peticiones. Por ejemplo, en lugar de hacer una petición PUT para
+modificar un recurso (como deberíamos hacer si siguiéramos la
+recomendación REST) vamos a realizar una petición POST
+similar a la de su creación. 
 
-Eso sí, el desarrollo se va a basar totalmente en las tecnologías HTTP y HTML. Es conveniente repasarlas para tener claros los conceptos más importantes, tanto de HTTP (tipo de petición, códigos de respuesta, elementos de una petición, etc.) como de HTML (formularios, CSS, algo de JavaScript, etc.).
+Eso sí, el desarrollo se va a basar totalmente en las tecnologías HTTP
+y HTML. Es conveniente repasarlas para tener claros los conceptos más
+importantes, tanto de HTTP (tipo de petición, códigos de respuesta,
+elementos de una petición, cookies, etc.) como de HTML (formularios, CSS, algo
+de JavaScript, etc.).
 
-Un libro imprescindible sobre HTTP que debe estar en la biblioteca de cualquier informático es el de O'Reilly: [HTTP - The Definitive Guide](http://shop.oreilly.com/product/9781565925090.do). Un libro interesante sobre HTML y CSS es [HTML&CSS - design and build websites](http://www.htmlandcssbook.com).
+- Un libro imprescindible sobre HTTP que debe estar en la biblioteca de
+cualquier informático es el de O'Reilly:
+[HTTP - The Definitive Guide](http://shop.oreilly.com/product/9781565925090.do). 
+- Para repasar HTML, CSS y JavaScript son muy interesantes los
+[tutoriales de Mozilla](https://developer.mozilla.org/en-US/docs/Web/Tutorials).
 
-### Play Framework
 
-[Play Framework](https://playframework.com) es un framework de desarrollo rápido de aplicaciones web disponible en los lenguajes Java y Scala. Vamos a utilizar la versión Java. El framework proporciona un soporte de ejecución que tiene como base el servidor [Netty](http://netty.io). Con este soporte es posible diseñar y poner en marcha distintos tipos de aplicaciones: servicios HTTP, servicios HTTP asíncronos basados en websockets, aplicaciones asíncronas basadas en eventos, etc. El modelo de ejecución es similar al modelo de programación reactiva asíncrona que ha popularizado JavaScript y el servidor **Node.js**. Nosotros vamos a implementar una aplicación tradicional que implementa un servicio HTTP.
+### Tecnologías que usaremos
 
-Todas las prácticas de la asignatura las vamos a implementar en la última versión (2.5) [Play Framework en Java](https://www.playframework.com/documentation/2.5.x/JavaHome). Para entender el funcionamiento de esta primera práctica es necesario consultar la siguiente documentación del framework:
+Esta práctica servirá para tomar un primer contacto con todas las
+tecnologías de desarrollo de aplicaciones web que vamos a utilizar en
+la asignatura:
 
-Sobre la instalación y el funcionamiento de Play:
+- _Play Framework_ como _framework_ de desarrollo de aplicaciones
+  web. Nos permitirá realizar un diseño modular basado en la separación entre
+  persistencia, servicio, controlador y presentación.
+- JPA (Java Persistence API) como API para gestionar la persistencia
+  de la aplicación usando un modelo de entidades persistentes ORM
+  (_Object Relational Mapping_). JPA también es conocido como
+  _Hibernate_, su implementación más popular.
+- Para el diseño de la interfaz de usuario de la aplicación usaremos
+  las plantillas de _Play Framework_, en las que se combina HTML y CSS
+  con código Scala. Para hacer más atractivo el diseño de las páginas
+  HTML vamos a usar el _framework_ CSS Bootstrap. 
 
-- [Installing Play](https://playframework.com/documentation/2.5.x/Installing)
-- [Creating a new application](https://playframework.com/documentation/2.5.x/NewApplication)
+
+#### Play Framework
+
+[Play Framework](https://playframework.com) es un framework de
+desarrollo rápido de aplicaciones web disponible en los lenguajes Java
+y Scala. Vamos a utilizar la versión Java. El framework proporciona un
+soporte de ejecución que tiene como base el servidor
+[Netty](http://netty.io). Con este soporte es posible diseñar y poner
+en marcha distintos tipos de aplicaciones: servicios HTTP, servicios
+HTTP asíncronos basados en websockets, aplicaciones asíncronas basadas
+en eventos, etc. Nosotros vamos a implementar una aplicación
+tradicional que implementa un servicio HTTP. Vamos a utilizar la
+[versión 2.5 en Java](https://www.playframework.com/documentation/2.5.x/JavaHome).
+
+Para entender el funcionamiento de esta primera práctica es necesario
+consultar la siguiente documentación del framework:
+
+Sobre el funcionamiento de Play:
+
 - [Using the Play console](https://playframework.com/documentation/2.5.x/PlayConsole)
 - [Anatomy of a Play application](https://playframework.com/documentation/2.5.x/Anatomy)
 
@@ -99,7 +155,7 @@ Sobre peticiones y respuestas HTTP:
 
 - [Actions, Controllers and Results](https://www.playframework.com/documentation/2.5.x/JavaActions)
 - [HTTP routing](https://www.playframework.com/documentation/2.5.x/JavaRouting)
-- [Flash scope](https://www.playframework.com/documentation/2.5.x/JavaSessionFlash#Flash-scope)
+- [Session and Flash scope](https://www.playframework.com/documentation/2.5.x/JavaSessionFlash)
 
 Sobre plantillas:
 
@@ -115,11 +171,26 @@ Sobre el acceso a datos mediante JPA
 
 - [Integrating with JPA](https://www.playframework.com/documentation/2.5.x/JavaJPA)
 
-### Java Persistence API (JPA)
+Sobre la inyección de dependencias
 
-JPA es el API que utilizaremos para acceder a bases de datos y gestionar entidades persistentes usando un modelo ORM (_Object Relational Mapping_). Está integrado en Play, no es necesario instalar ninguna librería adicional.
+- [Dependency Injection](https://playframework.com/documentation/2.5.x/JavaDependencyInjection)
 
-JPA también es conocido por el nombre de una de sus implementaciones más populares, Hibernate. Es una tecnología muy usada y madura en el mundo Java. Permite gestionar la persistencia directamente con el modelo de objetos de la aplicación (se denominan _entidades_), independizándola del modelo relacional basado en tablas y registros.
+Sobre los tests en Play:
+
+- [Testing your application](https://playframework.com/documentation/2.5.x/JavaTest)
+
+#### Java Persistence API (JPA)
+
+JPA es el API que utilizaremos para acceder a bases de datos y
+gestionar entidades persistentes usando un modelo ORM (_Object
+Relational Mapping_). Está integrado en Play, no es necesario instalar
+ninguna librería adicional.
+
+JPA también es conocido por el nombre de una de sus implementaciones
+más populares, Hibernate. Es una tecnología muy usada y madura en el
+mundo Java. Permite gestionar la persistencia directamente con el
+modelo de objetos de la aplicación (se denominan _entidades_),
+independizándola del modelo relacional basado en tablas y registros.
 
 La implementación de JPA ObjectDB tiene unos tutoriales muy completos y accesibles:
 
@@ -128,447 +199,851 @@ La implementación de JPA ObjectDB tiene unos tutoriales muy completos y accesib
 - [Using JPA](http://www.objectdb.com/java/jpa/persistence)
 - [JPA Queries](http://www.objectdb.com/java/jpa/query)
 
-No es necesario estudiar todos los tutoriales. El objetivo de las prácticas no es aprender JPA, sino desarrollar de forma ágil una aplicación. Vamos a utilizar lo más básico de JPA y en la mayoría de las ocasiones se va a proporcionar el código necesario. Además, en caso de duda, siempre podrás realizar preguntas sobre cómo implementar una determinada funcionalidad en el foro de Moodle.
+No es necesario estudiar todos los tutoriales. El objetivo de las
+prácticas no es aprender JPA, sino desarrollar de forma ágil una
+aplicación. Vamos a utilizar lo más básico de JPA y en la mayoría de
+las ocasiones se va a proporcionar el código necesario. Además, en
+caso de duda, siempre podrás realizar preguntas sobre cómo implementar
+una determinada funcionalidad en el foro de Moodle.
 
-### Bootstrap
+#### Bootstrap
 
-Para hacer más atractivo el diseño de las páginas HTML vamos a usuar el framework CSS [Bootstrap](http://getbootstrap.com/getting-started/). Es conveniente tener a mano su documentación, en concreto la lista de componentes:
+Para hacer más atractivo el diseño de las páginas HTML vamos a usuar
+el framework CSS
+[Bootstrap](https://getbootstrap.com/docs/3.3/getting-started/). Es conveniente
+tener a mano su documentación, en concreto la lista de componentes:
 
-- [Bootstrap components](http://getbootstrap.com/components/)
-
-## 4. Metodología de desarrollo
-
-Es importante realizar la aplicación siguiendo las indicaciones de este apartado. Se deberá utilizar git como sistema de control de versiones, dejando en la rama principal (_master_) la última versión funcional de la aplicación y creando una rama para implementar cada nueva característica.
-
-### Git
-
-Git es el sistema de control de versiones más utilizado en la actualidad. Es muy flexible, distribuido, adaptable a múltiples flujos de trabajo e ideal para una metodología de desarrollo en equipo. Suponemos que ya tienes cierta experiencia con su uso. Puedes usar los siguientes enlaces para repasar su funcionamiento.
-
-- [Resumen de comandos de Git](comandos-git.md): Resumen de comandos principales para empezar a trabajar con Git.
-- [Atlassian Git Tutorials](https://www.atlassian.com/git/tutorials/): Tutoriales muy orientados al uso de Git con gran cantidad de ejemplos. Es recomendable repasar los tutoriales básicos (_Getting Started_) y los tutoriales _Syncing_ y _Using Branches_ en el apartado _Collaborating_.
-- [Libro de Scott Chacon](https://git-scm.com/book/en/v2): Completo manual con todos los detalles de todos los comandos de Git.
-
-Cuando utilicemos git es muy importante realizar unos mensajes de commit claros. Un mensaje de commit es la forma de comunicar a los compañeros del equipo qué cambios se han introducido en la aplicación y ponerlos en contexto (explicar por qué se han hecho, dar algún detalle de implementación, etc.). El post [How to Write a Git Commit Message](http://chris.beams.io/posts/git-commit/) explica muy bien esto.
-
-Los commits deben definir cambios coherentes de la aplicación que se desarrolla. No deben tener errores de compilación. El mensaje del commit deberá tener el siguiente formato:
-
-- Código del ticket que estamos implementando (ver más adelante)
-- Descripción de menos de 50 caracteres de los cambios
-- Cuerpo del commit con una descripción más detallada del mismo. Las líneas deben tener como máximo 72 caracteres.
+- [Bootstrap components](https://getbootstrap.com/docs/3.3/components/)
 
 
-Un ejemplo:
+### Metodología de desarrollo
+
+En cuanto a la metodología de desarrollo, en esta primera práctica
+repasaremos e introduciremos el uso de:
+
+- JUnit y DBUnit para realizar continuamente pruebas unitarias que
+  validen el desarrollo.
+- [Git](https://git-scm.com) como sistema de control de versiones que nos permitirá
+  registrar paso a paso los cambios realizados en el desarrollo,
+  realizando e integrando ramas de _features_ en las que
+  desarrollaremos pequeños incrementos que añadirán poco a poco las
+  funcionalidades necesarias en la aplicación.
+- [GitHub](https://github.com) como servicio en el que publicaremos los cambios e
+  integraremos las ramas usando _pull requests_ (PRs). Utilizaremos un
+  gran número de características de GitHub para realizar el
+  seguimiento del desarrollo del proyecto: _issues_, _labels_,
+  _milestones_, etc.
+
+#### Git
+
+Git es el sistema de control de versiones más utilizado en la
+actualidad. Es muy flexible, distribuido, adaptable a múltiples flujos
+de trabajo e ideal para una metodología de desarrollo en
+equipo. Suponemos que ya tienes cierta experiencia con su uso. Puedes
+usar los siguientes enlaces para repasar su funcionamiento.
+
+- [Resumen de comandos de Git](comandos-git.md): Resumen de comandos
+  principales para empezar a trabajar con Git.
+- [Atlassian Git Tutorials](https://www.atlassian.com/git/tutorials/):
+  Tutoriales muy orientados al uso de Git con gran cantidad de
+  ejemplos. Es recomendable repasar los tutoriales básicos (_Getting
+  Started_) y los tutoriales _Syncing_ y _Using Branches_ en el
+  apartado _Collaborating_.
+- [Libro de Scott Chacon](https://git-scm.com/book/en/v2): Completo
+  manual con todos los detalles de todos los comandos de Git.
+
+Cuando utilicemos git es muy importante realizar unos mensajes de
+_commit_ claros. Un mensaje de _commit_ es la forma de comunicar a los
+compañeros del equipo qué cambios se han introducido en la aplicación
+y ponerlos en contexto (explicar por qué se han hecho, dar algún
+detalle de implementación, etc.). El post
+[How to Write a Git Commit Message](http://chris.beams.io/posts/git-commit/)
+explica muy bien esto.
+
+
+#### Flujo de trabajo
+
+Desarrollaremos la aplicación de forma iterativa, utilizando
+inicialmente un flujo de trabajo Git denominado _feature branch_
+(consultar la
+[guía de GitHub](https://guides.github.com/introduction/flow/)) en el
+que cada característica nueva se implementa en una rama separada que
+después se mezcla con la rama principal de desarrollo. Más adelante
+veremos otros flujo de trabajo. Puedes ver una introducción a
+distintos flujos de trabajo básicos con Git en este
+[documento de Atlassian](https://www.atlassian.com/git/tutorials/comparing-workflows).
+
+Para implementar este flujo de trabajo utilizaremos todos los
+instrumentos de GitHub que facilitan la comunicación entre los
+miembros del equipo:
+
+- **Issues** (_incidencias_): GitHub permite abrir _issues_
+  (incidencias o tareas), asignarlos a personas, realizar comentarios,
+  asignar etiquetas y cerrarlos cuando la implementación ha
+  terminado. Consultar
+  [Mastering Issues](https://guides.github.com/features/issues/).
+
+  Dividiremos las características a desarrollar en un conjunto de
+  _issues_ que se implementarán en ramas y convertiremos en _pull
+  requests_ que los cerrarán.
+  
+  <img src="imagenes/github-issues.png" width="700px"/>
+
+  
+- **Pull Requests**: Un _pull request_ permite avisar al equipo de que
+  se va a integrar una rama con un desarrollo nuevo en la rama
+  principal. Cuando creamos un PR, GitHub crea una página en la que se
+  pueden realizar comentarios, revisiones de código o definir
+  políticas de aceptación del PR. Consultar
+  [About pull requests](https://help.github.com/articles/about-pull-requests/).
+  
+  Implementaremos cada _issue_ en una rama separada de git y la
+  integraremos en la rama `master` haciendo un _pull request_. Cuando
+  se mezcle el PR en `master` el _issue_ se cerrará.
+  
+  <img src="imagenes/github-pr.png" width="700px"/>
+
+- **Tablero de proyecto**: Un tablero de proyecto nos ayudará a hacer
+  un seguimiento de en qué estado se encuentra cada _issue_ o PR:
+  cuáles han sido implementados, cuáles faltan por asignar,
+  implementar, probar, etc. Vamos a utilizar la funcionalidad propia
+  de GitHub llamada _project_. Consultar
+  [project boards](https://help.github.com/articles/tracking-the-progress-of-your-work-with-project-boards/).
+
+  <img src="imagenes/github-tablero.png" width="700px"/>
+  
+- **Wiki**: Por último, GitHub ofrece una wiki en que utilizaremos
+  para documentar las nuevas _features_ o funcionalidades a
+  implementar. Consultar [documenting your projects on GitHub](https://guides.github.com/features/wikis/).
+
+  <img src="imagenes/github-wiki.png" width="700px"/>
+
+  La documentación en la Wiki, en los _issues_, en los PRs y en el
+  propio `README.md` del proyecto hay que escribirla en **Markdown**,
+  un lenguaje de marcado muy popular y sencillo de dominar. Si no has
+  trabajado todavía con él puedes leer estas
+  [guías de GitHub](https://help.github.com/categories/writing-on-github/).
+
+Existen herramientas y servicios más avanzados para gestionar todos
+estos elementos del desarrollo. Por ejemplo [Jira](https://www.atlassian.com/software/jira),
+[YouTrack](https://www.jetbrains.com/youtrack/),
+[Confluence](https://www.atlassian.com/software/confluence) o incluso
+[Trello](https://www.atlassian.com/software/trello). Pero lo que nos
+ofrece GitHub es suficiente para lo que vamos a realizar en la
+asignatura y tiene la ventaja de estar integrado en una misma
+plataforma.
+
+
+## 2. Entorno para realizar la práctica
+
+En las máquinas de los laboratorios de la EPS están instaladas en
+Linux las herramientas necesarias para su desarrollo. También las
+puedes instalar en cualquier sistema operativo:
+   
+- [Atom](https://atom.io), editor de código. También puedes editar
+  Markdow en él y previsualizar el documento resultante.
+- [Git](https://git-scm.com/downloads)
+- [Docker](https://www.docker.com/community-edition), para ejecutar la
+   imagen (similar a una máquina virtual) que contiene Java y Play
+   Framework.
+
+[Docker](https://docs.docker.com) es una tecnología que ha tenido una
+gran expansión en los últimos años. Permite construir máquinas
+virtuales ligeras que utilizan el mismo sistema operativo de la
+máquina host. Estas máquinas virtuales se denominan _contenedores_ y,
+al compartir el propio sistema operativo en el que se están
+ejecutando, su gestión (construcción, arranque, parada, etc.) es
+muchísimo más rápida que las máquinas virtuales tradicionales.
+
+Utilizaremos la imagen Docker
+[domingogallardo/playframework](https://hub.docker.com/r/domingogallardo/playframework/),
+que lanza el comando `sbt` necesario para compilar y ejecutar
+aplicaciones Play.
+
+Para lanzar esta imagen tenemos que ejecutar el siguiente comando,
+estando en el directorio de la aplicación Play:
+
+<pre><code>$ <b>cd /path/to/my/play/project</b>
+$ <b>docker run --rm  -it -v "${PWD}:/code" -p 80:9000 domingogallardo/playframework</b>
+</code></pre>
+
+El comando `docker` buscará la imagen `domingogallardo/playframework`
+en local y la descargará si no la encuentra. Después la ejecutará
+montando el directorio actual en el directorio `/code` y mapeando el
+puerto 80 de la máquina host en el puerto 9000 del contenedor. Por
+último, lanzará de forma interactiva el comando `sbt` estando en el
+directorio del proyecto Play. Como este directorio está montado en el
+contenedor podrás editar y modificar los programas en la máquina host
+y compilarlos y ejecutarlos desde el comando `sbt` en el contenedor.
+
+Cada máquina docker se define con un fichero `Dockerfile`. Puedes
+mirar el fichero `Dockerfile` de la imagen de la asignatura en
+[este enlace](https://github.com/domingogallardo/playframework/blob/master/Dockerfile). Más
+adelante estudiaremos más sobre Docker.
+
+
+## 3. Antes de empezar la práctica
+
+1. Lee el apartado 1 y visita todos los enlaces que se incluyen. El
+   objetivo no es que estudies todos los enlaces, sino que te hagas
+   una idea de qué puedes encontrar en cada uno, para poder después
+   encontrar más información cuando la necesites.
+
+2. Instala el software mencionado en el apartado 2 para configurar el
+   entorno de desarrollo en el que vamos a realizar la práctica.
+
+   Inicializa tu nombre de usuario y tu correo en Git. El nombre de
+   usuario será el nombre que aparecerá en los _commits_. Pon tu nombre
+   y apellido.
+   
+   <pre><code>$ <b>git config --global user.name "Pepe Perez"</b>
+   $ <b>git config --global user.email pepe.perez@example.com</b>
+   </code></pre>
+
+3. Descarga la imagen de Docker para poder compilar y ejecutar los
+   proyectos Play:
+
+   <pre><code>$ <b>docker pull domingogallardo\playframework</b>
+   $ <b>docker image ls</b>
+   REPOSITORY                      TAG                 IMAGE ID            CREATED             SIZE
+   domingogallardo/playframework   latest              95c1eb17ecb4        5 weeks ago         530MB
+   </code></pre>
+
+4. Crea una cuenta en GitHub. Puedes usar el nombre de usuario que
+   quieras (o usar el que ya tienes), pero **escribe correctamente tu
+   nombre y apellidos en el perfil** usando la opción _Settings >
+   Profile_ y actualizando el campo _Name_.
+   
+5. Una vez logeado en GitHub, copia el enlace con una invitación que
+   compartiremos en el foro de Moodle. Con esa invitación se creará
+   automáticamente el repositorio `todolist-2017-<usuario>` en la
+   organización [mads-ua](https://github.com/mads-ua). Es un
+   repositorio privado al que tienes acceso tú y el
+   profesor. Contiene el código inicial de un proyecto base Play (es
+   una copia de
+   [domingogallardo/play-proyecto-inicial-2017](https://github.com/domingogallardo/play-proyecto-inicial-2017)). 
+
+   Es importante que tengas en cuenta que este repositorio no reside
+   en tu cuenta, sino en la organización `mads-ua`. Puedes acceder a
+   él desde el _dashboard_ de GitHub que aparece cuando te logeas:
+   
+   <img src="imagenes/dashboard-github.png" width="600px"/>
+
+   También el profesor te invitará a formar parte de la organización y
+   recibirás un mensaje de correo electrónico en el que deberás
+   aceptar esta invitación. También se puede aceptar la invitación
+   accediendo a <https://github.com/mads-ua>.
+   
+4. Descarga el proyecto y comprueba que se compila y ejecuta
+   correctamente con la imagen de Docker:
+   
+   <pre><code>$ <b>git clone https://github.com/mads-ua/todolist-2017-<usuario>.git</b>
+   $ <b>cd todolist-2017-usuario</b>
+   $ <b>docker run --rm  -it -v "${PWD}:/code" -p 80:9000 domingogallardo/playframework</b>
+   [info] Loading project definition from /code/project
+   [info] Updating {file:/code/project/}code-build...
+   [info] Resolving org.fusesource.jansi#jansi;1.4 ...
+   [info] Done updating.
+   [info] Set current project to play-java (in build file:/code/)
+   [play-java] $ <b>test</b>
+   ...
+   [info] Passed: Total 3, Failed 0, Errors 0, Passed 3
+   [success] Total time: 58 s, completed Aug 24, 2017 10:43:59 AM   
+   [play-java] $ <b>run</b>
+   </code></pre>
+   
+   Comprueba que la aplicación está funcionando en <http://localhost>
+   en la máquina host.
+   
+   <img src="imagenes/play-start-application.png" width="600px"/>
+   
+   Para salir del comando `run` de `sbt` debemos hacer `CTRL+d`. Podemos
+   lanzar cualquier otro comando de sbt (consultar
+   [Using the SBT console](https://playframework.com/documentation/2.5.x/PlayConsole).  
+   
+   Para salir del contenedor haremos `CTRL+c`.
+
+6. Por último, realiza un primer _commit_ en la rama `master` en el que
+   cambies el nombre del proyecto y la versión actual.
+
+   - Utiliza _Atom_. Escoge la opción _File > Add Project Folder..._
+     para añadir al menú lateral izquierdo el directorio donde se
+     encuentra el proyecto y seleccionar fácilmente los ficheros
+     necesarios.
+   
+   - Cambia en `build.sbt` el nombre del proyecto a
+     `mads-todolist-2017` y la versión a `0.1-SNAPSHOT`. El sufijo
+     `SNAPSHOT` indica _en desarrollo_. Al final de la práctica 1
+     terminaremos esta versión `0.1` y se eliminará el sufijo.
+
+   - Realiza el commit en `master` y publícalo en el repositorio:
+   
+   <pre><code>$ <b>git add build.sbt</b>
+   $ <b>git commit -m "Cambiado el nombre del proyecto y la versión"</b>
+   $ <b>git push</b>
+   </code></pre>
+
+   Consulta en GitHub que el _commit_ se ha subido.
+   
+   De esta forma habrás comprobado que tienes permiso de escritura en
+   el repositorio y que ya puedes comenzar a realizar la práctica.
+   
+   Si ahora vuelves a lanzar la máquina Docker en el proyecto, verás
+   que ha cambiado el nombre del proyecto:
+   
+   <pre><code>$ <b>docker run --rm  -it -v "${PWD}:/code" -p 80:9000 domingogallardo/playframework</b>
+   ...
+   $ [info] Set current project to mads-todolist-2017 (in build file:/code/)
+   [mads-todolist-2017] $ 
+   </code></pre>
+
+## 4. Desarrollo de la práctica
+
+En esta primera práctica vamos a desarrollar las siguientes dos
+historias de usuario o _features_:
+
+- SGT-1: Login de usuarios
+- SGT-2: Gestión de tareas
+
+Puedes encontrar todos los detalles en la wiki del proyecto
+[mads-todolist-guia](https://github.com/domingogallardo/mads-todolist-guia).
+
+La práctica va a consistir en una recreación en tu proyecto de todos
+los elementos del proyecto guía: wiki, _issues_ y PRs (con sus _commits_
+en los que se desarrolla paso a paso cada _issue_) o tablero del
+proyecto. Hasta llegar a la aplicación final.
+
+Vamos a ello paso a paso.
+
+### 4.1. Desarrollo de la primera historia de usuario
+
+Veamos paso a paso el desarrollo de la primera historia de usuario en
+la que crearemos el login y el registro de usuarios.
+
+#### 1. Creación de la wiki
+
+- Crea en la página _Home_ de la wiki un listado de las historias de
+  usuario pendientes. Copia las cuatro historias de usuario que
+  aparecen en la guía. Crea el menú lateral de la wiki con un ítem
+  `Milestone 0.1` vacío.
+
+  Esta wiki será nuestro _backlog_ del proyecto (usando la terminología de Scrum).
+  
+
+#### 2. Creación del tablero del proyecto
+
+- Crea en el repositorio el _proyecto_ con el nombre `SGT` y la
+  descripción: `Sistema de Gestión de Tareas (TodoList)`. Añade en él
+  las columnas: _Pendientes_, _En marcha_, _En PR_, _Terminado_. En
+  las dos primeras columnas se incluirán _issues_ abiertos y en las
+  dos últimas _pull requests_.
+
+
+#### 3. Descripción de la primera historias de usuario
+
+- Añade en la wiki una página con la descripción de la primera
+  historia de usuario (_SGT-1 Login_), enlázala desde la página
+  principal y añádela en el menú lateral, dentro del _Milestone 0.1_.
+  
+- Copia en la página la misma descripción que en la guía
+  ([enlace](https://github.com/domingogallardo/mads-todolist-guia/wiki/SGT-1-Login-de-usuario)),
+  quitando los enlaces a los _issues_ y dejándolos cómo ítems
+  pendientes de terminar.
+  
+  Esta descripción de la historia es una descripción desde el punto de
+  vista del _product owner_, pero también contiene los enlaces a
+  los _issues_ que se van desarrollando para implementarla. 
+
+- Al crear un _issue_ añadiremos en la página de la historia de
+  usuario el enlace. Cuando cerremos el _issue_ (porque se ha mezclado
+  el PR en `master`) lo marcaremos como terminado en la página
+  añadiendo un _tick_.
+
+#### 4. Creación de los primeros _issues_
+
+- Busca en el repositorio guía los _issues_ de la primera historia de
+  usuario y créalos en tu repositorio.
+
+- Busca en el repositorio guía los _issues_ de la primera historia de
+  usuario y créalos en tu repositorio. Escribe la descripción que hay
+  en la guía y en la descripción añade un enlace a la historia de
+  usuario. Crea también el _label_ correspondiente a
+  la historia de usuario y asígnaselo a cada _issue_. Añade a los
+  _issues_ el _Milestone 0.1_.
+
+- Una vez terminada la creación de cada _issue_ añádelo en la columna
+  _Pendientes_ del tablero.
+  
+#### 5. Desarrollo del primer _issue_
+
+- Escoge el primer _issue_ a desarrollar
+  [Crear proyecto, modelo JPA Usuario y UsuarioRepository](https://github.com/domingogallardo/mads-todolist-guia/issues/1). Asígnatelo
+  a ti mismo y muévelo a la columna _En marcha_.
+  
+- Crea la rama en la que vas a desarrollar el _issue_ y súbela a
+  GitHub:
+  
+  <pre><code>$ <b>git checkout -b modelo-usuario</b>
+  <b>$ git push -u origin modelo-usuario</b>
+  </code></pre>
+  
+- Añade un comentario al _issue_ con un enlace a la rama que acabas de
+  subir.
+  
+#### 6. Desarrollo del primer _commit_
+
+Para completar el _issue_ tendremos que desarrollar el código que lo
+implementa. Recuerda que hay que hacerlo en pequeños _commits_. Cada
+_commit_ va a consistir en un pequeño desarrollo que avanza hacia la
+terminación del _issue_. En cada _commit_ el código debe compilar
+correctamente y, si es posible, debe incluir algún test para comprobar
+también su correcto funcionamiento. 
+
+En algunos _commits_ se añadirán características funcionales (vistas
+HTML o rutas HTTP) que no tendrán tests asociados. Pero **deberás
+realizar pruebas manuales antes de realizar el _commit_** para
+comprobar que funcionan correctamente. Play tiene formas de realizar
+pruebas funcionales automatizadas de estos elementos (puedes consultar
+la página sobre tests que indicamos en el apartado 1). Pero no las
+vamos a utilizar, por simplificar el desarrollo de la práctica.
+
+Vamos a reproducir en nuestro proyecto exactamente los mismos _commits_
+que se han realizado en el proyecto guía.
+
+La lista de _commits_ que se desarrollan en un _issue_ se pueden
+encontrar fácilmente en el PR que cierra el _issue_.
+
+- Busca en el hilo del _issue_ el PR que lo cierra. En este caso es el
+  [PR #5](https://github.com/domingogallardo/mads-todolist-guia/pull/5)
+  (GitHub va asignando números correlativos a los _issues_ y PR que
+  vamos creando; este PR tiene el #5 porque antes se han creado 4
+  _issues_).
+
+  Verás ordenados de arriba (primero) a abajo (último) los _commits_ que
+  contiene el PR.
+  
+  <img src="imagenes/commits-pr.png" width="700px"/>
+
+- Vemos que el primer _commit_ es _**Creado modelo de usuario
+  inicial**_. Tienes que realizar el código de ese _commit_ en tu
+  proyecto. Puedes consultar el código desarrollado en un _commit_
+  pinchando en él. Verás los cambios que el _commit_ ha introducido. En
+  este caso:
+  
+  ```diff
+  +++ app/models/Usuario.java
+  @@ -0,0 +1,13 @@
+  +package models;
+  +
+  +public class Usuario {
+  +   public String login;
+  +   public String email;
+  +   public String password;
+  +   public String nombre;
+  +
+  +   public Usuario(String login, String email) {
+  +      this.login = login;
+  +      this.email = email;
+  +   }
+  +}
+  +++ test/models/UsuarioTest.java
+  @@ -0,0 +1,19 @@
+  +import org.junit.*;
+  +import static org.junit.Assert.*;
+  +
+  +import models.Usuario;
+  +
+  +public class UsuarioTest {
+  +
+  +   @Test
+  +   public void testCrearUsuario() {
+  +      // Los parámetros del constructor son los campos obligatorios
+  +      Usuario usuario = new Usuario("pepitoperez", "pepitoperez@gmail.com");
+  +      usuario.nombre = "Pepito Pérez Fernández";
+  +      usuario.password = "123456789";
+  +      assertEquals("pepitoperez", usuario.login);
+  +      assertEquals("pepitoperez@gmail.com", usuario.email);
+  +      assertEquals("Pepito Pérez Fernández", usuario.nombre);
+  +      assertEquals("123456789", usuario.password);
+  +   }
+  +}
+  ```
+
+  En el _commit_ se han creado los ficheros `app/models/Usuario.java` y
+  `test/models/UsuarioTest.java`. 
+  
+- Escribe en tu proyecto el mismo código que hay en el _commit_, creando
+  y modificando los ficheros necesarios.
+
+  **No te limites a copiar y pegar: piensa en lo que hace el código e
+  intenta entenderlo**. Si no lo entiendes repasa la documentación que
+  hemos indicado en el apartado 1.
+
+- Compila el código y comprueba que no contiene errores. El comando
+  `clean` sirve para eliminar todos los ficheros compilados y forzar
+  una compilación completa de nuevo. Lo usamos para que lo conozcas,
+  pero no es necesario usarlo generalmente, sólo si hay algún error
+  que se arregla recompilando todo el proyecto.
+
+  <pre><code>[mads-todolist-2017] $ <b>clean</b>
+  [success] Total time: 1 s, completed Aug 26, 2017 5:03:47 PM
+  [mads-todolist-2017] $ <b>compile</b>
+  [info] Updating {file:/code/}root...
+  [info] Resolving jline#jline;2.14.3 ...
+  [info] Done updating.
+  [info] Compiling 7 Scala sources and 11 Java sources to /code/target/scala-2.11/classes...
+  [success] Total time: 26 s, completed Aug 26, 2017 5:04:15 PM
+  </code></pre>
+
+- Si el código contiene un test ejecútalo con el comando `test` desde
+  el _shell_ de `sbt`:
+  
+  <pre><code>[mads-todolist-2017] $ <b>test</b>
+  [info] Done updating.
+  ...
+  [info] Test UsuarioTest.testCrearUsuario started
+  [info] Test run finished: 0 failed, 0 ignored, 1 total, 0.007s
+  [info] Passed: Total 4, Failed 0, Errors 0, Passed 4
+  [success] Total time: 63 s, completed Aug 26, 2017 4:08:32 PM
+  [mads-todolist-2017] $ 
+  </code></pre>
+  
+  También puedes ejecutar los tests de un único fichero de test con el
+  comando `testOnly`:
+  
+  <pre><code>[mads-todolist-2017] $ <b>testOnly UsuarioTest</b>
+  [info] Test run started
+  [info] Test UsuarioTest.testCrearUsuario started
+  [info] Test run finished: 0 failed, 0 ignored, 1 total, 0.05s
+  [info] Passed: Total 1, Failed 0, Errors 0, Passed 1
+  [success] Total time: 8 s, completed Aug 26, 2017 4:10:28 PM
+  [mads-todolist-2017] $ 
+  </pre></code>
+  
+- Una vez que has compilado y probado correctamente el código, realiza
+  el _commit_ en tu proyecto (escribe la misma descripción que en la
+  guía) y súbelo a GitHub:
+  
+  <pre><code>$ <b>git add *</b>
+  $ <b>git status</b>
+  On branch master
+  Changes to be committed:
+    (use "git reset HEAD <file>..." to unstage)
+
+    	new file:   app/models/Usuario.java
+    	new file:   test/models/UsuarioTest.java
+  $ <b>git commit -m "Creado modelo de usuario inicial"</b>
+  $ <b>git push</b>
+  </code></pre>
+
+- Una vez realizado el _commit_ es el momento de probar cambios en el
+  código para entender mejor lo que está haciendo. Puedes introducir
+  cambios, realizar pruebas y descartarlos (volviendo al estado del
+  _commit_) con los siguientes comandos git:
+  
+  <pre><code>$ <b>git reset --hard HEAD</b>
+  $ <b>git clean -fd</b> # necesario sólo si has creado algún fichero
+  </code></pre>
+
+#### 7. Desarrollo de los siguientes _commits_
+
+- Añade el código de los siguientes 5 _commits_. Escribe el código de
+  cada uno, pruébalo y entiéndelo, realiza el commit y súbelo a GitHub.
+
+#### 8. Creación del _pull request_
+
+- Cuando hayamos terminado todos los _commits_, creamos un _pull
+  request_ en GitHub para realizar la integración de la rama con
+  `master`. Se puede crear el PR de varias formas, desde la página
+  principal del proyecto en GitHub o desde la pantalla de ramas.
+  
+  <img src="imagenes/pull-request1.png" with="600px"/>
+  
+- Escribe como nombre del PR el mismo nombre que el _issue_ y en la
+  descripción escribe número del _issue_ precedido de alguna de las
+  [palabras claves](https://help.github.com/articles/closing-issues-using-keywords/)
+  que permite cerrar el _issue_ al realizar el PR (`close`, `fix` o
+  `solve`):
+   
+  ```
+  Closes #1
+  ```
+
+  De esta forma asociamos el PR con el _issue_ y cuando mezclemos el
+  PR también cerraremos el _issue_. En el _issue_ aparecerá
+  automáticamente la relación con el PR.
+
+  <img src="imagenes/pull-request2.png" with="600px"/>
+  
+- En el PR añade los mismos atributos que el _issue_: asignado,
+  etiqueta con la historia de usuario y milestone. Elimina la etiqueta
+  y el milestone del _issue_, porque ya van a estar en el PR asociado.
+
+- En el tablero del proyecto, elimina el _issue_ de la columna _En
+  marcha_ y añade el PR en la columna _En PR_.
+  
+#### 9. Integración de la rama con el _issue_ en `master`, aceptando el PR.
+ 
+- Antes de realizar la integración en remoto habría que comprobar que
+  funciona en un entorno local de test que funciona
+  correctamente. Podría haber habido algún cambio en `master` (la
+  integración de algunos otros _issues_ que se hayan realizado en
+  paralelo) que entra en conflicto con nuestro _issue_. Ahora no es el
+  caso, porque no se ha desarrollado ningún otro _issue_ en
+  paralelo. Lo dejamos para una futura práctica.
+       
+- La integración se puede hacer usando los comandos de git para hacer
+  un _merge_ en local y después hacer un _push_ de `master` o se puede
+  hacer desde la web de GitHub. Para simplificar vamos a utilizar esta
+  segunda opción. Más adelante probaremos la otra.
+       
+  Confirmamos el `merge` del PR en GitHub y comprobamos que se ha
+  cerrado el _issue_. 
+  
+  
+  Eliminamos la rama remota, usando la opción que
+  proporciona GitHub. Y movemos la tarjeta del PR a la columna
+  `Terminados`.
+       
+- Descargamos la integración remota en `master` al repositorio local y
+  borramos la rama local del _issue_:
+       
+  <pre><code>$ <b>git checkout master</b>
+  $ <b>git remote show origin</b> # para comprobar estado de repositorio remoto
+  $ <b>git pull</b>
+  $ <b>git branch -d crear-modelo-usuario</b>
+  $ <b>git remote prune origin</b> # para borrar la referencia a la rama remota
+  </code></pre>
+
+#### 10. Realización del resto de _issues_ de la funcionalidad
+
+- Realizamos el mismo proceso anterior para los demás _issues_ de la
+  funcionalidad:
+  
+  - Crear acciones, vistas y métodos de servicio para el registro de un nuevo usuario
+  - Login de usuarios registrados
+  - Autenticación
+
+- Como ya se ha comentado antes, el objetivo es que utilices los
+  _issues_ y los _commits_ para aprender una metodología básica de
+  desarrollo y para aprender Play. La mejor forma de aprender un
+  _framework_ es probando código escrito en él. Además, al hacerlo
+  _commit_ a _commit_ la cantidad de código a analizar cada vez es
+  pequeña y con una unidad lógica.
+
+- En muchos _commits_ no existirá un test (en aquellos en los que se
+  está creando la interfaz de usuario), pero tendrás que probar la
+  nueva interfaz (ruta o vista) añadida. Por ejemplo, el _commit_
+  [Ejemplo de controller y vista](https://github.com/domingogallardo/mads-todolist-guia/pull/6/commits/5c12909a8ac0fe2b4ef5499942665358efa6e763)
+  en el segundo _issue_, en el que se crea un sencillo ejemplo de
+  controlador y vista:
+  
+  ```diff
+  +++ app/controllers/UsuarioController.java
+  @@ -0,0 +1,12 @@
+  +package controllers;
+  +
+  +import play.mvc.*;
+  +
+  +import views.html.*;
+  +
+  +public class UsuarioController extends Controller {
+  +
+  +   public Result saludo(String mensaje) {
+  +      return ok(saludo.render("El mensaje que he recibido es: " + mensaje));
+  +   }
+  +}
+  +++ app/views/saludo.scala.html
+  @@ -0,0 +1,5 @@
+  +@(mensaje: String)
+  +
+  +@main("Saludo") {
+  +    <h1><em>@mensaje</em></h1>
+  +}
+  +++ conf/routes
+  @@ -9,5 +9,11 @@ GET     /count                      controllers.CountController.count
+   # An example controller showing how to write asynchronous code
+   GET     /message                    controllers.AsyncController.message
+  +
+  +# Nuestra aplicación
+  +
+  +GET     /saludo/:msg            controllers.UsuarioController.saludo(msg: String)
+  +
+  +
+   # Map static resources from the /public folder to the /assets URL path
+   GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+  ```  
+  
+  
+  Para comprobar el funcionamiento de este commit tendremos que lanzar
+  la aplicación y probar que funciona la ruta que se acaba de añadir:
+
+  <pre><code>$ <b>docker run -it --rm -v ${PWD}:/code -p 80:9000 domingogallardo/playframework</b>
+  [mads-todolist-2017] $ <b>run</b>
+  </code></pre>
+
+  Para probar la ruta
+
+   ```
+   GET     /saludo/:msg  controllers.UsuarioController.saludo(msg: String)`
+   ```
+
+   accederemos a la URL <http://localhost/saludo/Hola>. Play obtiene
+   la cadena `Hola` de la petición y la pasa como parámetro al
+   controlador `UsuarioController.saludo`.
+
+### 4.2. Algunos indicaciones sobre el desarrollo de la primera funcionalidad
+
+#### _Commit_ "Versión inicial registro usuario"
+
+Este es otro ejemplo de un _commit_ que no tiene test, pero que se
+debe probar realizando una prueba manual.
+
+- Para probarlo abrimos la URL <http://localhost/registro> y probamos a
+  introducir los datos de un nuevo usuario.
+
+- Puede ser que sea necesario hacer un `clean` antes del `run`.
+
+- Los datos del usuario añadido se guardan en la base de datos `H2` en
+  memoria. Esa base de datos mantendrá los datos mientras que el
+  comando `sbt` esté en marcha. Por ejemplo, puedes parar el `run` con
+  `CTRL+d`, ejecutar un `test` para probar algún cambio y volver a
+  ejecutar `run` y los datos seguirán estando en la BD.
+
+
+#### _Commit_ "Añadido Bootstrap"
+
+En el _commit_ `Añadido Bootstrap` debes descargar e incluir en la
+aplicación el framework CSS _Bootstrap_ y _JQuery_:
+
+- Descarga la versión 3.3.7 (bootstrap-3.3.7-dist.zip) de Bootstrap de
+  <https://github.com/twbs/bootstrap/releases> y mueve los ficheros al
+  directorio `public/bootstrap` de la aplicación Play.
+
+- Descarga la versión 2.2.4 de jquery
+  <https://github.com/jquery/jquery/releases> y copia el fichero
+  `dist/jquery.min.js` en el directorio `public/javascripts` de la
+  aplicación Play.
+
+#### Error java.lang.OutOfMemoryError
+
+En algún momento, al ejecutar la aplicación play, puede que aparezca un error
+como el siguiente:
 
 ```
-$ git commit -m "TIC-3 Bootstrap incluido en plantilla principal
-Se ha añadido bootstrap en el directorio de assets públicos
-y se ha incluido en la plantilla principal de la aplicación"
+Caused by: java.lang.OutOfMemoryError: Metaspace
 ```
 
-En esta primera práctica el flujo de trabajo de Git se basará en abrir una rama desde `master` por cada _ticket_ (lo explicaremos más adelante) y mezclarla en la rama principal con `git merge --no-ff`:
-
-```
-$ git merge --no-ff tic-4-pagina-creacion-usuario
-```
-
-De esta forma quedará claro en la historia de commits del proyecto los cambios introducidos por cada rama.
-
-
-### Desarrollo incremental
-
-Para realizar un desarrollo incremental de la aplicación, iremos definiendo claramente las características que debe cumplir y las desarrollaremos una a una de forma secuencial. No pasaremos a desarrollar la siguiente característica hasta haber comprobado que funciona la anterior. En el siguiente apartado se presenta una lista con las características que debe tener la práctica. El orden final que utilices en tu desarrollo puede ser distinto al planteado, pero la aplicación final debe contener todas las funcionalidades. 
-
-Utilizaremos [Trello](https://trello.com) para registrar los _tickets_ a realizar en la aplicación, como herramienta de gestión y seguimiento de _issues_ (características, bugs, etc.) a implementar en el proyecto. Podríamos haber usado otra herramienta más profesional, como Jira o Bugzilla, pero las funcionalidades que proporcionan sobrepasan nuestras necesidades.
-
-Utilizaremos git para remarcar el caráter incremental. Cuando empecemos a desarrollar un _ticket_ crearemos una rama con su identificador y su nombre y desarrollaremos su implementación en los commits de esa rama. Cuando hayamos terminado el desarrollo mezclaremos esa rama en la rama master. De esta forma, en cualquier momento del desarrollo tendremos en la rama _master_ una versión operativa de la aplicación que podríamos enseñar en una demostración. Esta rama principal incluirá todas las características terminadas hasta el momento.
-
-### GitHub
-
-[GitHub](https://github.com) y [Bitbucket](https://bitbucket.org) son servicios que permiten almacenar y gestionar repositorios Git. GitHub es el más conocido, pero tiene la limitación de no permitir repositorios privados. Bitbucket es muy práctico porque permite que  permite crear un número ilimitado de repositorios privados que se pueden compartir con un máximo de 5 personas. 
-
-GitHub ha introducido una oferta para estudiantes llamada [Student Developer Pack](https://education.github.com/pack) en la que se incluye la posibilidad de un numero ilimitado de repositorios privados que se pueden compartir también por otras personas. Vamos a usar esta opción en las prácticas. La primera práctica será individual, y tendrás que compartir los repositorios con el profesor (`domingogallardo`). Más adelante crearemos equipos y se compartirán los repositorios con todos sus miembros.
-
-## 5. Realización de la práctica
-
-Para realizar esta práctica necesitas lo siguiente:
-
-- [Java SE 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
-- [Play Framework 2.5.6](https://playframework.com/download)
-- Editor o entorno de desarrollo. Recomendamos [Atom](https://atom.io) o [IntelliJ Community Edition](https://www.jetbrains.com/idea/download/).
-- Cuenta de estudiante en GitHub
-
-### 5.1 Pasos previos
-
-#### Máquina virtual
-
-Hemos preparado una máquina virtual Virtual Box con Ubuntu 14.04 64 bits y el software necesario ya instado. El usuario de la MV es `mads` y su login también es `mads`.
-
-Puedes descargar la imagen del disco duro de la MV (el fichero .vdi) de las siguientes URLs. 
-
-En un único archivo ZIP:
-
-- [MADS-2016-17.vdi.zip](http://www.dccia.ua.es/dccia/inf/asignaturas/MADS/software/MADS-2016-17.vdi.zip) (3,3 GB)
-
-En varios archivos, comprimido en formato ZIP multi-part:
-
-- [MADS-2016-17.vdi.multipart.z01](http://www.dccia.ua.es/dccia/inf/asignaturas/MADS/software/MADS-2016-17.vdi.multipart.z01) (1,1 GB)
-- [MADS-2016-17.vdi.multipart.z02](http://www.dccia.ua.es/dccia/inf/asignaturas/MADS/software/MADS-2016-17.vdi.multipart.z02) (1,1 GB)
-- [MADS-2016-17.vdi.multipart.zip](http://www.dccia.ua.es/dccia/inf/asignaturas/MADS/software/MADS-2016-17.vdi.multipart.zip) (1,1 GB)
-
-Para descomprimir en **Mac OS X** o en **Linux** un fichero multi-part desde línea de comando
-
-```
-$ cat MADS-2016-17.vdi.multipart.* > combinado.zip
-$ unzip combinado.zip
-```
-
-También es posible utilizar alguna aplicación:
-
-- [The Unarchiver](https://itunes.apple.com/us/app/the-unarchiver/id425424353?mt=12) en **Mac OS X**.
-- [7-zip](http://www.7-zip.org/download.html) en **Microsoft Windows**.
-
-**Trabajo en el laboratorio con la máquina virtual**
-
-Para trabajar en los ordenadores del laboratorio debes usar VirtualBox en Linux (en Windows hay algún problema con las máquinas virtuales de 64 bits) y llevar el fichero .vdi en un disco o lápiz USB externo. 
-
-Cada vez que empieces a trabajar deberás crear una máquina linux de 64 bits que use como disco duro el fichero .vdi. Asegúrate de crear la máquina con la memoria suficiente (2 GB mínimo) y con un mínimo de 2 procesadores. Cuando termines la sesión deberás **apagar la MV** (¡¡no la dejes en suspensión!!) y desmontar el disco duro externo. Podrás utilizar el disco externo y la imagen para continuar trabajando en casa.
-
-Debes **subir a GitHub todos los cambios conforme los vayas programando**. De esta forma evitas perder el código y quedará grabado tu trabajo continuo para poder hacer un seguimiento de la práctica.
-
-#### Cuenta de estudiante GitHub
-
-Crea una [cuenta de estudiante](https://education.github.com/pack) en GitHub en la que puedas crear repositorios privados
-
-### 5.2 Repositorio prueba Git
-
-Vamos a empezar practicando Git. Debes crear un repositorio llamado `mads-prueba-git` en el que pruebes los comandos básicos de Git. En [estos apuntes de la asignatura](comandos-git.md) puedes encontrar una explicación del funcionamiento de estos comandos. 
-
-Debes crear en el repositorio un mínimo de tres ficheros de texto sobre algún tema que elijas (películas, series de televisión, libros, chistes, etc.) y probar todos los siguientes comandos:
-
-- git add
-- git commit
-- git status
-- git diff
-- git log --oneline
-- creación de ramas
-- merge de ramas (usando --no-ff)
-- rebase de ramas (avanzamos el master y la rama, y después hacemos un rebase de la rama y un merge --no-ff desde la master)
-- git log --oneline --graph (para comprobar el grafo de commits)
-- comandos para modificar la historia: cambiar el último mensaje de commit, deshacer el último commit y crear una rama en un punto pasado de la historia
-
-Sube el repositorio a GitHub y compártelo con el profesor (`domingogallardo`).
-
-### 5.3 Desarrollo de la aplicación `play-todolist`
-
-Detallamos a continuación los primeros pasos de la práctica. Si los sigues con atención comprobarás cómo construir una primera aplicación web con Play Framework. Después deberás continuar realizando la práctica tu solo/a.
-
-Cualquier duda que te surja sobre cualquiera de las tecnologías intenta resolverla primero de la forma habitual (consultando _google_ y _stack overflow_). Si la pregunta es sobre Play, comprueba bien que las respuestas se refieren a la versión que estamos utilizando (la 2.5), porque el framework ha cambiado con mucha frecuencia.
-
-En el caso en que no encuentres la solución, no dudes en consultar en el foro de la asignatura en Moodle. Te podrá contestar cualquier compañero o el profesor de la asignatura, así podemos aprender estas tecnologías entre todos.
-
-Veamos los pasos a seguir:
-
-#### Creación de la aplicación inicial `play-todolist`
-
-- En la máquina virtual ya está instalado Play Framework y el comando `activator` está en el PATH. Para comprobar dónde se encuentra ubicado, puedes lanzar la siguiente instrucción:
-
-    ```
-    $ which activator
-    /opt/activator-1.3.10-minimal/bin/activator
-    ```
-
-- Creamos la aplicación base en algún directorio, por ejemplo el escritorio:
-
-    ```
-    $ cd Escritorio
-    $ activator new
-    ```
-
-    Nos mostrará una lista de plantillas, escribimos `play-java` y le damos al nuevo proyecto el nombre `mads-todolist`.
-
-- Se habrá creado el directorio con ese nombre. Nos movemos a él, hacemos un `ls` para comprobar los directorios y ficheros que se han creado y lanzamos play:
-
-    ```
-    $ cd mads-todolist
-    $ ls
-    app  build.sbt  libexec  logs     public  target
-    bin  conf       LICENSE  project  README  test
-    $ activator compile
-    $ activator run
-    ```
-
-    La primera vez que lanzamos el comando `activator compile`, tardará bastante en arrancar la aplicación porque play comprueba todas las dependencias y se descarga las librerías que no están disponibles en local. El comando `activator run` pondrá el servidor de play a escuchar en el puerto 9000. El comando `run` también ejecuta una compilación previa. Podríamos invocarlo directamente sin el primero.
-
-- Abre el navegador e abre la URL [http:localhost:9000](http:localhost:9000). Verás que play compila los programas fuentes y que responde con una página de saludo:
-
-    <img src="imagenes/pantalla1-play.png" width="700px">
-
-- Estudia cómo funciona la aplicación. Lanza `Atom` y carga el directorio `mads-todolist`:
-
-    <img src="imagenes/atom-con-play.png" width="500px">
-
-    Estudia qué función cumple cada directorio y cada fichero. Comprueba cómo se muestra la frase `"Your new application is ready"` en la acción `index()` en el fichero `app/controllers/HomeController.java`. Prueba a cambiarla y recarga la página. Verás que Play automáticamente recompila la aplicación y muestra la nueva frase. Prueba después a introducir un error (por ejemplo, quitar las dobles comillas de alguna cadena) y vuelve a recargar la página. Verás que se muestra el error en el propio navegador:
-
-    <img src="imagenes/error-play.png" width="700px">
-
-- Arregla el error y vuelve a cargar la página para comprobar que funciona correctamente.
-
-Una vez que tenemos una primera versión en funcionamiento es un buen momento de crear el repositorio local con git:
-
-- Cerramos la aplicación (`ctrl-d`)
-- Estando dentro del directorio recién creado `Escritorio/mads-todolist/` ejecutamos el comando para inicializar git y llenar el repositorio local con la primera version:
-
-    ```
-    $ git init
-    Initialized empty Git repository in /home/mads/Escritorio/mads-todolist/.git/
-    $ git add .
-    $ git commit -m "Versión inicial"
-
-    *** Please tell me who you are.
-
-    Run
-
-    git config --global user.email "you@example.com"
-    git config --global user.name "Your Name"
-
-    to set your account's default identity.
-    Omit --global to set the identity only in this repository.
-
-    fatal: unable to auto-detect email address (got 'mads@mads.(none)')
-    ```
-
-    Introducimos nuestro correo electrónico (el que usaremos para autentificarnos en GitHub) y nuestro nombre verdadero:
-
-
-    ```
-    $ git config --global user.email "domingo.gallardo@ua.es"
-    $ git config --global user.name "Domingo Gallardo"
-    $ git commit -m "Versión inicial"
-    ```
-
-#### GitHub
-
-- Crea el repositorio `mads-todolist`
-- Añade a `domingogallardo` como usuario con permiso de lectura (con la opción Settings del menú de la izquierda y Access Management)
-- Conecta la rama principal del repositorio local con bibucket:
-
-    ```
-    $ git remote add origin https://<usuario>github.com/<usuario>/mads-todolist.git
-    $ git push -u origin master
-    ```
-
-#### Trello
-
-Debes crear una cuenta en Trello y crear un tablero llamado "ToDoList Tickets (Nombre y primer apellido)". Ahí pondremos la información de los _tickets_ que hay que desarrollar en el proyecto. Cada ticket será una tarjeta de Trello que se irá moviendo de una columna a otra conforme se vaya desarrollando. 
-
-El tablero deberá tener 4 columnas:
-
-- **En espera**: tickets disponibles para ser seleccionados y empezar a trabajar en ellos. Tendrán un título y una descripción de un conjunto de cambios a implementar en el proyecto. Estos cambios se realizarán un una única rama de Git que terminará integrándose en la rama `master`.
-- **Seleccionados**: tickets listos para empezar a desarrollarlos. Deben tener un número de identificación (**TIC-1**, **TIC-2**, **TIC-3**, ...) y una descripción corta, que después irá en el comentario del commit del _merge_ de la rama. 
-- **En marcha**: tickets que están en desarrollo. Deben tener una rama abierta en el repositorio.
-- **Terminados**: tickets terminados y que ya se han incorporado a la rama `master`. En la descripción de cada tarjeta se debe incluir un enlace al commit con el _merge_ de la rama (el commit resultante de hacer un `merge --no-ff`) en el repositorio remoto en GitHub.
-
-Un ejemplo de cómo debe estar el tablero a mitad del desarrollo:
-
-<img src="imagenes/tickets-trello.png" width="800px">
-
-### 5.4 Primera funcionalidad
-
-Vamos a crear una primera funcionalidad muy sencilla. Nos va a servir para comprobar el flujo de trabajo con Trello y git. 
-
-Empezamos con **Trello**:
-
-- Creamos una tarjeta llamada **Página Home con saludo** en la columna **En espera**. Añadimos una descripción en la tarjeta:
-
-    > Para comprobar que Play está funcionando correctamente crearemos una ruta, un controller y una vista que responda a las peticiones
-    > ```http://localhost:9000/saludo``` y ```http://localhost:9000/saludo?nombre=Pepe```. Se debe devolver a la petición un HTML con un saludo.
-
-- Movemos la tarjeta a la columna **Seleccionados** y añadimos al título de la tarjeta el número de _ticket_: **TIC-1**.
-- Movemos la tarjeta a la columna **En marcha** para indicar que se empieza a implementar la característica.
-- Crearemos entonces una rama en la que desarrollaremos la característica y después, cuando hayamos comprobado que funciona correctamente, mezclaremos esa rama con la rama principal, subiremos los cambios a GitHub y pasaremos la etiqueta a **Terminados**.
-
-Desarrollo de la característica y usando Git:
-
-#### Página de saludo
-
-- Creamos una rama con el nombre `tic-1-pagina-home-saludo`:
-
-    ```
-    $ git checkout -b tic-1-pagina-home-saludo
-    Switched to a new branch 'tic-1-pagina-home-saludo'
-    mads@mads:~/Escritorio/mads-todolist$ git branch
-    * feature1
-    master
-    ```
-
-- Añadimos una nueva ruta en el fichero `conf/routes`:
-
-    **conf/routes**
-
-    ```
-    ...
-    GET     /saludo                     controllers.ApplicationController.saludo()
-    ...
-    ```
-
-- Añadimos la acción `controllers.ApplicationController.saludo`:
-
-    **app/controllers/ApplicationController.java**
-
-    ```java
-    package controllers;
-
-    import play.mvc.*;
-    import views.html.*;
-
-    public class ApplicationController extends Controller {
-
-       public Result saludo() {
-          return ok(saludo.render());
-       }
-    }
-    ```
-
-- Añadimos la vista `saludo.scala.html`. El nombre del fichero debe corresponder con el nombre indicado en la acción del controller (añadiendo la extensión `.scala.html`):
-
-    **app/views/saludo.scala.html**
-
-    ```html
-    @main("Hola") {
-        <h1>Hola mundo!</h1>
-    }
-    ```
-
-- Comprobamos que se devuelve el saludo al acceder a la página [http://localhost:9000/saludo](http://localhost/saludo)
-
-- Hacemos un commit con los cambios:
-
-
-    ```
-    $ git status
-    $ git add .
-    $ git commit -m "TIC-1 Añadida página de saludo"
-    ```
-
-#### Página de saludo con nombre
-
-Vamos ahora a añadir el parámetro `nombre` a la página de saludo.
-
-- Modificamos la ruta:
-
-    ```
-    ...
-    GET     /saludo                     controllers.Application.saludo(nombre: String)
-    ...
-    ```
-
-- Modificamos la acción:
-
-    ```java
-    public Result saludo(String nombre) {
-        return ok(saludo.render(nombre));
-    }
-    ```
-
-- Modificamos la plantilla, añadiendo el parámetro `nombre` de tipo String. Hay que hacer notar que el código que se ejecuta en la plantilla (el precedido con el carácter `@`) es código Scala. 
-
-    ```html
-    @(nombre: String)
-
-    @main("Hola") {
-        <h1>Hola <em>@nombre</em>!</h1>
-    }
-    ```
-
-- Comprobamos que funciona correctamente realizando la petición [http://localhost:9000/saludo?nombre=Pepe](http://localhost:9000/saludo?nombre=Pepe)
-
-- Por último, realizamos el commit y, como hemos terminado la característica, mezclamos la rama con la principal y borramos la rama
-
-    ```
-    $ git commit -am "TIC-1 Añadido parametro nombre a la página de saludo"
-    $ git checkout master
-    $ git merge --no-ff tic-1-pagina-home-saludo -m "TIC-1 Merge Página home de saludo"
-    $ git branch -d tic-1-pagina-home-saludo
-    ```
-
-- Subimos los cambios a GitHub:
-
-    ```
-    $ git push 
-    ```
-
-- Si tuviéramos que subir los cambios sin haber mezclado la rama, deberíamos subir la rama al repositorio remoto:
-
-    ```
-    $ git push -u origin <rama>
-    ```
-
-    Y después, cuando borremos la rama en local después de hacer un merge, también hay que borrarla en el repositorio remoto:
-
-    ```
-    $ git push origin --delete <rama>
-    ```
-
-**En Trello**:
-
-Una vez integrada la rama y subidos los cambios a GitHub, moveremos la tarjeta correspondiente a la columna de **Terminados** y **añadiremos en la descripción un enlace al commit con el merge en GitHub**.
-
-Puedes comprobar cómo debe quedar la tarjeta en el tablero que hay [este enlace](https://trello.com/b/EBB0IKKS).
-
-De esta forma podremos revisar los cambios introducidos en cada uno de los _tickets_ terminados.
-
-### 5.5 Resto de funcionalidades
-
-A continuación listamos el _backlog_ de características a implementar en esta práctica. Se tratan de características de muy bajo nivel, que pueden implementarse con pocos commits cada una. Deberás crear un ticket (y una rama) para cada una. Al igual que las pantallas, considera que es un ejemplo. Puedes modificarlo si lo consideras conveniente. El formato del _backlog_ está tomado del libro de Henrik Kniberg [Scrum and XP from the Trenches - 2nd Edition](http://www.infoq.com/minibooks/scrum-xp-from-the-trenches-2).
-
-Puedes utilizar como ayuda para el desarrollo el código que puedes encontrar en el [repositorio GitHub](https://github.com/domingogallardo/mads-todolist/tree/pistas-practica-1).
-**No copies y pegues todo el código de un fichero de golpe, sino sólo lo necesario para completar la característica que estés desarrollando.**
-
-| Nombre | Demostración | Notas |
-| ------ | ------------ | ----- |
-| Página home con saludo | Abrir el navegador en la página raíz del servidor, realizar la petición [http://localhost:9000/saludo?nombre=Pepe](http://localhost:9000/saludo?nombre=Pepe) y comprobar que se devuelve un HTML con un saludo. | Sirve para comprobar que Play está funcionando. |
-| Crear usuario | Abrir la URL de creación de un usuario, introducir sus datos y comprobar que se han añadido a la base de datos. | En esta primera práctica vamos a trabajar con una base de datos en memoria. En lugar de comprobar que el usuario se ha añadido en la BD, sacaremos un mensaje de log si todo ha funcionado bien. |
-| Incluir Bootstrap | Abrir una página cualquiera de la aplicación y comprobar que el CSS incluye ese framework. | |
-| Listar usuarios | Abrir la URL de listado de usuarios y comprobar que aparecen todos los usuarios creados. | La página de listado de usuarios va a ser la página principal de la aplicación, desde la que se van a lanzar el resto de acciones. Incluir un enlace a la acción de crear usuario. |
-| Detalle de un usuario | Abrir la URL del usuario (o pinchar en la acción de _detalle_ asociada al usuario) y comprobar que aparecen correctamente todos sus datos. | El formato de la fecha de nacimiento debe ser dd-MM-yyyy. |
-| Editar usuario | Pinchar en la acción de _editar_ asociada al usuario, realizar alguna modificación de alguno de sus datos y comprobar en el listado y en los detalles que la modificación se ha grabado. | El campo _login_ es obligatorio. Si no se introduce se debe volver al formulario y mostrar un error. |
-| Borrar usuario | Pinchar en la acción de borrado asociada al usuario y comprobar que el usuario desparece del listado. | Se debe enviar una petición DELETE a la URL del usuario. Utilizar un script JavaScript. |
-
-
-### 5.6 Característica adicional
-
-Por último deberás implementar una características adicional: registro y logeo de nuevos usuarios.
-
-Las características anteriores son características "de prueba" con las que probamos el funcionamiento de Play. En el caso de que la aplicación estuviera en producción estas características de gestión de usuarios deberían estar protegidas y sólo podría utilizarlas el usuario administrador. 
-
-Debes implementar ahora una nueva característica: **registro y logeo de nuevos usuarios**. Debes ampliar la aplicación para permitir que nuevos usuarios de la aplicación puedan registrarse (con una pantalla de registro en la que se su pide un login y una contraseña y una comprobación de la contraseña), y logearse, escribiendo correctamente la contraseña. Una vez que el usuario se haya logeado aparecerá una pantalla de saludo. Si el usuario que se registra es un usuario que ya está en la base de datos **sin contraseña** (por ejemplo, porque se ha introducido por el administrador), se actualizará la contraseña, manteniendo los datos que ya tenía. Si el usuario que se registra ya está en la base de datos **con contraseña**, se mostrará un mensaje de error, indicando que el usuario ya existe.
-
-**En ningún caso el administrador podrá asignar contraseñas manualmente. Siempre se le pedirá al usuario una nueva o se creará una de forma aleatoria.**
-
-Debes definir los _tickets_ que consideres necesarios. Puedes añadir los cambios que necesites en todos los componentes de la aplicación. 
-
-Piensa cómo deberían ser las pantallas y qué se debería implementar.
-
-## 6. Entrega y evaluación
-
-- La práctica tiene una duración de 3 semanas y debe estar terminada el martes 4 de octubre.
+Es debido a que la imagen Docker se ha quedado sin memoria. Apágala
+haciendo `CTRL+C` y vuélvela a lanzar con el comando `docker run`.
+
+
+### 4.3. Finalización de la primera historia de usuario y continuación con la siguiente
+
+- Una vez que hemos terminado la primera historia de usuario (todos
+  sus _issues_) debemos modificar la página principal de la wiki (el
+  _backlog_) quitando la historia de la lista de pendientes y
+  pasándola a una lista de historias terminadas.
+
+  <img src="imagenes/historias-pendientes.png" width="600px"/>
+
+- Elaboramos la descripción de la siguiente historia de usuario,
+  creando una página para ella en la que añadimos los detalles, sus
+  condiciones de satisfacción necesarias para que la demos por
+  terminada y un listado tentativo de _issues_ a realizar. En este
+  caso el listado de _issues_ será el definitivo (estamos copiando la
+  guía) pero en el desarrollo real de una historia de usuario es
+  normal que esa lista de _issues_ o tareas sea sólo una propuesta inicial
+  que irá cambiando.
+
+- Realizamos el desarrollo de la segunda historia de usuario siguiendo
+  la misma metodología que en la primera historia. Creamos los
+  _issues_ en GitHub, ahora con una nueva etiqueta con el nombre de la
+  segunda funcionalidad. Para cada _issue_ hacemos el mismo proceso
+  que hemos seguido anteriormente:
+  
+  1. Nos asignamos el _issue_.
+  2. Creamos una rama en la que se desarrolle el _issue_, la subimos
+     a GitHub. Añadimos el enlace a la rama en la descripción del _issue_.
+  3. Movemos el _issue_  a `En marcha` en el tablero. Añadimos un
+     enlace al _issue_ en la descripción de la historia de usuario.
+  4. Desarrollamos los _commits_, los probamos y los subimos a GitHub.
+  5. Cuando el _issue_ está terminado creamos un _pull request_
+     asociado. Lo añadimos en el tablero y quitamos el _issue_.
+  6. Mezclamos el PR, eliminamos la rama en remoto y en local y
+     descargamos la mezcla en `master`. Al cerrar el PR se cerrará
+     también el _issue_. Movemos el PR a `Terminado` en el tablero.
+
+
+### 4.4. Finalización de la segunda historia de usuario
+
+Al terminar la segunda historia de usuario el proyecto debe funcionar
+perfectamente y el repositorio GitHub debe estar tal y como está el
+repositorio guía.
+
+- Todos los _issues_ y PR deben estar cerrados. 
+- Todos los PR deben estar en la columna de `Terminado`. Debe haber 10 PRs.
+- En el milestone 0.1 deben aparecer los PRs realizados.
+- Los 23 tests del proyecto deben pasar correctamente.
+- Las historias implementadas deben funcionar correctamente.
+
+### 4.5. Realización de una tercera historia de usuario (opcional)
+
+Realiza una tercera historia de usuario sencilla propuesta por ti
+siguiendo la metodología anterior. 
+
+No debería ser muy larga, dos o tres _issues_ como máximo. Por
+ejemplo, la de actualización del perfil o una ampliación de los datos
+de las tareas, añadiendo una descripción. O alguna otra que se te
+ocurra.
+
+No escojas la historia `Creación de equipos` porque la desarrollaremos
+en la práctica 2.
+
+
+### 4.6. Finalización de la versión 0.1
+
+Una vez terminada la práctica, creamos un _release_.
+
+- Cuando hayas integrado el último PR, haz un commit en
+  `master` en el que modifiques la versión del proyecto en el fichero
+  `build.sbt`:
+
+  ```
+  version := "0.1"
+  ```
+
+  Publica directamente el commit en `master` (sin hacer PR).
+  
+- Añade en GitHub el _tag_ con el número de versión:
+  - Pincha enlace `releases` en la página principal
+  - Añade una nueva versión: `v0.1` y pulsa el botón para publicar el
+    _release_. Esto creará la etiqueta y la versión en GitHub.
+
+- Por último, cambia la versión actual (en `build.sbt` en `master`) a
+  `0.2-SNAPSHOT` haciendo y publicando un nuevo commit. De esta forma,
+  indicamos que ahora en `master` se está desarrollando la versión
+  0.2.
+
+
+## 5. Entrega y evaluación
+
+- La práctica tiene una duración de 3 semanas y debe estar terminada
+  el martes 4 de octubre.
+- La parte obligatoria puntúa sobre 7 y la opcional sobre 3 puntos.
 - La calificación de la práctica tiene un peso de un 10% en la nota
-  final de la asignatura.
-- Durante el desarrollo se debe compartir con el profesor (usuario: `domingogallardo`)
-    - Repositorios GitHub: `mads-prueba-git` y `mads-todolist`
-    - Tablero trello con los tickets
-- Documentación en Markdown en el directorio `/docs` del repositorio con una breve descripción **de la nueva característica**:
-    - Para el desarrollador: documentación técnica con una explicación rápida de los aspectos más importantes de la implementación
-    - Para el usuario: explicación de las funcionalidades implementadas
-- En la fecha de la entrega se debe subir a Moodle un ZIP que contenga todo el proyecto y dejar la URL del repositorio en GitHub
+  final de la asignatura. 
+- Para realizar la entrega se debe subir a Moodle un ZIP que contenga
+  todo el proyecto, incluyendo la historia Git. Para ello comprime tu
+  directorio local del proyecto **después de haber hecho un
+  `clean`**. Debes dejar también en Moodle la URL del repositorio en
+  GitHub.
 
 Para la evaluación se tendrá en cuenta:
 
-- Desarrollo contínuo (commits realizados a lo largo de las 3 semanas)
-- Buen desarrollo y descripción de los cambios (commits bien documentados, ordenados, ramas de características visibles en la historia de commits)
-- Tablero Trello bien ordenado
-- Uso correcto de la nomeclatura (cada rama debe corresponder a un ticket, cada ticket debe tener un número de identificación que debe aparecer en todos los commits y en el merge)
-- Correcto desarrollo de las funcionalidades de la práctica
-- Cuidado en el aspecto de la aplicación, la terminación, control de errores
-- Características adicionales desarrolladas
+- Desarrollo continuo (los _commits_ deben realizarse a lo largo de
+  las 3 semanas y no dejar todo para la última semana).
+- Correcto desarrollo de la metodología.
+- Corrección del código en las características adicionales desarrolladas.
+
 
