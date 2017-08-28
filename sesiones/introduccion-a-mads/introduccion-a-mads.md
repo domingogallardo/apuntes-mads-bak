@@ -6,11 +6,11 @@
 <kbd><img src="diapositivas/introduccion-a-mads.002.png" width="800px"></kbd>
 
 Puedes consultar la ficha UA de la asignatura en
-[este enlace](http://cv1.cpd.ua.es/ConsPlanesEstudio/cvFichaAsiEEES.asp?wcodasi=34037&wLengua=C&scaca=2016-17).
+[este enlace](http://cv1.cpd.ua.es/ConsPlanesEstudio/cvFichaAsiEEES.asp?wcodasi=34037&wLengua=C&scaca=2017-18).
 
 Herramientas docentes:
 
-- [Moodle](https://moodle2016-17.ua.es/moodle/course/view.php?id=927):
+- [Moodle](https://moodle2017-18.ua.es/moodle/course/view.php?id=784):
   Utilizaremos Moodle para publicar semana a semana enlaces a los
   materiales en GitHub. También se realizarán las entregas finales de
   las prácticas (que se deberán ir subiendo también a GitHub). Y
@@ -22,7 +22,7 @@ Herramientas docentes:
   podrá consultar los últimos cambios que se hayan introducido en los
   materiales.
 
-<kbd><img src="diapositivas/introduccion-a-mads.004.png" width="800px"></kbd>
+<kbd><img src="diapositivas/introduccion-a-mads.003.png" width="800px"></kbd>
 
 - [Henry Kniberg](https://www.crisp.se/konsulter/henrik-kniberg) es un
   gran divulgador de las metodologías ágiles. Trabaja en la actualidad
@@ -36,36 +36,44 @@ Herramientas docentes:
   [ciclo de mejora continua](https://www.google.com/search?rls=en&biw=1363&bih=789&tbm=isch&q=continuous+improvement+cycle&sa=X&ved=0ahUKEwikmbO9m_vOAhWKbxQKHZ2zAwAQhyYIIw)
   de las metodologías _lean_.
 
-<kbd><img src="diapositivas/introduccion-a-mads.005.png" width="800px"></kbd>
+<kbd><img src="diapositivas/introduccion-a-mads.004.png" width="800px"></kbd>
 
 - Hay una relación importante entre teoría y práctica:
-    - En el bloque 2 de teoría se introducen conceptos de pruebas y
-      TDD, que se aplican en la práctica 2
-    - En el bloque 2 también se explican conceptos de integración
-      continua usando flujos de trabajo Git que se aplican en la
-      práctica 3
-    - En el bloque 3 y comienzo del bloque 4 se introducen los
-      conceptos de historias de usuario y de Kanban necesarios para la
-      práctica 4
+    - En la metodología de desarrollo de la práctica 1 se introducen
+      muchos elementos de integración continua y metodologías ágiles:
+      historias de usuario, tablero de _issues_, desarrollo basado en
+      ramas o _pull requests_.
+    - En la práctica 2 se aplican conceptos de pruebas,
+      TDD, flujos de trabajo Git e integración continua que se
+      imparten en el bloque 2 de teoría.
+    - En la práctica 3 se ponen en práctica conceptos de entrega
+      continua (tubería de despliegue, herramientas de automatización
+      de pruebas en distintos entornos) vistos en el bloque 2 de teoría.
+    - En el bloque 3 y comienzo del bloque 4 de teoría se introducen
+      los conceptos de historias de usuario, Scrum y Kanban necesarios
+      para la práctica 4.
 
 - Las prácticas tienen un carácter incremental y cada una va
   introduciendo conceptos y técnicas que se van a utilizar en las
   siguientes. Las dos primeras son individuales y las dos siguientes
   serán en grupo. Las prácticas 2 y 3 serán en grupo. Los grupos
-  deberán tener entre 3 y 4 personas.
+  deberán tener 3 personas.
 
-- El primer examen parcial será el 2 de noviembre (**se ha retrasado
-  una semana: será el 9 de noviembre**) y se realizará en horario de
-  la clase de teoría. El segundo parcial coincidirá con la fecha
-  oficial del examen de la asignatura. En esas fechas se realizarán
-  los exámenes de teoría y práctica.
+- El primer examen parcial de prácticas se realizará en el
+  laboratorio, el miércoles 25 de octubre y el de teoría el jueves 2
+  de noviembre. Los segundos parciales coincidirán con la fecha
+  oficial del examen de la asignatura
 
 - En cuanto a la evaluación, el **70% por ciento** de la calificación
   será por la nota en los exámenes parciales y el **30% por las
-  prácticas**. No hay examen final. Las preguntas serán principalmente
-  de tipo test. Los parciales de la parte de prácticas incluirán
-  preguntas de las tecnologías que se han usado para realizar las
-  prácticas.
+  prácticas**. No hay examen final. Las preguntas de los parciales de
+  teoría y del segundo de prácticas serán de tipo test y de respuestas
+  cortas. El primer parcial de prácticas se realizará en el
+  laboratorio y consistirá en el desarrollo
+  de una pequeña aplicación Play Framework poniendo en práctica las
+  tecnologías y metodología vistas en las prácticas 1 y 2.
+
+<kbd><img src="diapositivas/introduccion-a-mads.005.png" width="800px"></kbd>
 
 <kbd><img src="diapositivas/introduccion-a-mads.006.png" width="800px"></kbd>
 
@@ -79,10 +87,6 @@ Herramientas docentes:
 
 <kbd><img src="diapositivas/introduccion-a-mads.011.png" width="800px"></kbd>
 
-<kbd><img src="diapositivas/introduccion-a-mads.012.png" width="800px"></kbd>
-
-<kbd><img src="diapositivas/introduccion-a-mads.013.png" width="800px"></kbd>
-
 Enlaces:
 
 - [Play Framework](https://www.playframework.com)
@@ -90,9 +94,9 @@ Enlaces:
 - [Git](https://git-scm.com/book/en/v2)
 - [Docker](https://www.docker.com)
 
-<kbd><img src="diapositivas/introduccion-a-mads.014.png" width="800px"></kbd>
+<kbd><img src="diapositivas/introduccion-a-mads.012.png" width="800px"></kbd>
 
-<kbd><img src="diapositivas/introduccion-a-mads.015.png" width="800px"></kbd>
+<kbd><img src="diapositivas/introduccion-a-mads.013.png" width="800px"></kbd>
 
 Todos los libros se encuentran en la biblioteca (en formato físico y/o
 digital), y alguno de ellos están disponibles on-line.
@@ -125,21 +129,8 @@ digital), y alguno de ellos están disponibles on-line.
 - Lisa Crispin: Agile Testing -
   [Biblioteca UA](http://gaudi.ua.es/uhtbin/cgisirsi/0/x/0/05?searchdata1=9780321534460)
 
-<kbd><img src="diapositivas/introduccion-a-mads.015b.png" width="800px"></kbd>
+<kbd><img src="diapositivas/introduccion-a-mads.014.png" width="800px"></kbd>
 
 - Un pequeño debate sobre qué conocéis a priori de las metodologías
   ágiles. Haremos un resumen en la pizarra.
 
-Terminamos la introducción a la asignatura viendo 15 minutos de un
-vídeo muy interesante, del _agilista_ español **Ángel Medinilla**
-([@angel_m](https://twitter.com/angel_m)):
-[Introducción a Lean y Agile](https://www.youtube.com/watch?v=xUoZakVq6Dg). Iremos
-viendo fragmentos del vídeo durante varias semanas; se trata de una
-muy buena introducción a esta primera parte de la asignatura, que
-complementa muy bien lo que iremos estudiando en las clases de teoría.
-
-
-<kbd><img src="diapositivas/introduccion-a-mads.016.png" width="800px"></kbd>
-
-- **!No os vayáis todavía¡**. Falta hacer un juego: el **reto del
-  malvavisco**. Si lo conocéis no digáis nada para no _spoilearlo_.

@@ -37,7 +37,7 @@ Las sesiones tienen una duración variable, entre 45 y 90 minutos.
 
 ### Bloque 1: Valores y principios ágiles (3 semanas)
 
-- S01: Introducción a la asignatura
+- S01: [Introducción a la asignatura](sesiones/introduccion-a-mads/introduccion-a-mads.md)
 - S02: Metodologías Ágiles de Desarrollo de Software
   - Martin Fowler - [The New Methodology](lecturas/martin-fowler_the-new-methodology.pdf)
 - S03: Manifiesto Ágil
