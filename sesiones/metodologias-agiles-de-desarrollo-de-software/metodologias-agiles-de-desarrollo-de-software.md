@@ -10,7 +10,7 @@
 - Repasaremos algunos conceptos que todos conocemos, pero dándoles la
   **orientación específica** que vamos a utilizar en la asignatura.
 
-<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.002.b.png" width="800px"></kbd>
+<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.003.png" width="800px"></kbd>
 
 - Es importante comprobar qué entendemos por desarrollo de software
   **antes** de empezar la asignatura.
@@ -25,9 +25,9 @@
 - Haremos un **esquema** en la pizarra conforme se contestan las
   preguntas.
 
-<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.003.png" width="800px"></kbd>
-
 <kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.004.png" width="800px"></kbd>
+
+<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.005.png" width="800px"></kbd>
 
 - Las metáforas ayudan a establecer una **cultura**, un estilo común
   de trabajo en el equipo o en la empresa. Una cultura proporciona un
@@ -40,7 +40,7 @@
   y
   [Spotify engineering culture (part 2)](https://labs.spotify.com/2014/09/20/spotify-engineering-culture-part-2/).
 
-<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.005.png" width="800px"></kbd>
+<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.006.png" width="800px"></kbd>
 
 - El software es **multidimiensional**, se puede considerar desde
   muchos puntos de vista. Por eso hay múltiples metáforas, todas ellas
@@ -51,7 +51,7 @@
   buena: el desarrollo de software no es una actividad predictiva,
   sino **adaptativa** (más sobre ello en otras diapositivas).
 
-<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.006.png" width="800px"></kbd>
+<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.007.png" width="800px"></kbd>
 
 - Una de las características distintivas más importantes del software,
   frente a otros productos desarrollados por otras ingenierías, es
@@ -63,7 +63,7 @@
   escribir y publicar una actualización en **minutos o horas**.
 - El software debe ser _soft_.
 
-<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.007.png" width="800px"></kbd>
+<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.008.png" width="800px"></kbd>
 
 - **Obligatorio leer y estudiar** el artículo de Martin Fowler
   [The new methodology](../../lecturas/martin-fowler_the-new-methodology.pdf)
@@ -78,7 +78,7 @@
   - El enlace original al artículo de Martin Fowler
     [es este](http://www.martinfowler.com/articles/newMethodology.html).
 
-<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.008.png" width="800px"></kbd>
+<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.009.png" width="800px"></kbd>
 
 - Juego de palabras en inglés: **_build the right thing_** y **_build
   the thing right_**.
@@ -88,7 +88,7 @@
   (_features_) que satisfacen mejor los objetivos finales del
   proyecto: **software que funciona** (_working software_).
 
-<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.009.png" width="800px"></kbd>
+<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.010.png" width="800px"></kbd>
 
 - Un proyecto con éxito es el resultado de una buena combinación de
   cuatro elementos: personas, proceso (metodología), producto (alcance
@@ -98,7 +98,7 @@
   proyecto. En los proyectos en marcha se pueden realizar ajustes y
   **pequeños experimentos** que permitan comprobar cómo mejorar.
 
-<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.010.png" width="800px"></kbd>
+<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.011.png" width="800px"></kbd>
 
 - La forma de **desplegar** un producto software para que pueda ser
   usado por los clientes ha cambiado mucho en los últimos años.
@@ -108,7 +108,7 @@
   con la explicación de qué es un disquete, para todos los que no los
   hayan conocido.
 
-<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.011.png" width="800px"></kbd>
+<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.012.png" width="800px"></kbd>
 
 - El valor de un proyecto, o de una funcionalidad, es lo contento que
   se queda el cliente cuando lo usa.
@@ -117,7 +117,7 @@
 - El software en funcionamiento es un sistema complejo en el que
   participan usuarios, otro software, datos, etc.
 
-<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.012.png" width="800px"></kbd>
+<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.013.png" width="800px"></kbd>
 
 - El concepto de **deuda técnica** aparecerá más de una vez en la
   asignatura: parches, o arreglos rápidos que hacemos en el software
@@ -128,11 +128,11 @@
   detalle, la puedes encontrar en este
   [post de Javier Garzás](http://www.javiergarzas.com/2012/11/deuda-tecnica-2.html).
 
-<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.013.png" width="800px"></kbd>
-
 <kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.014.png" width="800px"></kbd>
 
 <kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.015.png" width="800px"></kbd>
+
+<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.016.png" width="800px"></kbd>
 
 - En el modelo de cascada el conjunto de requisitos está totalmente
   definido y cerrado.
@@ -144,7 +144,7 @@
   rectificación, la integración con otros desarrollos es es misión
   imposible.
 
-<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.016.png" width="800px"></kbd>
+<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.017.png" width="800px"></kbd>
 
 - Una de las características más importantes del modelo en V es que se
   muestra gráficamente la relación los distintos **niveles de
@@ -155,9 +155,9 @@
   unitarias. Las pruebas se diseñan **al mismo tiempo** que el
   software en cada uno de los niveles.
 
-<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.017.png" width="800px"></kbd>
-
 <kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.018.png" width="800px"></kbd>
+
+<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.019.png" width="800px"></kbd>
 
 - Ya os habrán contado el **_chiste del columpio en el árbol_** en
   alguna otra asignatura. La moraleja es muy visual: cada uno
@@ -168,7 +168,7 @@
   explica
   [la historia del chiste](http://www.businessballs.com/treeswing.htm).
 
-<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.019.png" width="800px"></kbd>
+<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.020.png" width="800px"></kbd>
 
 - El modelo en espiral es un **antecesor** de los modelos de
   desarrollo ágil.
@@ -186,11 +186,11 @@
   diseño de productos (con **impresoras 3D**) o el cine y los
   videojuegos (con modelos y escenas de baja fidelidad).
 
-<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.020.png" width="800px"></kbd>
-
 <kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.021.png" width="800px"></kbd>
 
 <kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.022.png" width="800px"></kbd>
+
+<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.023.png" width="800px"></kbd>
 
 - Muchas palabras en un único cartel: adaptabilidad, automatización,
   cadencia, frecuencia, propiedad, calidad, transparencia, unidad,
@@ -202,9 +202,9 @@
   interesante libro:
   [The Agile Samurai](https://pragprog.com/book/jtrap/the-agile-samurai).
 
-<kbd><img src="https://imagery.pragprog.com/products/176/jtrap.jpg?1298589898" width="200px"></kbd>
+<img src="https://imagery.pragprog.com/products/176/jtrap.jpg?1298589898" width="200px">
 
-<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.023.png" width="800px"></kbd>
+<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.024.png" width="800px"></kbd>
 
 - El objetivo del desarrollo es **resolver un problema** del
   cliente. Ya hemos comentado que esto implica un proceso iterativo de
@@ -220,9 +220,9 @@
 - Las necesidades de cambios en el negocio serán también
   **oportunidades** de nuevos contratos de desarrollo.
 
-<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.024.png" width="800px"></kbd>
-
 <kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.025.png" width="800px"></kbd>
+
+<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.026.png" width="800px"></kbd>
 
 - Es fundamental utilizar herramientas, frameworks, diseños de código,
   etc. que permitan **introducir cambios fácilmente** en la
@@ -233,7 +233,7 @@
   **nuevos cambios no rompan ninguna funcionalidad** ya
   introducida. Esto es lo que se denomina _regression testing_.
 
-<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.026.png" width="800px"></kbd>
+<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.027.png" width="800px"></kbd>
 
 - ¿Cuánto de corta debe ser una iteración? **2 o 3 semanas** es una
   cantidad de tiempo razonable.
@@ -250,12 +250,12 @@
   metodologías ágiles, es más propio de modelos antiguos de desarrollo
   en cascada.
 
-<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.027.png" width="800px"></kbd>
+<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.028.png" width="800px"></kbd>
 
 - Los veremos con más detalle la semana que viene, cuando hablemos del
   **manifiesto ágil**.
 
-<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.028.png" width="800px"></kbd>
+<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.029.png" width="800px"></kbd>
 
 - Cuando realizamos un desarrollo incremental hay que incluir en cada
   incremento **todas las capas** de la aplicación (acceso a datos,
@@ -273,7 +273,7 @@
   funcionalidades menos valiosas (ajustes de interfaces de usuario,
   características para usuarios avanzados, etc.)
 
-<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.029.png" width="800px"></kbd>
+<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.030.png" width="800px"></kbd>
 
 - El concepto de Producto Mínimo Viable (MVP, _Minimum Viable
   Product_) tiene su origen en la necesidad de las _startups_ de
@@ -283,13 +283,13 @@
   filosofía _lean_ a las _startups_ denominada
   [**_lean startup methodology_**](http://theleanstartup.com/pribnciples).
 
-<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.030.png" width="800px"></kbd>
+<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.031.png" width="800px"></kbd>
 
 - No existe ninguna _bala de plata_ (_silver bullet_) que de la
   respuesta mágica al desarrollo de software (artículo de Brooks:
   [No Silver Bullet](../../lecturas/Brooks-NoSilverBullet.pdf)).
 
-<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.031.png" width="800px"></kbd>
+<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.032.png" width="800px"></kbd>
 
 - La entrega continua es la respuesta a las prácticas tradicionales en
   las que la integración y el despliegue se hace al final de todo el
@@ -309,11 +309,11 @@
   [_Understanding the Open Source Development Model_](https://www.linux.com/publications/understanding-open-source-development-model)
   de Ibrahim Haddad en 2011.
 
-<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.032.png" width="800px"></kbd>
+<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.033.png" width="800px"></kbd>
 
 - Veremos con más detalle estos principios en el tema correspondiente.
 
-<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.033.png" width="800px"></kbd>
+<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.034.png" width="800px"></kbd>
 
 - Cuatro gráficas muy relevantes sacadas de la
   [pila de diapositivas de Henrik Kniberg](https://dl.dropboxusercontent.com/u/1018963/Henrik%20Kniberg%20Agile%20Lean%20Slides.pdf)
@@ -327,16 +327,16 @@
     - Transparencia y participación del cliente
     - Intensidad de trabajo y estrés
 
-<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.034.png" width="800px"></kbd>
-
 <kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.035.png" width="800px"></kbd>
+
+<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.036.png" width="800px"></kbd>
 
 - En España cada vez más empresas están introduciendo estas
   metodologías. Sobre todo empresas nuevas y _startups_.
 - Cada vez más asistencia a eventos como la
   [Conferencia Agile Spain](http://cas2016.agile-spain.org).
 
-<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.036.png" width="800px"></kbd>
+<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.037.png" width="800px"></kbd>
 
 - Vídeo: [A day in the Cocktail](https://vimeo.com/44320895)
 - El vídeo es
@@ -344,7 +344,7 @@
   sigue desarrollando software dirigido por
   [Alberto Knapp](https://twitter.com/albertoknapp).
 
-<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.038.png" width="800px"></kbd>
+<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.039.png" width="800px"></kbd>
 
 Enlaces de la bibliografía:
 
