@@ -1,11 +1,8 @@
 # Práctica 1: Primera aplicación Play Framework Java
 
--
-  [1. Objetivos y conceptos previos](https://github.com/domingogallardo/apuntes-mads/blob/master/practicas/01-introduccion-play/introduccion-play.md#1-objetivos-y-conceptos-previos)
-  -
-    [1.1. Aplicación a desarrollar](https://github.com/domingogallardo/apuntes-mads/blob/master/practicas/01-introduccion-play/introduccion-play.md#11-aplicación-a-desarrollar)
-  -
-    [1.2. Arquitectura de la aplicación](https://github.com/domingogallardo/apuntes-mads/blob/master/practicas/01-introduccion-play/introduccion-play.md#12-arquitectura-de-la-aplicación)
+- [1. Objetivos y conceptos previos](https://github.com/domingogallardo/apuntes-mads/blob/master/practicas/01-introduccion-play/introduccion-play.md#1-objetivos-y-conceptos-previos)
+  - [1.1. Aplicación a desarrollar](https://github.com/domingogallardo/apuntes-mads/blob/master/practicas/01-introduccion-play/introduccion-play.md#11-aplicación-a-desarrollar)
+  - [1.2. Arquitectura de la aplicación](https://github.com/domingogallardo/apuntes-mads/blob/master/practicas/01-introduccion-play/introduccion-play.md#12-arquitectura-de-la-aplicación)
   - [1.3. Tecnologías](https://github.com/domingogallardo/apuntes-mads/blob/master/practicas/01-introduccion-play/introduccion-play.md#13-tecnologías)
   - [1.4. Metodología de desarrollo](https://github.com/domingogallardo/apuntes-mads/blob/master/practicas/01-introduccion-play/introduccion-play.md#14-metodología-de-desarrollo)
 - [2. Entorno para realizar la práctica](https://github.com/domingogallardo/apuntes-mads/blob/master/practicas/01-introduccion-play/introduccion-play.md#2-entorno-para-realizar-la-práctica)
@@ -13,13 +10,11 @@
 - [4. Desarrollo de la práctica](https://github.com/domingogallardo/apuntes-mads/blob/master/practicas/01-introduccion-play/introduccion-play.md#4-desarrollo-de-la-práctica)
   - [4.1. Desarrollo de la primera historia de usuario](https://github.com/domingogallardo/apuntes-mads/blob/master/practicas/01-introduccion-play/introduccion-play.md#41-desarrollo-de-la-primera-historia-de-usuario)
   - [4.2. Algunas indicaciones sobre el desarrollo de la primera funcionalidad](https://github.com/domingogallardo/apuntes-mads/blob/master/practicas/01-introduccion-play/introduccion-play.md#42-algunas-indicaciones-sobre-el-desarrollo-de-la-primera-funcionalidad)
-  - [4.3. Finalización de la primera historia de usuario y continuación con la siguiente](https://github.com/domingogallardo/apuntes-mads/blob/master/practicas/01-introduccion-play/introduccion-play.md#43-finalización-de-la-primera-historia-de-usuario-y-continuación-con-la- siguiente)
+  - [4.3. Finalización de la primera historia de usuario y continuación con la siguiente](https://github.com/domingogallardo/apuntes-mads/blob/master/practicas/01-introduccion-play/introduccion-play.md#43-finalización-de-la-primera-historia-de-usuario-y-continuación-con-la-siguiente)
   - [4.4. Finalización de la segunda historia de usuario](https://github.com/domingogallardo/apuntes-mads/blob/master/practicas/01-introduccion-play/introduccion-play.md#44-finalización-de-la-segunda-historia-de-usuario)
-  -
-  [4.5. Realización de una tercera historia de usuario (opcional)](https://github.com/domingogallardo/apuntes-mads/blob/master/practicas/01-introduccion-play/introduccion-play.md#45-realización-de-una-tercera-historia-de-usuario-(opcional))
+  - [4.5. Realización de una tercera historia de usuario (opcional)](https://github.com/domingogallardo/apuntes-mads/blob/master/practicas/01-introduccion-play/introduccion-play.md#45-realización-de-una-tercera-historia-de-usuario-opcional)
   - [4.6. Finalización de la versión 0.1](https://github.com/domingogallardo/apuntes-mads/blob/master/practicas/01-introduccion-play/introduccion-play.md#46-finalización-de-la-versión-01)
--
-  [5. Entrega y evaluación](https://github.com/domingogallardo/apuntes-mads/blob/master/practicas/01-introduccion-play/introduccion-play.md#5-entrega-y-evaluación)
+- [5. Entrega y evaluación](https://github.com/domingogallardo/apuntes-mads/blob/master/practicas/01-introduccion-play/introduccion-play.md#5-entrega-y-evaluación)
 
 
 ## 1. Objetivos y conceptos previos
