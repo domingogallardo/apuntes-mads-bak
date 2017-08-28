@@ -1,23 +1,28 @@
 # Práctica 1: Primera aplicación Play Framework Java
 
-<!--
+-
+  [1. Objetivos y conceptos previos](https://github.com/domingogallardo/apuntes-mads/blob/master/practicas/01-introduccion-play/introduccion-play.md#1-objetivos-y-conceptos-previos)
+  -
+    [1.1. Aplicación a desarrollar](https://github.com/domingogallardo/apuntes-mads/blob/master/practicas/01-introduccion-play/introduccion-play.md#11-aplicación-a-desarrollar)
+  -
+    [1.2. Arquitectura de la aplicación](https://github.com/domingogallardo/apuntes-mads/blob/master/practicas/01-introduccion-play/introduccion-play.md#12-arquitectura-de-la-aplicación)
+  - [1.3. Tecnologías](https://github.com/domingogallardo/apuntes-mads/blob/master/practicas/01-introduccion-play/introduccion-play.md#13-tecnologías)
+  - [1.4. Metodología de desarrollo](https://github.com/domingogallardo/apuntes-mads/blob/master/practicas/01-introduccion-play/introduccion-play.md#14-metodología-de-desarrollo)
+- [2. Entorno para realizar la práctica](https://github.com/domingogallardo/apuntes-mads/blob/master/practicas/01-introduccion-play/introduccion-play.md#2-entorno-para-realizar-la-práctica)
+- [3. Antes de empezar la práctica](https://github.com/domingogallardo/apuntes-mads/blob/master/practicas/01-introduccion-play/introduccion-play.md#3-antes-de-empezar-la-práctica)
+- [4. Desarrollo de la práctica](https://github.com/domingogallardo/apuntes-mads/blob/master/practicas/01-introduccion-play/introduccion-play.md#4-desarrollo-de-la-práctica)
+  - [4.1. Desarrollo de la primera historia de usuario](https://github.com/domingogallardo/apuntes-mads/blob/master/practicas/01-introduccion-play/introduccion-play.md#41-desarrollo-de-la-primera-historia-de-usuario)
+  - [4.2. Algunas indicaciones sobre el desarrollo de la primera funcionalidad](https://github.com/domingogallardo/apuntes-mads/blob/master/practicas/01-introduccion-play/introduccion-play.md#42-algunas-indicaciones-sobre-el-desarrollo-de-la-primera-funcionalidad)
+  - [4.3. Finalización de la primera historia de usuario y continuación con la siguiente](https://github.com/domingogallardo/apuntes-mads/blob/master/practicas/01-introduccion-play/introduccion-play.md#43-finalización-de-la-primera-historia-de-usuario-y-continuación-con-la- siguiente)
+  - [4.4. Finalización de la segunda historia de usuario](https://github.com/domingogallardo/apuntes-mads/blob/master/practicas/01-introduccion-play/introduccion-play.md#44-finalización-de-la-segunda-historia-de-usuario)
+  -
+  [4.5. Realización de una tercera historia de usuario (opcional)](https://github.com/domingogallardo/apuntes-mads/blob/master/practicas/01-introduccion-play/introduccion-play.md#45-realización-de-una-tercera-historia-de-usuario-(opcional))
+  - [4.6. Finalización de la versión 0.1](https://github.com/domingogallardo/apuntes-mads/blob/master/practicas/01-introduccion-play/introduccion-play.md#46-finalización-de-la-versión-01)
+-
+  [5. Entrega y evaluación](https://github.com/domingogallardo/apuntes-mads/blob/master/practicas/01-introduccion-play/introduccion-play.md#5-entrega-y-evaluación)
 
-- [1. Objetivos](#1-objetivos)
-- [2. Aplicación a desarrollar: ToDo List para equipos](#2-aplicación-a-desarrollar-todo-list-para-equipos)
-- [3. Lenguajes, APIs y frameworks de programación](#3-lenguajes-apis-y-frameworks-de-programación)
-- [4. Metodología de desarrollo](#4-metodología-de-desarrollo)
-- [5. Realización de la práctica](#5-realización-de-la-práctica)
-    - [5.1 Pasos previos](#51-pasos-previos)
-    - [5.2 Repositorio prueba Git](#52-repositorio-prueba-git)
-    - [5.3 Desarrollo de la aplicación `play-todolist`](#53-desarrollo-de-la-aplicación-play-todolist)
-    - [5.4 Primera funcionalidad](#54-primera-funcionalidad)
-    - [5.5 Resto de funcionalidades](#55-resto-de-funcionalidades)
-    - [5.6 Característica adicional](#56-característica-adicional)
-- [6. Entrega y evaluación](#6-entrega-y-evaluación)
 
--->
-
-## 1. Objetivos y resumen de la aplicación a desarrollar
+## 1. Objetivos y conceptos previos
 
 En la primera práctica de la asignatura vamos a desarrollar paso a
 paso una aplicación web con
@@ -33,7 +38,7 @@ práctica lo encontrarás en el repositorio
 en GitHub.
 
 
-### Aplicación a desarrollar
+### 1.1. Aplicación a desarrollar
 
 Al terminar la práctica habrás desarrollado una aplicación para
 gestionar listas de tareas pendientes de los usuarios de una
@@ -65,7 +70,7 @@ de las prácticas. La aplicación tiene como nombre clave **SGT**
 (_Sistema de Gestión de Tareas_). El nombre común de la aplicación es
 **ToDoList**.
 
-### Arquitectura de la aplicación
+### 1.2. Arquitectura de la aplicación
 
 La arquitectura de la aplicación será la típica de una aplicación web
 que refuerza una separación entre presentación, controlador, servicio
@@ -111,7 +116,7 @@ cualquier informático es el de O'Reilly:
 [tutoriales de Mozilla](https://developer.mozilla.org/en-US/docs/Web/Tutorials).
 
 
-### Tecnologías que usaremos
+### 1.3. Tecnologías
 
 Esta práctica servirá para tomar un primer contacto con todas las
 tecnologías de desarrollo de aplicaciones web que vamos a utilizar en
@@ -216,7 +221,7 @@ tener a mano su documentación, en concreto la lista de componentes:
 - [Bootstrap components](https://getbootstrap.com/docs/3.3/components/)
 
 
-### Metodología de desarrollo
+### 1.4. Metodología de desarrollo
 
 En cuanto a la metodología de desarrollo, en esta primera práctica
 repasaremos e introduciremos el uso de:
@@ -892,7 +897,7 @@ encontrar fácilmente en el PR que cierra el _issue_.
    la cadena `Hola` de la petición y la pasa como parámetro al
    controlador `UsuarioController.saludo`.
 
-### 4.2. Algunos indicaciones sobre el desarrollo de la primera funcionalidad
+### 4.2. Algunas indicaciones sobre el desarrollo de la primera funcionalidad
 
 #### _Commit_ "Versión inicial registro usuario"
 
@@ -1031,7 +1036,7 @@ Una vez terminada la práctica, creamos un _release_.
 - La práctica tiene una duración de 3 semanas y debe estar terminada
   el martes 3 de octubre.
 - La parte obligatoria puntúa sobre 7 y la opcional sobre 3 puntos.
-- La calificación de la práctica tiene un peso de un 10% en la nota
+- La calificación de la práctica tiene un peso de un 8% en la nota
   final de la asignatura. 
 - Para realizar la entrega se debe subir a Moodle un ZIP que contenga
   todo el proyecto, incluyendo la historia Git. Para ello comprime tu
