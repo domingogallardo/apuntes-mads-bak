@@ -1029,7 +1029,7 @@ Una vez terminada la práctica, creamos un _release_.
 ## 5. Entrega y evaluación
 
 - La práctica tiene una duración de 3 semanas y debe estar terminada
-  el martes 4 de octubre.
+  el martes 3 de octubre.
 - La parte obligatoria puntúa sobre 7 y la opcional sobre 3 puntos.
 - La calificación de la práctica tiene un peso de un 10% en la nota
   final de la asignatura. 
