@@ -8,7 +8,7 @@ La asignatura se imparte en 15 semanas de clases. Cada semana tiene
 una clase de teoría y una de prácticas, ambas con una duración de 2
 horas.
 
-La distribución semanal de actividades está disponible en la [página de Moodle]()
+La distribución semanal de actividades está disponible en la [página de Moodle](https://moodle2017-18.ua.es/moodle/course/view.php?id=784)
 de la asignatura.
 
 ## Prácticas
