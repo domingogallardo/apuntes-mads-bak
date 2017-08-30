@@ -63,6 +63,8 @@
   escribir y publicar una actualización en **minutos o horas**.
 - El software debe ser _soft_.
 
+<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.007b.png" width="800px"></kbd>
+
 <kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.008.png" width="800px"></kbd>
 
 - **Obligatorio leer y estudiar** el artículo de Martin Fowler
@@ -78,6 +80,58 @@
   - El enlace original al artículo de Martin Fowler
     [es este](http://www.martinfowler.com/articles/newMethodology.html).
 
+<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.008b.png" width="800px"></kbd>
+
+- En agosto de 2016 tuvo mucha repercusión el caso de un ingeniero de
+  Google (James Damore) que distribuyó entre las redes internas de la
+  empresa un informe escrito por él que ponía en cuestión la política
+  de diversidad de Google (consultar en la
+  [Wikipedia](https://en.wikipedia.org/wiki/Google%27s_Ideological_Echo_Chamber)). Google
+  promueve de forma activa la incorporación de mujeres en los
+  distintos equipos de la empresa, para intentar compensar el
+  [problema de la falta de mujeres en empresas tecnológicas](https://politikon.es/2015/06/30/las-ninas-no-les-gusta-la-informatica/). El
+  informe salió a la luz pública, creó una gran polémica y Google
+  zanjó el tema despidiendo a Damore por incumplir el código de
+  conducta de la empresa.
+  
+- Se publicaron en las redes muchas opiniones en contra del informe y
+  la postura de Damore. Un artículo en concreto, el escrito en Medium
+  por Yonathan Zunger
+  ([So, about this Googler’s manifesto.](https://medium.com/@yonatanzunger/so-about-this-googlers-manifesto-1e3773ed1788))
+  merece en mi opinión que le dediquemos un tiempo, por hacer una
+  reflexión muy interesante sobre qué considera el autor que es una
+  ingeniería. En concreto, el desarrollo de software:
+
+  - La gente que está empezando a hacer ingeniería piensa que lo
+    fundamental es pasarse todo el día delante del ordenador haciendo
+    cosas como hyper-optimizar un bucle o limpiar el API de una clase.
+    Cuando estás empezando en un trabajo de ingeniero/a esta es la
+    mayor parte de tu trabajo: algo directo y limitado que puede
+    hacerse bien o mal, sin matices, y en donde vas aprendiendo tus
+    habilidades básicas. Más adelante, cuando coges experiencia, llega
+    el momento en el que haces ingeniería de verdad: tu trabajo ya no
+    sólo es hacer, sino tomar decisiones.
+
+  - La ingeniería no es el arte de construir dispositivos; es el arte
+    de resolver problemas, mejorar la vida de las personas. Los
+    dispositivos (software en nuestro caso) no son un fin, sino un
+    medio. Resolver problemas significa lo primero de todo
+    entenderlos. Y eso significa entender a las personas, sus
+    preferencias, las formas en las que interactuarán con nuestro
+    sistema. Todo esto es fundamental cuando estamos construyendo un
+    sistema. Todo el equipo debe conocer profundamente el producto que
+    se está construyendo.
+
+  - Una gran parte del trabajo del desarrollo de software es
+    comunicación y colaboración; dentro del equipo y con otros grupos.
+    - De esta forma se consigue construir un único sistema, coherente
+      y con características claras, en lugar de veinte sistemas
+      diferentes.
+    - La comunicación es fundamental para gestionar las dependencias y
+      los riesgos.
+    - Así se puede diseñar los límites de modularidad correctos que
+      hacen fácil continuar evolucionando el producto en el futuro.
+
 <kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.009.png" width="800px"></kbd>
 
 - Juego de palabras en inglés: **_build the right thing_** y **_build
@@ -87,16 +141,6 @@
 - Tan importante como eso es diseñar el conjunto de características
   (_features_) que satisfacen mejor los objetivos finales del
   proyecto: **software que funciona** (_working software_).
-
-<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.010.png" width="800px"></kbd>
-
-- Un proyecto con éxito es el resultado de una buena combinación de
-  cuatro elementos: personas, proceso (metodología), producto (alcance
-  y complejidad del software a desarrollar) y tecnología utilizada.
-- Un cambio grande en alguna de estas dimensiones es una decisión de
-  gran calado, que habría que realizar al comienzo de un nuevo
-  proyecto. En los proyectos en marcha se pueden realizar ajustes y
-  **pequeños experimentos** que permitan comprobar cómo mejorar.
 
 <kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.011.png" width="800px"></kbd>
 
@@ -127,6 +171,41 @@
   que pagarla. Una buena explicación sobre el concepto, con bastante
   detalle, la puedes encontrar en este
   [post de Javier Garzás](http://www.javiergarzas.com/2012/11/deuda-tecnica-2.html).
+
+
+<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.013b.png" width="800px"></kbd>
+
+- Cada proyecto se puede ver como la combinación de un presupuesto
+  (dinero), un alcance (lo que hay que hacer) y el tiempo
+  disponible. Y estos tres factores se condicionan, unos a otros. Si
+  se reduce el presupuesto, se puede ver afectado el alcance o el
+  tiempo del proyecto. Si se reduce el tiempo, habrá que reducir el
+  alcance o aumentar el presupuesto. Y si, por ejemplo, se aumenta el
+  alcance (las cosas que hay que entregar), habrá que aumentar el
+  presupuesto y/o el tiempo. Todo ello si se quiere mantener la misma
+  calidad. 
+
+- Una práctica usual de gestión de proyectos software dice que el
+  cliente puede fijar hasta dos de estas tres dimensiones, pero tiene
+  que dejar libre la tercera. Así, si fija el presupuesto y el
+  alcance, debe dejar que sea el equipo de desarrollo quien diga
+  cuánto tiempo. Si el cliente fija tiempo y alcance, debe ser
+  flexible en presupuesto. Y si fija tiempo y presupuesto, debe ser
+  flexible en el alcance.
+
+- El mito del hombre-mes se desmonta (entre otros mitos) en el famoso
+  [libro de Frederick Brooks](https://en.wikipedia.org/wiki/The_Mythical_Man-Month).
+
+<kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.013c.png" width="800px"></kbd>
+
+- Un proyecto con éxito es el resultado de una buena combinación de
+  cuatro elementos: personas, proceso (metodología), producto (alcance
+  y complejidad del software a desarrollar) y tecnología utilizada.
+- Un cambio grande en alguna de estas dimensiones es una decisión de
+  gran calado, que habría que realizar al comienzo de un nuevo
+  proyecto. En los proyectos en marcha se pueden realizar ajustes y
+  **pequeños experimentos** que permitan comprobar cómo mejorar.
+
 
 <kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.014.png" width="800px"></kbd>
 
