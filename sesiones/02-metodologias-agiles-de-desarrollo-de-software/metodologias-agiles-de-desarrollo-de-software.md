@@ -390,7 +390,19 @@
 
 <kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.033.png" width="800px"></kbd>
 
-- Veremos con más detalle estos principios en el tema correspondiente.
+- Buen diseño: código modificable, testable, clases pequeñas
+  (responsabilidad única), minimizar dependencias, uso
+  de abstracciones, encapsulación, etc. Todo lo que hemos aprendido en
+  la carrera. Pero **cuidado con la _sobreingeniería_**: un defecto tan malo
+  como el de escribir mal código es escribir código demasiado general
+  con la excusa de que así podemos cambiar cualquier cosa. Muchas
+  veces ese código es más difícil de entender, tarda más en escribirse
+  y en escribir sus tests y termina siendo más complicado de modificar.
+
+- Para que las metodologías ágiles funcionen es necesario una base
+  técnica importante. Es muy recomendable el post de Luis Artola
+  ([@artolamola](https://twitter.com/artolamola) en Twitter):
+  [Lo que los gurús nunca te cuentan sobre Kanban y SCRUM](http://www.programania.net/desarrollo-agil/lo-que-los-gurus-nunca-te-cuentan-sobre-kanban-y-scrum/). 
 
 <kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.034.png" width="800px"></kbd>
 
