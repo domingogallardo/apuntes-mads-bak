@@ -82,7 +82,7 @@
 
 <kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.008b.png" width="800px"></kbd>
 
-- En agosto de 2016 tuvo mucha repercusión el caso de un ingeniero de
+- En agosto de 2017 tuvo mucha repercusión el caso de un ingeniero de
   Google (James Damore) que distribuyó entre las redes internas de la
   empresa un informe escrito por él que ponía en cuestión la política
   de diversidad de Google (consultar en la
