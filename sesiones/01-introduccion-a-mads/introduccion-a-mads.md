@@ -24,17 +24,18 @@ Herramientas docentes:
 
 <kbd><img src="diapositivas/introduccion-a-mads.003.png" width="800px"></kbd>
 
-- [Henry Kniberg](https://www.crisp.se/konsulter/henrik-kniberg) es un
-  gran divulgador de las metodologías ágiles. Trabaja en la actualidad
-  como consultor en Spotify y Lego. Le gusta compartir todo lo que
+- [Henry Kniberg](https://www.crisp.se/konsulter/henrik-kniberg) ha
+  sido un importantísimo divulgador de las metodologías ágiles. Ha
+  trabajado con grandes empresas como Spotify y Lego para implantar en
+  ellas estas metodologías. Le gusta compartir todo lo que
   hace y muchos de los libros que ha escrito están en abierto. Vamos a
   utilizar muchos de sus materiales (diapositivas, vídeos, libros,
   artículos). Muy recomendable su
   [blog](http://blog.crisp.se/author/henrikkniberg).
 
 - El ciclo "-> Ideas -> Code -> Data ->" es una versión del
-  [ciclo de mejora continua](https://www.google.com/search?rls=en&biw=1363&bih=789&tbm=isch&q=continuous+improvement+cycle&sa=X&ved=0ahUKEwikmbO9m_vOAhWKbxQKHZ2zAwAQhyYIIw)
-  de las metodologías _lean_.
+  ciclo de mejora continua (consultar
+  [Kaizen](https://en.wikipedia.org/wiki/Kaizen) en la Wikipedia) de las metodologías _lean_.
 
 <kbd><img src="diapositivas/introduccion-a-mads.004.png" width="800px"></kbd>
 
@@ -56,8 +57,7 @@ Herramientas docentes:
 - Las prácticas tienen un carácter incremental y cada una va
   introduciendo conceptos y técnicas que se van a utilizar en las
   siguientes. Las dos primeras son individuales y las dos siguientes
-  serán en grupo. Las prácticas 2 y 3 serán en grupo. Los grupos
-  deberán tener 3 personas.
+  serán en grupo. Los grupos deberán tener 3 personas.
 
 - El primer examen parcial de prácticas se realizará en el
   laboratorio, el miércoles 25 de octubre y el de teoría el jueves 2
