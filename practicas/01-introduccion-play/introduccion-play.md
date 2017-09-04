@@ -291,8 +291,8 @@ miembros del equipo:
 
   
 - **Pull Requests**: Un _pull request_ permite avisar al equipo de que
-  se va a integrar una rama con un desarrollo nuevo en la rama
-  principal. Cuando creamos un PR, GitHub crea una página en la que se
+  se va a integrar en la rama principal una rama con un desarrollo
+  nuevo. Cuando creamos un PR, GitHub crea una página en la que se
   pueden realizar comentarios, revisiones de código o definir
   políticas de aceptación del PR. Consultar
   [About pull requests](https://help.github.com/articles/about-pull-requests/).
@@ -313,8 +313,9 @@ miembros del equipo:
   <img src="imagenes/github-tablero.png" width="700px"/>
   
 - **Wiki**: Por último, GitHub ofrece una wiki en que utilizaremos
-  para documentar las nuevas _features_ o funcionalidades a
-  implementar. Consultar [documenting your projects on GitHub](https://guides.github.com/features/wikis/).
+  para documentar las nuevas _features_ (también llamadas
+  funcionalidades o historias de usuario) a implementar. Consultar
+  [documenting your projects on GitHub](https://guides.github.com/features/wikis/).
 
   <img src="imagenes/github-wiki.png" width="700px"/>
 
@@ -333,6 +334,14 @@ ofrece GitHub es suficiente para lo que vamos a realizar en la
 asignatura y tiene la ventaja de estar integrado en una misma
 plataforma.
 
+En el repositorio guía del proyecto se ha utilizado esta metodología,
+que vas a tener que reproducir en tu propio repositorio. Puedes
+consultar todos los elementos desarrollados en la guía:
+
+- [_Issues_ terminados](https://github.com/domingogallardo/mads-todolist-guia/issues?q=is%3Aissue+is%3Aclosed)
+- [_Pull requests_ integrados](https://github.com/domingogallardo/mads-todolist-guia/pulls?q=is%3Apr+is%3Aclosed)
+- [Wiki con las historias de usuario](https://github.com/domingogallardo/mads-todolist-guia/wiki)
+- [Tablero](https://github.com/domingogallardo/mads-todolist-guia/projects/1?)
 
 ## 2. Entorno para realizar la práctica
 
@@ -367,19 +376,21 @@ estando en el directorio de la aplicación Play:
 $ <b>docker run --rm  -it -v "${PWD}:/code" -p 80:9000 domingogallardo/playframework</b>
 </code></pre>
 
-El comando `docker` buscará la imagen `domingogallardo/playframework`
-en local y la descargará si no la encuentra. Después la ejecutará
-montando el directorio actual en el directorio `/code` y mapeando el
-puerto 80 de la máquina host en el puerto 9000 del contenedor. Por
-último, lanzará de forma interactiva el comando `sbt` estando en el
-directorio del proyecto Play. Como este directorio está montado en el
-contenedor podrás editar y modificar los programas en la máquina host
-y compilarlos y ejecutarlos desde el comando `sbt` en el contenedor.
+El comando `docker run` buscará la imagen
+`domingogallardo/playframework` en local y la descargará si no la
+encuentra. Después la ejecutará montando el directorio actual en el
+directorio `/code` y mapeando el puerto 80 de la máquina host en el
+puerto 9000 del contenedor. La imagen está configurada para lanzar el
+comando `sbt` sobre el directorio `code`. Como en este directorio está
+montado el directorio de la máquina _host_ en donde tienes el
+proyecto, podrás editar y modificar los ficheros en la propia máquina
+_host_ y compilarlos y ejecutarlos desde el comando `sbt` en el
+contenedor.
 
 Cada máquina docker se define con un fichero `Dockerfile`. Puedes
 mirar el fichero `Dockerfile` de la imagen de la asignatura en
 [este enlace](https://github.com/domingogallardo/playframework/blob/master/Dockerfile). Más
-adelante estudiaremos más sobre Docker.
+adelante en la asignatura estudiaremos más sobre Docker.
 
 
 ## 3. Antes de empezar la práctica
@@ -437,7 +448,7 @@ adelante estudiaremos más sobre Docker.
 4. Descarga el proyecto y comprueba que se compila y ejecuta
    correctamente con la imagen de Docker:
    
-   <pre><code>$ <b>git clone https://github.com/mads-ua/todolist-2017-<usuario>.git</b>
+   <pre><code>$ <b>git clone https://github.com/mads-ua/todolist-2017-usuario.git</b>
    $ <b>cd todolist-2017-usuario</b>
    $ <b>docker run --rm  -it -v "${PWD}:/code" -p 80:9000 domingogallardo/playframework</b>
    [info] Loading project definition from /code/project
@@ -562,9 +573,6 @@ la que crearemos el login y el registro de usuarios.
 #### 4. Creación de los primeros _issues_
 
 - Busca en el repositorio guía los _issues_ de la primera historia de
-  usuario y créalos en tu repositorio.
-
-- Busca en el repositorio guía los _issues_ de la primera historia de
   usuario y créalos en tu repositorio. Escribe la descripción que hay
   en la guía y en la descripción añade un enlace a la historia de
   usuario. Crea también el _label_ correspondiente a
@@ -587,8 +595,8 @@ la que crearemos el login y el registro de usuarios.
   <b>$ git push -u origin modelo-usuario</b>
   </code></pre>
   
-- Añade un comentario al _issue_ con un enlace a la rama que acabas de
-  subir.
+- Añade en GitHub un comentario al _issue_ con un enlace a la rama que
+  acabas de subir.
   
 #### 6. Desarrollo del primer _commit_
 
@@ -785,12 +793,12 @@ encontrar fácilmente en el PR que cierra el _issue_.
 #### 9. Integración de la rama con el _issue_ en `master`, aceptando el PR.
  
 - Antes de realizar la integración en remoto habría que comprobar que
-  funciona en un entorno local de test que funciona
-  correctamente. Podría haber habido algún cambio en `master` (la
-  integración de algunos otros _issues_ que se hayan realizado en
-  paralelo) que entra en conflicto con nuestro _issue_. Ahora no es el
-  caso, porque no se ha desarrollado ningún otro _issue_ en
-  paralelo. Lo dejamos para una futura práctica.
+  funciona correctamente en un entorno local de test. Podría haber
+  habido algún cambio en `master` (la integración de algunos otros
+  _issues_ que se hayan realizado en paralelo) que entra en conflicto
+  con nuestro _issue_. Ahora no es el caso, porque no se ha
+  desarrollado ningún otro _issue_ en paralelo. Lo dejamos para una
+  futura práctica.
        
 - La integración se puede hacer usando los comandos de git para hacer
   un _merge_ en local y después hacer un _push_ de `master` o se puede
@@ -811,8 +819,8 @@ encontrar fácilmente en el PR que cierra el _issue_.
   <pre><code>$ <b>git checkout master</b>
   $ <b>git remote show origin</b> # para comprobar estado de repositorio remoto
   $ <b>git pull</b>
-  $ <b>git branch -d crear-modelo-usuario</b>
-  $ <b>git remote prune origin</b> # para borrar la referencia a la rama remota
+  $ <b>git branch -d crear-modelo-usuario</b> # se borra la rama integrada 
+  $ <b>git remote prune origin</b> # se borra la referencia a la rama remota
   </code></pre>
 
 #### 10. Realización del resto de _issues_ de la funcionalidad
@@ -940,14 +948,14 @@ haciendo `CTRL+C` y vuélvela a lanzar con el comando `docker run`.
 
 ### 4.3. Finalización de la primera historia de usuario y continuación con la siguiente
 
-- Una vez que hemos terminado la primera historia de usuario (todos
+1. Una vez que hemos terminado la primera historia de usuario (todos
   sus _issues_) debemos modificar la página principal de la wiki (el
   _backlog_) quitando la historia de la lista de pendientes y
   pasándola a una lista de historias terminadas.
 
   <img src="imagenes/historias-pendientes.png" width="600px"/>
 
-- Elaboramos la descripción de la siguiente historia de usuario,
+2. Elaboramos la descripción de la siguiente historia de usuario,
   creando una página para ella en la que añadimos los detalles, sus
   condiciones de satisfacción necesarias para que la demos por
   terminada y un listado tentativo de _issues_ a realizar. En este
@@ -956,23 +964,24 @@ haciendo `CTRL+C` y vuélvela a lanzar con el comando `docker run`.
   normal que esa lista de _issues_ o tareas sea sólo una propuesta inicial
   que irá cambiando.
 
-- Realizamos el desarrollo de la segunda historia de usuario siguiendo
-  la misma metodología que en la primera historia. Creamos los
-  _issues_ en GitHub, ahora con una nueva etiqueta con el nombre de la
-  segunda funcionalidad. Para cada _issue_ hacemos el mismo proceso
-  que hemos seguido anteriormente:
+3. Realizamos el desarrollo de la segunda historia de usuario
+   siguiendo la misma metodología que en la primera historia. Creamos
+   los _issues_ en GitHub, ahora con una nueva etiqueta con el nombre
+   de la segunda funcionalidad. Para cada _issue_ hacemos el mismo
+   proceso que hemos seguido anteriormente:
   
-  1. Nos asignamos el _issue_.
-  2. Creamos una rama en la que se desarrolle el _issue_, la subimos
-     a GitHub. Añadimos el enlace a la rama en la descripción del _issue_.
-  3. Movemos el _issue_  a `En marcha` en el tablero. Añadimos un
-     enlace al _issue_ en la descripción de la historia de usuario.
-  4. Desarrollamos los _commits_, los probamos y los subimos a GitHub.
-  5. Cuando el _issue_ está terminado creamos un _pull request_
-     asociado. Lo añadimos en el tablero y quitamos el _issue_.
-  6. Mezclamos el PR, eliminamos la rama en remoto y en local y
-     descargamos la mezcla en `master`. Al cerrar el PR se cerrará
-     también el _issue_. Movemos el PR a `Terminado` en el tablero.
+    1. Nos asignamos el _issue_.
+    2. Creamos una rama en la que se desarrolle el _issue_, la subimos
+       a GitHub. Añadimos el enlace a la rama en la descripción del
+       _issue_.
+    3. Movemos el _issue_  a `En marcha` en el tablero. Añadimos un
+       enlace al _issue_ en la descripción de la historia de usuario.
+    4. Desarrollamos los _commits_, los probamos y los subimos a GitHub.
+    5. Cuando el _issue_ está terminado creamos un _pull request_
+       asociado. Lo añadimos en el tablero y quitamos el _issue_.
+    6. Mezclamos el PR, eliminamos la rama en remoto y en local y
+       descargamos la mezcla en `master`. Al cerrar el PR se cerrará
+       también el _issue_. Movemos el PR a `Terminado` en el tablero.
 
 
 ### 4.4. Finalización de la segunda historia de usuario
