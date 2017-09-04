@@ -5,7 +5,7 @@
 
 <kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.002.png" width="800px"></kbd>
 
-- En esta sesión vamos a realizar **una introducción** a los temas y
+- En esta sesión realizaremos **una introducción** a los temas y
   conceptos que vamos a estudiar en la asignatura.
 - Repasaremos algunos conceptos que todos conocemos, pero dándoles la
   **orientación específica** que vamos a utilizar en la asignatura.
@@ -45,6 +45,16 @@
 - El software es **multidimiensional**, se puede considerar desde
   muchos puntos de vista. Por eso hay múltiples metáforas, todas ellas
   correctas porque resaltan uno de sus aspectos.
+- Una metáfora que no se ha comentado demasiado es el software como
+  una publicación periódica. Igual que en un periódico o una revista,
+  de forma periódica se lanza una nueva versión en la que hay que
+  introducir nuevas funcionalidades. Cada vez se populariza más la
+  idea de entregas (_releases_) con una periodicidad fija.
+  
+  También se está empezando a utilizar la **suscripción** como forma
+  de monetizar software (por ejemplo, el editor Ulysses en la AppStore
+  [Why we’re switching Ulysses to Subscription](https://getpocket.com/a/read/1851779042)).
+  
 - El artículo de Martin Fowler
   [The new methodology](../../lecturas/martin-fowler_the-new-methodology.pdf)
   explica perfectamente por qué la metáfora de la construcción no es
@@ -98,32 +108,32 @@
   la postura de Damore. Un artículo en concreto, el escrito en Medium
   por Yonathan Zunger
   ([So, about this Googler’s manifesto.](https://medium.com/@yonatanzunger/so-about-this-googlers-manifesto-1e3773ed1788))
-  merece en mi opinión que le dediquemos un tiempo, por hacer una
-  reflexión muy interesante sobre qué considera el autor que es una
-  ingeniería. En concreto, el desarrollo de software:
+  merece que le dediquemos un tiempo, por hacer una
+  **reflexión muy interesante sobre qué considera el autor que es una
+  ingeniería** (en concreto, el desarrollo de software):
 
   - La gente que está empezando a hacer ingeniería piensa que lo
     fundamental es pasarse todo el día delante del ordenador haciendo
     cosas como hyper-optimizar un bucle o limpiar el API de una clase.
-    Cuando estás empezando en un trabajo de ingeniero/a esta es la
-    mayor parte de tu trabajo: algo directo y limitado que puede
-    hacerse bien o mal, sin matices, y en donde vas aprendiendo tus
-    habilidades básicas. Más adelante, cuando coges experiencia, llega
-    el momento en el que haces ingeniería de verdad: tu trabajo ya no
-    sólo es hacer, sino tomar decisiones.
+    Es cierto que cuando estás empezando en un trabajo de ingeniero/a
+    en esto consiste la mayor parte de tu trabajo: algo directo y
+    limitado que puede hacerse bien o mal, sin matices, y en donde vas
+    aprendiendo las habilidades básicas. Más adelante, cuando coges
+    experiencia, llega el momento en el que haces **ingeniería de
+    verdad**: tu trabajo ya no sólo es hacer, sino **tomar decisiones**.
 
-  - La ingeniería no es el arte de construir dispositivos; es el arte
-    de resolver problemas, mejorar la vida de las personas. Los
+  - La ingeniería no es el arte de construir dispositivos; es el **arte
+    de resolver problemas**, mejorar la vida de las personas. Los
     dispositivos (software en nuestro caso) no son un fin, sino un
     medio. Resolver problemas significa lo primero de todo
-    entenderlos. Y eso significa entender a las personas, sus
+    **entenderlos**. Y eso significa entender a las personas, sus
     preferencias, las formas en las que interactuarán con nuestro
     sistema. Todo esto es fundamental cuando estamos construyendo un
     sistema. Todo el equipo debe conocer profundamente el producto que
     se está construyendo.
 
   - Una gran parte del trabajo del desarrollo de software es
-    comunicación y colaboración; dentro del equipo y con otros grupos.
+    **comunicación y colaboración**; dentro del equipo y con otros grupos.
     - De esta forma se consigue construir un único sistema, coherente
       y con características claras, en lugar de veinte sistemas
       diferentes.
@@ -154,11 +164,11 @@
 
 <kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.012.png" width="800px"></kbd>
 
-- El valor de un proyecto, o de una funcionalidad, es lo contento que
+- El valor de un proyecto, o de una funcionalidad, es lo satisfecho que
   se queda el cliente cuando lo usa.
 - Es difícil comprobar el valor de una funcionalidad hasta que no se
   usa de verdad.
-- El software en funcionamiento es un sistema complejo en el que
+- El software en funcionamiento es un **sistema complejo** en el que
   participan usuarios, otro software, datos, etc.
 
 <kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.013.png" width="800px"></kbd>
@@ -175,8 +185,8 @@
 
 <kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.013b.png" width="800px"></kbd>
 
-- Cada proyecto se puede ver como la combinación de un presupuesto
-  (dinero), un alcance (lo que hay que hacer) y el tiempo
+- Cada proyecto se puede ver como la combinación de un **presupuesto**
+  (dinero), un **alcance** (lo que hay que hacer) y el **tiempo**
   disponible. Y estos tres factores se condicionan, unos a otros. Si
   se reduce el presupuesto, se puede ver afectado el alcance o el
   tiempo del proyecto. Si se reduce el tiempo, habrá que reducir el
@@ -193,14 +203,14 @@
   flexible en presupuesto. Y si fija tiempo y presupuesto, debe ser
   flexible en el alcance.
 
-- El mito del hombre-mes se desmonta (entre otros mitos) en el famoso
+- El **mito del hombre-mes** se desmonta (entre otros mitos) en el famoso
   [libro de Frederick Brooks](https://en.wikipedia.org/wiki/The_Mythical_Man-Month).
 
 <kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.013c.png" width="800px"></kbd>
 
 - Un proyecto con éxito es el resultado de una buena combinación de
-  cuatro elementos: personas, proceso (metodología), producto (alcance
-  y complejidad del software a desarrollar) y tecnología utilizada.
+  cuatro elementos: **personas**, **proceso** (metodología), **producto** (alcance
+  y complejidad del software a desarrollar) y **tecnología utilizada**.
 - Un cambio grande en alguna de estas dimensiones es una decisión de
   gran calado, que habría que realizar al comienzo de un nuevo
   proyecto. En los proyectos en marcha se pueden realizar ajustes y
@@ -218,10 +228,14 @@
 - Se piensa que el trabajo creativo, de diseño, es sólo la fase de
   especificación de requisitos, y que el resto del proceso es "picar
   código".
+- El cliente sólo prueba el producto desarrollado al final de todo el
+  proceso.
 - Problemas: demasiado tiempo para probar una versión en
   funcionamiento, el testing al final hace muy difícil la
   rectificación, la integración con otros desarrollos es es misión
-  imposible.
+  imposible, el software entregado no cumple con las necesidades del
+  cliente, porque los requisitos desarrollados no son los que
+  realmente resuelven su problema.
 
 <kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.017.png" width="800px"></kbd>
 
@@ -233,6 +247,9 @@
   validan la arquitectura, pruebas de integración y pruebas
   unitarias. Las pruebas se diseñan **al mismo tiempo** que el
   software en cada uno de los niveles.
+- Aunque se ha mejorado en lo referente a las pruebas, el problema
+  sigue siendo el mismo que el anterior: no hay retroalimentación del
+  software en funcionamiento hasta el momento final.
 
 <kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.018.png" width="800px"></kbd>
 
@@ -267,6 +284,21 @@
 
 <kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.021.png" width="800px"></kbd>
 
+- Cada ciclo contiene las 4 fases importantes del desarrollo de
+  software:
+  
+  - **Análisis de requisitos**: recogida de requisitos necesarios que debe cumplir el
+    software.
+  - **Diseño**: estudio y descomposición de esos requisitos en partes
+    a implementar.
+  - **Codificación**: implementación de cada una de las partes del
+    diseño.
+  - **Integración y prueba**: integración del desarrollo en el
+    producto y prueba de que se cumplen los requisitos.
+
+- Al final de cada iteración se debe tener un producto completo,
+  usable y entregable (no un prototipo).
+
 <kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.022.png" width="800px"></kbd>
 
 <kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.023.png" width="800px"></kbd>
@@ -277,11 +309,11 @@
   despliegue, flujo de trabajo, build, integración, testing, XP,
   colaboración, devops, ...
 - Veremos muchas de ellas en la asignatura.
-- La imagen del samurai la han tomado prestada de la portada de un
+- La imagen del samurai la hemos tomado prestada de la portada de un
   interesante libro:
   [The Agile Samurai](https://pragprog.com/book/jtrap/the-agile-samurai).
 
-<img src="https://imagery.pragprog.com/products/176/jtrap.jpg?1298589898" width="200px">
+<img src="imagenes/theagilesamurai.jpg" width="200px">
 
 <kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.024.png" width="800px"></kbd>
 
@@ -332,7 +364,7 @@
 <kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.028.png" width="800px"></kbd>
 
 - Los veremos con más detalle la semana que viene, cuando hablemos del
-  **manifiesto ágil**.
+  **manifiesto ágil** y de **lean**.
 
 <kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.029.png" width="800px"></kbd>
 
@@ -390,7 +422,7 @@
 
 <kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.033.png" width="800px"></kbd>
 
-- Buen diseño: código modificable, testable, clases pequeñas
+- **Buen diseño**: código modificable, testable, clases pequeñas
   (responsabilidad única), minimizar dependencias, uso
   de abstracciones, encapsulación, etc. Todo lo que hemos aprendido en
   la carrera. Pero **cuidado con la _sobreingeniería_**: un defecto tan malo
@@ -399,8 +431,8 @@
   veces ese código es más difícil de entender, tarda más en escribirse
   y en escribir sus tests y termina siendo más complicado de modificar.
 
-- Para que las metodologías ágiles funcionen es necesario una base
-  técnica importante. Es muy recomendable el post de Luis Artola
+- Para que las metodologías ágiles funcionen es necesario una **base
+  técnica importante**. Es muy recomendable el post de Luis Artola
   ([@artolamola](https://twitter.com/artolamola) en Twitter):
   [Lo que los gurús nunca te cuentan sobre Kanban y SCRUM](http://www.programania.net/desarrollo-agil/lo-que-los-gurus-nunca-te-cuentan-sobre-kanban-y-scrum/). 
 
