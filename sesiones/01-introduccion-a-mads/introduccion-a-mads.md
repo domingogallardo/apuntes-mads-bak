@@ -59,10 +59,10 @@ Herramientas docentes:
   siguientes. Las dos primeras son individuales y las dos siguientes
   serán en grupo. Los grupos deberán tener 3 personas.
 
-- El primer examen parcial de prácticas se realizará en el
-  laboratorio, el miércoles 25 de octubre y el de teoría el jueves 2
-  de noviembre. Los segundos parciales coincidirán con la fecha
-  oficial del examen de la asignatura
+- El **primer examen parcial de prácticas** se realizará en el
+  laboratorio, el **miércoles 25 de octubre** y el de **teoría** el **jueves 2
+  de noviembre**. Los segundos parciales coincidirán con la fecha
+  oficial del examen de la asignatura (**viernes 19 de enero de 2018**).
 
 - En cuanto a la evaluación, el **70% por ciento** de la calificación
   será por la nota en los exámenes parciales y el **30% por las
