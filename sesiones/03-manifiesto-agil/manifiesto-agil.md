@@ -4,7 +4,7 @@
 <img src="diapositivas/manifiesto-agil.001.png" width="800px">
 
 
-<img src="diapositivas/manifiesto-agil.001b.png" width="800px">
+<img src="diapositivas/manifiesto-agil.002.png" width="800px">
 
 - Vamos a ver un ejemplo de la adopción de metodologías ágiles en un
   equipo. Está sacado del libro _Learning Agile_ de Stellman y
@@ -21,7 +21,7 @@
     - Conocedor del negocio y responsable de clientes (_business
       analyst_, _account manager_)
 
-<img src="diapositivas/manifiesto-agil.001c.png" width="800px">
+<img src="diapositivas/manifiesto-agil.003.png" width="800px">
 
 
 - Recordemos que un buen proyecto software es aquel:
@@ -60,7 +60,7 @@
       en roca y ser inmutables, cualquier cambio de requisitos
       provocará un retraso que hará que el cliente quede descontento.
 
-<img src="diapositivas/manifiesto-agil.001d.png" width="800px">
+<img src="diapositivas/manifiesto-agil.004.png" width="800px">
 
 
 - Cambios al introducir metodologías ágiles:
@@ -107,7 +107,7 @@
       hacerse a continuación, y usa los avances para mantenerlos
       motivados.
 
-<img src="diapositivas/manifiesto-agil.001e.png" width="800px">
+<img src="diapositivas/manifiesto-agil.005.png" width="800px">
 
 - Se produce alguna mejora, pero no es se nota un aumento espectacular
   en la productividad ni en la calidad. El equipo no se ha convertido
@@ -116,7 +116,7 @@
     - Todos tienen algunas reservas que no les hace sentirse cómodos
       en sus nuevos roles.
 
-<img src="diapositivas/manifiesto-agil.001f.png" width="800px">
+<img src="diapositivas/manifiesto-agil.006.png" width="800px">
 
 - Pero no todo son bondades. Veamos un ejemplo, en el que
   Tom escribe una historia de usuario en la que indica que la
@@ -171,13 +171,13 @@
   **valores** que le dan significado y que todos deben compartir.
 
 
-<img src="diapositivas/manifiesto-agil.002.png" width="800px">
+<img src="diapositivas/manifiesto-agil.007.png" width="800px">
 
 - [Sitio web](http://agilemanifesto.org) con el manifiesto ágil.
 
-<img src="diapositivas/manifiesto-agil.003.png" width="800px">
+<img src="diapositivas/manifiesto-agil.008.png" width="800px">
 
-<img src="diapositivas/manifiesto-agil.004.png" width="800px">
+<img src="diapositivas/manifiesto-agil.009.png" width="800px">
 
 - Kent Beck ([Twitter](https://twitter.com/KentBeck))
 - Alistair Cockburn ([Twitter](https://twitter.com/TotherAlistair), [Blog](http://alistair.cockburn.us))
@@ -190,7 +190,7 @@
 - Jeff Sutherland ([Twitter](https://twitter.com/jeffsutherland), [Scrum.org](https://www.scrum.org))
 - Dave Thomas ([Twitter](https://twitter.com/pragdave), [Pragmatic Programmer](https://pragprog.com))
 
-<img src="diapositivas/manifiesto-agil.005.png" width="800px">
+<img src="diapositivas/manifiesto-agil.010.png" width="800px">
 
 - En el mundo empresarial, se habla de la **misión** de la empresa, a
   partir de la que se definen una series de **valores**.
@@ -221,50 +221,9 @@ Por ejemplo, Starbucks define su
 - Ejemplo de valor del manifiesto : "Los **individuos y las
   interacciones** están por encima de los procesos y las herramientas"
 
-<img src="diapositivas/manifiesto-agil.006.png" width="800px">
+<img src="diapositivas/manifiesto-agil.011.png" width="800px">
 
-<img src="diapositivas/manifiesto-agil.006b.png" width="800px">
-
-Ejemplos de prácticas:
-
-- Prácticas del **gestor de proyectos** :
-    - Tableros de tareas
-    - Puntos de historia
-    - Diagramas de quemado (_burndown charts_)
-    - Diagramas de flujo acumulado
-    - Velocidad del proyecto
-    - Estimación
-    - Temas
-    - Priorización
-
-- Prácticas del **lider del equipo**:
-    - Planning Pocker
-    - Retrospectivas
-    - Comunicación osmótica
-    - Sentarse juntos
-    - _Servant leadership_
-
-- Prácticas del **product owner**:
-    - _Backlog_ de producto
-    - Ítem de _backlog_
-    - Historias de usuario
-    - _Ranking_ relativo
-    - Iteración
-    - _Release_
-
-- Prácticas del **desarrollador**:
-    - Refactorización
-    - Programación por parejas
-    - Integración continua
-    - Sistemas de control de versiones
-    - Desarrollo Dirigido por los Tests (TDD)
-
-- Los valores del manifiesto ágil son comunes a las prácticas
-definidas por las distintas metodologías (_Lean_, XP y Scrum):
-
-<img src="metodologias-y-valores.png" width="400px">
-
-<img src="diapositivas/manifiesto-agil.007.png" width="800px">
+<img src="diapositivas/manifiesto-agil.012.png" width="800px">
 
 **1. Individuos e interacciones** sobre procesos y herramientas:
 
@@ -317,7 +276,7 @@ definidas por las distintas metodologías (_Lean_, XP y Scrum):
   continuamente comprobando y reaccionando (sobre todo al final de
   cada iteración), no sólo la de planificar una vez al principio.
 
-<img src="diapositivas/manifiesto-agil.008.png" width="800px">
+<img src="diapositivas/manifiesto-agil.013.png" width="800px">
 
 **1. Our highest priority is to satisfy the customer through early and
   continuous delivery of valuable software.**
@@ -387,8 +346,6 @@ done.**
 - El líder del equipo debe aplicar técnicas de trabajo en grupo para
   conseguir más confianza y sinceridad.
 
-<img src="diapositivas/manifiesto-agil.009.png" width="800px">
-
 **6. The most efficient and effective method of conveying information
   to and within a development team is face-to-face conversation.**
 
@@ -398,6 +355,8 @@ done.**
 - El fin último de las conversaciones es crear un **sentimiento de
   comunidad** de forma que haya un montón de conocimiento implícito que
   no sea necesario comunicar una y otra vez.
+
+<img src="diapositivas/manifiesto-agil.014.png" width="800px">
 
 **7. Working software is the primary measure of progress.**
 
@@ -440,8 +399,6 @@ indefinitely.**
   solucionar los errores, ampliar las funcionalidades y realizar
   cambios.
 
-<img src="diapositivas/manifiesto-agil.010.png" width="800px">
-
 **11. The best architectures, requirements, and designs emerge from
  self-organizing teams.** 
 
@@ -468,11 +425,50 @@ indefinitely.**
   convierte en una forma de mejorar a base de hacer críticas
   constructivas (y valorar lo que se ha hecho bien).
 
-<img src="diapositivas/manifiesto-agil.011.png" width="800px">
+<img src="diapositivas/manifiesto-agil.015.png" width="800px">
 
-<img src="diapositivas/manifiesto-agil.012.png" width="800px">
+Ejemplos de prácticas:
 
-<img src="diapositivas/manifiesto-agil.013.png" width="800px">
+- Prácticas del **gestor de proyectos** :
+    - Tableros de tareas
+    - Puntos de historia
+    - Diagramas de quemado (_burndown charts_)
+    - Diagramas de flujo acumulado
+    - Velocidad del proyecto
+    - Estimación
+    - Temas
+    - Priorización
+
+- Prácticas del **lider del equipo**:
+    - Planning Pocker
+    - Retrospectivas
+    - Comunicación osmótica
+    - Sentarse juntos
+    - _Servant leadership_
+
+- Prácticas del **product owner**:
+    - _Backlog_ de producto
+    - Ítem de _backlog_
+    - Historias de usuario
+    - _Ranking_ relativo
+    - Iteración
+    - _Release_
+
+- Prácticas del **desarrollador**:
+    - Refactorización
+    - Programación por parejas
+    - Integración continua
+    - Sistemas de control de versiones
+    - Desarrollo Dirigido por los Tests (TDD)
+
+- Los valores del manifiesto ágil son comunes a las prácticas
+definidas por las distintas metodologías (_Lean_, XP y Scrum):
+
+<img src="metodologias-y-valores.png" width="400px">
+
+<img src="diapositivas/manifiesto-agil.016.png" width="800px">
+
+<img src="diapositivas/manifiesto-agil.017.png" width="800px">
 
 - Enlaces:
     - [Manifesto for Agile Software Development](http://agilemanifesto.org)
