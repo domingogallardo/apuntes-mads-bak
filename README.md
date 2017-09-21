@@ -35,7 +35,7 @@ de la asignatura.
 
 Las sesiones tienen una duración variable, entre 45 y 90 minutos.
 
-### Bloque 1: Valores y principios ágiles (3 semanas)
+### Bloque 1: Valores y principios ágiles (4 semanas)
 
 - S01: [Introducción a la asignatura](sesiones/01-introduccion-a-mads/introduccion-a-mads.md)
 - S02: [Metodologías Ágiles de Desarrollo de Software](sesiones/02-metodologias-agiles-de-desarrollo-de-software/metodologias-agiles-de-desarrollo-de-software.md)
@@ -47,7 +47,7 @@ Las sesiones tienen una duración variable, entre 45 y 90 minutos.
 - S05: eXtreme Programming (XP) y TDD
   - Ron Jeffreis - [What is eXtreme Programming](lecturas/ron-jeffreis_what-is-extreme-programming.pdf)
 
-### Bloque 2: Integración y entrega continua (3 semanas)
+### Bloque 2: Integración y entrega continua (2 semanas)
 
 - S06: Pruebas ágiles
 - S07: Integración y entrega continua
