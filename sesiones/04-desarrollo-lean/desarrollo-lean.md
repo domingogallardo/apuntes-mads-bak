@@ -34,6 +34,8 @@
   [diapositivas](http://dl.dropbox.com/u/1018963/Henrik%20Kniberg%20Agile%20Lean%20Slides.pdf)
   de [Henrik Kniberg](https://www.crisp.se/konsulter/henrik-kniberg).
 
+<kbd><img src="diapositivas/desarrollo-lean.004b.png" width="800px"></kbd>
+
 <kbd><img src="diapositivas/desarrollo-lean.005.png" width="800px"></kbd>
 
 
