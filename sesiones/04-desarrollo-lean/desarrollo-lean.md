@@ -1,13 +1,11 @@
 
 ## Desarrollo lean
 
+<kbd><img src="diapositivas/desarrollo-lean.001.png" width="800px"></kbd>
 
+<kbd><img src="diapositivas/desarrollo-lean.002.png" width="800px"></kbd>
 
-<img src="diapositivas/desarrollo-lean.001.png" width="800px">
-
-<img src="diapositivas/desarrollo-lean.002.png" width="800px">
-
-<img src="diapositivas/desarrollo-lean.003.png" width="800px">
+<kbd><img src="diapositivas/desarrollo-lean.003.png" width="800px"></kbd>
 
 - El software es un **producto** muy distinto a los productos
   tradicionales: una aplicación no es una bicicleta, ni un televisor,
@@ -30,16 +28,16 @@
   introducir **flexibilidad** en los procesos de fabricación tradicionales
   y un cierto **orden y método** en un proceso de diseño.
 
-<img src="diapositivas/desarrollo-lean.004.png" width="800px">
+<kbd><img src="diapositivas/desarrollo-lean.004.png" width="800px"></kbd>
 
 - Ya hemos enlazado alguna otra vez las
   [diapositivas](http://dl.dropbox.com/u/1018963/Henrik%20Kniberg%20Agile%20Lean%20Slides.pdf)
   de [Henrik Kniberg](https://www.crisp.se/konsulter/henrik-kniberg).
 
-<img src="diapositivas/desarrollo-lean.005.png" width="800px">
+<kbd><img src="diapositivas/desarrollo-lean.005.png" width="800px"></kbd>
 
 
-<img src="diapositivas/desarrollo-lean.006.png" width="800px">
+<kbd><img src="diapositivas/desarrollo-lean.006.png" width="800px"></kbd>
 
 - El objetivo de Ohno **no era conseguir producción en masa**. Su
   ideal era fabricar y entregar un producto **inmediatamente después**
@@ -76,12 +74,12 @@ reciben valor sólo cuando se entrega el nuevo producto.
 - Más información sobre el Toyota Production System (TPS) en la
   [Wikipedia](https://en.wikipedia.org/wiki/Toyota_Production_System).
 
-<img src="diapositivas/desarrollo-lean.007.png" width="800px">
+<kbd><img src="diapositivas/desarrollo-lean.007.png" width="800px"></kbd>
 
 - [Citas](https://blog.deming.org/w-edwards-deming-quotes/large-list-of-quotes-by-w-edwards-deming/)
   de Edwards Deming.
 
-<img src="diapositivas/desarrollo-lean.008.png" width="800px">
+<kbd><img src="diapositivas/desarrollo-lean.008.png" width="800px"></kbd>
 
 - Avanzamos un ejemplo de aplicación de una de estas técnicas al
   desarrollo de software. El **value stream map** (**mapa de flujo de
@@ -92,7 +90,7 @@ reciben valor sólo cuando se entrega el nuevo producto.
   tiempo de trabajo y tiempo de espera en cada una de las fases. Es
   recomendable hacerlo con características reales, una vez terminadas.
 
-<img src="value-stream-mapping.png" width="800px">
+<kbd><img src="value-stream-mapping.png" width="800px"></kbd>
 
 - En el ejemplo anterior las fases serían: (1) crear el documento de requerimiento, (2)
   dividir en tareas y estimar, (3) documento de planificación, (4)
@@ -112,9 +110,9 @@ reciben valor sólo cuando se entrega el nuevo producto.
   de usuario, un requerimiento o una petición de funcionalidad. En el
   caso de Scrum, son los ítems del backlog.
 
-<img src="diapositivas/desarrollo-lean.009.png" width="800px">
+<kbd><img src="diapositivas/desarrollo-lean.009.png" width="800px"></kbd>
 
-<img src="diapositivas/desarrollo-lean.010.png" width="800px">
+<kbd><img src="diapositivas/desarrollo-lean.010.png" width="800px"></kbd>
 
 - WIP: **Work In Process**, es un término lean que indica el número de
   ítems que están siendo procesados en una determinada celda o fase
@@ -137,26 +135,26 @@ reciben valor sólo cuando se entrega el nuevo producto.
 - El flujo pull y el mapa de flujo de valor permiten **analizar y
   reflexionar** sobre el proceso de producción.
 
-<img src="diapositivas/desarrollo-lean.011.png" width="800px">
+<kbd><img src="diapositivas/desarrollo-lean.011.png" width="800px"></kbd>
 
 -
   [Sistema de producción pull](https://www.youtube.com/watch?v=ZIv2e61SH1A) (YouTube)
 
-<img src="diapositivas/desarrollo-lean.012.png" width="800px">
+<kbd><img src="diapositivas/desarrollo-lean.012.png" width="800px"></kbd>
 
 - [Toyota just-in-time production system](http://www.toyota-global.com/company/vision_philosophy/toyota_production_system/just-in-time.html)
 
-<img src="diapositivas/desarrollo-lean.013.png" width="800px">
+<kbd><img src="diapositivas/desarrollo-lean.013.png" width="800px"></kbd>
 
 - Henrik Kniberg:
   [Lean from the trenches](https://pragprog.com/book/hklean/lean-from-the-trenches)
   ([PDF](https://www.google.es/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0ahUKEwie0Pe2gbXPAhUCOxQKHfE_DwkQFggeMAA&url=https%3A%2F%2Fwww.crisp.se%2Ffile-uploads%2FLean-from-the-trenches.pdf&usg=AFQjCNFLq9y4a6bq1CCWa03EfonPhMbV5w))
 
-<img src="diapositivas/desarrollo-lean.014.png" width="800px">
+<kbd><img src="diapositivas/desarrollo-lean.014.png" width="800px"></kbd>
 
-<img src="diapositivas/desarrollo-lean.015.png" width="800px">
+<kbd><img src="diapositivas/desarrollo-lean.015.png" width="800px"></kbd>
 
-<img src="diapositivas/desarrollo-lean.016.png" width="800px">
+<kbd><img src="diapositivas/desarrollo-lean.016.png" width="800px"></kbd>
 
 
 Mary Poppendieck propone 7 tipos de _waste_ en el desarrollo del
@@ -195,7 +193,7 @@ software:
 - **Defectos**: Defectos técnicos que se van acumulando, errores en la
   comprensión de features que producen un producto de poco valor.
 
-<img src="diapositivas/desarrollo-lean.016b.png" width="800px">
+<kbd><img src="diapositivas/desarrollo-lean.016b.png" width="800px"></kbd>
 
 El
 [artículo](https://www.researchgate.net/publication/313360479_Software_Development_Waste)
@@ -256,9 +254,9 @@ el artículo.
   incompleta, incorrecta, engañosa, ineficiente o ausente.
 
 
-<img src="diapositivas/desarrollo-lean.017.png" width="800px">
+<kbd><img src="diapositivas/desarrollo-lean.017.png" width="800px"></kbd>
 
-<img src="diapositivas/desarrollo-lean.018.png" width="800px">
+<kbd><img src="diapositivas/desarrollo-lean.018.png" width="800px"></kbd>
 
 - Para hacer un diagrama de flujo acumulado (_cummulative flow
   diagram_) de una fase del desarrollo (columna del tablero Kanban o
@@ -266,7 +264,7 @@ el artículo.
   cuantos ítems se terminan en esa fase de desarrollo, y anotamos el
   incremento en el diagrama. 
 
-<img src="incrementos-semanales.png" width="400px">
+<kbd><img src="incrementos-semanales.png" width="400px"></kbd>
 
 - De esta forma podemos, por ejemplo, hacer el diagrama de flujo
   acumulado de las historias de usuario terminadas. Este diagrama nos
@@ -278,7 +276,7 @@ el artículo.
   el que el eje vertical sean los _story points_ en lugar del número
   de ítems.
 
-<img src="cummulative.png" width="400px">
+<kbd><img src="cummulative.png" width="400px"></kbd>
 
 - Se puede hacer un diagrama conjunto de flujo acumulado de las
   distintas fases del desarrollo, para tener una visión de conjunto de
@@ -300,7 +298,7 @@ el artículo.
     - Henrik Kniberg: [Lean from the trenches](https://pragprog.com/book/hklean/lean-from-the-trenches)
 
 
-<img src="diapositivas/desarrollo-lean.019.png" width="800px">
+<kbd><img src="diapositivas/desarrollo-lean.019.png" width="800px"></kbd>
 
 - Cuando estamos comenzando a desarrollar las primeras funcionalidades
   del sistema, deberíamos **evitar tomar decisiones** sobre elementos
@@ -350,12 +348,12 @@ versiones pasadas puestas en producción.
         el último cambio si las métricas caen después de haber sido
         probado por millones de personas.
 
-<img src="diapositivas/desarrollo-lean.020.png" width="800px">
+<kbd><img src="diapositivas/desarrollo-lean.020.png" width="800px"></kbd>
 
-<img src="diapositivas/desarrollo-lean.021.png" width="800px">
+<kbd><img src="diapositivas/desarrollo-lean.021.png" width="800px"></kbd>
 
-<img src="diapositivas/desarrollo-lean.022.png" width="800px">
+<kbd><img src="diapositivas/desarrollo-lean.022.png" width="800px"></kbd>
 
-<img src="diapositivas/desarrollo-lean.023.png" width="800px">
+<kbd><img src="diapositivas/desarrollo-lean.023.png" width="800px"></kbd>
 
 - Interview with Mary Poppendieck: [An introduction to Lean Software Development](http://www.citerus.se/interview-with-mary-poppendieck-an-introduction-to-lean-software-development/)

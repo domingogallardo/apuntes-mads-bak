@@ -1,10 +1,10 @@
 
 ## Manifiesto ágil
 
-<img src="diapositivas/manifiesto-agil.001.png" width="800px">
+<kbd><img src="diapositivas/manifiesto-agil.001.png" width="800px"></kbd>
 
 
-<img src="diapositivas/manifiesto-agil.002.png" width="800px">
+<kbd><img src="diapositivas/manifiesto-agil.002.png" width="800px"></kbd>
 
 - Vamos a ver un ejemplo de la adopción de metodologías ágiles en un
   equipo. Está sacado del libro _Learning Agile_ de Stellman y
@@ -21,7 +21,7 @@
     - Conocedor del negocio y responsable de clientes (_business
       analyst_, _account manager_)
 
-<img src="diapositivas/manifiesto-agil.003.png" width="800px">
+<kbd><img src="diapositivas/manifiesto-agil.003.png" width="800px"></kbd>
 
 
 - Recordemos que un buen proyecto software es aquel:
@@ -60,7 +60,7 @@
       en roca y ser inmutables, cualquier cambio de requisitos
       provocará un retraso que hará que el cliente quede descontento.
 
-<img src="diapositivas/manifiesto-agil.004.png" width="800px">
+<kbd><img src="diapositivas/manifiesto-agil.004.png" width="800px"></kbd>
 
 
 - Cambios al introducir metodologías ágiles:
@@ -107,7 +107,7 @@
       hacerse a continuación, y usa los avances para mantenerlos
       motivados.
 
-<img src="diapositivas/manifiesto-agil.005.png" width="800px">
+<kbd><img src="diapositivas/manifiesto-agil.005.png" width="800px"></kbd>
 
 - Se produce alguna mejora, pero no es se nota un aumento espectacular
   en la productividad ni en la calidad. El equipo no se ha convertido
@@ -116,7 +116,7 @@
     - Todos tienen algunas reservas que no les hace sentirse cómodos
       en sus nuevos roles.
 
-<img src="diapositivas/manifiesto-agil.006.png" width="800px">
+<kbd><img src="diapositivas/manifiesto-agil.006.png" width="800px"></kbd>
 
 - Pero no todo son bondades. Veamos un ejemplo, en el que
   Tom escribe una historia de usuario en la que indica que la
@@ -171,13 +171,13 @@
   **valores** que le dan significado y que todos deben compartir.
 
 
-<img src="diapositivas/manifiesto-agil.007.png" width="800px">
+<kbd><img src="diapositivas/manifiesto-agil.007.png" width="800px"></kbd>
 
 - [Sitio web](http://agilemanifesto.org) con el manifiesto ágil.
 
-<img src="diapositivas/manifiesto-agil.008.png" width="800px">
+<kbd><img src="diapositivas/manifiesto-agil.008.png" width="800px"></kbd>
 
-<img src="diapositivas/manifiesto-agil.009.png" width="800px">
+<kbd><img src="diapositivas/manifiesto-agil.009.png" width="800px"></kbd>
 
 - Kent Beck ([Twitter](https://twitter.com/KentBeck))
 - Alistair Cockburn ([Twitter](https://twitter.com/TotherAlistair), [Blog](http://alistair.cockburn.us))
@@ -190,7 +190,7 @@
 - Jeff Sutherland ([Twitter](https://twitter.com/jeffsutherland), [Scrum.org](https://www.scrum.org))
 - Dave Thomas ([Twitter](https://twitter.com/pragdave), [Pragmatic Programmer](https://pragprog.com))
 
-<img src="diapositivas/manifiesto-agil.010.png" width="800px">
+<kbd><img src="diapositivas/manifiesto-agil.010.png" width="800px"></kbd>
 
 - En el mundo empresarial, se habla de la **misión** de la empresa, a
   partir de la que se definen una series de **valores**.
@@ -221,9 +221,9 @@ Por ejemplo, Starbucks define su
 - Ejemplo de valor del manifiesto : "Los **individuos y las
   interacciones** están por encima de los procesos y las herramientas"
 
-<img src="diapositivas/manifiesto-agil.011.png" width="800px">
+<kbd><img src="diapositivas/manifiesto-agil.011.png" width="800px"></kbd>
 
-<img src="diapositivas/manifiesto-agil.012.png" width="800px">
+<kbd><img src="diapositivas/manifiesto-agil.012.png" width="800px"></kbd>
 
 **1. Individuos e interacciones** sobre procesos y herramientas:
 
@@ -276,7 +276,7 @@ Por ejemplo, Starbucks define su
   continuamente comprobando y reaccionando (sobre todo al final de
   cada iteración), no sólo la de planificar una vez al principio.
 
-<img src="diapositivas/manifiesto-agil.013.png" width="800px">
+<kbd><img src="diapositivas/manifiesto-agil.013.png" width="800px"></kbd>
 
 **1. Our highest priority is to satisfy the customer through early and
   continuous delivery of valuable software.**
@@ -356,7 +356,7 @@ done.**
   comunidad** de forma que haya un montón de conocimiento implícito que
   no sea necesario comunicar una y otra vez.
 
-<img src="diapositivas/manifiesto-agil.014.png" width="800px">
+<kbd><img src="diapositivas/manifiesto-agil.014.png" width="800px"></kbd>
 
 **7. Working software is the primary measure of progress.**
 
@@ -425,7 +425,7 @@ indefinitely.**
   convierte en una forma de mejorar a base de hacer críticas
   constructivas (y valorar lo que se ha hecho bien).
 
-<img src="diapositivas/manifiesto-agil.015.png" width="800px">
+<kbd><img src="diapositivas/manifiesto-agil.015.png" width="800px"></kbd>
 
 Ejemplos de prácticas:
 
@@ -464,11 +464,11 @@ Ejemplos de prácticas:
 - Los valores del manifiesto ágil son comunes a las prácticas
 definidas por las distintas metodologías (_Lean_, XP y Scrum):
 
-<img src="metodologias-y-valores.png" width="400px">
+<kbd><img src="metodologias-y-valores.png" width="400px"></kbd>
 
-<img src="diapositivas/manifiesto-agil.016.png" width="800px">
+<kbd><img src="diapositivas/manifiesto-agil.016.png" width="800px"></kbd>
 
-<img src="diapositivas/manifiesto-agil.017.png" width="800px">
+<kbd><img src="diapositivas/manifiesto-agil.017.png" width="800px"></kbd>
 
 - Enlaces:
     - [Manifesto for Agile Software Development](http://agilemanifesto.org)
