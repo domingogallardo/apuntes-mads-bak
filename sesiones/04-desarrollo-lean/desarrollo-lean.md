@@ -158,6 +158,104 @@ reciben valor sólo cuando se entrega el nuevo producto.
 
 <img src="diapositivas/desarrollo-lean.016.png" width="800px">
 
+
+Mary Poppendieck propone 7 tipos de _waste_ en el desarrollo del
+software:
+
+- **Trabajo parcialmente hecho**: Mientras que el software está
+  parcialmente hecho no puede proporcionar feedback de si es útil o
+  no. El trabajo parcialmente hecho siempre retrasa el resto del
+  trabajo.
+  
+  Posibles manifestaciones de trabajo parcialmente hecho:
+  documentación excesiva no codificada, código no sincronizado en el
+  repositorio, código no testeado, código no desplegado.
+  
+- **Características de más**: Características que no se usan,
+  excesivamente complejas o que quedan obsoletas en nuevas versiones.
+  
+- **Reaprendizaje**: Problemas en la comunicación obliga a varias
+  personas a reaprender conceptos del dominio del producto, mala
+  planificación de las entrevistas con los expertos del dominio,
+  herramientas/frameworks de desarrollo demasiado heterogéneos.
+
+- **Delegación**: Las delegaciones de tareas y trabajos conllevan
+  tiempo necesario para explicaciones y son propensas a errores por
+  problemas de comunicación. 
+
+- **Retrasos**: Muchos posibles retrasos en el proceso de
+  desarrollo. Retraso en la redacción de la historia de usuario o en
+  los mockups del diseño. Retraso en que las nuevas features se pongan
+  en producción por problemas burocráticos. Retrasos en las pruebas de
+  QA por sobrecarga de trabajo.
+
+- **Multi-tarea**: Los cambios de tarea obligan a cambios de contexto
+  (que gastan tiempo) y dejan tareas sin terminar.
+
+- **Defectos**: Defectos técnicos que se van acumulando, errores en la
+  comprensión de features que producen un producto de poco valor.
+
+<img src="diapositivas/desarrollo-lean.016b.png" width="800px">
+
+El
+[artículo](https://www.researchgate.net/publication/313360479_Software_Development_Waste)
+de Todd Sedano, Paul Ralph y Cécile Péraire propone una clasificación
+en 9 categorías de posibles tipos de _waste_ en el desarrollo del
+software. Algunas de las categorías se corresponden los tipos
+originales propuestos por Poppendieck, mientras que otras son nuevas.
+
+Cada desperdicio está relacionado con tensiones o dilemas que se
+producen en el proceso de desarrollo y que también se identifican en
+el artículo.
+
+- **1. Construir la característica o el producto erróneo**: el coste
+  de construir una característica o producto que no resuelve las
+  necesidades del usuario o del negocio. 
+  
+  **Tensión**: necesidades del usuarios versus necesidades del negocio.
+  
+- **2. Manejar mal el backlog**: el coste de trabajo duplicado,
+  entrega de características de poco valor o retraso de arreglos
+  necesarios de bugs.
+  
+  **Tensión**: Escribir historias suficientes versus escribir
+  historias que nunca se implementarán.
+  
+  **Tensión**: Finalizar características versus trabajar en demasiadas
+  características simultáneamente.
+  
+  **Tensión**: Intransigencia a los cambios versus ajustes caprichosos.
+  
+- **3. Volver a hacer el trabajo**: el coste de modificar trabajo ya
+  entregado que debería haberse hecho correctamente pero no lo fue.
+    
+- **4. Soluciones innecesariamente complejas**: el coste de crear una
+  solución más complicada de lo necesario, de perder una oportunidad
+  de simplificar características, interfaz de usuario o código.
+  
+  **Tensión**: Diseño grande desde el principio versus diseño incremental.
+  
+- **5. Demasiada carga cognitiva**: el coste de gasto innecesario de
+  energía mental.
+  
+- **6. Angustia psicológica**: el coste de quemar el equipo con estrés
+  inútil.
+  
+- **7. Espera/Multi-tarea**: El coste del tiempo de espera, muchas
+  veces escondido por la multitarea.
+  
+  **Tensión**: Esperar versus adivinar (cuando una historia está
+  incompleta).
+
+  **Tensión**: Esperar versus cambiar de contexto.
+
+- **8. Pérdida de conocimiento**: El coste de readquirir conocimiento
+  que el equipo tuvo en algún momento.
+
+- **9. Comunicación poco efectiva**: El coste de comunicación
+  incompleta, incorrecta, engañosa, ineficiente o ausente.
+
+
 <img src="diapositivas/desarrollo-lean.017.png" width="800px">
 
 <img src="diapositivas/desarrollo-lean.018.png" width="800px">
