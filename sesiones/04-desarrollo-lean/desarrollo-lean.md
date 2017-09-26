@@ -47,19 +47,34 @@
   esperar un pedido que construir un inventario en anticipación del
   pedido.
 
-- El concepto de "desperdicio" (_waste_) es un concepto muy general:
-  es todo aquello que **no crea valor al cliente**: piezas que no se
-  usan, elementos innecesarios, transporte, movimiento, espera,
-  procesamiento extra, defectos.
+- Uno de los elementos fundamentales del TPS (_Toyota Production
+  System_) era identificar y eliminar "desperdicio" (_waste_) en todo
+  el proceso de producción de un vehículo. El concepto de "desperdicio"
+  (_waste_) es un concepto muy general: es todo aquello que **no crea
+  valor al cliente**: piezas que no se usan, elementos innecesarios,
+  transporte, movimiento, espera, procesamiento extra, defectos.
 
-- Toyota transfirió el concepto de desperdicio en fabricación al
-**desarrollo del producto**. Cuando se comienza un proceso de
-desarrollo, el objetivo es completarlo tan rápidamente como sea
-posible, porque todo el trabajo que va en desarrollo no está añadiendo
-valor **hasta que el coche sale de la línea de producción**. En cierto
-sentido, los proyectos de desarrollo en marcha son idénticos al
-inventario. Los diseños y los prototipos no son útiles a los clientes,
-reciben valor sólo cuando se entrega el nuevo producto.
+- En 1945, bajo la dirección de Ohno, Toyota optimizó el ratio de
+  producción de cada sistema, reconsiderando la posición de todas las
+  máquinas de forma que la salida de una máquina alimentaba la
+  siguiente. Se redujo la velocidad de las máquinas para que todas
+  tuvieran la misma cadencia, y sólo se produjo material cuando era
+  necesario. Después de optimizar las fábricas de Toyota, Ohno entrenó
+  a los proveedores para que la producción completa de un vehículo
+  fuera _just-in-time_, transformando la producción en masa en
+  producción _lean_. El sistema _pull_ resultante resultó ser fácil de
+  reconfigurar, minimizó el inventario y permitió tiempos cortos de
+  producción. 
+
+- Toyota también usó el concepto de desperdicio no sólo para
+  fabricación, sino también en el **desarrollo del producto**. Cuando
+  se comienza un proceso de desarrollo, el objetivo es completarlo tan
+  rápidamente como sea posible, porque todo el trabajo que va en
+  desarrollo no está añadiendo valor **hasta que el coche sale de la
+  línea de producción**. En cierto sentido, los proyectos de
+  desarrollo en marcha son idénticos al inventario. Los diseños y los
+  prototipos no son útiles a los clientes, reciben valor sólo cuando
+  se entrega el nuevo producto.
 
 - Hay estudios que estiman que la aplicación de sistemas similares al
   TPS en empresas automovilísticas de Japón tiene como resultado una
@@ -92,7 +107,7 @@ reciben valor sólo cuando se entrega el nuevo producto.
   tiempo de trabajo y tiempo de espera en cada una de las fases. Es
   recomendable hacerlo con características reales, una vez terminadas.
 
-<kbd><img src="value-stream-mapping.png" width="800px"></kbd>
+<img src="value-stream-mapping.png" width="800px">
 
 - En el ejemplo anterior las fases serían: (1) crear el documento de requerimiento, (2)
   dividir en tareas y estimar, (3) documento de planificación, (4)
@@ -102,15 +117,26 @@ reciben valor sólo cuando se entrega el nuevo producto.
 - Cada empresa, dependiendo de la metodología de desarrollo que use,
   tiene un mapa de flujo de valor distinto. Es una herramienta
   importante para diseñar los tableros kanban.
+  
+- El enfoque _lean_ consiste en identificar y eliminar _waste_ en el
+  _value stream_. Debemos identificar tres tipos de actividades:
+  actividades que claramente crean valor; actividades que no crean
+  valor para el cliente pero que son necesarias en la actualidad para
+  fabricar el producto; y actividades que no crean valor para el
+  cliente, son innecesarias y, por lo tanto, deberían ser eliminadas
+  inmediatamente (_waste_).
 
-- ¿Qué unidades son las que hay que analizar? ¿Historias de usuario?
-  ¿Funcionalidades?. La recomendación es que sean elementos que no
-  tengan mucha variabilidad de tamaño. Un concepto que se suele usar
-  es el de **minimal marketable feature** (MMF): el "trozo" más
-  pequeño de funcionalidad del producto que los clientes (o el
-  _product owner_) puede priorizar. Suelen tomar forma de una historia
-  de usuario, un requerimiento o una petición de funcionalidad. En el
-  caso de Scrum, son los ítems del backlog.
+- Un problema importante en el caso del software es la identificación
+  de las tareas que van a pasar por el _value stream_. ¿Qué unidades
+  son las que hay que analizar? ¿Historias de usuario? ¿Tareas
+  técnicas más pequeñas en las que se descomponen las historias de
+  usuario?. La recomendación es que sean elementos que no tengan mucha
+  variabilidad de tamaño. Un concepto que se suele usar es el de
+  **minimal marketable feature** (MMF): el "trozo" más pequeño de
+  funcionalidad del producto que los clientes (o el _product owner_)
+  puede priorizar. Suelen tomar forma de una historia de usuario, un
+  requerimiento o una petición de funcionalidad. En el caso de Scrum,
+  son los ítems del backlog.
 
 <kbd><img src="diapositivas/desarrollo-lean.009.png" width="800px"></kbd>
 
