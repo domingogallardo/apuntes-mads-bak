@@ -173,13 +173,14 @@
 
 <kbd><img src="diapositivas/desarrollo-lean.013.png" width="800px"></kbd>
 
+
 - Henrik Kniberg:
   [Lean from the trenches](https://pragprog.com/book/hklean/lean-from-the-trenches)
   ([PDF](https://www.google.es/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0ahUKEwie0Pe2gbXPAhUCOxQKHfE_DwkQFggeMAA&url=https%3A%2F%2Fwww.crisp.se%2Ffile-uploads%2FLean-from-the-trenches.pdf&usg=AFQjCNFLq9y4a6bq1CCWa03EfonPhMbV5w))
 
-<kbd><img src="diapositivas/desarrollo-lean.014.png" width="800px"></kbd>
+<kbd><img src="diapositivas/desarrollo-lean.013b.png" width="800px"></kbd>
 
-<kbd><img src="diapositivas/desarrollo-lean.014b.png" width="800px"></kbd>
+<kbd><img src="diapositivas/desarrollo-lean.014.png" width="800px"></kbd>
 
 <kbd><img src="diapositivas/desarrollo-lean.015.png" width="800px"></kbd>
 
