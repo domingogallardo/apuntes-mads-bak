@@ -34,7 +34,6 @@
   [diapositivas](http://dl.dropbox.com/u/1018963/Henrik%20Kniberg%20Agile%20Lean%20Slides.pdf)
   de [Henrik Kniberg](https://www.crisp.se/konsulter/henrik-kniberg).
 
-<kbd><img src="diapositivas/desarrollo-lean.004b.png" width="800px"></kbd>
 
 <kbd><img src="diapositivas/desarrollo-lean.005.png" width="800px"></kbd>
 
@@ -179,6 +178,8 @@
   ([PDF](https://www.google.es/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0ahUKEwie0Pe2gbXPAhUCOxQKHfE_DwkQFggeMAA&url=https%3A%2F%2Fwww.crisp.se%2Ffile-uploads%2FLean-from-the-trenches.pdf&usg=AFQjCNFLq9y4a6bq1CCWa03EfonPhMbV5w))
 
 <kbd><img src="diapositivas/desarrollo-lean.014.png" width="800px"></kbd>
+
+<kbd><img src="diapositivas/desarrollo-lean.014b.png" width="800px"></kbd>
 
 <kbd><img src="diapositivas/desarrollo-lean.015.png" width="800px"></kbd>
 
@@ -384,4 +385,4 @@ versiones pasadas puestas en producción.
 
 <kbd><img src="diapositivas/desarrollo-lean.023.png" width="800px"></kbd>
 
-- Interview with Mary Poppendieck: [An introduction to Lean Software Development](http://www.citerus.se/interview-with-mary-poppendieck-an-introduction-to-lean-software-development/)
+- Post de 2001 de Mary Poppendieck: [Lean Programming](http://www.leanessays.com/2010/11/lean-programming.html)
