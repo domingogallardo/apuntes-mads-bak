@@ -42,8 +42,8 @@ Las sesiones tienen una duración variable, entre 45 y 90 minutos.
   - Martin Fowler - [The New Methodology](lecturas/martin-fowler_the-new-methodology.pdf)
 - S03: [Manifiesto Ágil](sesiones/03-manifiesto-agil/manifiesto-agil.md)
   - [The Agile Manifesto](lecturas/agile-manifesto.pdf)
-- S04: Desarrollo lean
-  - Mary Poppendieck - [An introduction to lean software development](lecturas/mary-poppendieck_an-introduction-to-lean-software-development.pdf)
+- S04: [Desarrollo lean](sesiones/04-desarrollo-lean/desarrollo-lean.md)
+  - Mary Poppendieck - [Lean Programming](lecturas/mary-poppendieck-lean-programming-2001.pdf)
 - S05: eXtreme Programming (XP) y TDD
   - Ron Jeffreis - [What is eXtreme Programming](lecturas/ron-jeffreis_what-is-extreme-programming.pdf)
 
