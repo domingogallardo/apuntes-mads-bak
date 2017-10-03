@@ -46,7 +46,7 @@ Las sesiones tienen una duración variable, entre 45 y 90 minutos.
   - Mary Poppendieck - [Lean Programming](lecturas/mary-poppendieck-lean-programming-2001.pdf)
 - S05: [eXtreme Programming (XP)](sesiones/05-extreme-programming/extreme-programming.md)
   - Ron Jeffreis - [What is eXtreme Programming](lecturas/ron-jeffreis_what-is-extreme-programming.pdf)
-- S06: [TDD y pruebas ágiles](sesiones/06-tdd-pruebas-agiles/06-tdd-pruebas-agiles.md)
+- S06: [TDD y pruebas ágiles](sesiones/06-tdd-pruebas-agiles/tdd-pruebas-agiles.md)
 
 ### Bloque 2: Integración y entrega continua (2 semanas)
 
