@@ -464,7 +464,7 @@ Ejemplos de prácticas:
 - Los valores del manifiesto ágil son comunes a las prácticas
 definidas por las distintas metodologías (_Lean_, XP y Scrum):
 
-<kbd><img src="metodologias-y-valores.png" width="400px"></kbd>
+<img src="imagenes/metodologias-y-valores.png" width="400px">
 
 <kbd><img src="diapositivas/manifiesto-agil.016.png" width="800px"></kbd>
 
