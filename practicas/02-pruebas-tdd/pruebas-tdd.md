@@ -2,7 +2,7 @@
 
 Dejamos las pruebas con Git para la práctica 2.
 
-### 5.2 Repositorio prueba Git
+5.2 Repositorio prueba Git
 
 Vamos a empezar practicando Git. Debes crear un repositorio llamado
 `mads-prueba-git` en el que pruebes los comandos básicos de Git. En
@@ -30,8 +30,19 @@ Sube el repositorio a GitHub y compártelo con el profesor
 
 -->
 
+<!--
 
-# Práctica 2: Pruebas y TDD con Play Framework
+Indice:
+
+1 - Ejecución de Play con distintas configuraciones
+2 - Definición de las distintas configuraciones
+3 - Realización de tests de integración y tests funcionales en los 
+    entornos definidos
+4 - Realización de la nueva funcionalidad con TDD
+
+--->
+
+# Práctica 2: Gestión de configuraciones y TDD con Play Framework
 
 - [1. Objetivos](#1-objetivos)
 - [2. Conexión a base de datos MySQL](#2-conexión-a-base-de-datos-mysql)
@@ -47,12 +58,16 @@ Sube el repositorio a GitHub y compártelo con el profesor
     - [4.2. Siguientes funcionalidades](#42-siguientes-funcionalidades)
 - [5. Entrega y evaluación](#5-entrega-y-evaluación)
 
+
 ## 1. Objetivos
+
+(Cambiar)
 
 Esta práctica tiene dos objetivos principales: aprender a utilizar las
 características de Play Framework relacionadas con las pruebas y
 utilizar la metodología TDD para añadir funcionalidades a nuestra
 aplicación.
+
 
 Al igual que la primera práctica, el desarrollo de esta práctica será
 individual. Tendrá una duración de 3 semanas, siendo la fecha límite
@@ -66,91 +81,512 @@ versiones y GitHub como repositorio remoto. Intregraremos Git y TDD,
 haciendo que cada commit represente un incremento funcional en el
 desarrollo de la aplicación y contenga y pase sus propios tests.
 
-## 2. Conexión a base de datos MySQL
 
-### 2.1. Cambio de clave primaria de `String` a `Integer`
+## Tests en Play Framework
 
-En la práctica 1 el tipo de dato de la clave primaria de `Usuario` lo
-especificamos como `String`. Sin embargo, en esta práctica vamos a
-trabajar con una base de datos MySQL que no puede gestionar claves
-autogeneradas de este tipo. Debes cambiar por ello la clave primaria
-de `Usuario` a `Integer`.
+Play Framework en Java utiliza [JUnit](http://junit.org) como
+framework de testing. Los siguientes enlaces proporcionan información
+inicial sobre testing en Play Framework. No vamos a entrar en
+profundidad en todas las posibilidades (_mocking_, inyección de
+dependencias, etc.), sólo aprender lo necesario para definir algunos
+tests que sean útiles.
 
-**Nuevo ticket a implementar**
+A pesar que Play permite una gran flexibilidad a la hora de testear
+sus distintos elementos, sólo vamos a realizar tests de la **capa de
+persistencia** (clases Repository) y de la **capa de servicios**.
 
-> Igual que en la práctica anterior, abre un ticket nuevo en Trello
-> para cambiar la clave primaria de `String` a `Integer`. Realiza
-> todas las modificaciones en una rama que después debes mezclar con
-> _master_ usando `--no-ff`.
+- [Testing your application](https://playframework.com/documentation/2.5.x/JavaTest)
+- [Testing with databases](https://playframework.com/documentation/2.5.x/JavaTestingWithDatabases)
 
-
-### 2.2. Configuración de la conexión con MySQL
-
-Hasta ahora hemos desarrollado la aplicación usando la base de datos
-en memoria `H2`. Sin embargo, para poder hacer comprobaciones y
-demostraciones de la aplicación que estamos desarrollando, es
-interesante poder trabajar con una base de datos que haga persistente
-los datos entre distintas ejecuciones de la aplicación. También es
-recomendable trabajar con bases de datos idénticas a las que
-utilizaremos en producción.
-
-**Nuevo ticket a implementar**
-
-> Debes implementar un nuevo ticket, en el que modifiques la base de
-> datos de la aplicación para usar MySQL.
-
-Para modificar la configuración de la base de datos debemos cambiar
-las preferencias definidas en el fichero de configuración
-`application.conf`. Y también debemos modificar la configuración de la
-unidad de persistencia de JPA. 
-
-Para poder trabajar con MySQL debemos incluir el driver
-`mysql-connector-java` en las dependencias de la aplicación, en el
-fichero `build.sbt`.
-
-**Fichero `build.sbt`**:
+Todos los tests se incluyen en el directorio `tests`. Podemos
+lanzar todos los tests desde la consola sbt
 
 ```
-libraryDependencies ++= Seq(
-   javaJpa,
-   "org.hibernate" % "hibernate-entitymanager" % "4.3.7.Final",
-   "mysql" % "mysql-connector-java" % "5.1.18", 
-   cache,
-   javaWs
+[mads-todolist-2017] $ test
+```
+
+Y también podemos lanzar sólo los tests definidos en una clase:
+
+```
+[mads-todolist-2017] $ testOnly TareaServiceTest
+```
+
+O utilizar un comodín `*` para ejecutar sólo un conjunto de tests
+cuyas clases comiencen por una cadena:
+
+
+```
+[mads-todolist-2017] $ testOnly Tarea*
+```
+
+Y para lanzar sólo los tests que han fallado:
+
+```
+[mads-todoslist] $ testQuick
+```
+
+En Play es posible lanzar tests sobre ejecuciones de la aplicación con
+la sentencia `withApplication` (aunque no lo vamos a hacer). De esta
+forma no es necesario crear _mocks_ ni _stubs_ (aunque es posible
+hacerlo, si queremos mejorar el rendimiento de la ejecución de los
+tests o aislar el código a probar del resto de componentes y
+recursos).
+
+### JUnit
+
+Los tests se construyen usando JUnit:
+
+```java
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class SimpleTest {
+
+  @Test
+  public void testSum() {
+    int a = 1 + 1;
+    assertEquals(2, a);
+  }
+    
+  @Test
+  public void testString() {
+    String str = "Hello world";
+    assertFalse(str.isEmpty());
+  }
+
+}
 ```
 
 
-La configuración de MySQL que vamos a definir va a acceder a una base
-de datos `mads` gestionada por un servidor mysql con el usuario `root`
-y la contraseña `mads`. Esta base de datos y este servidor debe
-existir en la máquina en la que ejecutamos la aplicación Play. Para
-instalar MySQL en Linux y crear esta base de datos debemos activar en
-la máquina virtual el acceso al repositorio de software `Canonical`
-(se encuentra deshabilitado):
+### Tests con bases de datos y JPA
 
-_Configuración del sistema > Software y actualizaciones > Canonical_
+#### Conexión de JPA con una base de datos en memoria
 
-<img src="imagenes/canonical.png" width="500px">
+Lo habitual para realizar tests unitarios que necesiten trabajar con
+una base de datos es, o bien _mockear_ la base de datos, o bien
+utilizar una base de datos en memoria (como H2) para que los tests
+puedan ejecutarse mucho más rápido sin necesidad de una bases de datos
+real que trabaje sobre el disco duro.
+
+En la primera práctica hemos utilizado el segundo enfoque.
+
+
+El problema de los tests tal y como están escritos en la actualidad es
+que la base de datos de prueba sobre la que trabajan no se puede
+definir en el fichero de configuración, sino que está definida en su
+código fuente.
+
+En concreto, la base de datos de memoria la creamos manualmente con la
+instrucción `Databases.inMemoryWith()` pasando un nombre JNDI con el
+que inicializarla (`DBTest`). Y después obtenemos el `JPAApi`
+obteniendo la configuración de JPA `memoryPersistenceUnit`.
+
+```java
+public class UsuarioServiceTest {
+
+   static Database db;
+   static JPAApi jpaApi;
+   
+   @BeforeClass
+   static public void initDatabase() {
+      // Inicializamos la BD en memoria y su nombre JNDI
+      db = Databases.inMemoryWith("jndiName", "DBTest");
+      ...
+      // Activamos en JPA la unidad de persistencia "memoryPersistenceUnit"
+      // declarada en META-INF/persistence.xml y obtenemos el objeto
+      // JPAApi
+      jpaApi = JPA.createFor("memoryPersistenceUnit");
+   }
+   
+   ...
+   
+   @Test
+   public void crearNuevoUsuarioCorrectoTest(){
+      UsuarioRepository repository = new JPAUsuarioRepository(jpaApi);
+      UsuarioService usuarioService = new UsuarioService(repository);
+      Usuario usuario = usuarioService.creaUsuario("luciaruiz", "lucia.ruiz@gmail.com", "123456");
+      assertNotNull(usuario.getId());
+      assertEquals("luciaruiz", usuario.getLogin());
+      assertEquals("lucia.ruiz@gmail.com", usuario.getEmail());
+      assertEquals("123456", usuario.getPassword());
+   }
 
 ```
-$ sudo apt-get install mysql-server
+
+
+Recordemos que el perfil `memoryPersistenceUnit` está definido en el
+fichero `conf/META-INF/persistence.xml`:
+
+```xml
+   <persistence-unit name="memoryPersistenceUnit" transaction-type="RESOURCE_LOCAL">
+      <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+      <non-jta-data-source>DBTest</non-jta-data-source>
+      <properties>
+         <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+         <property name="hibernate.hbm2ddl.auto" value="update"/>
+      </properties>
+   </persistence-unit>
 ```
 
-Durante la instalación nos pedirá la contraseña del usuario
-root. Introducimos `mads`. Una vez instalado MySQL debemos crear la
-base de datos `mads`:
+La anotación `@BeforeClass` hace que el método estático `initDatabase()` se
+ejecute una única vez antes de todos los tests y guarde en las
+variables de clase la base de datos y el JPAApi obtenido. Estas dos
+variables se utilizarán más adelante.
+
+#### Inicialización de la base de datos con DBUnit
+
+Para poder inicializar la base de datos con un conjunto de datos
+previos utilizamos la librería DBUnit.
+
+La dependencia de la librería se declara en el fichero `build.sbt`
 
 ```
-$ mysql -u root -p
-Enter password: mads
-mysql> create database mads;
+...
+
+libraryDependencies += javaJpa
+libraryDependencies += "org.hibernate" % "hibernate-core" % "5.2.5.Final"
+libraryDependencies +=  "mysql" % "mysql-connector-java" % "5.1.18"
+libraryDependencies += "org.dbunit" % "dbunit" % "2.4.9"
+
+...
+
 ```
 
-Definimos después dos unidades de persistencia en el fichero
-`conf/META-INF/persistence.xml`, para poder trabajar desde JPA con
-cualquiera de las dos configuraciones:
+Los datos iniciales de la base de datos se definen en un fichero de
+configuración XML. 
 
-**Fichero `conf/META-INF/persistence.xml`**:
+**Fichero `test/resources/usuarios_dataset.xml`**:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+ <dataset>
+    <Usuario id="1000" login="juangutierrez" nombre="Juan" apellidos="Gutierrez"
+         password="123456789" eMail="juan.gutierrez@gmail.com" fechaNacimiento="1993-12-10"/>
+    <Tarea id="1000" titulo="Renovar DNI" usuarioId="1000"/>
+    <Tarea id="1001" titulo="Práctica 1 MADS" usuarioId="1000"/>
+ </dataset>
+```
+
+Cada línea XML define un dato en la tabla con el nombre indicado. Por
+ejemplo, en el fichero anterior se define un usuario y dos
+tareas. DbUnit se encarga de convertir los atributos en los tipos
+correspondientes a los definidos en las tablas cuando se realiza la
+inserción. Hay que hacer notar que en DBUnit hay que definir las
+fechas con el formato `AAAA-MM-DD`.
+
+Para realizar la inserción en la base de datos con la que van a
+trabajar los tests se ejecuta la siguiente función:
+
+```java
+
+   @Before
+   public void initData() throws Exception {
+      JndiDatabaseTester databaseTester = new JndiDatabaseTester("DBTest");
+      IDataSet initialDataSet = new FlatXmlDataSetBuilder().build(new FileInputStream("test/resources/usuarios_dataset.xml"));
+      databaseTester.setDataSet(initialDataSet);
+      databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
+      databaseTester.onSetup();
+   }
+
+```
+
+Se obtiene la base de datos a través de su nombre JNDI. Y después se
+cargan los datos realizando una operación `CLEAN_INSERT`. En este tipo
+de operación DbUnit borra todos los datos de todas las tablas que
+aparecen en el fichero XML y después realiza la inserción.
+
+La etiqueta `@Before` hace que la función se ejecute antes de cada
+test.
+
+### Nuevo _issue_ con tests ###
+
+Crea un nuevo _issue_ (y una rama, y después un pull request para
+integrarlo con master, igual que en la práctica 1) con la descripción
+`Nuevos tests práctica 2`. Puedes ponerle la etiqueta `tech`. 
+
+Para completar el _issue_ debes hacer lo siguiente:
+
+- Añade un usuario y una tarea en el fichero XML.
+- Crea una nueva clase de tests el directorio `test/practica2` con el
+  nombre `Practica2Test`. Añade en él 4 nuevos tests que comprueben
+  condiciones que no hemos comprobado en la práctica 1. 
+- Ejemplos: 
+   - Test que comprueba que el método `findUsuarioPorId` de
+  `UsuarioService` devuelve `null` si se le pasa un identificador no
+  existente.
+  - Test que comprueba que el método `borraTarea` de `TareaService`
+    lanza una excepción si se le pasa un identificador de tarea no
+    existente. 
+ 
+## Definición de configuraciones 
+
+Hemos comprobado en la práctica 1 que el fichero `application.conf` sirve
+para definir la configuración con la que se va ejecutar la aplicación
+Play. Hemos definido en él la base de datos en memoria `H2` con la que
+se ejecuta la aplicación. Esta configuración es la que denominamos
+**configuración de desarrollo**, que es la configuración por defecto
+utilizada durante el desarrollo de la aplicación.
+
+Vamos a ver en este apartado cómo definir configuraciones alternativas
+en las que ejecutar los tests:
+
+- **Configuración de integración**: configuración que se utilizaremos
+  en las pruebas de integración. Estará constituida por una base de
+  datos MySQL contendrá los datos introducidos por los tests. El hecho
+  de trabajar con MySQL en lugar de la base de datos de memoria hará
+  que esta configuración sea más parecida a la que se utiliza en el
+  despliegue real en producción de la aplicación.
+- **Configuración de stage**: configuración muy similar a la de
+  producción en la que se realizarán pruebas funcionales. Estará
+  formada por una base de datos MySQL con datos estables que se irán
+  añadiendo en los tests funcionales, creando un entorno muy similar
+  al de producción.
+
+Lanzaremos los tests en la configuración de integración. Y
+ejecutaremos la aplicación para lanzar pruebas funcionales en la
+configuración de _stage_.
+
+
+### Configuración de pruebas de integración ###
+
+Empezaremos solucionando un problema importante de los tests:
+conseguir que carguen el fichero de configuración, en lugar de definir
+en el código las conexiones a la base de datos. Después añadiremos un
+fichero de configuración de conexión con una base de datos MySQL y
+veremos cómo lanzar los tests para que usen esa configuración.
+
+#### Nuevo issue: Configuración entorno de integración ####
+
+Debes crear un nuevo _issue_ con la descripción `Configuración entorno
+de integración` en el que deberás incluir los
+cambios que se indiquen los siguientes apartados. Puedes ponerle la
+etiqueta `tech`.
+
+Crea una rama en la que desarrolles este nuevo _issue_.
+
+#### Refactorización de los tests ####
+
+Vamos a ver cómo refactorizar los tests para que se lancen sobre una
+base de datos definida en el fichero de configuración.
+
+##### Problema: los tests no usan el fichero de configuración #####
+
+El problema de los tests tal y como están escritos en la actualidad es
+que la base de datos de prueba sobre la que trabajan no se puede
+definir en el fichero de configuración, sino que está definida en su
+código fuente.
+
+Como hemos visto anteriormente, la base de datos se inicializa a mano, obteniéndose
+el `JPAApi` usando una configuración concreta:
+
+```java
+   @BeforeClass
+   static public void initDatabase() {
+      // Inicializamos la BD en memoria y su nombre JNDI
+      db = Databases.inMemoryWith("jndiName", "DBTest");
+      ...
+      // Activamos en JPA la unidad de persistencia "memoryPersistenceUnit"
+      // declarada en META-INF/persistence.xml y obtenemos el objeto
+      // JPAApi
+      jpaApi = JPA.createFor("memoryPersistenceUnit");
+```
+
+Después, en cada test, usamos el `jpaApi` obtenido para construir un
+_service_ o un _repostory_:
+
+```java
+   @Test
+   public void crearNuevoUsuarioCorrectoTest(){
+      UsuarioRepository repository = new JPAUsuarioRepository(jpaApi);
+      UsuarioService usuarioService = new UsuarioService(repository);
+      Usuario usuario = usuarioService.creaUsuario("luciaruiz", "lucia.ruiz@gmail.com", "123456");
+      assertNotNull(usuario.getId());
+      assertEquals("luciaruiz", usuario.getLogin());
+      assertEquals("lucia.ruiz@gmail.com", usuario.getEmail());
+      assertEquals("123456", usuario.getPassword());
+   }
+```
+
+Este código hace que los tests sean poco configurables ya que no
+estamos obteniendo la base de datos definida en el fichero de
+configuración. Si queremos cambiar la base de datos sobre la que
+trabajan los tests hay que modificar el propio código fuente.
+
+##### Refactorización de los tests #####
+
+Vamos a modificar el código para que la base de datos que se utilice
+no esté escrita _a fuego_ en el código, sino que sea la definida en el
+fichero de configuración. De esta forma, modificando el fichero
+modificaremos también la configuración de los tests.
+
+Para conseguirlo haremos en los tests igual que en la aplicación:
+obteniendo la JPAApi mediante la inyección de dependencias y 
+
+El problema es que las anotaciones `@inject` no funcionan en los
+tests. Los tests son programas Java independientes que se ejecutan al
+margen de la aplicación principal, que es donde se ejecuta el código
+que inicializa los objetos inyectados. Tenemos nosotros que obtener a
+mano los objetos llamando explícitamente a la librería `Guice` que es
+la que gestiona la inyección de dependencias.
+
+A continuación vemos cómo hacerlo en un test concreto, por ejemplo en
+el fichero `UsuarioServiceTest.java`:
+
+```java
+public class UsuarioServiceTest {
+   static private Injector injector;
+
+   @BeforeClass
+   static public void initApplication() {
+      GuiceApplicationBuilder guiceApplicationBuilder =
+          new GuiceApplicationBuilder().in(Environment.simple());
+      injector = guiceApplicationBuilder.injector();
+      // Instanciamos un JPAApi para que inicializar JPA
+      injector.instanceOf(JPAApi.class);
+   }
+
+   private UsuarioService newUsuarioService() {
+      return injector.instanceOf(UsuarioService.class);
+   }
+   
+   @Test
+   public void crearNuevoUsuarioCorrectoTest(){
+      UsuarioService usuarioService = newUsuarioService();
+      Usuario usuario = usuarioService.creaUsuario("luciaruiz", "lucia.ruiz@gmail.com", "123456");
+      assertNotNull(usuario.getId());
+      assertEquals("luciaruiz", usuario.getLogin());
+      assertEquals("lucia.ruiz@gmail.com", usuario.getEmail());
+      assertEquals("123456", usuario.getPassword());
+   }
+
+   ...
+}
+```
+
+En el código anterior la creación de un `GuiceApplicationBuilder` con
+un entorno simple realiza una inicialización de la aplicación Play con
+el fichero de configuración por defecto. Después se obtiene un objeto
+`Injector` que usamos para obtener instancias de clases mediante la
+inyección de dependencias. En concreto, el método `newUsuarioService()`
+obtiene del inyector una instancia de un `UsuarioService`. A este
+método se llama en cada test para obtener un `UsuarioService` del que
+probar sus métodos.
+
+##### Commit: Refactorización de los tests #####
+
+Debes crear un nuevo commit en la rama recién creada con la descripción
+`Refactorizados tests` en el que deberás refactorizar todos los tests
+para que se obtengan los objetos necesarios usando inyección de
+dependencias.
+
+Para ello realiza todos los cambios en los ficheros de tests que
+aparecen en el [PR
+#27](https://github.com/domingogallardo/mads-todolist-guia/pull/27/files)
+de la práctica guía. No modifiques por ahora el fichero de
+configuración, ni crees nuevos tests (aunque son modificaciones que
+aparecen en el PR, no las debes hacer).
+
+Una vez hecho esto deberás comprobar que los tests funcionan
+correctamente los tests con la configuración original (base de datos
+en memoria `H2`) y añadir en otro commit cambios para que los tests carguen una
+configuración de base de datos alternativa, como una base de datos
+MySQL. En el siguiente apartado vemos cómo hacerlo.
+
+#### Ejecución de tests con base de datos MySQL ####
+
+Vamos a ver cómo lanzar una base de datos MySQL y cómo definir el
+fichero de configuración para que la aplicación Play se conecte a
+ella.
+
+##### Ejecución de una base de datos MySQL con un contenedor Docker #####
+
+En primer lugar vamos a ver cómo lanzar la base de datos
+MySQL. Podríamos realizar una instalación de MySQL en nuestro
+ordenador, pero vamos a usar también Docker en lugar de
+ello. Utilizaremos la imagen
+[MySQL](https://store.docker.com/images/mysql).
+
+Para lanzar un contenedor con la imagen anterior ejecutamos el
+siguiente comando:
+
+```
+$ docker run -d --rm -p 3306:3306 --name play-mysql -e MYSQL_ROOT_PASSWORD=mads -e MYSQL_DATABASE=mads mysql
+```
+
+Este comando lanza un contenedor que crea una base de datos llamada
+`mads` y con la contraseña de `root` `mads`. Le da el nombre
+`play-mysql` que después usaremos para enlazar con el contenedor de
+Play. La opción `-p 3306:3306` permite acceder a la base de datos
+desde el host (lo veremos más adelante).
+
+Podemos comprobar que el contenedor está funcionando con el comando
+`docker container ls`:
+
+```
+$ docker container ls
+CONTAINER ID  IMAGE  COMMAND                  CREATED         STATUS         PORTS                  NAMES
+7c1bed0b5b7e  mysql  "docker-entrypoint..."   6 seconds ago   Up 4 seconds   0.0.0.0:3306->3306/tcp play-mysql
+```
+
+El comando `docker container ls` lista los contenedores activos. Podemos usar el
+identificador o el nombre del contenedor para pararlo:
+
+```
+$ docker container stop play-mysql
+```
+
+Una vez parado se borrará automáticamente por haber usado la opción
+`--rm` en su lanzamiento. (en el caso de no usar esta opción tendremos
+que borrarlo nosotros manualmente con el comando `docker container rm
+play-mysql`).
+
+
+##### Ejecución de los tests con la base de datos MySQL #####
+
+Para ejecutar los tests con la base de datos MySQL vamos a definir un
+nuevo fichero de configuración que llamaremos `integration.conf`.
+
+Utilizaremos una característica del sistema de configuración de
+Play en la que podemos dar a las variables los valores definidos por
+variables de entorno usando la sintaxis:
+
+```
+variable = ${?VARIABLE_ENTORNO}
+```
+
+El nuevo fichero de configuración es el siguiente:
+
+**Fichero conf/integration.conf**  
+
+```
+include "application.conf"
+
+jpa.default = mySqlPersistenceUnit
+
+db.default.driver=com.mysql.jdbc.Driver
+db.default.url=${?DB_URL}
+db.default.username=${?DB_USER_NAME}
+db.default.password=${?DB_USER_PASSWD}
+```
+
+En primer lugar el fichero incluye la configuración por defecto
+`application.conf` y después modifica el valor de las variables que
+nos interesan. 
+
+En concreto inicializamos la conexión JPA por defecto al perfil
+`mySqlPersistenceUnit`. Veremos más adelante la definición de este
+perfil en el fichero `persistence.xml`.
+
+Y después definimos las variables necesarias para la conexión a una
+base de datos MySQL. Para que la configuración sea flexible, obtenemos
+los valores de variables de entorno que estarán definidas en el
+sistema en el que ejecutemos los tests de integración.
+
+El fichero de configuración de JPA debe quedar como sigue, añadiendo el nuevo perfil
+de conexión con una base de datos MySQL (el perfil `mySqlPersistenceUnit`):
+
+**Fichero `conf/META-INF/persistence.xml`**:  
 
 ```xml
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
@@ -183,694 +619,1083 @@ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
 </persistence>
 ```
 
-La unidad de persistencia `memoryPersistenceUnit` define las
-características de la conexión con la base de datos en memoria H2 y la
-unidad `mySqlPersistenceUnit` define la conexión con una base de datos
-MySQL.
+Cuando la aplicación Play se conecte a la base de datos el esquema de
+datos de actualiza automáticamente debido al valor `update` en la
+propiedad `hibernate.hbm2ddl.auto`. Este valor indica que el esquema
+de datos de la base de datos se actualiza para ajustarse a las
+entidades definidas en la aplicación. Por ejemplo, cuando se añade
+algún atributo a alguna entidad, se añade automáticamente una columna
+más a la tabla correspondiente.
 
-Y cambiamos el fichero de configuración `application.conf` para
-trabajar con la base de datos MySQL. Cambia la configuración
-comentando las propiedades de la base de datos en memoria y
-actualizando las de MySQL (puedes hacerlo al revés, si necesitas
-volver a trabajar con `H2`).
-
-**Fichero `application.conf`**:
-
-```
-# Memory H2 database
-# jpa.default = memoryPersistenceUnit
-
-# MySQL database
-jpa.default = mySqlPersistenceUnit
-
-db {
-  # Memory H2 database
-  # https://www.playframework.com/documentation/latest/Developing-with-the-H2-Database
-  # default.driver=org.h2.Driver
-  # default.url="jdbc:h2:mem:play"
-
-  # MySQL database
-  default.driver=com.mysql.jdbc.Driver
-  default.url="jdbc:mysql://localhost:3306/mads"
-  default.username=root
-  default.password="mads"
-
-  # You can expose this datasource via JNDI if needed (Useful for JPA)
-  default.jndiName=DefaultDS
-
-  # You can turn on SQL logging for any datasource
-  # https://www.playframework.com/documentation/latest/Highlights25#Logging-SQL-statements
-  #default.logSql=true
-}
-```
-
-### 2.3. Comprobación del funcionamiento
-
-Podemos ejecutar la aplicación y comprobar que los datos introducidos
-en ella aparecen en la base de datos:
+Una vez realizados los cambios anteriores, y estando el contenedor
+docker MySQL en funcionamiento, podemos lanzar la aplicación Play 
+con el siguiente comando:
 
 ```
-$ mysql -u root -p 
-Enter password: mads
-mysql> use mads;
-mysql> show tables;
-mysql> select * from Usuario;
+$ docker run --link play-mysql:mysql --rm -it -p 80:9000 -e \
+DB_URL="jdbc:mysql://play-mysql:3306/mads" -e DB_USER_NAME="root" -e \
+DB_USER_PASSWD="mads" -v${PWD}:/code domingogallardo/playframework /bin/bash
 ```
 
-También puedes modificar algún dato y comprobar que en la aplicación
-también aparece modificado:
+La opción `--link` define el nombre del contenedor con el que enlazar
+en el que se está ejecutando MySQL y las opciones `-e` definen los
+valores de las variables de entorno que usará el fichero de
+configuración. 
+
+Añadimos `/bin/bash` al final para que sea este el
+comando que se ejecute en el contenedor, en lugar de `sbt`. Por ello
+el comando anterior lanzará un shell:
 
 ```
-mysql> update Usuario set apellidos = 'Pepito Pérez' where id = 1;
-mysql> insert into Usuario (id, apellidos, login, nombre) 
-values (3, 'Cantó', 'anabel', 'Anabel');
+bash-4.3# 
 ```
 
-
-## 3. Tests en Play Framework
-
-Play Framework en Java utiliza [JUnit](http://junit.org) como
-framework de testing. Los siguientes enlaces proporcionan información
-inicial sobre testing en Play Framework. No vamos a entrar en
-profundidad en todas las posibilidades (_mocking_, inyección de
-dependencias, etc.), sólo aprender lo necesario para definir algunos
-tests que sean útiles.
-
-A pesar que Play permite una gran flexibilidad a la hora de testear
-sus distintos elementos, sólo vamos a realizar tests de la **capa de
-persistencia** (DAO) y de la **capa de servicios**.
-
-- [Testing your application](https://playframework.com/documentation/2.5.x/JavaTest)
-- [Testing with databases](https://playframework.com/documentation/2.5.x/JavaTestingWithDatabases)
-
-Todos los tests deben incluirse en el directorio `tests`. Podemos
-lanzar todos los tests desde la consola Activator
+Por último, sólo nos falta llamar a `sbt` desde el shell para que
+cargue el nuevo fichero de configuración y lance los tests:
 
 ```
-[mads-todolist] $ test
+bash-4.3# sbt '; set javaOptions += "-Dconfig.file=conf/integration.conf"; test'
 ```
 
-Y también podemos lanzar sólo los tests definidos en una clase:
+También podríamos hacer un `run` o un `testOnly`:
 
 ```
-[mads-todolist] $ testOnly my.namespace.MyTest
+$ sbt '; set javaOptions += "-Dconfig.file=conf/integration.conf"; run'
+$ sbt '; set javaOptions += "-Dconfig.file=conf/integration.conf"; testOnly Integration*'
 ```
 
-Y para lanzar sólo los tests que han fallado:
+Una vez que compruebes que los tests funcionan correctamente con la
+base de datos MySQL puedes confirmar los cambios en un nuevo commit
+(puedes poner el mensaje `Añadido integration.conf para conexión con
+BD Mysql`), sube el nuevo commit.
+
+
+##### Conexión a la base de datos desde el host #####
+
+Es posible conectarse al servicio en el `hostname` `127.0.0.1` y en el
+puerto 3306.  Por ejemplo con el cliente MySQL desde el terminal:
 
 ```
-[mads-todoslist] $ testQuick
-```
-
-Para hacerlo desde el terminal, llamando a `activator`:
-
-```
-$ activator test
-$ activator "testOnly my.namespace.MyTest" (cuidado: hay que escribir las comillas)
-$ activator testQuick
-```
-
-En Play es posible lanzar tests sobre ejecuciones de la aplicación. De
-esta forma no es necesario crear _mocks_ ni _stubs_ (aunque es posible
-hacerlo, si queremos mejorar el rendimiento de la ejecución de los
-tests o aislar el código a probar del resto de componentes y
-recursos). 
-
-Podemos también configurar en los tests la conexión a la base de datos
-con la que se lanza el test, haciendo independiente la ejecución del
-test de la configuración de desarrollo. Por ejemplo, podemos usar una
-configuración de desarrollo en la que trabajamos con una base de datos
-MySQL, y hacer que los tests se ejecuten con una configuración de base
-de datos en memoria. También podemos utilizar una base de datos de
-tests en la que hemos añadido casos de prueba que se utilizarán en los
-tests. Veremos distintos ejemplos en el siguiente apartado.
-
-### 3.1. Introducción
-
-#### 3.1.1. JUnit
-
-Los tests se construyen usando JUnit:
-
-```java
-import static org.junit.Assert.*;
-
-import org.junit.Test;
-
-public class SimpleTest {
-
-  @Test
-  public void testSum() {
-    int a = 1 + 1;
-    assertEquals(2, a);
-  }
-    
-  @Test
-  public void testString() {
-    String str = "Hello world";
-    assertFalse(str.isEmpty());
-  }
-
-}
-```
-
-#### 3.1.2. Aserciones y matchers
-
-PlayFramework también incluye la librería
-[Hamcrest](http://hamcrest.org/JavaHamcrest/) que permite escribir 
-aserciones de más alto nivel:
-
-```java
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.assertThat;
-
-import org.junit.Test;
-
-public class HamcrestTest {
-  
-  @Test
-  public void testString() {
-    String str = "good";
-    assertThat(str, allOf(equalTo("good"), startsWith("goo")));
-  }
-
-}
-```
-
-
-#### 3.1.3. Mocks
-
-Los _mocks_ se usan para aislar los tests unitarios de dependencias
-externas. Por ejemplo, si la clase a probar depende de una clase
-externa de acceso a datos, es posible _mockear_ esta clase para
-proporcional datos controlados y eliminar la necesidad del recurso
-externo. 
-
-Para ello se usa la librería [Mockito](https://github.com/mockito/mockito)
-
-Usando Mockito, es posible _mockear_ clases o interfaces. Por ejemplo:
-
-```java
-import static org.mockito.Mockito.*;
-
-// Crea e inicializa el mock
-List<String> mockedList = mock(List.class);
-when(mockedList.get(0)).thenReturn("first");
-
-// comprueba el valor
-assertEquals("first", mockedList.get(0));
-
-// verifica la interacción
-verify(mockedList).get(0);
-```
-
-### 3.2. Tests con bases de datos y JPA
-
-#### 3.2.1. Conexión de JPA con una base de datos en memoria
-
-Para verificar código que accede a la base de datos es posible
-inicializar en el propio test una base de datos con el mismo nombre
-JNDI que el que utiliza JPA. De esta forma, el código a probar usará
-la base de datos configurada en el test, en lugar de la definida en la
-propia aplicación.
-
-Lo habitual es utilizar una base de datos en memoria (como H2) sobre
-la que ejecutar los tests. Así el test se ejecutará mucho más rápido y
-podrá realizarse sin necesidad de una base de datos real que trabaje
-sobre el disco duro. Podremos, por ejemplo, ejecutar los tests en
-entornos _cloud_ sin necesidad de configurar una base de datos como
-MySQL. 
-
-**Nuevo ticket a implementar**
-
-> Debes implementar un nuevo ticket, en el que definas el fichero
-> `dao/UsuarioDaoTest.java` que ejecute un mínimo de 5 tests sobre la
-> clase `UsuarioDao` usando una base de datos vacía en memoria.
-
-El siguiente fichero `UsuarioDaoTest.java` muestra cómo hacerlo.
-
-**Fichero `test/dao/UsuarioDaoTest.java`**:
-
-```java
-package dao;
-
-import play.db.Database;
-import play.db.Databases;
-import play.db.jpa.*;
-import org.junit.*;
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
-
-import models.*;
-
-public class UsuarioDaoTest {
-
-    Database db;
-    JPAApi jpa;
-
-    @Before
-    public void initDatabase() {
-        db = Databases.inMemoryWith("jndiName", "DefaultDS");
-        // Necesario para inicializar el nombre JNDI de la BD
-        db.getConnection();
-        // Se activa la compatibilidad MySQL en la BD H2
-        db.withConnection(connection -> {
-            connection.createStatement().execute("SET MODE MySQL;");
-        });
-        jpa = JPA.createFor("memoryPersistenceUnit");
-    }
-
-    @After
-    public void shutdownDatabase() {
-        db.withConnection(connection -> {
-            connection.createStatement().execute("DROP TABLE Usuario;");
-        });
-        jpa.shutdown();
-        db.shutdown();
-    }
-
-    @Test
-    public void creaBuscaUsuario() {
-        Integer id = jpa.withTransaction(() -> {
-            Usuario nuevo = new Usuario("pepe", "pepe");
-            nuevo = UsuarioDAO.create(nuevo);
-            return nuevo.id;
-        });
-
-        jpa.withTransaction(() -> {
-            Usuario usuario = UsuarioDAO.find(id);
-            assertThat(usuario.login, equalTo("pepe"));
-        });
-    }
-
-    @Test
-    public void buscaUsuarioLogin() {
-        jpa.withTransaction(() -> {
-            Usuario usuario = UsuarioDAO.findUsuarioPorLogin("pepe");
-            assertNull(usuario);
-        });
-    }
-}
-```
-
-La inicialización de la base de datos en memoria se hace con los
-métodos anotados con `@Before` y `@After`:
-
-- Las anotaciones **`@Before`** y **`@After`** definen código que se ejecuta
-  antes y después de cada test. 
-- El método **`initDatabase()`** (que se ejecuta antes de cada test)
-  crea una base de datos en memoria y le asigna el nombre JNDI
-  `DefaultDS`. Después la instrucción
-  `JPA.createFor("memoryPersistenceUnit")` inicializa JPA usando la
-  configuración definida en la unidad de persistencia
-  `memoryPersistenciUnit` (en el fichero `META-INF/persistence.xml`)
-  y, por último, guarda un `JPAApi` en la variable `jpa` para poder
-  lanzar transacciones en los tests.
-- El método **`shutdownDatabase()`** limpia la base de datos al final
-  de cada test y cierra las conexiones.
-
-En cada test:
-
-- La base de datos está vacía al comenzar el test.
-- Se actualiza la base de datos insertando los datos que nos interesa,
-  usando el método `create()` del DAO. Una vez insertados los datos,
-  se llaman a los método a probar. Las acciones se realizan en
-  transacciones independientes usando el método `withTransaction()`
-  del `JPAApi`.
-
-
-Para lanzar los tests:
-
-```
-$ activator "testOnly dao.UsuarioDaoTest"
-```
-
-En el fichero mostrado anteriormente hay dos tests. Debes definir tres
-tests adicionales que comprueben otros métodos del DAO.
-
-
-#### 3.2.2. Inicialización de la base de datos con DBUnit
-
-Para poder inicializar la base de datos con un conjunto de datos
-previos es mucho más aconsejable utilizar la librería DBUnit.
-
-**Nuevo ticket a implementar**
-
-> Debes implementar un nuevo ticket, en el que definas el fichero
-> `dao/UsuarioDaoDbUnitTest.java` que ejecute un mínimo de 5 tests
-> sobre la clase `UsuarioDao` usando una base datos en memoria
-> inicializada con DBUnit.
-
-Para ello hay que hacer los siguiente cambios:
-
-**Añadir las librerías de DBUnit en `build.sbt`**:
-
-```
+$ mysql -h 127.0.0.1 -u root -p
 ...
-libraryDependencies ++= Seq(
-  javaJpa,
-  "org.hibernate" % "hibernate-entitymanager" % "4.3.7.Final",
-  "mysql" % "mysql-connector-java" % "5.1.18",
-  "org.dbunit" % "dbunit" % "2.4.9",
-  cache,
-  javaWs
-)
+mysql> use mads;
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_mads     |
++--------------------+
+| Tarea              |
+| Usuario            |
+| hibernate_sequence |
++--------------------+
+3 rows in set (0,00 sec)
+
+mysql> quit;
 ```
 
-Modificamos la clase `Usuario` para indicar que el campo
-`fechaNacimiento` se mapea con una columna de la base de datos de tipo
-`DATE` (si lo dejamos como antes, en la base de datos se crea una
-columna del tipo `TIMESTAMP`, que hay que inicializar también con
-horas, minutos y segundos).
+O desde alguna herramienta como el _MySQL Workbench_, creando una
+conexión como muestra la siguiente imagen:
 
-**Fichero `app/models/Usuario.java`**:
+<img src="imagenes/mysql-workbench.png" width="600px"/>
 
-```java
-Entity
-public class Usuario {
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    public Integer id;
-    ...
-    @Formats.DateTime(pattern="dd-MM-yyyy")
-    @Temporal(TemporalType.DATE)
-    public Date fechaNacimiento;
-    ...
-}
+
+#### Exportación del esquema de datos ####
+
+Por último, vamos a terminar el _issue_ añadiendo al repositorio un fichero SQL
+con el esquema de datos.
+
+Comienza por reiniciar MySQL para que la base de datos quede limpia,
+sin los datos de los tests:
+
+```
+$ docker container stop play-mysql
+$ docker run -d --rm --name play-mysql -e MYSQL_ROOT_PASSWORD=mads -e MYSQL_DATABASE=mads mysql
 ```
 
-Definimos en los datos iniciales de la base de datos en un fichero de
-configuración XML.
+Ejecuta la aplicación usando la configuración `integration.conf` (para
+que se inicialicen las tablas de la base de datos):
 
-**Fichero `test/resources/usuarios_dataset.xml`**:
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<dataset>
-    <Usuario id="1" login="juan" nombre="Juan" apellidos="Gutierrez"
-        eMail="juan.gutierrez@gmail.com" fechaNacimiento="1993-12-10"/>
-    <Usuario id="2" login="anabel" nombre="Anabel" eMail="anabel.perez@gmail.com"/>
-</dataset>
+```
+$ sbt '; set javaOptions += "-Dconfig.file=conf/integration.conf"; run'
 ```
 
-Hay que hacer notar que en DBUnit hay que definir las fechas con el formato
-`AAAA-MM-DD`.
+Conéctate a la aplicación desde el host, para que se active JPA y se
+inicialicen las tablas con el esquema de datos de JPA. No debes añadir
+ningún dato, sólo conectarte a la página de login.
 
-Una vez hecho esto, ya podemos definir una nueva clase de test en la
-que se utiliza DBUnit para cargar los datos y limpiar la base de datos
-en memoria:
+Para volcar el esquema de datos podemos ejecutar el comando
+`mysqldump` dentro del contenedor docker `play-mysql`:
 
-**Fichero `test/dao/UsuarioDaoDbUnitTest.java`**:
-
-```java
-package dao;
-
-import play.db.Database;
-import play.db.Databases;
-import play.db.jpa.*;
-import org.junit.*;
-import org.dbunit.*;
-import org.dbunit.dataset.*;
-import org.dbunit.dataset.xml.*;
-import org.dbunit.operation.*;
-import java.io.FileInputStream;
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import models.*;
-
-public class UsuarioDaoDbUnitTest {
-
-    static Database db;
-    static JPAApi jpa;
-    JndiDatabaseTester databaseTester;
-
-    @BeforeClass
-    static public void initDatabase() {
-        db = Databases.inMemoryWith("jndiName", "DefaultDS");
-        // Necesario para inicializar el nombre JNDI de la BD
-        db.getConnection();
-        // Se activa la compatibilidad MySQL en la BD H2
-        db.withConnection(connection -> {
-            connection.createStatement().execute("SET MODE MySQL;");
-        });
-        jpa = JPA.createFor("memoryPersistenceUnit");
-    }
-
-    @Before
-    public void initData() throws Exception {
-        databaseTester = new JndiDatabaseTester("DefaultDS");
-        IDataSet initialDataSet = new FlatXmlDataSetBuilder().build(new
-        FileInputStream("test/resources/usuarios_dataset.xml"));
-        databaseTester.setDataSet(initialDataSet);
-
-        // Definimos como operación SetUp CLEAN_INSERT, que hace un
-        // DELETE_ALL de todas las tablase del dataset, seguido por un
-        // INSERT. (http://dbunit.sourceforge.net/components.html)
-        // Es lo que hace DbUnit por defecto, pero así queda más claro.
-        databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
-
-        // Definimos como operación TearDown DELETE_ALL para que se
-        // borren todos los datos de las tablas del dataset
-        // (el valor por defecto DbUnit es DatabaseOperation.NONE)
-        databaseTester.setTearDownOperation(DatabaseOperation.DELETE_ALL);
-
-        databaseTester.onSetup();
-    }
-
-    @After
-    public void clearData() throws Exception {
-        databaseTester.onTearDown();
-    }
-
-    @AfterClass
-    static public void shutdownDatabase() {
-        jpa.shutdown();
-        db.shutdown();
-    }
-
-    @Test
-    public void findUsuarioPorLogin() {
-        jpa.withTransaction(() -> {
-            Usuario usuario = UsuarioDAO.findUsuarioPorLogin("juan");
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyy");
-            try {
-                Date diezDiciembre93 = sdf.parse("10-12-1993");
-                assertTrue(usuario.login.equals("juan") &&
-                           usuario.fechaNacimiento.compareTo(diezDiciembre93) == 0);
-            } catch (java.text.ParseException ex) {
-            }
-        });
-    }
-
-    @Test
-    public void actualizaUsuario() {
-        jpa.withTransaction(() -> {
-            Usuario usuario = UsuarioDAO.find(2);
-            usuario.apellidos = "Anabel Pérez";
-            UsuarioDAO.update(usuario);
-        });
-
-        jpa.withTransaction(() -> {
-            Usuario usuario = UsuarioDAO.find(2);
-            assertThat(usuario.apellidos, equalTo("Anabel Pérez"));
-        });
-    }
-
-}
+```
+$ docker exec play-mysql sh -c 'exec mysqldump mads -uroot -pmads' > schema.sql
 ```
 
-Esta vez la inicialización de la base de datos es algo distinta:
+El comando anterior ejecuta el comando `mysqldump` en el contenedor
+docker y lo graba el fichero `schema.sql` en el directorio
+actual. Edítalo para eliminar el día y la hora, ya que queremos que
+sólo aparezca información estrictamente del esquema de la base de
+datos.  Copia el fichero `schema.sql` en un nuevo directorio
+`sql` en la raíz del proyecto Play.
 
-- Las anotaciones **`@BeforeClass`** y **`@AfterClass`** definen
-  métodos que se ejecutan sólo una vez, al principio y al final de
-  todos los tests.
-- El método **`initDatabase()`** crea una base de datos en memoria y
-  le asigna el nombre JNDI `DefaultDS`. Después la instrucción
-  `JPA.createFor("memoryPersistenceUnit")` inicializa JPA usando la
-  configuración definida en la unidad de persistencia
-  `memoryPersistenciUnit` y, por último, guarda un `JPAApi` en la
-  variable `jpa` para poder lanzar transacciones en los tests. La base
-  de datos y la JPAApi son estáticas, y tienen un ámbito de vida de
-  todos los tests.
-- El método **`shutdownDatabase()`** cierra las conexiones con la base
-  de datos y con JPA al final de ejecutar todos los tests.
-- Los métodos **`initData()`** y **`clearData()`** son los métodos que
-  usan el API de DBUnit para inicializar la base de datos y borrarla
-  al principio y al final de ejecutar cada test.
+De esta forma podremos comprobar más adelante las diferencias cuando
+modifiquemos la base de datos al evolucionar las entidades de la
+aplicación.
 
-En cada test se comprueba dentro de una transacción que el resultado
-de ejecutar una llamada a un método del DAO, partiendo del estado de
-la base de datos definido por el fichero XML, es el esperado.
+El fichero debería ser parecido a este:
 
-En el fichero mostrado anteriormente hay dos tests. Debes definir tres
-tests adicionales que comprueben otros métodos del DAO.
+**Fichero `sql/schema.sql`**:  
 
-### 3.3. Tests de la capa de servicios
+```sql
+-- MySQL dump 10.13  Distrib 5.7.19, for Linux (x86_64)
+--
+-- Host: localhost    Database: mads
+-- ------------------------------------------------------
+-- Server version	5.7.19
 
-Los tests sobre la capa de servicios se hacen de forma similar a los
-de la capa DAO. Podemos usar también DBUnit para inicializar la base
-de datos de memoria con datos de prueba iniciales.
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-**Nuevo ticket a implementar**
+--
+-- Table structure for table `Tarea`
+--
 
-> Debes implementar un nuevo ticket, en el que definas el fichero
-> `services/UsuariosServiceTest.java` que ejecute un mínimo de 5 tests
-> sobre la clase `UsuariosService` usando una base datos en memoria
-> inicializada con DBUnit.
+DROP TABLE IF EXISTS `Tarea`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Tarea` (
+  `id` bigint(20) NOT NULL,
+  `titulo` varchar(255) DEFAULT NULL,
+  `usuarioId` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKepne2t52y8dmn8l9da0dd7l51` (`usuarioId`),
+  CONSTRAINT `FKepne2t52y8dmn8l9da0dd7l51` FOREIGN KEY (`usuarioId`) REFERENCES `Usuario` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-El primer test que debes implementar es uno en el que se compruebe que
-**si intentamos modificar un usuario con un login ya existente se debe
-lanzar una excepción**. Para que el test funcione correctamente tienes
-que modificar el método `UsuariosService.modificaUsuario()` para que
-lance una excepción de tipo `UsuariosException` si se ha modificado el
-login que se pasa como parámetro a uno que ya existe en la base de
-datos.
+--
+-- Dumping data for table `Tarea`
+--
 
-El test es interesante porque demuestra una importante característica
-de JPA: si estamos dentro de una transacción las entidades devueltas por
-los métodos del servicio están conectadas a la base de datos. Esta
-conexión hace que si modificamos uno de sus atributos, automáticamente
-se modifica la base de datos. 
+LOCK TABLES `Tarea` WRITE;
+/*!40000 ALTER TABLE `Tarea` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Tarea` ENABLE KEYS */;
+UNLOCK TABLES;
 
-Por ejemplo, el siguiente código no funcionaría bien, porque el objeto
-`usuario` devuelto por `findUsuario()` **está conectado** a la base de
-datos y JPA actualizará la base de datos cuando modifiquemos alguno de
-sus atributos. En concreto, se modifica el login antes de invocar al
-método `modificaUsuario()` y cuando `modificaUsuario()` hace la
-comprobación de si el login está repetido, en la base de datos ya hay
-dos usuarios con el login 'juan'.
+--
+-- Table structure for table `Usuario`
+--
 
+DROP TABLE IF EXISTS `Usuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Usuario` (
+  `id` bigint(20) NOT NULL,
+  `apellidos` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `fechaNacimiento` date DEFAULT NULL,
+  `login` varchar(255) DEFAULT NULL,
+  `nombre` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-```java
-    // 
-    // CÓDIGO ERRÓNEO, NO COPIAR
-    //
-    // 
-    jpa.withTransaction(() -> {
-        Usuario usuario = UsuariosService.findUsuario(2);
+--
+-- Dumping data for table `Usuario`
+--
 
-        // Modificamos el login por uno ya existente en
-        // la base de datos.
+LOCK TABLES `Usuario` WRITE;
+/*!40000 ALTER TABLE `Usuario` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Usuario` ENABLE KEYS */;
+UNLOCK TABLES;
 
-        usuario.login = "juan";
+--
+-- Table structure for table `hibernate_sequence`
+--
 
-        // Pero está mal: al estar el usuario conectado 
-        // a la base de datos se actualiza el login en la base 
-        // de datos justo en este momento, antes de llamar 
-        // al método modificaUsuario.
+DROP TABLE IF EXISTS `hibernate_sequence`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `hibernate_sequence` (
+  `next_val` bigint(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-        try {
-            UsuariosService.modificaUsuario(usuario);
-            fail("No se ha lanzado excepción login ya existe");
-        } catch (UsuariosException ex) {
-        }
-    });
+--
+-- Dumping data for table `hibernate_sequence`
+--
+
+LOCK TABLES `hibernate_sequence` WRITE;
+/*!40000 ALTER TABLE `hibernate_sequence` DISABLE KEYS */;
+INSERT INTO `hibernate_sequence` VALUES (1),(1);
+/*!40000 ALTER TABLE `hibernate_sequence` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 ```
 
-Una forma de corregir el código anterior es copiar los datos del
-usuario conectado a otro dato nuevo, que no haya sido devuelto por JPA
-y que esté desconectado de la base de datos. Para ello definimos un
-nuevo método `copy()` en la clase `Usuario`, que únicamente crea un
-usuario nuevo y copia sus datos.
+Realiza un último commit en el que se incluya el fichero `schema.sql`
+y **cierra el _issue_ con un pull request**.
 
-```java
-    @Test
-    public void actualizaUsuarioLanzaExcepcionSiLoginYaExiste() {
-        jpa.withTransaction(() -> {
-            Usuario usuario = UsuariosService.findUsuario(2);
+### Configuración de _stage_ ###
 
-            // Copiamos el objeto usuario para crear un objeto igual
-            // pero desconectado de la base de datos. De esta forma,
-            // cuando modificamos sus atributos JPA no actualiza la
-            // base de datos.
+Una configuración de _stage_ es una configuración de despliegue de la
+aplicación preparada para que sea lo más similar posible al despliegue
+de producción. Se utiliza para realizar las pruebas funcionales y de
+rendimiento de la aplicación.
 
-            Usuario desconectado = usuario.copy();
+Una de las características fundamentales de la configuración de
+_stage_ es que su gestor base de datos debe ser idéntica al gestor de
+base de datos de producción, debe tener el mismo esquema de datos y
+contener datos similares (en cantidad y complejidad) a los que tiene
+la aplicación en producción.
 
-            // Cambiamos el login por uno ya existente
-            desconectado.login = "juan";
+Vamos a definir una configuración de _stage_ para nuestra aplicación
+Play. Vamos a usar la misma imagen docker MySQL que en la
+configuración de pruebas de integración y una ejecución de nuestra
+aplicación Play en modo _stage_.
 
-            try {
-                UsuariosService.modificaUsuario(desconectado);
-                fail("No se ha lanzado excepción login ya existe");
-            } catch (UsuariosException ex) {
-            }
-        });
-    }
+Lo normal es definir la configuración en un ordenador dedicado, y
+tenerla siempre en funcionamiento (de forma similar a como funciona la
+aplicación en producción). En lugar de esto, para simplificar el
+proceso, vamos a hacer que la imagen MySQL cargue los datos que
+guardamos en cada nueva realización de pruebas funcionales. En cada
+ejecución de pruebas funcionales se probarán con los datos ya
+existentes y se añadirán nuevos datos para realizar nuevas
+pruebas. Al final de la sesión de pruebas funcionales grabaremos todos
+los datos en un fichero que volveremos a usar como datos iniciales la
+próxima vez que arranquemos la configuración de _stage_.
+
+También veremos cómo usar sbt para desplegar y lanzar la aplicación
+Play en modo _stage_.
+
+**Nuevo issue: Configuración entorno de stage**
+
+Creamos un nuevo _issue_ llamado `Configuración entorno stage`. Puedes
+ponerle la etiqueta `tech`. Crea una rama en la que desarrolles este
+nuevo _issue_.
+
+Crea el fichero de `conf/stage.conf`:
+
+```
+include "application.conf"
+
+play.crypto.secret="abcdefghijkl"
+
+jpa.default = mySqlPersistenceUnitProduction
+
+db.default.driver=com.mysql.jdbc.Driver
+db.default.url=${?DB_URL}
+db.default.username=${?DB_USER_NAME}
+db.default.password=${?DB_USER_PASSWD}
 ```
 
-Escribe cuatro tests más que comprueben los métodos de la clase
-`UsuariosService`.
+Añade en el fichero `conf/META-INF/persistence.xml` el nuevo perfil
+`mySqlPersistenceUnitProduction`. La única diferencia (importante) con
+el perfil de integración es que el `hbm2ddl.auto` está definido con el
+valor `validate`. Debido a ello, cuando arranquemos la aplicación Play
+y se conecte a la base de datos lo primero que va a hacer JPA es
+comprobar que el esquema de datos (las tablas definidas en la base de
+datos) se corresponde con lo codificado en las entidades. En el caso
+en que no exista el esquema de datos o no se corresponda con el
+esquema definido por las entidades JPA lanzará un error y no
+funcionará el acceso a los datos.
 
-## 4. Ampliación de la aplicación: CRUD de tareas usando TDD
+
+```diff
+    </properties>
+ </persistence-unit>
+ 
++<!-- MySQL Persistence Unit - Production -->
++
++<persistence-unit name="mySqlPersistenceUnitProduction" transaction-type="RESOURCE_LOCAL">
++   <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
++   <non-jta-data-source>DBTest</non-jta-data-source>
++   <class>models.Usuario</class>
++   <class>models.Tarea</class>
++   <properties>
++      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
++      <property name="hibernate.hbm2ddl.auto" value="validate"/>
++   </properties>
++</persistence-unit>
++
+ </persistence>
+ ```
+
+
+#### Ejecución de pruebas funcionales en el entorno _stage_ ####
+
+La diferencia de esta configuración con la anterior es que en lugar de
+dejar que JPA cree las tablas de la base de datos, vamos nosotros a
+inicializar la base de datos MySQL con los esquemas y datos
+predefinidos, tal y como sucedería en producción.
+
+##### Lanzamiento de MySQL #####
+
+Para inicializar los datos de la imagen docker MySQL podemos utilizar
+su directorio `/docker-entrypoint-initdb.d`. Lo primero que hace la
+imagen es consultar ese directorio y ejecutar todos los ficheros con
+la extensión `.sql` que encuentre ahí. Los ejecuta en el orden
+alfabético del nombre de fichero. 
+
+Vamos entonces a lanzar la configuración de _stage_ por primera
+vez. Creamos un directorio `stage` fuera del repositorio git y
+copiamos ahí el fichero `schema.sql` del repositorio (el que contiene
+el esquema de base de datos actual):
+
+```
+$ cd <ruta-directorio-trabajo>
+$ mkdir stage
+$ cd stage
+$ cp <ruta-proyecto-play>/sql/schema.sql .
+```
+
+Nos movemos a ese directorio y lanzamos el comando `docker
+run` montando el directorio actual en el directorio `/docker-entrypoint-initdb.d`:
+
+```
+$ docker run -d --rm --name play-mysql -v ${PWD}:/docker-entrypoint-initdb.d -e MYSQL_ROOT_PASSWORD=mads -e MYSQL_DATABASE=mads mysql
+```
+
+De esta forma se lanza MySQL cargando el esquema de datos inicial
+(vacío).
+
+##### Parada de MySQL #####
+
+Cuando hayamos terminado de ejecutar las pruebas funcionales volcamos
+la base de datos a un fichero y paramos MySQL
+
+```
+$ docker exec play-mysql sh -c 'exec mysqldump mads -uroot -pmads' > stage-data.sql
+$ docker container stop play-mysql
+```
+
+Deberemos guardar este fichero `stage-data.sql` en algún sitio (**no
+en el repositorio Git del proyecto**, porque no representan cambios en
+el desarrollo del mismo), por ejemplo en algún directorio compartido
+de Dropbox o en un USB. De forma que lo podamos recuperar y utilizar
+la próxima vez que pongamos en marcha el entorno de stage.
+
+
+##### Ejecución de la aplicación #####
+
+Para ejecutar la aplicación Play en modo producción lanzamos el
+contenedor play de la misma forma que hacíamos para ejecutar los tests
+de integración (definiendo las variables de entorno para que la
+configuración se conecte con la BD y lanzando el shell bash). Y
+después usamos el comando `stage` de sbt que crea un fichero
+ejecutable en el directorio `target/universal/bin/<proyecto>`. 
+
+Por último lanzamos el ejecutable generado cargando la configuración
+`stage.conf`. 
+
+```
+$ cd <ruta-proyecto-play>
+$ docker run --link play-mysql:mysql --rm -it -p 80:9000 -e \
+DB_URL="jdbc:mysql://play-mysql:3306/mads" -e DB_USER_NAME="root" -e \
+DB_USER_PASSWD="mads" -v${PWD}:/code domingogallardo/playframework /bin/bash
+bash-4.3# sbt clean stage
+bash-4.3# target/universal/stage/bin/mads-todolist-2017 -Dconfig.file=${PWD}/conf/stage.conf
+```
+
+El ejecutable que se construye es similar al de producción. Sbt tiene
+un comando `dist` que permite generar un generar un binario listo para
+su distribución. Puedes consultar cómo hacerlo en [Deploying your
+application](https://www.playframework.com/documentation/2.5.x/Deploying).
+
+La aplicación se lanza en modo producción y podemos abrir el navegador
+y realizar los tests funcionales.
+
+Verás que aparecen unos errores debido que el funcionamiento de la aplicación en producción
+es ligeramente distinto al funcionamiento en desarrollo. En el
+repositorio con la guía de la práctica puedes encontrar los cambios a
+realizar, en el [PR
+#26](https://github.com/domingogallardo/mads-todolist-guia/pull/26):
+
+- Añadir getters y setters.
+- Añadir la declaración de las clases de entidad todos los perfiles en el fichero `persistence.xml`.
+
+
+## Nueva historia de usuario: tableros (usando TDD) ##
 
 La última parte de la práctica consiste en desarrollar, utilizando TDD
-(_Test Driven Design_) las funcionalidades necesarias para realizar un
-CRUD de tareas de usuarios.
+(_Test Driven Design_) una nueva historia de usuario:
+**Creación y asociación a tableros**.
 
-Un resumen de lo que deberás hacer en esta parte de la práctica:
+<kbd><img src="imagenes/historias-usuario.png" width="600px"/></kbd>
 
-- Añadirás una a una nuevas tarjetas en Trello correspondientes a las
-  nuevas funcionalidades que vayas desarrollando.
-- Al igual que hicimos en la práctica 1, cada ticket debe
-  desarrollarse en una rama independiente que después se mezcla con la
-  rama master.
-- Se definirá un fichero de test por cada funcionalidad, que contendrá
-  todos los tests necesarios para implementar la funcionalidad y se
-  denominará con un nombre similar al de la funcionalidad que queremos
-  implementar.
-- En el fichero de test se incluirán tests de la capa DAO y de capa de
-  servicios. Deberás realizar un enfoque de dentro a fuera, realizando
-  primero los tests de la capa DAO y después la de servicios.
-- Cada test, junto con el código desarrollado para pasarlo, irá en un
-  commit.
-- Es posible hacer commits con refactorizaciones (recuerda el ciclo de
-  TDD: Test, Codigo y Refactorización).
-- Utilizarás DBUnit y una base de datos de memoria para poder hacer
-  pruebas con datos iniciales. Utilizaremos un nuevo fichero
-  `tareas_dataset.xml`.
+Definimos la descripción de la historia que se muestra en la siguiente
+imagen:
 
-Implementaremos cada característica utilizando el ciclo de desarrollo
-de TDD:
+<kbd><img src="imagenes/historia-tableros.png" width="600px"/></kbd>
 
-1. Escribir un test que falla
-2. Escribir el código que hace que el test deje de fallar
+Implementaremos cada _issue_ de la capa de modelo o la capa de
+servicios utilizando el ciclo de desarrollo de TDD (el código de la
+capa de vista y controlador también se debería probar de esta forma,
+pero no lo vamos a hacer por falta de tiempo):
+
+1. Escribir un test que falla.
+2. Escribir el código que hace que el test deje de fallar.
 3. Refactorizar el código de los tests y el código escrito (sin
    añadir nuevos tests, ni nuevas funcionalidades).
 4. Volver al paso 1
 
-Veamos como ejemplo el desarrollo completo de la primera
-funcionalidad: **listado de tareas de un usuario**.
+Un resumen de lo que deberás hacer en esta última parte de la práctica:
 
-### 4.1 Primera funcionalidad: listado de tareas
+- Desarrollarás uno a uno los nuevos _issues_ de la historia de
+  usuario.
+- Al igual que hicimos en la práctica 1, cada _issue_ debe
+  desarrollarse en una rama independiente. Después crearemos un pull
+  request y, tras pasar los tests de integración, lo integraremos con
+  master (consultar en el apartado XX cómo realizar los tests de
+  integración antes de aprobar el pull request).
+- Todos los ficheros de tests deberán crearse en un directorio con el
+  nombre de la historia de usuario. Por ejemplo
+  `sg3-creacion-asociacion-tableros`.
+- Definirás un fichero de test por cada _issue_, que contendrá
+  todos los tests necesarios para implementar el _issue_ y se
+  denominará con un nombre similar.
+- Cada test, junto con el código desarrollado para pasarlo, irá en un
+  commit.
+- Es posible hacer commits con refactorizaciones (recuerda el ciclo de
+  TDD: Test, Codigo y Refactorización).
+- Utilizarás DBUnit para poder hacer pruebas con datos
+  iniciales, añadiendo nuevos datos en el fichero `usuarios_dataset.xml`.
 
-En esta característica queremos desarrollar la página con el listado
-de tareas de un usuario, que se debe devolver cuando se haga una
-petición GET a la URL correspondiente a las tareas del usuario. Por
-ejemplo, si accedemos a la URL `/usuarios/1/tareas` se devolverá un
-listado con todas las tareas del usuario `1`.
+Veamos a continuación como ejemplo el desarrollo completo del primer
+_issue_.
+
+
+### 4.1 Primer _issue_: Modelo de tablero y repositorio básico
+
+En este _issue_ completaremos una clase básica de entidad `Tablero`
+con los atributos:
+
+- Nombre
+- Descripción
+- Fecha de creación
+- Administrador (relación a-uno con la entidad `Usuario`)
+
+También crearemos la clase `TableroRepository` con un primer método
+para crear tableros. 
 
 Para implementar esta característica usando TDD crearemos el fichero
-de test `test/ListadoTareasTests.java` en el que iremos añadiendo los
-distintos tests, desde los de la capa más interior que contiene las
-entidades (los objetos de la base de datos), el DAO y el servicio.
+de test
+`test/sg3-creacion-asociacion-tableros/ModeloRepositorioTableroTest.java`
+en el que iremos añadiendo los
+distintos tests que irán construyendo el código.
 
-Creamos una tarjeta en Trello con el nombre **Listado de tareas**,
-le damos el número de _ticket_ correspondiente. Supongamos que es el
-número 20.
-
-Abrimos una rama en el repositorio en el que iremos añadiendo los
-commits de la funcionalidad (uno por cada test). En todos los commits
-usaremos el número de ticket anterior.
+Abrimos una rama en la que iremos añadiendo los commits del _issue_
+(uno por cada test). 
 
 ```
-$ git checkout -b tic-20
+$ git checkout -b modelo-tablero
 ```
 
-Empezamos ahora a usar TDD para implementar la funcionalidad. El
+Empezamos ahora a usar TDD para implementar el _issue_. El
 primer test nos servirá para definir los elementos básicos de la
-entidad `Tarea`.
+entidad `Tablero`.
+
+#### Primer test ####
+
+Empezamos con el test más sencillo: crear un tablero. Para crear un
+tablero necesitaremos pasar un usuario y un nombre de tablero.
+
+**Fichero `test/sg3-creacion-asociacion-tableros/ModeloRepositorioTableroTest.java`**:
+
+```java
+import org.junit.*;
+import static org.junit.Assert.*;
+
+import models.Usuario;
+import models.Tablero;
+
+public class ModeloRepositorioTableroTest {
+
+   @Test
+   public void testCrearTablero() {
+      Usuario usuario = new Usuario("juangutierrez", "juangutierrez@gmail.com");
+      Tablero tablero = new Tablero(usuario, "Tablero 1");
+
+      assertEquals("juangutierrez", tablero.getAdministrador().getLogin());
+      assertEquals("juangutierrez@gmail.com", tablero.getAdministrador().getEmail());
+      assertEquals("Tablero 1", tablero.getNombre());
+   }
+}
+```
+
+Lanzamos los tests y, evidentemente, obtendremos errores de
+compilación porque no existen las clases:
+
+```
+[mads-todolist-2017] $ testOnly
+[info] Compiling 6 Java sources to /code/target/scala-2.11/test-classes...
+[error] /code/test/models/TableroTest.java:5: cannot find symbol
+[error]   symbol:   class Tablero
+[error]   location: package models
+...
+[error] Total time: 15 s, completed Sep 30, 2017 3:30:33 PM
+```
+
+Creamos las clases con **solo el código necesario para que el test pase**:
+
+```java
+import org.junit.*;
+import static org.junit.Assert.*;
+
+import models.Usuario;
+import models.Tablero;
+
+public class ModeloRepositorioTableroTest {
+
+   @Test
+   public void testCrearTablero() {
+      Usuario usuario = new Usuario("juangutierrez", "juangutierrez@gmail.com");
+      Tablero tablero = new Tablero(usuario, "Tablero 1");
+
+      assertEquals("juangutierrez", tablero.getAdministrador().getLogin());
+      assertEquals("juangutierrez@gmail.com", tablero.getAdministrador().getEmail());
+      assertEquals("Tablero 1", tablero.getNombre());
+   }
+}
+```
+
+Hacemos un commit con el test y el código que hemos creado
+
+```
+$ git add *
+$ git status
+$ git commit -m "Creada clase Tablero"
+```
+
+#### Segundo test ####
+
+Vamos con un segundo test en el que añadimos otro pequeño incremento:
+creación del `JPATableroRepository` y comprobación de que se obtiene
+correctamente un objeto `TableroRepository`.
+
+Escribimos el test, añadiendo el código al fichero existente:
+
+```diff
+ import org.junit.*;
+ import static org.junit.Assert.*;
+ 
++import play.inject.guice.GuiceApplicationBuilder;
++import play.inject.Injector;
++import play.inject.guice.GuiceInjectorBuilder;
++import play.Environment;
++
++import play.db.jpa.*;
++
+ import models.Usuario;
+ import models.Tablero;
++import models.TableroRepository;
+ 
+ public class ModeloRepositorioTableroTest {
++   static private Injector injector;
++
++   @BeforeClass
++   static public void initApplication() {
++      GuiceApplicationBuilder guiceApplicationBuilder =
++          new GuiceApplicationBuilder().in(Environment.simple());
++      injector = guiceApplicationBuilder.injector();
++      // Necesario para inicializar JPA
++      injector.instanceOf(JPAApi.class);
++   }
+ 
+    @Test
+    public void testCrearTablero() {
+@@ -15,4 +33,10 @@ public class ModeloRepositorioTableroTest {
+       assertEquals("juangutierrez@gmail.com", tablero.getAdministrador().getEmail());
+       assertEquals("Tablero 1", tablero.getNombre());
+    }
++
++   @Test
++   public void testObtenerTableroRepository() {
++      TableroRepository tableroRepository = injector.instanceOf(TableroRepository.class);
++      assertNotNull(tableroRepository);
++   }
+ }
+```
+
+
+Lanzamos el test y comprobamos que no funciona. Escribimos el código
+mínimo para hacer que funcione:
+
+**Fichero `models/TableroRepository.java`**:
+
+```java
+package models;
+
+import javax.inject.Inject;
+import play.db.jpa.JPAApi;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
+public class TableroRepository {
+   JPAApi jpaApi;
+
+   @Inject
+   public TableroRepository(JPAApi api) {
+      this.jpaApi = api;
+   }
+}
+```
+
+Comprobamos que el test funciona:
+
+```
+[mads-todolist-2017] $ testOnly ModeloRepositorio*
+[info] Test run started
+...
+[info] Test ModeloRepositorioTableroTest.testObtenerTableroRepository started
+[info] Test run finished: 0 failed, 0 ignored, 2 total, 12.975s
+[info] Passed: Total 2, Failed 0, Errors 0, Passed 2
+```
+
+Una vez que el test pasa correctamente **hacemos una refactorización**,
+sin tocar el test, para convertir `TableroRepository` en una interfaz
+y definir una clase específica de la interfaz: `JPATableroRepository`:
+
+
+**Fichero `models/TableroRepository.java`**:
+
+```java
+package models;
+
+import com.google.inject.ImplementedBy;
+
+import java.util.List;
+
+@ImplementedBy(JPATableroRepository.class)
+public interface TableroRepository {
+}
+```
+
+
+**Fichero `models/JPATableroRepository.java`**:
+
+```java
+package models;
+
+import javax.inject.Inject;
+import play.db.jpa.JPAApi;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
+public class JPATableroRepository implements TableroRepository {
+   JPAApi jpaApi;
+
+   @Inject
+   public JPATableroRepository(JPAApi api) {
+      this.jpaApi = api;
+   }
+}
+```
+
+Terminamos haciendo el commit del segundo test:
+
+
+```
+$ git status
+$ git add *
+$ git commit -m "Creado TableroRepository"
+```
+
+#### Tercer test ####
+
+En el tercer test vamos a comprobar si se crea la tabla `Tablero` en
+la base de datos. Fallará y escribiremos el código para que pase.
+
+El test consistirá en usar DbUnit para intentar cargar en la base de
+datos una nueva fila añadida en el fichero `usuarios_dataset.xml`
+
+**Cambios en el fichero `test/resources/usuarios_dataset.xml`**:
+
+```diff
+          password="123456789" eMail="juan.gutierrez@gmail.com" fechaNacimiento="1993-12-10"/>
+     <Tarea id="1000" titulo="Renovar DNI" usuarioId="1000"/>
+     <Tarea id="1001" titulo="Práctica 1 MADS" usuarioId="1000"/>
++    <Tablero id="1000" nombre="Tablero 1" administradorId="1000"/>
+  </dataset>
+
+```
+
+
+**Cambios en el fichero `test/sg3-creacion-asociacion-tableros/ModeloRepositorioTableroTest.java`**:
+
+```diff
+import play.Environment;
+ 
+import play.db.jpa.*;
+ 
++import org.dbunit.*;
++import org.dbunit.dataset.*;
++import org.dbunit.dataset.xml.*;
++import org.dbunit.operation.*;
++import java.io.FileInputStream;
++
+ import models.Usuario;
+ import models.Tablero;
+ import models.TableroRepository;
+
+...
+
+ public class ModeloRepositorioTableroTest {
+       TableroRepository tableroRepository = injector.instanceOf(TableroRepository.class);
+       assertNotNull(tableroRepository);
+    }
++
++   @Test
++   public void testCrearTablaTableroEnBD() throws Exception {
++      JndiDatabaseTester databaseTester = new JndiDatabaseTester("DBTest");
++      IDataSet initialDataSet = new FlatXmlDataSetBuilder().build(new FileInputStream("test/resources/usuarios_dataset.xml"));
++      databaseTester.setDataSet(initialDataSet);
++      databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
++      databaseTester.onSetup();
++      assertTrue(true);
++   }
+ }
+```
+
+
+El test fallará porque la tabla `Tablero` no se encuentra. Debemos
+escribir el código que corrige esto:
+
+**Cambios en el fichero `models/Tablero.java`:
+
+```diff
+
++import javax.persistence.*;
++
++@Entity
+ public class Tablero {
++   @Id
++   @GeneratedValue(strategy=GenerationType.AUTO)
++   Long id;
+    private String nombre;
++   @ManyToOne
++   @JoinColumn(name="administradorId")
+    private Usuario administrador;
+ 
++   public Tablero() {}
++
+    public Tablero(Usuario administrador, String nombre) {
+       this.nombre = nombre;
+       this.administrador = administrador;
+    }
+ 
++   public Long getId() {
++      return id;
++   }
++
++   public void setId(Long id) {
++      this.id = id;
++   }
++
+    public String getNombre() {
+       return nombre;
+    }
+ 
++   public void setNombre(String nombre) {
++      this.nombre = nombre;
++   }
++
+    public Usuario getAdministrador() {
+       return administrador;
+    }
++
++   public void setAdministrador(Usuario usuario) {
++      this.administrador = administrador;
++   }
+ }
+ ```
+
+
+**Cambios en el fichero `conf/META-INF/persistence.xml`**:
+
+```diff
+       <non-jta-data-source>DBTest</non-jta-data-source>
+       <class>models.Usuario</class>
+       <class>models.Tarea</class>
++      <class>models.Tablero</class>
+       <properties>
+          <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+          <property name="hibernate.hbm2ddl.auto" value="update"/>
+...
+    <non-jta-data-source>DBTest</non-jta-data-source>
+    <class>models.Usuario</class>
+    <class>models.Tarea</class>
++   <class>models.Tablero</class>
+    <properties>
+         <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
+         <property name="hibernate.hbm2ddl.auto" value="update"/>
+...
+    <non-jta-data-source>DBTest</non-jta-data-source>
+    <class>models.Usuario</class>
+    <class>models.Tarea</class>
++   <class>models.Tablero</class>
+    <properties>
+       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
+       <property name="hibernate.hbm2ddl.auto" value="validate"/>
+```
+
+Realiza los cambios, reflexionando sobre lo que hacen, y comprueba que
+el test pasa.
+
+Ya puedes cerrar el commit, llamándolo por ejemplo `Añadida entidad
+Tablero`:
+
+```
+$ git add *
+$ git commit -m "Añadida entidad Tablero"
+```
+
+
+####  Cuarto test ####
+
+Este cuarto test va a servir para crear la función `add()` en el
+`TableroRepository`.
+
+Añadimos el siguiente test:
+
+```diff
+ import org.dbunit.dataset.xml.*;
+ import org.dbunit.operation.*;
+ import java.io.FileInputStream;
+ 
++import play.db.Database;
++import play.db.Databases;
++
++import java.sql.*;
++
+ import models.Usuario;
+ import models.Tablero;
+ import models.TableroRepository;
++import models.UsuarioRepository;
+ 
+ public class ModeloRepositorioTableroTest {
+    static private Injector injector;
++   static Database db;
+ 
+    @BeforeClass
+    static public void initApplication() {
+...
+   public class ModeloRepositorioTableroTest {
+       injector = guiceApplicationBuilder.injector();
+       // Necesario para inicializar JPA
+       injector.instanceOf(JPAApi.class);
++      db = injector.instanceOf(Database.class);
+    }
+ 
+    @Test
+...
+    public class ModeloRepositorioTableroTest {
+       assertTrue(true);
+    }
+ 
++   @Test
++   public void testAddTableroInsertsDatabase() {
++      UsuarioRepository usuarioRepository = injector.instanceOf(UsuarioRepository.class);
++      TableroRepository tableroRepository = injector.instanceOf(TableroRepository.class);
++      Usuario administrador = new Usuario("juangutierrez", "juangutierrez@gmail.com");
++      administrador = usuarioRepository.add(administrador);
++      Tablero tablero = new Tablero(administrador, "Tablero 1");
++      tablero = tableroRepository.add(tablero);
++      assertNotNull(tablero.getId());
++      assertEquals("Tablero 1", getNombreFromTableroDB(tablero.getId()));
++   }
+ 
++   private String getNombreFromTableroDB(Long tableroId) {
++      String nombre = db.withConnection(connection -> {
++         String selectStatement = "SELECT Nombre FROM Tablero WHERE ID = ? ";
++         PreparedStatement prepStmt = connection.prepareStatement(selectStatement);
++         prepStmt.setLong(1, tableroId);
++         ResultSet rs = prepStmt.executeQuery();
++         rs.next();
++         return rs.getString("Nombre");
++      });
++      return nombre;
++   }
+ }
+```
+
+El test fallará. Y escribimos el código para que pase:
+
+**Fichero `models/JPATableroRepository.java`**:
+
+```diff
+public class JPATableroRepository implements TableroRepository {
+    public JPATableroRepository(JPAApi api) {
+       this.jpaApi = api;
+    }
++
++   public Tablero add(Tablero tablero) {
++      return jpaApi.withTransaction(entityManager -> {
++         entityManager.persist(tablero);
++         entityManager.flush();
++         entityManager.refresh(tablero);
++         return tablero;
++      });
++   }
+ }
+```
+
+
+**Fichero `models/TableroRepository.java`**:
+
+```diff
+ @ImplementedBy(JPATableroRepository.class)
+ public interface TableroRepository {
++   public Tablero add(Tablero tablero);
+ }
+```
+
+
+Comprueba que el test pasa y realiza un nuevo commit:
+
+```
+$ git add *
+$ git commit -m "Añadido método add() en TableroRepository"
+```
+
+#### Quinto y último test ####
+
+Vamos a por el siguiente test, en el que haremos posible que un
+usuario pueda administrar varios tableros.
+
+
+```diff
+
+import java.sql.*;
+
++ import java.util.List;
+
+import models.Usuario;
+import models.Tablero;
+
+...
+
+    }
++
++   @Test
++   public void testUsuarioAdministraVariosTableros() {
++      UsuarioRepository usuarioRepository = injector.instanceOf(UsuarioRepository.class);
++      TableroRepository tableroRepository = injector.instanceOf(TableroRepository.class);
++      Usuario administrador = new Usuario("juangutierrez", "juangutierrez@gmail.com");
++      administrador = usuarioRepository.add(administrador);
++      Tablero tablero1 = new Tablero(administrador, "Tablero 1");
++      tableroRepository.add(tablero1);
++      Tablero tablero2 = new Tablero(administrador, "Tablero 2");
++      tableroRepository.add(tablero2);
++      List<Tablero> tableros = tableroRepository.getAdministrados(administrador.getId());
++      assertEquals(2, tableros.size());
++   }
+ }
+```
+
+
+Y añadimos el código para conseguir que pase:
+
+**Fichero `models/Usuario.java`**:
+
+```diff
+public class Usuario {
+    // Relación uno-a-muchos entre usuario y tarea
+    @OneToMany(mappedBy="usuario")
+    public List<Tarea> tareas = new ArrayList<Tarea>();
++   @OneToMany(mappedBy="administrador")
++   public List<Tablero> administrados = new ArrayList<Tablero>();
+ 
+    // Un constructor vacío necesario para JPA
+    public Usuario() {}
+...
+    public class Usuario {
+       this.tareas = tareas;
+    }
+ 
++   public List<Tablero> getAdministrados() {
++      return administrados;
++   }
++
++   public void setAdministrados(List<Tablero> administrados) {
++      this.administrados = administrados;
++   }
++
+```
+
+**Fichero `models/TableroRepository.java`**:
+
+```diff
+import java.util.List;
+ @ImplementedBy(JPATableroRepository.class)
+ public interface TableroRepository {
+    public Tablero add(Tablero tablero);
++   public List<Tablero> getAdministrados(Long idUsuario);
+ }
+```
+
+**Fichero `models/JPATableroRepository.java`**:
+
+```diff
+    public class JPATableroRepository implements TableroRepository {
+          return tablero;
+       });
+    }
++
++   public List<Tablero> getAdministrados(Long idUsuario) {
++      return jpaApi.withTransaction(entityManager -> {
++         Usuario usuario = entityManager.find(Usuario.class, idUsuario);
++         // Cargamos todas las tareas del usuario en memoria
++         usuario.getAdministrados().size();
++         return usuario.getAdministrados();
++      });
++   }
++
+ }
+```
+
+Una vez que compruebes que el test funciona correctamente, debes
+confirmar los cambios:
+
+```
+$ git add *
+$ git commit -m "Un usuario puede administrar varios tableros"
+```
+
+
+### Tests de integración antes de cerrar el _issue_ y confirmar el pull request ###
+
+
+
+
+
+
+
+
+
+
+
+
 
 Creamos un fichero `test/resources/tareas_dataset.xml`, en el que
 definiremos los datos que cargaremos con DBUnit en la base de datos de prueba:
