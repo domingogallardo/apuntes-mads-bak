@@ -1,5 +1,5 @@
 
-## Pruebas ágiles
+## TDD y pruebas ágiles
 
 <kbd><img src="diapositivas/tdd-pruebas-agiles.001.png" width="800px"></kbd>
 
