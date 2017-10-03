@@ -44,7 +44,7 @@ Las sesiones tienen una duración variable, entre 45 y 90 minutos.
   - [The Agile Manifesto](lecturas/agile-manifesto.pdf)
 - S04: [Desarrollo lean](sesiones/04-desarrollo-lean/desarrollo-lean.md)
   - Mary Poppendieck - [Lean Programming](lecturas/mary-poppendieck-lean-programming-2001.pdf)
-- S05: [eXtreme Programming (XP)](sesiones/05-extreme-programming/sesiones/05-extreme-programming.md)
+- S05: [eXtreme Programming (XP)](sesiones/05-extreme-programming/extreme-programming.md)
   - Ron Jeffreis - [What is eXtreme Programming](lecturas/ron-jeffreis_what-is-extreme-programming.pdf)
 - S06: TDD (Test Driven Design)
 
