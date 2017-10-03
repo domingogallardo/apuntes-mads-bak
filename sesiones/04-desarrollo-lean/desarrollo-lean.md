@@ -106,7 +106,7 @@
   tiempo de trabajo y tiempo de espera en cada una de las fases. Es
   recomendable hacerlo con características reales, una vez terminadas.
 
-<img src="value-stream-mapping.png" width="800px">
+<img src="imagenes/value-stream-mapping.png" width="800px">
 
 - En el ejemplo anterior las fases serían: (1) crear el documento de requerimiento, (2)
   dividir en tareas y estimar, (3) documento de planificación, (4)
@@ -294,7 +294,7 @@ el artículo.
   cuantos ítems se terminan en esa fase de desarrollo, y anotamos el
   incremento en el diagrama. 
 
-<img src="incrementos-semanales.png" width="400px">
+<img src="imagenes/incrementos-semanales.png" width="400px">
 
 - De esta forma podemos, por ejemplo, hacer el diagrama de flujo
   acumulado de las historias de usuario terminadas. Este diagrama nos
@@ -306,7 +306,7 @@ el artículo.
   el que el eje vertical sean los _story points_ en lugar del número
   de ítems.
 
-<img src="cummulative.png" width="400px">
+<img src="imagenes/cummulative.png" width="400px">
 
 - Se puede hacer un diagrama conjunto de flujo acumulado de las
   distintas fases del desarrollo, para tener una visión de conjunto de
