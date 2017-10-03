@@ -17,12 +17,11 @@ de la asignatura.
   [Introducción a Play](practicas/01-introduccion-play/introduccion-play.md). Desarrollo
   de la versión 0.1 del proyecto. Play Framework en Java, Git y GitHub (incluyendo _issues_, _pull
   requests_, wiki y tablero de proyecto.
-- P02 (3 semanas): **Integración continua**.
-  Tests en Play Framework y TDD. Flujo de
-  trabajo Git. Integración continua con Travis y Docker.
-- P03 (2 semanas):
-  **Trabajo en equipo**. Flujo de trabajo Git y GitHub
-  modificado para el trabajo en equipo, uso de _pull requests_.
+- P02 (3 semanas): [Gestión de configuraciones y TDD con Play Framework](practicas/02-pruebas-tdd/pruebas-tdd.md)
+  Tests en Play Framework y TDD. 
+- P03 (2 semanas): **Trabajo en equipo**. Flujo de trabajo Git y
+  GitHub modificado para el trabajo en equipo, uso de _pull
+  requests_. Integración continua con Travis y Docker.
 - P04 (4 semanas):
   **Sprint de Scrum** para realizar una iteración de desarrollo.
   seleccionamos las historias de usuario de un ejercicio de _mapping
