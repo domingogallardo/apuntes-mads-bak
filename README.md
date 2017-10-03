@@ -44,32 +44,33 @@ Las sesiones tienen una duración variable, entre 45 y 90 minutos.
   - [The Agile Manifesto](lecturas/agile-manifesto.pdf)
 - S04: [Desarrollo lean](sesiones/04-desarrollo-lean/desarrollo-lean.md)
   - Mary Poppendieck - [Lean Programming](lecturas/mary-poppendieck-lean-programming-2001.pdf)
-- S05: eXtreme Programming (XP) y TDD
+- S05: [eXtreme Programming (XP)](sesiones/05-extreme-programming.md)
   - Ron Jeffreis - [What is eXtreme Programming](lecturas/ron-jeffreis_what-is-extreme-programming.pdf)
+- S06: TDD (Test Driven Design)
 
 ### Bloque 2: Integración y entrega continua (2 semanas)
 
-- S06: Pruebas ágiles
-- S07: Integración y entrega continua
+- S07: Pruebas ágiles
+- S08: Integración y entrega continua
   - Martin Fowler - [Continuous Integration](lecturas/martin-fowler_continuous-integration.pdf)
-- S08: Workflows de Git
+- S09: Workflows de Git
   - Vincent Driessen - [A successful Git branching model](lecturas/vincent-driessen_a-successful-git-branching-model.pdf)
-- S09: Herramientas de integración continua
+- S10: Herramientas de integración continua
 
 ### Bloque 3: Historias de usuario (2 semanas)
 
-- S10: Historias de usuario
-- S11: Jeff Patton - User Story Mapping
+- S11: Historias de usuario
+- S12: Jeff Patton - User Story Mapping
 
 ### Bloque 4: Scrum y Kanban (4 semanas)
 
-- S12: Scrum
+- S13: Scrum
   - Schwaber y Sutherland - [The Scrum Guide](lecturas/schwaver-sutherland_scrum-guide.pdf)
   - Henrik Kniberg - [Agile Product Ownership in a Nutshell](lecturas/henrik-kniberg_agile-product-ownership.pdf)
-- S13: Kanban
-- S14: Kanban vs. Scrum
+- S14: Kanban
+- S15: Kanban vs. Scrum
   - Henrik Kniberg - [Kanban and Scrum](lecturas/henrik-kniberg-kanban-and-scrum.pdf)
-- S15: Escalando Ágil - ¿Cómo coordinar múltiples equipos ágiles?
+- S16: Escalando Ágil - ¿Cómo coordinar múltiples equipos ágiles?
 
 
 ## Evaluación
