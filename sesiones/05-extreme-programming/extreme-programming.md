@@ -33,9 +33,9 @@
 
 <kbd><img src="diapositivas/extreme-programming.004.png" width="800px"></kbd>
 
-<kbd><img src="diapositivas/extreme-programming.004b.png" width="800px"></kbd>
+<kbd><img src="diapositivas/extreme-programming.005.png" width="800px"></kbd>
 
-<kbd><img src="diapositivas/extreme-programming.004c.png" width="800px"></kbd>
+<kbd><img src="diapositivas/extreme-programming.006.png" width="800px"></kbd>
 
 
 - El prefacio de la segunda edición de _Extreme Programming Explained_
@@ -45,8 +45,8 @@
   de **JUnit**. Y fue líder del equipo que desarrolló inicialmente el
   **proyecto Eclipse**, el popular IDE de desarrollo de Java.
   
-  En este prefacio, Gamma comenta que las prácticas XP son claves en
-  el desarrollo de Eclipse. Al ser un proyecto open source uno de los
+  En este prefacio, Gamma comenta que **las prácticas XP son claves en
+  el desarrollo de Eclipse**. Al ser un proyecto open source uno de los
   objetivos es realizar una desarrollo completamente transparente, ya
   que si no se sabe hacia dónde va el proyecto no es posible colaborar
   con él ni proporcionar retroalimentación.
@@ -75,7 +75,7 @@
     siguiente release. El plan se publica en la web pronto para que la
     comunidad pueda unirse al diálogo.
 
-<kbd><img src="diapositivas/extreme-programming.005.png" width="800px"></kbd>
+<kbd><img src="diapositivas/extreme-programming.007.png" width="800px"></kbd>
 
 - XP es una metodología ligera. En XP sólo se hace lo que es
   necesario para crear valor para el cliente.
@@ -107,7 +107,7 @@
   Kniberg](https://www.crisp.se/konsulter/henrik-kniberg) (aunque no
   habla demasiado de XP).
 
-<kbd><img src="diapositivas/extreme-programming.007.png" width="800px"></kbd>
+<kbd><img src="diapositivas/extreme-programming.008.png" width="800px"></kbd>
 
 - Las cuatro variables. Están todas relacionadas y no es posible
   optimizar las cuatro simultáneamente. 
@@ -144,7 +144,7 @@
   el cliente quede satisfecho. El cliente queda satisfecho cuando el
   producto que le entregamos le **aporta valor**.
 
-<kbd><img src="diapositivas/extreme-programming.008.png" width="800px"></kbd>
+<kbd><img src="diapositivas/extreme-programming.009.png" width="800px"></kbd>
 
 Explicación de los cinco valores:
 
@@ -208,14 +208,13 @@ Explicación de los cinco valores:
   respetarse las contribuciones de todos. Yo soy importante y tú
   también. 
   
-<kbd><img src="diapositivas/extreme-programming.008b.png" width="800px"></kbd>
+<kbd><img src="diapositivas/extreme-programming.010.png" width="800px"></kbd>
 
-- TDD: Test Driven Development. Lo veremos más adelante, pero
-  básicamente consiste en invertir el desarrollo habitual de los
-  tests. No hacerlos después de escribir el código para comprobar que
-  no hay errores. Sino **hacer el test antes de escribir el
-  código**. Y escribir únicamente el código necesario para que el test
-  pase.
+- TDD: Test Driven Development. Consiste básicamente en invertir el
+  desarrollo habitual de los tests. No hacerlos después de escribir el
+  código para comprobar que no hay errores. Sino **hacer el test antes
+  de escribir el código**. Y escribir únicamente el código necesario
+  para que el test pase.
   
   Esta idea tan simple en apariencia cambia radicalmente la forma de
   enfrentarse al desarrollo. Lo veremos más adelante.
@@ -238,7 +237,7 @@ Explicación de los cinco valores:
 
 - Muy interesante el post [Pair
   programming](http://www.programania.net/desarrollo-agil/pair-programming/)
-  de Luis Artola:
+  de [Luis Artola](https://twitter.com/artolamola):
   - ¿Es más caro el desarrollo con pair programming? Su respuesta es
     que no. El **cuello de botella del desarrollo** no es teclear, es:
        - código poco expresivo difícil de entender
@@ -333,9 +332,9 @@ Explicación de los cinco valores:
 
 <kbd><img src="diapositivas/extreme-programming.023.png" width="800px"></kbd>
 
-<kbd><img src="diapositivas/extreme-programming.025.png" width="800px"></kbd>
+<kbd><img src="diapositivas/extreme-programming.024.png" width="800px"></kbd>
 
-<kbd><img src="diapositivas/extreme-programming.026.png" width="800px"></kbd>
+<kbd><img src="diapositivas/extreme-programming.025.png" width="800px"></kbd>
 
 - Enlace al libro Kent Beck (acceso digital Biblioteca UA): [Extreme
   Programming Explained, Second Edition](http://proquest.safaribooksonline.com/0321278658?tocview=true)
