@@ -178,13 +178,13 @@
   [Lean from the trenches](https://pragprog.com/book/hklean/lean-from-the-trenches)
   ([PDF](https://www.google.es/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0ahUKEwie0Pe2gbXPAhUCOxQKHfE_DwkQFggeMAA&url=https%3A%2F%2Fwww.crisp.se%2Ffile-uploads%2FLean-from-the-trenches.pdf&usg=AFQjCNFLq9y4a6bq1CCWa03EfonPhMbV5w))
 
-<kbd><img src="diapositivas/desarrollo-lean.013b.png" width="800px"></kbd>
-
 <kbd><img src="diapositivas/desarrollo-lean.014.png" width="800px"></kbd>
 
 <kbd><img src="diapositivas/desarrollo-lean.015.png" width="800px"></kbd>
 
 <kbd><img src="diapositivas/desarrollo-lean.016.png" width="800px"></kbd>
+
+<kbd><img src="diapositivas/desarrollo-lean.017.png" width="800px"></kbd>
 
 
 Mary Poppendieck propone 7 tipos de _waste_ en el desarrollo del
@@ -223,7 +223,7 @@ software:
 - **Defectos**: Defectos técnicos que se van acumulando, errores en la
   comprensión de features que producen un producto de poco valor.
 
-<kbd><img src="diapositivas/desarrollo-lean.016b.png" width="800px"></kbd>
+<kbd><img src="diapositivas/desarrollo-lean.018.png" width="800px"></kbd>
 
 El
 [artículo](https://www.researchgate.net/publication/313360479_Software_Development_Waste)
@@ -284,9 +284,9 @@ el artículo.
   incompleta, incorrecta, engañosa, ineficiente o ausente.
 
 
-<kbd><img src="diapositivas/desarrollo-lean.017.png" width="800px"></kbd>
+<kbd><img src="diapositivas/desarrollo-lean.019.png" width="800px"></kbd>
 
-<kbd><img src="diapositivas/desarrollo-lean.018.png" width="800px"></kbd>
+<kbd><img src="diapositivas/desarrollo-lean.020.png" width="800px"></kbd>
 
 - Para hacer un diagrama de flujo acumulado (_cummulative flow
   diagram_) de una fase del desarrollo (columna del tablero Kanban o
@@ -294,7 +294,7 @@ el artículo.
   cuantos ítems se terminan en esa fase de desarrollo, y anotamos el
   incremento en el diagrama. 
 
-<kbd><img src="incrementos-semanales.png" width="400px"></kbd>
+<img src="incrementos-semanales.png" width="400px">
 
 - De esta forma podemos, por ejemplo, hacer el diagrama de flujo
   acumulado de las historias de usuario terminadas. Este diagrama nos
@@ -306,7 +306,7 @@ el artículo.
   el que el eje vertical sean los _story points_ en lugar del número
   de ítems.
 
-<kbd><img src="cummulative.png" width="400px"></kbd>
+<img src="cummulative.png" width="400px">
 
 - Se puede hacer un diagrama conjunto de flujo acumulado de las
   distintas fases del desarrollo, para tener una visión de conjunto de
@@ -328,7 +328,7 @@ el artículo.
     - Henrik Kniberg: [Lean from the trenches](https://pragprog.com/book/hklean/lean-from-the-trenches)
 
 
-<kbd><img src="diapositivas/desarrollo-lean.019.png" width="800px"></kbd>
+<kbd><img src="diapositivas/desarrollo-lean.021.png" width="800px"></kbd>
 
 - Cuando estamos comenzando a desarrollar las primeras funcionalidades
   del sistema, deberíamos **evitar tomar decisiones** sobre elementos
@@ -378,12 +378,12 @@ versiones pasadas puestas en producción.
         el último cambio si las métricas caen después de haber sido
         probado por millones de personas.
 
-<kbd><img src="diapositivas/desarrollo-lean.020.png" width="800px"></kbd>
-
-<kbd><img src="diapositivas/desarrollo-lean.021.png" width="800px"></kbd>
-
 <kbd><img src="diapositivas/desarrollo-lean.022.png" width="800px"></kbd>
 
 <kbd><img src="diapositivas/desarrollo-lean.023.png" width="800px"></kbd>
+
+<kbd><img src="diapositivas/desarrollo-lean.024.png" width="800px"></kbd>
+
+<kbd><img src="diapositivas/desarrollo-lean.025.png" width="800px"></kbd>
 
 - Post de 2001 de Mary Poppendieck: [Lean Programming](http://www.leanessays.com/2010/11/lean-programming.html)
