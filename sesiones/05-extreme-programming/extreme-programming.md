@@ -103,6 +103,10 @@
   gusta me puedo seguir sintiendo satisfecho de mi mismo porque he
   dado lo mejor de mi.
 
+- Enlace a la web de [Henrik
+  Kniberg](https://www.crisp.se/konsulter/henrik-kniberg) (aunque no
+  habla demasiado de XP).
+
 <kbd><img src="diapositivas/extreme-programming.007.png" width="800px"></kbd>
 
 - Las cuatro variables. Están todas relacionadas y no es posible
@@ -224,6 +228,12 @@ Explicación de los cinco valores:
 
 <kbd><img src="diapositivas/extreme-programming.014.png" width="800px"></kbd>
 
+- Libro interesante sobre la técnica del Pomodoro [Pomodoro Technique
+  Ilustrated](https://pragprog.com/book/snfocus/pomodoro-technique-illustrated).
+- La idea original es de Francesco Cirillo. En [esta
+  página](https://cirillocompany.de/pages/pomodoro-technique) anuncia
+  sus cursos y se puede obtener su libro original.
+
 <kbd><img src="diapositivas/extreme-programming.015.png" width="800px"></kbd>
 
 - Muy interesante el post [Pair
@@ -252,7 +262,10 @@ Explicación de los cinco valores:
 
   - Para que el pair programming resulte realmente eficaz:
     - Dos teclados y dos ratones (¡incluso dos pantallas!), dos sillas
-      y la pantalla en medio. Hay que estar cómodo.
+      y la pantalla en medio. Hay que estar cómodo. También es muy
+      útil tener a mano un ordenador auxiliar (portátil o tablet) en
+      el que poder a veces buscar más información mientras que la otra
+      persona programa.
     - Máxima intensidad: pomodoros, y un objetivo (troceado en un
       pequeño log de la sesión de pairing)
     - Máxima concentración: el que no escribe debe mantener la
@@ -283,7 +296,25 @@ Explicación de los cinco valores:
   - Y así sucesivamente. El refactoring se hace cuando surge la
     necesidad por el que está escribiendo en ese momento.
 
-
+- [Un entorno productivo en
+  pareja](http://www.programania.net/diseno-de-software/un-entorno-productivo-en-pareja/),
+  otro artículo de Luis Artola en el que explica con más detalle el
+  entorno de trabajo para un proyecto concreto en el que usaron pair
+  programming y añade algunas ideas más sobre cuándo hacer pairing y
+  cuando no:
+  
+  - Hacemos pairing siempre que lo que nos impide avanzar es el
+    conocimiento (ya sea técnico o de dominio).
+  - Hacemos pairing siempre que se va a tomar una decisión de diseño
+    importante en la que se va a basar el proyecto (cómo vamos a
+    organizar los componentes, si se va a usar tal o cuál patrón,
+    estrategia de testeo, etc…)
+  - Siempre que hacemos pairing tenemos una lista preparada con el
+    orden del día. Y sí: normalmente hacemos pairing de jornadas
+    completas, preparando el entorno previamente para ser productivos
+    y tener toda la información disponible y la posibilidad de tener
+    discusiones productivas.
+  - Es importante no hacer pairing cuando quieres asimilar algo que has aprendido.
 
 
 <kbd><img src="diapositivas/extreme-programming.016.png" width="800px"></kbd>
