@@ -539,7 +539,7 @@ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
 
     <persistence-unit name="memoryPersistenceUnit" transaction-type="RESOURCE_LOCAL"> 
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <non-jta-data-source>DefaultDS</non-jta-data-source>
+        <non-jta-data-source>DBTest</non-jta-data-source>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
@@ -550,7 +550,7 @@ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
 
     <persistence-unit name="mySqlPersistenceUnit" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <non-jta-data-source>DefaultDS</non-jta-data-source>
+        <non-jta-data-source>DBTest</non-jta-data-source>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
@@ -905,8 +905,8 @@ $ cd stage
 $ cp <ruta-proyecto-play>/sql/schema.sql .
 ```
 
-Nos movemos a ese directorio y lanzamos el comando `docker
-run` montando el directorio actual en el directorio `/docker-entrypoint-initdb.d`:
+Nos movemos a ese directorio y lanzamos el comando `docker run` 
+montando el directorio actual en el directorio `/docker-entrypoint-initdb.d`:
 
 ```
 $ docker run -d --rm --name play-mysql -v ${PWD}:/docker-entrypoint-initdb.d -e MYSQL_ROOT_PASSWORD=mads -e MYSQL_DATABASE=mads mysql
@@ -918,19 +918,20 @@ De esta forma se lanza MySQL cargando el esquema de datos inicial
 ##### Parada de MySQL #####
 
 Cuando hayamos terminado de ejecutar las pruebas funcionales volcamos
-la base de datos a un fichero y paramos MySQL
+la base de datos a un fichero y paramos MySQL. Para simplificar
+podemos volcarlo para que sobreescriba el anterior fichero `schema.sql`:
 
 ```
-$ docker exec play-mysql sh -c 'exec mysqldump mads -uroot -pmads' > stage-data.sql
+$ docker exec play-mysql sh -c 'exec mysqldump mads -uroot -pmads' > schema.sql
 $ docker container stop play-mysql
 ```
 
-Deberemos guardar este fichero `stage-data.sql` en algún sitio (**no
-en el repositorio Git del proyecto**, porque no representan cambios en
-el desarrollo del mismo), por ejemplo en algún directorio compartido
-de Dropbox o en un USB. De forma que lo podamos recuperar y utilizar
-la próxima vez que pongamos en marcha el entorno de stage.
+Dejamos este fichero `schema.sql` en el directorio actual (`/stage`)
+para que la próxima vez que lancemos MySQL desde él cargue los datos
+anteriormente salvados.
 
+De esta forma podemos simular que tenemos un servidor de stage
+en el que se mantienen los datos que se introducen en las pruebas.
 
 ##### Ejecución de la aplicación #####
 
