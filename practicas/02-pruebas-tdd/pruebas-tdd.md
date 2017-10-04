@@ -1,6 +1,8 @@
 # Práctica 2: Gestión de configuraciones y TDD con Play Framework
 
-## Objetivos
+
+
+## 1. Objetivos
 
 Esta práctica tiene dos objetivos principales: profundizar en las
 características de Play Framework relacionadas con las pruebas y
@@ -20,7 +22,7 @@ haciendo que cada commit represente un incremento funcional en el
 desarrollo de la aplicación y contenga y pase sus propios tests.
 
 
-## Tests en Play Framework
+## 2. Tests en Play Framework
 
 Play Framework en Java utiliza [JUnit](http://junit.org) como
 framework de testing. Los siguientes enlaces proporcionan información
@@ -70,7 +72,7 @@ hacerlo, si queremos mejorar el rendimiento de la ejecución de los
 tests o aislar el código a probar del resto de componentes y
 recursos).
 
-### JUnit
+### 2.1. JUnit
 
 Los tests se construyen usando JUnit:
 
@@ -97,7 +99,7 @@ public class SimpleTest {
 ```
 
 
-### Tests con bases de datos y JPA
+### 2.2. Tests con bases de datos y JPA
 
 #### Conexión de JPA con una base de datos en memoria
 
@@ -237,7 +239,7 @@ aparecen en el fichero XML y después realiza la inserción.
 La etiqueta `@Before` hace que la función se ejecute antes de cada
 test.
 
-### Nuevo _issue_ con tests ###
+### 2.3. Nuevo _issue_ con tests ###
 
 Crea un nuevo _issue_ (y una rama, y después un pull request para
 integrarlo con master, igual que en la práctica 1) con la descripción
@@ -257,7 +259,7 @@ Para completar el _issue_ debes hacer lo siguiente:
     lanza una excepción si se le pasa un identificador de tarea no
     existente. 
  
-## Definición de configuraciones 
+## 3. Definición de configuraciones 
 
 Hemos comprobado en la práctica 1 que el fichero `application.conf` sirve
 para definir la configuración con la que se va ejecutar la aplicación
@@ -286,7 +288,7 @@ ejecutaremos la aplicación para lanzar pruebas funcionales en la
 configuración de _stage_.
 
 
-### Configuración de pruebas de integración ###
+### 3.1. Configuración de pruebas de integración ###
 
 Empezaremos solucionando un problema importante de los tests:
 conseguir que carguen el fichero de configuración, en lugar de definir
@@ -790,7 +792,7 @@ UNLOCK TABLES;
 Realiza un último commit en el que se incluya el fichero `schema.sql`
 y **cierra el _issue_ con un pull request**.
 
-### Configuración de _stage_ ###
+### 3.2. Configuración de _stage_ ###
 
 Una configuración de _stage_ es una configuración de despliegue de la
 aplicación preparada para que sea lo más similar posible al despliegue
@@ -969,7 +971,7 @@ realizar, en el [PR
 - Añadir la declaración de las clases de entidad todos los perfiles en el fichero `persistence.xml`.
 
 
-## Nueva historia de usuario: tableros (usando TDD) ##
+## 4. Nueva historia de usuario: tableros (usando TDD) ##
 
 La última parte de la práctica consiste en desarrollar, utilizando TDD
 (_Test Driven Design_) una nueva historia de usuario:
@@ -1019,7 +1021,7 @@ Veamos a continuación como ejemplo el desarrollo completo del primer
 _issue_.
 
 
-### Primer _issue_: Modelo de tablero y repositorio básico
+### 4.1. Primer _issue_: Modelo de tablero y repositorio básico
 
 En este _issue_ completaremos una clase básica de entidad `Tablero`
 con los atributos:
@@ -1621,11 +1623,11 @@ $ git commit -m "Un usuario puede administrar varios tableros"
 ```
 
 
-### Tests de integración antes de cerrar el _issue_ y confirmar el pull request ###
+### 4.2. Tests de integración antes de cerrar el _issue_ y confirmar el pull request ###
 
 
-### Resto de _issues_
+### 4.3. Resto de _issues_
 
 
-## Entrega y evaluación
+## 5. Entrega y evaluación
 
