@@ -1,6 +1,19 @@
 # Práctica 2: Gestión de configuraciones y TDD con Play Framework
 
-
+- [1. Objetivos](#1-objetivos)
+- [2. Tests en Play Framework](#2-tests-en-play-framework)
+  - [2.1. JUnit](#21-junit)
+  - [2.2. Tests con bases de datos y JPA](#22-tests-con-bases-de-datos-y-jpa)
+  - [2.3. Nuevo _issue_ con tests](#23-nuevo-issue-con-tests)
+- [3. Definición de configuraciones](#3-definición-de-configuraciones)
+  - [3.1. Configuración de pruebas de integración](#31-configuración-de-pruebas-de-integración)
+  - [3.2. Configuración de _stage_](#32-configuración-de-stage)
+- [4. Nueva historia de usuario: tableros (usando TDD)](#4-nueva-historia-de-usuario-tableros-usando-tdd)
+  - [4.1. Primer _issue_: Modelo de tablero y repositorio básico](#41-primer-issue-modelo-de-tablero-y-repositorio-básico)
+  - [4.2. Tests de integración antes de cerrar el _issue_ y confirmar el pull request](#42-tests-de-integración-antes-de-cerrar-el-issue-y-confirmar-el-pull-request)
+  - [4.3. Resto de _issues_](#43-resto-de-issues)
+- [5. Entrega y evaluación](#5-entrega-y-evaluación)
+    
 
 ## 1. Objetivos
 
