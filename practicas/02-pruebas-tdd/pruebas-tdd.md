@@ -984,6 +984,7 @@ realizar, en el [PR
 - Añadir getters y setters.
 - Añadir la declaración de las clases de entidad todos los perfiles en el fichero `persistence.xml`.
 
+Arregla los errores, realiza un último commit y **cierra el issue con un pull request**.
 
 ## 4. Nueva historia de usuario: tableros (usando TDD) ##
 
