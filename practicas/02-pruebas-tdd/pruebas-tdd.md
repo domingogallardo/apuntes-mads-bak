@@ -1287,10 +1287,17 @@ existe esa tabla.
 **Cambios en el fichero `test/sg3-creacion-asociacion-tableros/ModeloRepositorioTableroTest.java`**:
 
 ```diff
- public class ModeloRepositorioTableroTest {
-       TableroRepository tableroRepository = injector.instanceOf(TableroRepository.class);
-       assertNotNull(tableroRepository);
-    }
+ import org.dbunit.dataset.xml.*;
+ import org.dbunit.operation.*;
+ import java.io.FileInputStream;
+ 
++import play.db.Database;
++import play.db.Databases;
++
++import java.sql.*;
++
+ import models.Usuario;
+...
 +
 +   @Test
 +   public void testCrearTablaTableroEnBD() throws Exception {
@@ -1407,23 +1414,11 @@ Este cuarto test va a servir para crear la función `add()` en el
 Añadimos el siguiente test:
 
 ```diff
- import org.dbunit.dataset.xml.*;
- import org.dbunit.operation.*;
- import java.io.FileInputStream;
- 
-+import play.db.Database;
-+import play.db.Databases;
-+
-+import java.sql.*;
-+
- import models.Usuario;
- import models.Tablero;
  import models.TableroRepository;
 +import models.UsuarioRepository;
  
  public class ModeloRepositorioTableroTest {
     static private Injector injector;
-+   static Database db;
  
     @BeforeClass
     static public void initApplication() {
@@ -1432,7 +1427,6 @@ Añadimos el siguiente test:
        injector = guiceApplicationBuilder.injector();
        // Necesario para inicializar JPA
        injector.instanceOf(JPAApi.class);
-+      db = injector.instanceOf(Database.class);
     }
  
     @Test
@@ -1454,6 +1448,7 @@ Añadimos el siguiente test:
 +   }
  
 +   private String getNombreFromTableroDB(Long tableroId) {
++      Database db = injector.instanceOf(Database.class);
 +      String nombre = db.withConnection(connection -> {
 +         String selectStatement = "SELECT Nombre FROM Tablero WHERE ID = ? ";
 +         PreparedStatement prepStmt = connection.prepareStatement(selectStatement);
@@ -1499,7 +1494,12 @@ public class JPATableroRepository implements TableroRepository {
 ```
 
 
-Comprueba que el test pasa y realiza un nuevo commit:
+Comprueba que el test pasa.
+
+Refactoriza el código para eliminar duplicidad de la inicialización de
+la variable `db` en dos tests. Mueve esa inicialización al método `@BeforeClass`.
+
+Realiza un nuevo commit:
 
 ```
 $ git add *
