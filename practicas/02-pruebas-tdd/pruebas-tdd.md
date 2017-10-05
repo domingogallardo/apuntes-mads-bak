@@ -1278,43 +1278,15 @@ $ git commit -m "Creado TableroRepository"
 
 #### Tercer test ####
 
-En el tercer test vamos a comprobar si se crea la tabla `Tablero` en
+En el tercer test vamos a comprobar si se crea la tabla `TABLERO` en
 la base de datos. Fallará y escribiremos el código para que pase.
 
-El test consistirá en usar DbUnit para intentar cargar en la base de
-datos una nueva fila añadida en el fichero `usuarios_dataset.xml`
-
-**Cambios en el fichero `test/resources/usuarios_dataset.xml`**:
-
-```diff
-          password="123456789" eMail="juan.gutierrez@gmail.com" fechaNacimiento="1993-12-10"/>
-     <Tarea id="1000" titulo="Renovar DNI" usuarioId="1000"/>
-     <Tarea id="1001" titulo="Práctica 1 MADS" usuarioId="1000"/>
-+    <Tablero id="1000" nombre="Tablero 1" administradorId="1000"/>
-  </dataset>
-
-```
-
+El test consistirá en buscar en los metadatos de la base de datos si
+existe esa tabla.
 
 **Cambios en el fichero `test/sg3-creacion-asociacion-tableros/ModeloRepositorioTableroTest.java`**:
 
 ```diff
-import play.Environment;
- 
-import play.db.jpa.*;
- 
-+import org.dbunit.*;
-+import org.dbunit.dataset.*;
-+import org.dbunit.dataset.xml.*;
-+import org.dbunit.operation.*;
-+import java.io.FileInputStream;
-+
- import models.Usuario;
- import models.Tablero;
- import models.TableroRepository;
-
-...
-
  public class ModeloRepositorioTableroTest {
        TableroRepository tableroRepository = injector.instanceOf(TableroRepository.class);
        assertNotNull(tableroRepository);
@@ -1322,21 +1294,21 @@ import play.db.jpa.*;
 +
 +   @Test
 +   public void testCrearTablaTableroEnBD() throws Exception {
-+      JndiDatabaseTester databaseTester = new JndiDatabaseTester("DBTest");
-+      IDataSet initialDataSet = new FlatXmlDataSetBuilder().build(new FileInputStream("test/resources/usuarios_dataset.xml"));
-+      databaseTester.setDataSet(initialDataSet);
-+      databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
-+      databaseTester.onSetup();
-+      assertTrue(true);
++      Database db = injector.instanceOf(Database.class);
++      Connection connection = db.getConnection();
++      DatabaseMetaData meta = connection.getMetaData();
++      ResultSet res = meta.getTables(null, null, "TABLERO", new String[] {"TABLE"});
++      assertTrue(res.next());
 +   }
  }
 ```
 
 
-El test fallará porque la tabla `Tablero` no se encuentra. Debemos
-escribir el código que corrige esto:
+El test fallará porque la tabla `TABLERO` no se encuentra. Modificamos
+entonces el código para solucionarlo, añadiendo las anotaciones JPA
+a la clase `Tablero`:
 
-**Cambios en el fichero `models/Tablero.java`:
+**Cambios en el fichero `models/Tablero.java`**:
 
 ```diff
 
@@ -1383,8 +1355,9 @@ escribir el código que corrige esto:
 +      this.administrador = administrador;
 +   }
  }
- ```
+```
 
+Y en el fichero `persistence.xml` debemos añadir la nueva clase entidad:
 
 **Cambios en el fichero `conf/META-INF/persistence.xml`**:
 
@@ -1533,7 +1506,7 @@ $ git add *
 $ git commit -m "Añadido método add() en TableroRepository"
 ```
 
-#### Quinto y último test ####
+#### Quinto test ####
 
 Vamos a por el siguiente test, en el que haremos posible que un
 usuario pueda administrar varios tableros.
@@ -1637,6 +1610,11 @@ $ git add *
 $ git commit -m "Un usuario puede administrar varios tableros"
 ```
 
+
+#### Sexto test ####
+
+Vamos ahora a añadir la funcionalidad de que los usuarios puedan
+participar en tableros. 
 
 ### 4.2. Tests de integración antes de cerrar el _issue_ y confirmar el pull request ###
 
