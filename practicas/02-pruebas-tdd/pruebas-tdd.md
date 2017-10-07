@@ -657,42 +657,25 @@ conexión como muestra la siguiente imagen:
 Por último, vamos a terminar el _issue_ añadiendo al repositorio un fichero SQL
 con el esquema de datos.
 
-Comienza por reiniciar MySQL para que la base de datos quede limpia,
-sin los datos de los tests:
+Una vez que hayas lanzado los tests JPA habrá creado el esquema de
+datos en la base de datos MySQL que está corriendo en el contenedor `play-mysql`.
+
+Podemos entonces ejecutar el comando `mysqldump` dentro del contenedor:
 
 ```
-$ docker container stop play-mysql
-$ docker run -d --rm --name play-mysql -e MYSQL_ROOT_PASSWORD=mads -e MYSQL_DATABASE=mads mysql
-```
-
-Ejecuta la aplicación usando la configuración `integration.conf` (para
-que se inicialicen las tablas de la base de datos):
-
-```
-$ sbt '; set javaOptions += "-Dconfig.file=conf/integration.conf"; run'
-```
-
-Conéctate a la aplicación desde el host, para que se active JPA y se
-inicialicen las tablas con el esquema de datos de JPA. No debes añadir
-ningún dato, sólo conectarte a la página de login.
-
-Para volcar el esquema de datos podemos ejecutar el comando
-`mysqldump` dentro del contenedor docker `play-mysql`:
-
-```
-$ docker exec play-mysql sh -c 'exec mysqldump mads -uroot -pmads' > schema.sql
+$ docker exec play-mysql sh -c 'exec mysqldump --no-data mads -uroot -pmads' > schema.sql
 ```
 
 El comando anterior ejecuta el comando `mysqldump` en el contenedor
-docker y lo graba el fichero `schema.sql` en el directorio
-actual. Edítalo para eliminar el día y la hora, ya que queremos que
-sólo aparezca información estrictamente del esquema de la base de
-datos.  Copia el fichero `schema.sql` en un nuevo directorio
-`sql` en la raíz del proyecto Play.
+docker que exporta el esquema de datos (sin los datos añadidos) y lo
+graba el fichero `schema.sql` en el directorio actual. Edítalo para
+eliminar el día y la hora, ya que queremos que sólo aparezca
+información estrictamente del esquema de la base de datos. 
 
-De esta forma podremos comprobar más adelante las diferencias cuando
-modifiquemos la base de datos al evolucionar las entidades de la
-aplicación.
+Copia el fichero `schema.sql` en un nuevo directorio `sql` en la raíz
+del proyecto Play. De esta forma podremos comprobar más adelante las
+diferencias cuando modifiquemos la base de datos al evolucionar las
+entidades de la aplicación.
 
 El fichero debería ser parecido a este:
 
@@ -1611,10 +1594,13 @@ $ git commit -m "Un usuario puede administrar varios tableros"
 ```
 
 
-#### Sexto test ####
+#### Sexto y último test ####
 
 Vamos ahora a añadir la funcionalidad de que los usuarios puedan
 participar en tableros. 
+
+
+
 
 ### 4.2. Tests de integración antes de cerrar el _issue_ y confirmar el pull request ###
 
