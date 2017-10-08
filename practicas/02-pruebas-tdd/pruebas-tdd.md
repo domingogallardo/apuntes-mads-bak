@@ -1,6 +1,7 @@
 # Práctica 2: Gestión de configuraciones y TDD con Play Framework
 
 - [1. Objetivos](#1-objetivos)
+  - [1.2. Refactorización de la obtención de las tareas de usuario](#12-refactorización-de-la-obtención-de-las-tareas-de-usuario)
 - [2. Tests en Play Framework](#2-tests-en-play-framework)
   - [2.1. JUnit](#21-junit)
   - [2.2. Tests con bases de datos y JPA](#22-tests-con-bases-de-datos-y-jpa)
@@ -34,7 +35,7 @@ versiones y GitHub como repositorio remoto. Intregraremos Git y TDD,
 haciendo que cada commit represente un incremento funcional en el
 desarrollo de la aplicación y contenga y pase sus propios tests.
 
-## 1.2. Refactorización de la obtención de las tareas de usuario
+### 1.2. Refactorización de la obtención de las tareas de usuario ###
 
 Antes de empezar la práctica, vamos a hacer una refactorización de un
 código mejorable introducido en la práctica 1. Se trata del código que
