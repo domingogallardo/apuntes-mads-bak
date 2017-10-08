@@ -1514,10 +1514,21 @@ Deberá quedar como sigue:
 
 **Fichero `models/Usuario.java`**:
 
-```java
+```diff
+- import java.util.List;
+- import java.util.ArrayList;
++ import java.util.Set;
++ import java.util.HashSet;
 
+@Entity
+public class Usuario {
+   ...
+   private Date fechaNacimiento;
+   // Relación uno-a-muchos entre usuario y tarea
    @OneToMany(mappedBy="usuario", fetch=FetchType.EAGER)
-   public Set<Tarea> tareas = new HashSet<Tarea>();
+-  public List<Tarea> tareas = new ArrayList<Tarea>();
++  public Set<Tarea> tareas = new HashSet<Tarea>();
+   ...
 ```
 
 La razón de la refactorización es que es más correcto definir las
