@@ -1070,7 +1070,7 @@ Empezamos ahora a usar TDD para implementar el _issue_. El
 primer test nos servirá para definir los elementos básicos de la
 entidad `Tablero`.
 
-#### Primer test ####
+#### Commit 1: Primer test ####
 
 Empezamos con el test más sencillo: crear un tablero. Para crear un
 tablero necesitaremos pasar un usuario y un nombre de tablero.
@@ -1142,7 +1142,7 @@ $ git status
 $ git commit -m "Creada clase Tablero"
 ```
 
-#### Segundo test ####
+#### Commit 2: Segundo test ####
 
 Vamos con un segundo test en el que añadimos otro pequeño incremento:
 creación del `JPATableroRepository` y comprobación de que se obtiene
@@ -1280,7 +1280,7 @@ $ git add .
 $ git commit -m "Creado TableroRepository"
 ```
 
-#### Tercer test ####
+#### Commit 3: Tercer test ####
 
 En el tercer test vamos a comprobar si se crea la tabla `TABLERO` en
 la base de datos. Fallará y escribiremos el código para que pase.
@@ -1410,7 +1410,7 @@ $ git commit -m "Añadida entidad Tablero"
 ```
 
 
-####  Cuarto test ####
+####  Commit 4: Cuarto test ####
 
 Este cuarto test va a servir para crear la función `add()` en el
 `TableroRepository`.
@@ -1510,7 +1510,7 @@ $ git add .
 $ git commit -m "Añadido método add() en TableroRepository"
 ```
 
-#### Refactorización ####
+#### Commit 5: Refactorización ####
 
 
 ##### Transformación `List` en `Set` #####
@@ -1577,7 +1577,7 @@ $ git commit -m "Refactorizados List y equals"
 ```
 
 
-#### Quinto test ####
+#### Commit 6: Quinto test ####
 
 Vamos a por el siguiente test, en el que haremos posible que un
 usuario pueda administrar varios tableros.
@@ -1646,7 +1646,7 @@ $ git commit -m "Un usuario puede administrar varios tableros"
 ```
 
 
-#### Sexto y último test ####
+#### Commit 7: Sexto y último test ####
 
 Vamos ahora a añadir la funcionalidad de que los usuarios puedan
 participar en tableros. 
