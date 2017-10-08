@@ -1569,6 +1569,13 @@ a:
       return ((long) id == (long) other.id);
 ```
 
+Añadimos el commit:
+
+```
+$ git add .
+$ git commit -m "Refactorizados List y equals"
+```
+
 
 #### Quinto test ####
 
@@ -1609,9 +1616,9 @@ Y añadimos el código para conseguir que pase:
 public class Usuario {
     // Relación uno-a-muchos entre usuario y tarea
     @OneToMany(mappedBy="usuario", fetch=FetchType.EAGER)
-    public List<Tarea> tareas = new ArrayList<Tarea>();
+    public Set<Tarea> tareas = new HashSet<Tarea>();
 +   @OneToMany(mappedBy="administrador", fetch=FetchType.EAGER)
-+   public List<Tablero> administrados = new ArrayList<Tablero>();
++   public Set<Tablero> administrados = new HashSet<Tablero>();
  
     // Un constructor vacío necesario para JPA
     public Usuario() {}
@@ -1634,15 +1641,9 @@ Una vez que compruebes que el test funciona correctamente, debes
 confirmar los cambios:
 
 ```
-$ git add *
+$ git add .
 $ git commit -m "Un usuario puede administrar varios tableros"
 ```
-
-#### Refactorización ####
-
-Vamos a hacer un commit en el que agrupamos un par de
-refactorizaciones sobre las entidades.
-
 
 
 #### Sexto y último test ####
