@@ -1424,20 +1424,7 @@ Añadimos el siguiente test:
  public class ModeloRepositorioTableroTest {
     static private Injector injector;
  
-    @BeforeClass
-    static public void initApplication() {
 ...
-   public class ModeloRepositorioTableroTest {
-       injector = guiceApplicationBuilder.injector();
-       // Necesario para inicializar JPA
-       injector.instanceOf(JPAApi.class);
-    }
- 
-    @Test
-...
-    public class ModeloRepositorioTableroTest {
-       assertTrue(true);
-    }
  
 +   @Test
 +   public void testAddTableroInsertsDatabase() {
