@@ -1668,13 +1668,314 @@ $ git commit -m "Un usuario puede administrar varios tableros"
 
 #### Commit 7: Sexto y último test ####
 
-Vamos ahora a añadir la funcionalidad de que los usuarios puedan
-participar en tableros. 
+Vamos por último a añadir la funcionalidad de que los usuarios puedan
+participar en tableros y los tableros tienen varios participantes
+(además del administrador).
 
+Empezamos con el siguiente test, en el que usamos DbUnit, para probar
+la posibilidad de que un usuario pueda tener varios tableros
+asociados:
 
+**Fichero `test/sg3-creacion-asociacion-tableros/ModeloRepositorioTableroTest.java`**:
 
+```diff
+
+import java.sql.*;
+  		  
++import java.util.Set;
++
++import play.db.jpa.*;
++
++import org.dbunit.*;
++import org.dbunit.dataset.*;
++import org.dbunit.dataset.xml.*;
++import org.dbunit.operation.*;
++import java.io.FileInputStream;
+
+...
+   
++
++   private void initDataSet() throws Exception {
++      JndiDatabaseTester databaseTester = new JndiDatabaseTester("DBTest");
++      IDataSet initialDataSet = new FlatXmlDataSetBuilder().build(new FileInputStream("test/resources/usuarios_dataset.xml"));
++      databaseTester.setDataSet(initialDataSet);
++      databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
++      databaseTester.onSetup();
++   }
++
++   @Test
++   public void testUsuarioParticipaEnVariosTableros() throws Exception {
++      initDataSet();
++      UsuarioRepository usuarioRepository = injector.instanceOf(UsuarioRepository.class);
++      TableroRepository tableroRepository = injector.instanceOf(TableroRepository.class);
++      Usuario admin = usuarioRepository.findById(1000L);
++      Usuario usuario = usuarioRepository.findById(1001L);
++      Set<Tablero> tableros = admin.getAdministrados();
++      // Tras cargar los datos del dataset el usuario2 no tiene ningún
++      // tablero asociado y el usuario 1 tiene 2 tableros administrados
++      assertEquals(0, usuario.getTableros().size());
++      assertEquals(2, tableros.size());
++      for (Tablero tablero : tableros) {
++         // Actualizamos la relación en memoria, añadiendo el usuario
++         // al tablero
++         tablero.getParticipantes().add(usuario);
++         // Actualizamos la base de datos llamando al repository
++         tableroRepository.update(tablero);
++      }
++      // Comprobamos que se ha actualizado la relación en la BD y
++      // el usuario pertenece a los dos tableros a los que le hemos añadido
++      usuario = usuarioRepository.findById(1001L);
++      Set<Tablero> tablerosUsuario = usuario.getTableros();
++      assertEquals(2, tablerosUsuario.size());
++      for (Tablero tablero: tableros) {
++         assertTrue(tablerosUsuario.contains(tablero));
++      }
++   }
+```
+
+Añadimos en el data set de DbUnit lo siguiente:
+
+```diff
+ <dataset>
+     <Usuario id="1000" login="juangutierrez" nombre="Juan" apellidos="Gutierrez"
+          password="123456789" eMail="juan.gutierrez@gmail.com" fechaNacimiento="1993-12-10"/>
++    <Usuario id="1001" login="juangutierrez2" nombre="Juan" apellidos="Gutierrez Dos"
++         password="123456789" eMail="juan.gutierrez@gmail.com" fechaNacimiento="1993-12-10"/>
++    <Usuario id="1002" login="juangutierrez3" nombre="Juan" apellidos="Gutierrez Tres"
++         password="123456789" eMail="juan.gutierrez@gmail.com" fechaNacimiento="1993-12-10"/>
+     <Tarea id="1000" titulo="Renovar DNI" usuarioId="1000"/>
+     <Tarea id="1001" titulo="Práctica 1 MADS" usuarioId="1000"/>
+-    <Tablero/>
++    <Tablero id="1000" nombre="Tablero test 1" administradorId="1000"/>
++    <Tablero id="1001" nombre="Tablero test 2" administradorId="1000"/>
+  </dataset>
+```
+
+Estamos añadiendo dos usuarios nuevos y dos tableros, estos últimos
+administrados por el usuario 1000 (`juangutierrez`).
+
+Vamos a codificar lo necesario para que el test pase. El test
+anterior comprueba que un usuario pueda tener varios tableros y,
+aplicando TDD de forma estricta, sólo deberíamos codificar la relación
+`ONE_TO_MANY`. Sin embargo, como muy sencillo introducir
+directamente la relación `MANY_TO_MANY` que necesitamos nos saltamos
+la regla de TDD de introducir un único test y añadimos el siguiente test:
+
+```diff
++
++   @Test
++   public void testTableroTieneVariosUsuarios() throws Exception {
++      initDataSet();
++      UsuarioRepository usuarioRepository = injector.instanceOf(UsuarioRepository.class);
++      TableroRepository tableroRepository = injector.instanceOf(TableroRepository.class);
++      // Obtenemos datos del dataset
++      Tablero tablero = tableroRepository.findById(1000L);
++      Usuario usuario1 = usuarioRepository.findById(1000L);
++      Usuario usuario2 = usuarioRepository.findById(1001L);
++      Usuario usuario3 = usuarioRepository.findById(1002L);
++      assertEquals(0, tablero.getParticipantes().size());
++      assertEquals(0, usuario1.getTableros().size());
++      // Añadimos los 3 usuarios al tablero
++      tablero.getParticipantes().add(usuario1);
++      tablero.getParticipantes().add(usuario2);
++      tablero.getParticipantes().add(usuario3);
++      tableroRepository.update(tablero);
++      // Comprobamos que los datos se han actualizado
++      tablero = tableroRepository.findById(1000L);
++      usuario1 = usuarioRepository.findById(1000L);
++      assertEquals(3, tablero.getParticipantes().size());
++      assertEquals(1, usuario1.getTableros().size());
++      assertTrue(tablero.getParticipantes().contains(usuario1));
++      assertTrue(usuario1.getTableros().contains(tablero));
++   }
+ }
+```
+
+En este test añadimos tres usuarios a un tablero y después comprobamos
+que los datos se han actualizado correctamente al recuperar el tablero
+del `tableroRepository`.
+
+Vamos entonces a escribir el código que haga pasar estos dos tests.
+
+Empezamos por el modelo, añadiendo la relación `MANY_TO_MANY` en
+`Usuario` y `Tablero`:
+
+**Fichero `models/Usuario.java`**:
+
+```diff
+    private Date fechaNacimiento;
+    // Relación uno-a-muchos entre usuario y tarea
+    @OneToMany(mappedBy="usuario", fetch=FetchType.EAGER)
+    private Set<Tarea> tareas = new HashSet<Tarea>();
+    @OneToMany(mappedBy="administrador", fetch=FetchType.EAGER)
+    private Set<Tablero> administrados = new HashSet<Tablero>();
++   @ManyToMany(mappedBy="participantes", fetch=FetchType.EAGER)
++   private Set<Tablero> tableros = new HashSet<Tablero>();
+  
+    // Un constructor vacío necesario para JPA
+    public Usuario() {}
+
+...
+
+        this.administrados = administrados;
+     }
+  
++   public Set<Tablero> getTableros() {
++      return tableros;
++   }
++
++   public void setTableros(Set<Tablero> tableros) {
++      this.tableros = tableros;
++   }
++
+    public String toString() {
+       String fechaStr = null;
+       if (fechaNacimiento != null) {
+```
+
+En el modelo `Tablero` añadimos la relación y los métodos `hashCode` y
+`equals` necesarios para comparar tableros y buscar tableros en
+colecciones (sin ese método no funciona correctamente la llamada a
+`contains` del primer test):
+
+**Fichero `models/Tablero.java`**:
+
+```java
+
+ import javax.persistence.*;
+  
++import java.util.Set;
++import java.util.HashSet;
++
+ @Entity
+ public class Tablero {
+    @Id
+...
+    @ManyToOne
+    @JoinColumn(name="administradorId")
+    private Usuario administrador;
++   @ManyToMany(fetch=FetchType.EAGER)
++   @JoinTable(name="Persona_Tablero")
++   private Set<Usuario> participantes = new HashSet<Usuario>();
+  
+    public Tablero() {}
+  
+...
+
+    public void setAdministrador(Usuario usuario) {
+       this.administrador = administrador;
+    }
++
++   public Set<Usuario> getParticipantes() {
++      return participantes;
++   }
++
++   public void setParticipantes(Set<Usuario> participantes) {
++      this.participantes = participantes;
++   }
++
++   @Override
++   public int hashCode() {
++      final int prime = 31;
++      int result = prime + ((nombre == null) ? 0 : nombre.hashCode());
++      result = result + ((administrador == null) ? 0 : administrador.hashCode());
++      return result;
++   }
++
++   @Override
++   public boolean equals(Object obj) {
++      if (this == obj) return true;
++      if (getClass() != obj.getClass()) return false;
++      Tablero other = (Tablero) obj;
++      // Si tenemos los ID, comparamos por ID
++      if (id != null && other.id != null)
++         return ((long) id == (long) other.id);
++      // sino comparamos por campos obligatorios
++      else {
++         if (nombre == null) {
++            if (other.nombre != null) return false;
++         } else if (!nombre.equals(other.nombre)) return false;
++         if (administrador == null) {
++            if (other.administrador != null) return false;
++            else if (!administrador.equals(other.administrador)) return false;
++         }
++      }
++      return true;
++   }
+ }
+```
+
+Necesitamos también añadir los métodos `update` y `findById` en la
+interfaz `TableroRepository`:
+
+**Fichero `models/TableroRepository.java`**:
+
+```diff
+@ImplementedBy(JPATableroRepository.class)
+ public interface TableroRepository {
+    public Tablero add(Tablero tablero);
++   public Tablero update(Tablero tablero);
++   public Tablero findById(Long idTablero);
+ }
+```
+
+Y su implementación en `JPATableroRepository.java`**:
+
+```diff
++
++   public Tablero update(Tablero tablero) {
++      return jpaApi.withTransaction(entityManager -> {
++         Tablero actualizado = entityManager.merge(tablero);
++         return actualizado;
++      });
++   }
++
++   public Tablero findById(Long idTablero) {
++      return jpaApi.withTransaction(entityManager -> {
++         return entityManager.find(Tablero.class, idTablero);
++      });
++   }
++
+ }
+```
+
+Lanzamos los tests y comprobamos que todo funciona correctamente.
+
+Antes de hacer el commit es necesario añadir en el fichero
+`usuarios_dataset.xml` la línea para limpiar la nueva tabla que genera
+la relación `MANY_TO_MANY`:
+
+**Fichero `test/resources/usuarios_dataset.xml`**:
+
+```diff
+     <Tablero id="1001" nombre="Tablero test 2" administradorId="1000"/>
++    <Persona_Tablero/>
+  </dataset>
+```
+
+Hacemos el commit y subimos la rama para crear el pull request:
+
+```
+$ git add .
+$ git commit -m "Relación muchos a muchos entre usuarios y tableros"
+$ git push -u origin modelo-tablero
+```
 
 ### 4.2. Tests de integración antes de cerrar el _issue_ y confirmar el pull request ###
+
+Con los commits anteriores hemos terminado de codificar el
+_issue_. 
+
+Creamos el pull request con la rama actual y, antes de aceptarlo y
+realizar el _merge_, procedemos a comprobar que funcionan los tests de
+integración y de _stage_. 
+
+Al haber realizado cambios en el modelo de datos también tendremos que
+obtener los cambios en el esquema SQL que deberemos aplicar en la base
+de datos de _stage_.
+
+
+#### Commit 8: Tests de integración ####
 
 
 ### 4.3. Resto de _issues_
