@@ -1179,7 +1179,7 @@ Escribimos el test, añadiendo el código al fichero existente:
  
     @Test
     public void testCrearTablero() {
-@@ -15,4 +33,10 @@ public class ModeloRepositorioTableroTest {
+...
        assertEquals("juangutierrez@gmail.com", tablero.getAdministrador().getEmail());
        assertEquals("Tablero 1", tablero.getNombre());
     }
