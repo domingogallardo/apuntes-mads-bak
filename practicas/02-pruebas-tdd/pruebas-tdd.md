@@ -1526,7 +1526,7 @@ public class Usuario {
    private Date fechaNacimiento;
    // Relación uno-a-muchos entre usuario y tarea
    @OneToMany(mappedBy="usuario", fetch=FetchType.EAGER)
--  public List<Tarea> tareas = new ArrayList<Tarea>();
+-  public List<Tarea> tareas = new <Tarea>();
 +  public Set<Tarea> tareas = new HashSet<Tarea>();
    ...
 ```
@@ -1636,9 +1636,9 @@ Y añadimos el código para conseguir que pase:
 public class Usuario {
     // Relación uno-a-muchos entre usuario y tarea
     @OneToMany(mappedBy="usuario", fetch=FetchType.EAGER)
-    public Set<Tarea> tareas = new HashSet<Tarea>();
+    private Set<Tarea> tareas = new HashSet<Tarea>();
 +   @OneToMany(mappedBy="administrador", fetch=FetchType.EAGER)
-+   public Set<Tablero> administrados = new HashSet<Tablero>();
++   private Set<Tablero> administrados = new HashSet<Tablero>();
  
     // Un constructor vacío necesario para JPA
     public Usuario() {}
