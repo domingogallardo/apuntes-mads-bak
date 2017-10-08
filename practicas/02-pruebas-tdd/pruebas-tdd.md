@@ -1510,6 +1510,66 @@ $ git add *
 $ git commit -m "Añadido método add() en TableroRepository"
 ```
 
+#### Refactorización ####
+
+
+##### Transformación `List` en `Set` #####
+
+Realiza una refactorización en la que deberás convertir el tipo del
+atributo `tareas` de `Usuario` de tipo `List` a tipo `Set`.
+
+**Fichero `models/Usuario.java`**:
+
+```java
+import java.util.List;
+import java.util.ArrayList;
+...
+
+   @OneToMany(mappedBy="usuario", fetch=FetchType.EAGER)
+   public List<Tarea> tareas = new ArrayList<Tarea>();
+```
+
+en:
+
+```java
+
+   @OneToMany(mappedBy="usuario", fetch=FetchType.EAGER)
+   public Set<Tarea> tareas = new HashSet<Tarea>();
+```
+
+La razón de la refactorización es que es más correcto definir las
+colecciones de los atributos de las entidades del tipo `Set` porque
+eso garantiza que no habrá elementos repetidos en las
+colecciones. 
+
+Realiza todos los cambios necesarios y asegúrate de que se siguen
+pasando todos los tests.
+
+##### Conversión de `Long` a `long` #####
+
+Para corregir otro error que no han detectado los tests debemos
+realizar la siguiente refactorización: en los métodos `equals` de
+`Tarea` y `Usuario` hacer una conversión de `Long` a `long`, para que
+realmente detecte como iguales dos identificadores iguales (el
+método `==` compara referencias). 
+
+Debemos cambiar:
+
+```java
+      // Si tenemos los ID, comparamos por ID
+      if (id != null && other.id != null)
+      return (id == other.id);
+```
+
+a:
+
+```java
+      // Si tenemos los ID, comparamos por ID
+      if (id != null && other.id != null)
+      return ((long) id == (long) other.id);
+```
+
+
 #### Quinto test ####
 
 Vamos a por el siguiente test, en el que haremos posible que un
@@ -1517,16 +1577,9 @@ usuario pueda administrar varios tableros.
 
 
 ```diff
-
-import java.sql.*;
-
-+ import java.util.List;
-
-import models.Usuario;
-import models.Tablero;
-
-...
-
+    }
+       });
+       return nombre;
     }
 +
 +   @Test
@@ -1539,8 +1592,10 @@ import models.Tablero;
 +      tableroRepository.add(tablero1);
 +      Tablero tablero2 = new Tablero(administrador, "Tablero 2");
 +      tableroRepository.add(tablero2);
-+      List<Tablero> tableros = tableroRepository.getAdministrados(administrador.getId());
-+      assertEquals(2, tableros.size());
++      // Recuperamos el administrador del repository
++      administrador = usuarioRepository.findById(administrador.getId());
++      // Y comprobamos si tiene los tableros
++      assertEquals(2, administrador.getAdministrados().size());
 +   }
  }
 ```
@@ -1553,9 +1608,9 @@ Y añadimos el código para conseguir que pase:
 ```diff
 public class Usuario {
     // Relación uno-a-muchos entre usuario y tarea
-    @OneToMany(mappedBy="usuario")
+    @OneToMany(mappedBy="usuario", fetch=FetchType.EAGER)
     public List<Tarea> tareas = new ArrayList<Tarea>();
-+   @OneToMany(mappedBy="administrador")
++   @OneToMany(mappedBy="administrador", fetch=FetchType.EAGER)
 +   public List<Tablero> administrados = new ArrayList<Tablero>();
  
     // Un constructor vacío necesario para JPA
@@ -1575,37 +1630,6 @@ public class Usuario {
 +
 ```
 
-**Fichero `models/TableroRepository.java`**:
-
-```diff
-import java.util.List;
- @ImplementedBy(JPATableroRepository.class)
- public interface TableroRepository {
-    public Tablero add(Tablero tablero);
-+   public List<Tablero> getAdministrados(Long idUsuario);
- }
-```
-
-**Fichero `models/JPATableroRepository.java`**:
-
-```diff
-    public class JPATableroRepository implements TableroRepository {
-          return tablero;
-       });
-    }
-+
-+   public List<Tablero> getAdministrados(Long idUsuario) {
-+      return jpaApi.withTransaction(entityManager -> {
-+         Usuario usuario = entityManager.find(Usuario.class, idUsuario);
-+         // Cargamos todas las tareas del usuario en memoria
-+         usuario.getAdministrados().size();
-+         return usuario.getAdministrados();
-+      });
-+   }
-+
- }
-```
-
 Una vez que compruebes que el test funciona correctamente, debes
 confirmar los cambios:
 
@@ -1613,6 +1637,12 @@ confirmar los cambios:
 $ git add *
 $ git commit -m "Un usuario puede administrar varios tableros"
 ```
+
+#### Refactorización ####
+
+Vamos a hacer un commit en el que agrupamos un par de
+refactorizaciones sobre las entidades.
+
 
 
 #### Sexto y último test ####
