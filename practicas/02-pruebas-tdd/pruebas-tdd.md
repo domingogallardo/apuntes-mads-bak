@@ -1499,24 +1499,20 @@ $ git commit -m "Añadido método add() en TableroRepository"
 
 #### Commit 5: Refactorización ####
 
+Vamos ahora a hacer un commit en el que vamos a refactorizar el código
+para arreglar un par de problemas. Los tests nos servirán para
+comprobar que no se introduce ningún error.
 
 ##### Transformación `List` en `Set` #####
 
-Realiza una refactorización en la que deberás convertir el tipo del
-atributo `tareas` de `Usuario` de tipo `List` a tipo `Set`.
+En primer lugar vamos a arreglar un error que hemos cometido al
+definir las entidades. Realiza una refactorización en la que deberás
+convertir el tipo del atributo `tareas` de `Usuario` de tipo `List` a
+tipo `Set`.
+
+Deberá quedar como sigue:
 
 **Fichero `models/Usuario.java`**:
-
-```java
-import java.util.List;
-import java.util.ArrayList;
-...
-
-   @OneToMany(mappedBy="usuario", fetch=FetchType.EAGER)
-   public List<Tarea> tareas = new ArrayList<Tarea>();
-```
-
-en:
 
 ```java
 
@@ -1540,23 +1536,49 @@ realizar la siguiente refactorización: en los métodos `equals` de
 realmente detecte como iguales dos identificadores iguales (el
 método `==` compara referencias). 
 
-Debemos cambiar:
+Para comprobar que el código tenía el error modificamos el test
+`testEqualsTareasConId` del fichero `TareaTest.java`:
 
-```java
-      // Si tenemos los ID, comparamos por ID
-      if (id != null && other.id != null)
-      return (id == other.id);
+**Fichero `test/models/TareaTest.java`**:
+
+```diff
+   // Test #14: testEqualsTareasConId
+   @Test
+   public void testEqualsTareasConId() {
+      Usuario usuario = new Usuario("juangutierrez", "juangutierrez@gmail.com");
+      Tarea tarea1 = new Tarea(usuario, "Práctica 1 de MADS");
+      Tarea tarea2 = new Tarea(usuario, "Renovar DNI");
+      Tarea tarea3 = new Tarea(usuario, "Pagar el alquiler");
+-     tarea1.setId(1L);
+-     tarea2.setId(1L);
++     tarea1.setId(1000L);
++     tarea2.setId(1000L);
+      tarea3.setId(2L);
+      assertEquals(tarea1, tarea2);
+      assertNotEquals(tarea1, tarea3);
+   }
 ```
 
-a:
+Si lanzamos el test comprobaremos que dos tareas que deberían ser
+iguales porque tienen el mismo identificador, son detectadas como
+distintas.
 
-```java
+Para conseguir hacer pasar el test debemos cambiar en el modelo
+`Tarea.java` el siguiente código del método equals:
+
+```diff
       // Si tenemos los ID, comparamos por ID
       if (id != null && other.id != null)
-      return ((long) id == (long) other.id);
+-     return (id == other.id);
++     return ((long) id == (long) other.id);
+      // sino comparamos por campos obligatorios      
 ```
 
-Añadimos el commit:
+Comprobamos que el test ahora sí que pasa correctamente.
+
+Hacemos el mismo cambio en la clase `Usuario.java`, que contiene el
+mismo error (aunque no lo hay ningún test que lo compruebe) y añadimos
+el commit:
 
 ```
 $ git add .
