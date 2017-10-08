@@ -34,6 +34,36 @@ versiones y GitHub como repositorio remoto. Intregraremos Git y TDD,
 haciendo que cada commit represente un incremento funcional en el
 desarrollo de la aplicación y contenga y pase sus propios tests.
 
+## 1.2. Refactorización de la obtención de las tareas de usuario
+
+Antes de empezar la práctica, vamos a hacer una refactorización de un
+código mejorable introducido en la práctica 1. Se trata del código que
+recupera la lista de tareas de un usuario. 
+
+La podéis encontrar en el [PR
+#34](https://github.com/domingogallardo/mads-todolist-guia/pull/34),
+echadle un vistazo a los cambios y hacedlo también en vuestro
+proyecto.
+
+Un usuario tiene una relación a-muchos con tareas. La refactorización
+consiste en hacer que al recuperar un usuario, JPA se traiga a memoria
+todas sus tareas y se queden guardadas en su atributo `tareas`. Para
+ello basta con poner en la entidad el atributo de JPA `fetch=FetchType.EAGER`.
+
+De esta forma evitamos el método `findAllTareas(usuarioId)` en el
+`TareaRepository`.
+
+En términos de [Domain-Driven
+Design](https://stackoverflow.com/questions/1222392/can-someone-explain-domain-driven-design-ddd-in-plain-english-please/1222488#1222488)
+(un método de diseño muy interesante, que os recomiendo que aprendáis)
+estamos hablando de que `Usuario` y `Tareas` son **entidades
+agregadas**. Siempre tendremos en memoria en los objetos usuario su
+lista completa de tareas. 
+
+Un libro muy recomendable para aprender sobre DDD es [Patterns,
+Principles, and Practices of Domain-Driven
+Design](https://www.amazon.com/Patterns-Principles-Practices-Domain-Driven-Design/dp/1118714709).
+
 
 ## 2. Tests en Play Framework
 
@@ -271,7 +301,8 @@ Para completar el _issue_ debes hacer lo siguiente:
   - Test que comprueba que el método `borraTarea` de `TareaService`
     lanza una excepción si se le pasa un identificador de tarea no
     existente. 
- 
+
+
 ## 3. Definición de configuraciones 
 
 Hemos comprobado en la práctica 1 que el fichero `application.conf` sirve
