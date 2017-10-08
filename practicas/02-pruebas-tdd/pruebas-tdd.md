@@ -1137,7 +1137,7 @@ public class ModeloRepositorioTableroTest {
 Hacemos un commit con el test y el código que hemos creado
 
 ```
-$ git add *
+$ git add .
 $ git status
 $ git commit -m "Creada clase Tablero"
 ```
@@ -1276,7 +1276,7 @@ Terminamos haciendo el commit del segundo test:
 
 ```
 $ git status
-$ git add *
+$ git add .
 $ git commit -m "Creado TableroRepository"
 ```
 
@@ -1405,7 +1405,7 @@ Ya puedes cerrar el commit, llamándolo por ejemplo `Añadida entidad
 Tablero`:
 
 ```
-$ git add *
+$ git add .
 $ git commit -m "Añadida entidad Tablero"
 ```
 
@@ -1506,7 +1506,7 @@ la variable `db` en dos tests. Mueve esa inicialización al método `@BeforeClas
 Realiza un nuevo commit:
 
 ```
-$ git add *
+$ git add .
 $ git commit -m "Añadido método add() en TableroRepository"
 ```
 
