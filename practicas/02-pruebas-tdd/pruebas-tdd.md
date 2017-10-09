@@ -1961,25 +1961,347 @@ $ git commit -m "Relación muchos a muchos entre usuarios y tableros"
 $ git push -u origin modelo-tablero
 ```
 
+En GitHub creamos el pull request con la rama.
+
 ### 4.2. Tests de integración antes de cerrar el _issue_ y confirmar el pull request ###
 
 Con los commits anteriores hemos terminado de codificar el
-_issue_. 
+_issue_. Una vez que hemos creado el pull request en GitHub, antes de
+aceptarlo, debemos **comprobar que funciona correctamente la
+integración con `master`**. 
 
-Creamos el pull request con la rama actual y, antes de aceptarlo y
-realizar el _merge_, procedemos a comprobar que funcionan los tests de
-integración y de _stage_. 
+GitHub nos informa si el PR tiene algún conflicto con `master`,
+debemos también resolverlos.
 
-Al haber realizado cambios en el modelo de datos también tendremos que
-obtener los cambios en el esquema SQL que deberemos aplicar en la base
-de datos de _stage_.
+Para ello debemos hacer lo siguiente:
+
+1. Hacer un merge de `master` en la rama del _issue_. En este merge
+   pueden producirse conflictos que deberemos arreglar.
+2. Una vez realizado el merge comprobar que pasan los tests de
+   integración y de _stage_. Si el esquema de datos ha cambiado,
+   obtener el nuevo esquema y aplicar los cambios en la base de datos
+   de _stage_.
+3. Aceptar el pull request: subir los nuevos commits al pull request,
+   confirmarlo para realizar la integración con `master` en remoto y
+   actualizar la rama `master` local.
+   
+Explica a continuación cómo hacerlo:
+
+#### Merge con la rama master ####
+
+Mezclamos la rama `master` con la rama actual del _issue_. Pero antes
+de ello debemos actualizar `master` para descargar los cambios que se
+hayan podido subir a remoto. Este paso es muy importante cuando
+estemos trabajando en equipo y haya múltiples _issues_ integrándose
+simultáneamente. Una vez actualizado `master` volvemos a la rama
+`modelo-tablero` y realizamos el merge de `master`:
+
+```
+$ git checkout master
+$ git pull
+$ git checkout modelo-tablero
+$ git merge master
+```
+
+Puede que no sea posible realizar el _merge_ porque git detecta algún
+conflicto. Aparecería un mensaje como el siguiente:
+
+```
+$ git merge master
+Auto-merging app/services/TareaService.java
+CONFLICT (content): Merge conflict in app/services/TareaService.java
+Auto-merging app/models/Usuario.java
+CONFLICT (content): Merge conflict in app/models/Usuario.java
+```
+
+Debes solucionarlo siguiendo las instrucciones que aparecen en el `git
+status`:
+
+```
+$ git status
+On branch modelo-tablero
+Your branch is up-to-date with 'solucion/modelo-tablero'.
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+p  (use "git merge --abort" to abort the merge)
+
+Changes to be committed:
+
+	modified:   test/models/TareaTest.java
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+
+	both modified:   app/models/Usuario.java
+	both modified:   app/services/TareaService.java
+```
+
+Debes editar los ficheros en los que haya conflicto. Verás que git ha
+modificado los ficheros incluyendo marcas que indican las líneas que
+están en conflicto. Edita las líneas para dejar el fichero como te
+interesa y sálvalo.
+
+Una vez arreglados los conflictos en los ficheros hay que informar a
+git de esta resolución. Como hemos visto al hacer el `git status`
+debemos hacer un `git add` de los ficheros:
+
+```
+$ git add app/models/Usuario.java
+$ git add app/services/TareaService.java
+```
+
+Si hacemos ahora un `git status` git nos explica cómo continuar:
+
+```
+git status
+On branch modelo-tablero
+Your branch is up-to-date with 'solucion/modelo-tablero2'.
+All conflicts fixed but you are still merging.
+  (use "git commit" to conclude merge)
+
+Changes to be committed:
+
+	modified:   app/services/TareaService.java
+	modified:   test/models/TareaTest.java
+
+```
+
+Nos dice que debemos hacer un commit para concluir el merge. Hacemos
+después un `push` para subirlo a GitHub:
+
+```
+$ git commit -m "Solucionados conflictos"
+$ git push
+```
+
+Veremos en GitHub que el pull request se actualiza con el nuevo commit
+y que ya no aparecen conflictos con master.
+
+En el caso en que no hayan aparecido conflictos no es necesario hacer
+un `push` a GitHub (no hay cambios añadidos en la rama).
 
 
-#### Commit 8: Tests de integración ####
+#### Tests de integración ####
+
+Una vez realizada la integración de master en la rama del _issue_
+debes lanzar los tests de integración tal y como se explica en el
+apartado 3.1.
+
+Si aparece algún error debes solucionarlo, crear un nuevo commit y
+subirlo a GitHub.
+
+En nuestro caso uno de los errores que tendrás está relacionado con
+cómo se almacenan los nombres de las tablas en la base de datos H2
+(memoria) y MySQL. Una de las bases de datos las guarda todo en
+mayúsculas y la otra no.
+
+Debes modificar el test `testCrearTableTableroEnBD` para contemplar
+las dos posibilidades:
+
+```java
+   @Test
+   public void testCrearTablaTableroEnBD() throws Exception {
+      Database db = injector.instanceOf(Database.class);
+      Connection connection = db.getConnection();
+      DatabaseMetaData meta = connection.getMetaData();
+      // En la BD H2 el nombre de las tablas se define con mayúscula y en
+      // MySQL con minúscula
+      ResultSet resH2 = meta.getTables(null, null, "TABLERO", new String[] {"TABLE"});
+      ResultSet resMySQL = meta.getTables(null, null, "Tablero", new String[] {"TABLE"});
+      boolean existeTabla = resH2.next() || resMySQL.next();
+      assertTrue(existeTabla);
+   }
+```
+
+Una vez que los tests de integración funcionan, generamos la tabla con
+el esquema de datos (`schema.sql`) y la copiamos en el directorio
+correspondiente del proyecto (`sql/schema.sql`). 
+
+Si hay algún cambio en el esquema git los detectará. Podemos comprobar
+los cambios haciendo un `git diff`:
+
+```diff
+--
++-- Table structure for table `Persona_Tablero`
++--
++
++DROP TABLE IF EXISTS `Persona_Tablero`;
++/*!40101 SET @saved_cs_client     = @@character_set_client */;
++/*!40101 SET character_set_client = utf8 */;
++CREATE TABLE `Persona_Tablero` (
++  `tableros_id` bigint(20) NOT NULL,
++  `participantes_id` bigint(20) NOT NULL,
++  KEY `FKnghbrhyh7eal30o78h3293n72` (`participantes_id`),
++  KEY `FKbpw5yq3ofgud0ra8a916kddjm` (`tableros_id`),
++  CONSTRAINT `FKbpw5yq3ofgud0ra8a916kddjm` FOREIGN KEY (`tableros_id`) REFERENCES `Tablero` (`id`),
++  CONSTRAINT `FKnghbrhyh7eal30o78h3293n72` FOREIGN KEY (`participantes_id`) REFERENCES `Usuario` (`id`)
++) ENGINE=InnoDB DEFAULT CHARSET=latin1;
++/*!40101 SET character_set_client = @saved_cs_client */;
++
++--
++-- Table structure for table `Tablero`
++--
++
++DROP TABLE IF EXISTS `Tablero`;
++/*!40101 SET @saved_cs_client     = @@character_set_client */;
++/*!40101 SET character_set_client = utf8 */;
++CREATE TABLE `Tablero` (
++  `id` bigint(20) NOT NULL,
++  `nombre` varchar(255) DEFAULT NULL,
++  `administradorId` bigint(20) DEFAULT NULL,
++  PRIMARY KEY (`id`),
++  KEY `FKq82919iay2b8h77msdj8289p0` (`administradorId`),
++  CONSTRAINT `FKq82919iay2b8h77msdj8289p0` FOREIGN KEY (`administradorId`) REFERENCES `Usuario` (`id`)
++) ENGINE=InnoDB DEFAULT CHARSET=latin1;
++/*!40101 SET character_set_client = @saved_cs_client */;
++
++--
+```
+
+En este caso los cambios consisten en las dos tablas nuevas
+añadidas. Una para la entidad `Tablero` y otra para mantener la
+relación `MANY_TO_MANY` con `Usuario`.
+
+Añadimos los cambios del esquema con un commit y los subimos a GitHub:
+
+```
+$ git add sql/schema.sql
+$ git commit -m "Cambios en el esquema SQL"
+$ git push
+```
+
+##### Tests de stage #####
+
+Si lanzamos ahora el entorno _stage_ tal y como explicamos en el
+apartado 3.2 comprobaremos que la aplicación no funciona, porque el
+esquema guardado no se corresponde con el de la aplicación.
+
+Debemos crear un script de actualización de la base de datos a partir
+de los cambios observados en el apartado anterior.
+
+En nuestro caso el script consistirá en las mismas sentencias SQL para
+crear las nuevas tablas. En otros casos tendrás que hacer un `ALTER
+TABLE` para actualizar tablas ya existentes con nuevas columnas.
+
+Llamamos al fichero `Upgrade.sql`:
+
+```sql
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+CREATE TABLE `Persona_Tablero` (
+  `tableros_id` bigint(20) NOT NULL,
+  `participantes_id` bigint(20) NOT NULL,
+  KEY `FKnghbrhyh7eal30o78h3293n72` (`participantes_id`),
+  KEY `FKbpw5yq3ofgud0ra8a916kddjm` (`tableros_id`),
+  CONSTRAINT `FKbpw5yq3ofgud0ra8a916kddjm` FOREIGN KEY (`tableros_id`) REFERENCES `Tablero` (`id`),
+  CONSTRAINT `FKnghbrhyh7eal30o78h3293n72` FOREIGN KEY (`participantes_id`) REFERENCES `Usuario` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `Tablero` (
+  `id` bigint(20) NOT NULL,
+  `nombre` varchar(255) DEFAULT NULL,
+  `administradorId` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKq82919iay2b8h77msdj8289p0` (`administradorId`),
+  CONSTRAINT `FKq82919iay2b8h77msdj8289p0` FOREIGN KEY (`administradorId`) REFERENCES `Usuario` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+```
+
+La línea 
+
+```sql
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+```
+
+es importante porque le indica a MySQL que no chequee la existencia de
+claves ajenas al crear las tablas. De esta forma podemos crearlas en
+el orden en el que aparecen.
+
+Guardamos el fichero `upgrade.sql` en el mismo directorio `stage` en
+el que está el fichero `schema.sql` con el backup de los datos
+anteriores. 
+
+Al arrancar el contenedor docker MySQL de _stage_ (ver apartado 3.2) se
+cargarán los ficheros SQL en orden alfabético, de forma que primero se
+cargarán los datos anteriores y después se realizará la actualización.
+
+Arrancamos la aplicación Play en modo _stage_ (ver apartado 3.2) y
+comprobamos que todo funciona correctamente.
+
+Por último añadimos el fichero `upgrade.sql` al proyecto en el
+directorio SQL, llamándolo `upgrade1.sql`. De esta forma guardamos
+también los scripts de actualización en el control de versiones.
 
 
-### 4.3. Resto de _issues_
+```
+$ cp DIR_STAGE/upgrade.sql sql/upgrade1.sql
+$ git commit -m "Añadido fichero actualización BD"
+$ git push
+```
+
+#### Confirmación del pull request ####
+
+Por último confirmamos el pull request en GitHub y se hace la
+integración en `master` remoto. Borramos la rama remota
+`modelo-tablero`. 
+
+Actualizamos la mezcla en local y borramos también la rama local:
+
+```
+$ git checkout master
+$ git pull
+$ git branch -d modelo-tablero
+$ git remote prune origin
+```
+
+### 4.3. Resto de _issues_ (parte obligatoria)
+
+Termina los issues 2 y 3 de la historia de usuario, realizando el
+primero también con TDD:
+
+2. Métodos de servicio para crear un tablero y listar sus nombres
+3. Acción y vista para un listado de tableros administrados y
+   posibilidad de añadir nuevos tableros administrados
+
+### 4.4 Resto de _issues_ (parte opcional) ###
+
+Termina los issues 4, 5, 6 y 7, haciendo con TDD todos los
+correspondientes a métodos de servicio:
+
+4. Métodos de servicio para apuntarse a un tablero
+5. Acción y modificar listado de tableros para poder añadirse a un
+   tablero como miembro
+6. Métodos de modelo y servicio para obtener descripción de un tablero
+7. Vista con título y descripción de un tablero, añadir enlaces en el
+   listado de tableros a su descripción
 
 
 ## 5. Entrega y evaluación
+
+- La práctica tiene una duración de 3 semanas y debe estar terminada
+  el martes 24 de octubre.
+- La parte obligatoria puntúa sobre 7 y la opcional sobre 3 puntos.
+- La calificación de la práctica tiene un peso de un 8% en la nota
+  final de la asignatura. 
+- Para realizar la entrega se debe subir a Moodle un ZIP que contenga
+  todo el proyecto, incluyendo la historia Git. Para ello comprime tu
+  directorio local del proyecto **después de haber hecho un
+  `clean`**. Debes dejar también en Moodle la URL del repositorio en
+  GitHub.
+
+Para la evaluación se tendrá en cuenta:
+
+- Desarrollo continuo (los _commits_ deben realizarse a lo largo de
+  las 3 semanas y no dejar todo para la última semana).
+- Correcto desarrollo de la metodología.
+- Corrección del código.
 
