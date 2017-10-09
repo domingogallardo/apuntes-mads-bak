@@ -1676,8 +1676,6 @@ Empezamos con el siguiente test, en el que usamos DbUnit, para probar
 la posibilidad de que un usuario pueda tener varios tableros
 asociados:
 
-**Fichero `test/sg3-creacion-asociacion-tableros/ModeloRepositorioTableroTest.java`**:
-
 ```diff
 
 import java.sql.*;
@@ -2092,23 +2090,24 @@ subirlo a GitHub.
 
 En nuestro caso uno de los errores que tendrás está relacionado con
 cómo se almacenan los nombres de las tablas en la base de datos H2
-(memoria) y MySQL. Una de las bases de datos las guarda todo en
-mayúsculas y la otra no.
+(memoria) y MySQL. Una de las bases de datos las guarda en mayúsculas
+y la otra no.
 
 Debes modificar el test `testCrearTableTableroEnBD` para contemplar
 las dos posibilidades:
 
-```java
+```diff
    @Test
    public void testCrearTablaTableroEnBD() throws Exception {
       Database db = injector.instanceOf(Database.class);
       Connection connection = db.getConnection();
       DatabaseMetaData meta = connection.getMetaData();
-      // En la BD H2 el nombre de las tablas se define con mayúscula y en
-      // MySQL con minúscula
-      ResultSet resH2 = meta.getTables(null, null, "TABLERO", new String[] {"TABLE"});
-      ResultSet resMySQL = meta.getTables(null, null, "Tablero", new String[] {"TABLE"});
-      boolean existeTabla = resH2.next() || resMySQL.next();
+-     ResultSet resH2 = meta.getTables(null, null, "TABLERO", new String[] {"TABLE"});
++     // En la BD H2 el nombre de las tablas se define con mayúscula y en
++     // MySQL con minúscula
++     ResultSet resH2 = meta.getTables(null, null, "TABLERO", new String[] {"TABLE"});
++     ResultSet resMySQL = meta.getTables(null, null, "Tablero", new String[] {"TABLE"});
++     boolean existeTabla = resH2.next() || resMySQL.next();
       assertTrue(existeTabla);
    }
 ```
@@ -2228,11 +2227,12 @@ el orden en el que aparecen.
 
 Guardamos el fichero `upgrade.sql` en el mismo directorio `stage` en
 el que está el fichero `schema.sql` con el backup de los datos
-anteriores. 
+de anteriores ejecuciones de pruebas funcionales en el directorio.
 
 Al arrancar el contenedor docker MySQL de _stage_ (ver apartado 3.2) se
 cargarán los ficheros SQL en orden alfabético, de forma que primero se
-cargarán los datos anteriores y después se realizará la actualización.
+cargarán los datos anteriores (fichero `schema.sql`) y después se
+realizará la actualización (fichero `upgrade.sql`).
 
 Arrancamos la aplicación Play en modo _stage_ (ver apartado 3.2) y
 comprobamos que todo funciona correctamente.
