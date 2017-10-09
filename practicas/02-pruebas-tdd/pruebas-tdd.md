@@ -150,16 +150,16 @@ public class SimpleTest {
 Lo habitual para realizar tests unitarios que necesiten trabajar con
 una base de datos es, o bien _mockear_ la base de datos, o bien
 utilizar una base de datos en memoria (como H2) para que los tests
-puedan ejecutarse mucho más rápido sin necesidad de una bases de datos
+puedan ejecutarse mucho más rápido sin necesidad de una base de datos
 real que trabaje sobre el disco duro.
 
 En la primera práctica hemos utilizado el segundo enfoque.
 
 
-El problema de los tests tal y como están escritos en la actualidad es
-que la base de datos de prueba sobre la que trabajan no se puede
-definir en el fichero de configuración, sino que está definida en su
-código fuente.
+El problema de los tests tal y como están escritos en la primera
+práctica es que la base de datos de prueba sobre la que trabajan no se
+puede definir en el fichero de configuración, sino que está definida
+en su código fuente.
 
 En concreto, la base de datos de memoria la creamos manualmente con la
 instrucción `Databases.inMemoryWith()` pasando un nombre JNDI con el
@@ -406,17 +406,18 @@ fichero de configuración. De esta forma, modificando el fichero
 modificaremos también la configuración de los tests.
 
 Para conseguirlo haremos en los tests igual que en la aplicación:
-obteniendo la JPAApi mediante la inyección de dependencias y 
+obteniendo la JPAApi mediante la inyección de dependencias. 
 
 El problema es que las anotaciones `@inject` no funcionan en los
 tests. Los tests son programas Java independientes que se ejecutan al
 margen de la aplicación principal, que es donde se ejecuta el código
-que inicializa los objetos inyectados. Tenemos nosotros que obtener a
-mano los objetos llamando explícitamente a la librería `Guice` que es
-la que gestiona la inyección de dependencias.
+que inicializa los objetos inyectados. 
 
-A continuación vemos cómo hacerlo en un test concreto, por ejemplo en
-el fichero `UsuarioServiceTest.java`:
+Tenemos nosotros que obtener a mano los objetos llamando
+explícitamente a la librería `Guice` que es la que gestiona la
+inyección de dependencias. A continuación vemos cómo hacerlo en un
+test concreto, por ejemplo en el fichero `UsuarioServiceTest.java`:
+
 
 ```java
 public class UsuarioServiceTest {
@@ -749,15 +750,6 @@ CREATE TABLE `Tarea` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Tarea`
---
-
-LOCK TABLES `Tarea` WRITE;
-/*!40000 ALTER TABLE `Tarea` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Tarea` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `Usuario`
 --
 
@@ -775,15 +767,6 @@ CREATE TABLE `Usuario` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `Usuario`
---
-
-LOCK TABLES `Usuario` WRITE;
-/*!40000 ALTER TABLE `Usuario` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Usuario` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `hibernate_sequence`
@@ -1021,7 +1004,7 @@ Un resumen de lo que deberás hacer en esta última parte de la práctica:
 - Al igual que hicimos en la práctica 1, cada _issue_ debe
   desarrollarse en una rama independiente. Después crearemos un pull
   request y, tras pasar los tests de integración, lo integraremos con
-  master (consultar en el apartado XX cómo realizar los tests de
+  master (consultar en el apartado 3.1 cómo realizar los tests de
   integración antes de aprobar el pull request).
 - Todos los ficheros de tests deberán crearse en un directorio con el
   nombre de la historia de usuario. Por ejemplo
@@ -1046,8 +1029,6 @@ En este _issue_ completaremos una clase básica de entidad `Tablero`
 con los atributos:
 
 - Nombre
-- Descripción
-- Fecha de creación
 - Administrador (relación a-uno con la entidad `Usuario`)
 
 También crearemos la clase `TableroRepository` con un primer método
