@@ -1736,7 +1736,7 @@ administrados por el usuario 1000 (`juangutierrez`).
 Vamos a codificar lo necesario para que el test pase. El test
 anterior comprueba que un usuario pueda tener varios tableros y,
 aplicando TDD de forma estricta, sólo deberíamos codificar la relación
-`ONE_TO_MANY`. Sin embargo, como muy sencillo introducir
+`ONE_TO_MANY`. Sin embargo, como es muy sencillo introducir
 directamente la relación `MANY_TO_MANY` que necesitamos nos saltamos
 la regla de TDD de introducir un único test y añadimos el siguiente test:
 
@@ -1922,7 +1922,8 @@ Lanzamos los tests y comprobamos que todo funciona correctamente.
 
 Antes de hacer el commit es necesario añadir en el fichero
 `usuarios_dataset.xml` la línea para limpiar la nueva tabla que genera
-la relación `MANY_TO_MANY`:
+la relación `MANY_TO_MANY`. Si no se añade, fallarán las siguientes
+ejecuciones de los tests.
 
 **Fichero `test/resources/usuarios_dataset.xml`**:
 
@@ -1949,8 +1950,8 @@ _issue_. Una vez que hemos creado el pull request en GitHub, antes de
 aceptarlo, debemos **comprobar que funciona correctamente la
 integración con `master`**. 
 
-GitHub nos informa si el PR tiene algún conflicto con `master`,
-debemos también resolverlos.
+GitHub nos informa si el PR tiene algún conflicto con `master`.
+En ese caso deberíamos también resolverlos.
 
 Para ello debemos hacer lo siguiente:
 
@@ -1963,17 +1964,17 @@ Para ello debemos hacer lo siguiente:
 3. Aceptar el pull request: subir los nuevos commits al pull request,
    confirmarlo para realizar la integración con `master` en remoto y
    actualizar la rama `master` local.
-   
-Explica a continuación cómo hacerlo:
+
 
 #### Merge con la rama master ####
 
 Mezclamos la rama `master` con la rama actual del _issue_. Pero antes
 de ello debemos actualizar `master` para descargar los cambios que se
-hayan podido subir a remoto. Este paso es muy importante cuando
-estemos trabajando en equipo y haya múltiples _issues_ integrándose
-simultáneamente. Una vez actualizado `master` volvemos a la rama
-`modelo-tablero` y realizamos el merge de `master`:
+hayan podido subir a remoto. Aunque en este caso no habrá ningún
+cambio, este paso es muy importante cuando estemos trabajando en
+equipo y haya múltiples _issues_ integrándose simultáneamente. Una vez
+actualizado `master` volvemos a la rama `modelo-tablero` y realizamos
+el merge de `master`:
 
 ```
 $ git checkout master
@@ -2002,7 +2003,7 @@ On branch modelo-tablero
 Your branch is up-to-date with 'solucion/modelo-tablero'.
 You have unmerged paths.
   (fix conflicts and run "git commit")
-p  (use "git merge --abort" to abort the merge)
+  (use "git merge --abort" to abort the merge)
 
 Changes to be committed:
 
@@ -2020,9 +2021,9 @@ modificado los ficheros incluyendo marcas que indican las líneas que
 están en conflicto. Edita las líneas para dejar el fichero como te
 interesa y sálvalo.
 
-Una vez arreglados los conflictos en los ficheros hay que informar a
-git de esta resolución. Como hemos visto al hacer el `git status`
-debemos hacer un `git add` de los ficheros:
+Una vez arreglados los conflictos hay que informar a git de esta
+resolución. Como indica el `git status` debemos hacer un
+`git add` de los ficheros en los que hemos resuelto los conflictos:
 
 ```
 $ git add app/models/Usuario.java
@@ -2032,7 +2033,7 @@ $ git add app/services/TareaService.java
 Si hacemos ahora un `git status` git nos explica cómo continuar:
 
 ```
-git status
+$ git status
 On branch modelo-tablero
 Your branch is up-to-date with 'solucion/modelo-tablero2'.
 All conflicts fixed but you are still merging.
@@ -2069,7 +2070,7 @@ apartado 3.1.
 Si aparece algún error debes solucionarlo, crear un nuevo commit y
 subirlo a GitHub.
 
-En nuestro caso uno de los errores que tendrás está relacionado con
+En nuestro caso uno de los errores que aparecerán está relacionado con
 cómo se almacenan los nombres de las tablas en la base de datos H2
 (memoria) y MySQL. Una de las bases de datos las guarda en mayúsculas
 y la otra no.
@@ -2094,8 +2095,9 @@ las dos posibilidades:
 ```
 
 Una vez que los tests de integración funcionan, generamos la tabla con
-el esquema de datos (`schema.sql`) y la copiamos en el directorio
-correspondiente del proyecto (`sql/schema.sql`). 
+el esquema de datos (`schema.sql`) tal y como se explica en el
+apartado 3.1 y la copiamos en el directorio correspondiente del
+proyecto (`sql/schema.sql`).
 
 Si hay algún cambio en el esquema git los detectará. Podemos comprobar
 los cambios haciendo un `git diff`:
@@ -2156,7 +2158,7 @@ Si lanzamos ahora el entorno _stage_ tal y como explicamos en el
 apartado 3.2 comprobaremos que la aplicación no funciona, porque el
 esquema guardado no se corresponde con el de la aplicación.
 
-Debemos crear un script de actualización de la base de datos a partir
+Debemos crear un **script de actualización** de la base de datos a partir
 de los cambios observados en el apartado anterior.
 
 En nuestro caso el script consistirá en las mismas sentencias SQL para
@@ -2224,7 +2226,7 @@ también los scripts de actualización en el control de versiones.
 
 
 ```
-$ cp DIR_STAGE/upgrade.sql sql/upgrade1.sql
+$ cp upgrade.sql DIR_PROYECTO/sql/upgrade1.sql
 $ git commit -m "Añadido fichero actualización BD"
 $ git push
 ```
@@ -2249,22 +2251,23 @@ $ git remote prune origin
 Termina los issues 2 y 3 de la historia de usuario, realizando el
 primero también con TDD:
 
-2. Métodos de servicio para crear un tablero y listar sus nombres
-3. Acción y vista para un listado de tableros administrados y
-   posibilidad de añadir nuevos tableros administrados
+2. Métodos de servicio para crear un tablero y listar sus nombres.
+3. Controlador, acción y vista para un listado de tableros
+   administrados y posibilidad de añadir nuevos tableros
+   administrados.
 
 ### 4.4 Resto de _issues_ (parte opcional) ###
 
 Termina los issues 4, 5, 6 y 7, haciendo con TDD todos los
 correspondientes a métodos de servicio:
 
-4. Métodos de servicio para apuntarse a un tablero
-5. Acción y modificar listado de tableros para poder añadirse a un
-   tablero como miembro
+4. Métodos de servicio para apuntarse a un tablero.
+5. Controlador, acción y modificar listado de tableros para poder añadirse a un
+   tablero como miembro.
 6. Métodos de modelo y servicio para obtener descripción de un tablero
-7. Vista con título y descripción de un tablero, añadir enlaces en el
-   listado de tableros a su descripción
-
+   (nombre, administrador y lista de participantes).
+7. Controlador y vista con descripción de un tablero y añadir enlaces en el
+   listado de tableros para que al pinchar se vaya a su descripción.
 
 ## 5. Entrega y evaluación
 
