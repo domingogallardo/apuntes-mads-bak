@@ -70,3 +70,15 @@
 
 <kbd><img src="diapositivas/tdd-pruebas-agiles.024.png" width="800px"></kbd>
 
+<kbd><img src="diapositivas/tdd-pruebas-agiles.025.png" width="800px"></kbd>
+
+<kbd><img src="diapositivas/tdd-pruebas-agiles.026.png" width="800px"></kbd>
+
+<kbd><img src="diapositivas/tdd-pruebas-agiles.027.png" width="800px"></kbd>
+
+<kbd><img src="diapositivas/tdd-pruebas-agiles.028.png" width="800px"></kbd>
+
+<kbd><img src="diapositivas/tdd-pruebas-agiles.029.png" width="800px"></kbd>
+
+<kbd><img src="diapositivas/tdd-pruebas-agiles.030.png" width="800px"></kbd>
+
