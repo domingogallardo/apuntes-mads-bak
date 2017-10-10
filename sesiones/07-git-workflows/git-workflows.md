@@ -23,15 +23,9 @@
 
 <img src="diapositivas/git-workflows.010.png" width="800px">
 
-- [Atlassian - Comparing Workflows](https://www.atlassian.com/git/tutorials/comparing-workflows/)
-
 <img src="diapositivas/git-workflows.011.png" width="800px">
 
-- [Atlassian - Feature Branch Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow)
-
 <img src="diapositivas/git-workflows.012.png" width="800px">
-
-- [Vincent Driessen - A sucessful Git branching model](http://nvie.com/posts/a-successful-git-branching-model/)
 
 <img src="diapositivas/git-workflows.013.png" width="800px">
 
@@ -39,17 +33,33 @@
 
 <img src="diapositivas/git-workflows.015.png" width="800px">
 
+- [Atlassian - Comparing Workflows](https://www.atlassian.com/git/tutorials/comparing-workflows/)
+
 <img src="diapositivas/git-workflows.016.png" width="800px">
+
+- [Atlassian - Feature Branch Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow)
 
 <img src="diapositivas/git-workflows.017.png" width="800px">
 
+- [Vincent Driessen - A sucessful Git branching model](http://nvie.com/posts/a-successful-git-branching-model/)
+
 <img src="diapositivas/git-workflows.018.png" width="800px">
+
+<img src="diapositivas/git-workflows.019.png" width="800px">
+
+<img src="diapositivas/git-workflows.020.png" width="800px">
+
+<img src="diapositivas/git-workflows.021.png" width="800px">
+
+<img src="diapositivas/git-workflows.022.png" width="800px">
+
+<img src="diapositivas/git-workflows.023.png" width="800px">
 
 - [GitFlow considered harmful](http://endoflineblog.com/gitflow-considered-harmful)
 - [Follow-up to 'GitFlow considered harmful'](http://endoflineblog.com/follow-up-to-gitflow-considered-harmful)
 - [A succesful Git branching model considered harmful](https://barro.github.io/2016/02/a-succesful-git-branching-model-considered-harmful/)
 
-<img src="diapositivas/git-workflows.019.png" width="800px">
+<img src="diapositivas/git-workflows.024.png" width="800px">
 
 - [Atlassian Git tutorials - Syncing](https://www.atlassian.com/git/tutorials/syncing/)
 - [Atlassian - Comparing Workflows](https://www.atlassian.com/git/tutorials/comparing-workflows/)
