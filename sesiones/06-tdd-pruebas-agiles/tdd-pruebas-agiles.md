@@ -80,5 +80,16 @@
 
 <kbd><img src="diapositivas/tdd-pruebas-agiles.029.png" width="800px"></kbd>
 
+- [Continuous integration at CartoDB](https://www.slideshare.net/juanignaciosl/continuous-integration-at-cartodb-march-16)
+
 <kbd><img src="diapositivas/tdd-pruebas-agiles.030.png" width="800px"></kbd>
 
+- James Shore - The Art of Agile Development [Capítulo Test-Driven
+  Develpment](http://www.jamesshore.com/Agile-Book/test_driven_development.html)
+- Polémica TDD is dead
+  - [Artículo
+    inicial](http://david.heinemeierhansson.com/2014/tdd-is-dead-long-live-testing.html)
+    de David Heinemeier Hansson, autor del framework [Ruby On Rails](http://rubyonrails.org)
+  - [Nota sarcástica](https://www.facebook.com/notes/kent-beck/rip-tdd/750840194948847) de Kent Beck
+  - [Is TDD dead?](https://martinfowler.com/articles/is-tdd-dead/)
+    Hangouts sobre el tema entre David Heinemeir, Martin Fowler y Kent Beck
