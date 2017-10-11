@@ -789,6 +789,23 @@ CREATE TABLE `hibernate_sequence` (
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 ```
 
+Añade al final del fichero la inicialización de la tabla de secuencias de
+Hibernate, necesaria para que Hibernate genere las claves primarias de
+las entidades:
+
+```sql
+--
+-- Dumping data for table `hibernate_sequence`
+--
+
+LOCK TABLES `hibernate_sequence` WRITE;
+/*!40000 ALTER TABLE `hibernate_sequence` DISABLE KEYS */;
+INSERT INTO `hibernate_sequence` VALUES (1),(1);
+/*!40000 ALTER TABLE `hibernate_sequence` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+```
+
 Realiza un último commit en el que se incluya el fichero `schema.sql`
 y **cierra el _issue_ con un pull request**.
 
