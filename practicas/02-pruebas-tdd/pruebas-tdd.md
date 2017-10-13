@@ -1485,8 +1485,32 @@ public class JPATableroRepository implements TableroRepository {
 
 Comprueba que el test pasa.
 
-Refactoriza el código para eliminar duplicidad de la inicialización de
-la variable `db` en dos tests. Mueve esa inicialización al método `@BeforeClass`.
+Si lanzas todos los tests, verás que algunos fallan. Esto es debido a
+que el test anterior introduce en la base de datos un usuario nuevo y
+un tablero con una clave ajena que lo referencia. Cuando DbUnit
+intenta limpiar la tabla de usuarios en otros tests se provoca un
+error _Referential integrity constraint violation_ porque existe un
+tablero que se quedaría sin usuario administrador.
+
+La forma más fácil de solucionarlo es añadir al data set de DbUnit un
+elemento `<Tablero/>` para provocar que se borren todos los datos
+también de la tabla `Tablero`:
+
+**Fichero `test/resources/usuarios_dataset.xml`**:
+
+```diff
+ <dataset>
+     <Usuario id="1000" login="juangutierrez" nombre="Juan" apellidos="Gutierrez"
+          password="123456789" eMail="juan.gutierrez@gmail.com" fechaNacimiento="1993-12-10"/>
+     <Tarea id="1000" titulo="Renovar DNI" usuarioId="1000"/>
+     <Tarea id="1001" titulo="Práctica 1 MADS" usuarioId="1000"/>
++    <Tablero/>
+  </dataset>
+```
+
+Por último, refactoriza el código para eliminar duplicidad de la
+inicialización de la variable `db` en dos tests. Mueve esa
+inicialización al método `@BeforeClass`.
 
 Realiza un nuevo commit:
 
