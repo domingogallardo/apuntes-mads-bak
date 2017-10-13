@@ -123,14 +123,14 @@ Test:
 
 Código:
 
-```java
+```diff
 public class Convertir {
 
     public static String aRomano(int num) {
         int n = 0;
         String romano = "";
 
-        if (num == 4) return "IV";
++       if (num == 4) return "IV";
         
         while (n < num) {
             romano += "I";
@@ -150,14 +150,14 @@ Test
 
 Código:
 
-```java
+```diff
 public class Convertir {
 
     public static String aRomano(int num) {
         int n = 0;
         String romano = "";
 
-        if (num == 5) return "V";
++       if (num == 5) return "V";
         if (num == 4) return "IV";
         
         while (n < num) {
@@ -177,14 +177,14 @@ Test
 
 Código:
 
-```java
+```diff
 public class Convertir {
 
     public static String aRomano(int num) {
         int n = 0;
         String romano = "";
 
-        if (num == 6) return "VI";
++       if (num == 6) return "VI";
         if (num == 5) return "V";
         if (num == 4) return "IV";
         
