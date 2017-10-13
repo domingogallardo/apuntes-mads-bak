@@ -206,14 +206,14 @@ Test
 
 Código:
 
-```java
+```diff
 public class Convertir {
 
     public static String aRomano(int num) {
         int n = 0;
         String romano = "";
 
-        if (num == 7) return "VII";
++       if (num == 7) return "VII";
         if (num == 6) return "VI";
         if (num == 5) return "V";
         if (num == 4) return "IV";
