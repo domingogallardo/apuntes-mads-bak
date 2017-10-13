@@ -59,11 +59,11 @@ Test:
 
 Código:
 
-```java
+```diff
 public class Convertir {
 
     public static String aRomano(int num) {
-        if (num == 2) return "II";
++       if (num == 2) return "II";
         return "I";
     }
 }
@@ -83,11 +83,11 @@ Test:
 
 Código:
 
-```
+```diff
 public class Convertir {
 
     public static String aRomano(int num) {
-        if (num == 3) return "III";
++       if (num == 3) return "III";
         if (num == 2) return "II";
         return "I";
     }
