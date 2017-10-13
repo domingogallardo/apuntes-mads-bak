@@ -68,7 +68,7 @@
 
 <kbd><img src="diapositivas/tdd-pruebas-agiles.023.png" width="800px"></kbd>
 
-- En [este enlace](./kata-arabigos-a-romanos.md) se encuentra una transcripción de la kata.
+- En [este enlace](./kata-arabigos-a-romanos.md) se encuentra la transcripción de la kata.
 
 <kbd><img src="diapositivas/tdd-pruebas-agiles.024.png" width="800px"></kbd>
 
