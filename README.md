@@ -49,9 +49,9 @@ Las sesiones tienen una duración variable, entre 45 y 90 minutos.
 
 ### Bloque 2: Integración y entrega continua (2 semanas)
 
-- S07: Workflows de Git
+- S07: [Workflows de Git](sesiones/07-git-workflows/git-workflows.md)
   - Vincent Driessen - [A successful Git branching model](lecturas/vincent-driessen_a-successful-git-branching-model.pdf)
-- S08: Integración y entrega continua
+- S08: [Integración y entrega continua](sesiones/08-integracion-entrega-continua/integracion-entrega-continua.md)
   - Martin Fowler - [Continuous Integration](lecturas/martin-fowler_continuous-integration.pdf)
 - S09: Herramientas de integración continua
 
