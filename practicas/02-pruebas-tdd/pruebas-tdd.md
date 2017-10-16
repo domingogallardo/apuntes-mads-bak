@@ -2306,11 +2306,12 @@ Termina los issues 4, 5, 6 y 7, haciendo con TDD todos los
 correspondientes a métodos de servicio:
 
 4. Métodos de servicio para apuntarse a un tablero (como participante)
-   y para obtener el listado de tableros en los que participa el
-   usuario y el resto de tableros (en los que ni participa ni es administrador).
-5. Controlador, acción y modificar listado de tableros para listar los
-   tableros en los que participa y el resto de tableros y poder añadirse a un
-   tablero como participante.
+   y para obtener los siguientes listados:
+   - Listado de tableros en los que participa el usuario
+   - Listado de resto de tableros (en los que el usuario ni participa ni es administrador).
+5. Controlador, acción y modificación de la vista con el listado de
+   tableros para mostrar los listados anteriores y permitir apuntarse
+   como participante a un tablero.
 6. Métodos de modelo y servicio para obtener descripción de un tablero
    (nombre, administrador y lista de participantes).
 7. Controlador y vista con descripción de un tablero y añadir enlaces en el
