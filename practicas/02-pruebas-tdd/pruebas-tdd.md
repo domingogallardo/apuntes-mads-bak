@@ -2292,7 +2292,8 @@ $ git remote prune origin
 Termina los issues 2 y 3 de la historia de usuario, realizando el
 primero también con TDD:
 
-2. Métodos de servicio para crear un tablero y listar sus nombres.
+2. Métodos de servicio para crear un tablero y para obtener el listado
+   de tableros administrados por un usuario.
 3. Controlador, acción y vista para un listado de tableros
    administrados y posibilidad de añadir nuevos tableros
    administrados.
@@ -2302,9 +2303,12 @@ primero también con TDD:
 Termina los issues 4, 5, 6 y 7, haciendo con TDD todos los
 correspondientes a métodos de servicio:
 
-4. Métodos de servicio para apuntarse a un tablero.
-5. Controlador, acción y modificar listado de tableros para poder añadirse a un
-   tablero como miembro.
+4. Métodos de servicio para apuntarse a un tablero (como participante)
+   y para obtener el listado de tableros en los que participa el
+   usuario y el resto de tableros (en los que ni participa ni es administrador).
+5. Controlador, acción y modificar listado de tableros para listar los
+   tableros en los que participa y el resto de tableros y poder añadirse a un
+   tablero como participante.
 6. Métodos de modelo y servicio para obtener descripción de un tablero
    (nombre, administrador y lista de participantes).
 7. Controlador y vista con descripción de un tablero y añadir enlaces en el
