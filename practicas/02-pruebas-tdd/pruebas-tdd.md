@@ -12,7 +12,9 @@
 - [4. Nueva historia de usuario: tableros (usando TDD)](#4-nueva-historia-de-usuario-tableros-usando-tdd)
   - [4.1. Primer _issue_: Modelo de tablero y repositorio básico](#41-primer-issue-modelo-de-tablero-y-repositorio-básico)
   - [4.2. Tests de integración antes de cerrar el _issue_ y confirmar el pull request](#42-tests-de-integración-antes-de-cerrar-el-issue-y-confirmar-el-pull-request)
-  - [4.3. Resto de _issues_](#43-resto-de-issues)
+  - [4.3. Resto de _issues_ (parte
+    obligatoria)](#43-resto-de-issues-parte-obligatoria)
+  - [4.4 Resto de _issues_ (parte opcional)](#44-resto-de-issues-parte-opcional)
 - [5. Entrega y evaluación](#5-entrega-y-evaluación)
     
 
