@@ -43,7 +43,7 @@
 
 <kbd><img src="diapositivas/integracion-entrega-continua.020.png" width="800px"></kbd>
 
-<kbd><img src="diapositivas/integracion-entrega-continua.21.png" width="800px"></kbd>
+<kbd><img src="diapositivas/integracion-entrega-continua.021.png" width="800px"></kbd>
 
 - [Todd Papaioannou - Slideshare](https://www.slideshare.net/drluckyspin/continuous-integration)
 
