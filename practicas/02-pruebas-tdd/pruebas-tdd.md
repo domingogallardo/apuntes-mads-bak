@@ -1671,11 +1671,11 @@ public class Usuario {
        this.tareas = tareas;
     }
  
-+   public List<Tablero> getAdministrados() {
++   public Set<Tablero> getAdministrados() {
 +      return administrados;
 +   }
 +
-+   public void setAdministrados(List<Tablero> administrados) {
++   public void setAdministrados(Set<Tablero> administrados) {
 +      this.administrados = administrados;
 +   }
 +
