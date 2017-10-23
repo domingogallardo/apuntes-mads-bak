@@ -2335,11 +2335,11 @@ Una vez terminada la práctica, creamos un nuevo _release_.
 - Añade en GitHub el tag con el número de versión:
 
     - Pincha enlace `releases` en la página principal
-    - Añade una nueva versión: v0.2 y pulsa el botón para publicar el
+    - Añade una nueva versión: `v0.2` y pulsa el botón para publicar el
       release. Esto creará la etiqueta y la versión en GitHub.
 
-- Por último, cambia la versión actual (en build.sbt en master) a
-  0.3-SNAPSHOT haciendo y publicando un nuevo commit. De esta forma,
+- Por último, cambia la versión actual (en `build.sbt` en `master`) a
+  `0.3-SNAPSHOT` haciendo y publicando un nuevo commit. De esta forma,
   indicamos que ahora en master se está desarrollando la versión 0.3.
 
 
