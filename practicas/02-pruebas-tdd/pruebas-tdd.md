@@ -14,7 +14,9 @@
   - [4.2. Tests de integración antes de cerrar el _issue_ y confirmar el pull request](#42-tests-de-integración-antes-de-cerrar-el-issue-y-confirmar-el-pull-request)
   - [4.3. Resto de _issues_ (parte
     obligatoria)](#43-resto-de-issues-parte-obligatoria)
-  - [4.4 Resto de _issues_ (parte opcional)](#44-resto-de-issues-parte-opcional)
+  - [4.4 Resto de _issues_ (parte
+    opcional)](#44-resto-de-issues-parte-opcional)
+  - [4.5. Finalización de la versión 0.2]()
 - [5. Entrega y evaluación](#5-entrega-y-evaluación)
     
 
@@ -2316,6 +2318,30 @@ correspondientes a métodos de servicio:
    (nombre, administrador y lista de participantes).
 7. Controlador y vista con descripción de un tablero y añadir enlaces en el
    listado de tableros para que al pinchar se vaya a su descripción.
+
+### 4.5. Finalización de la versión 0.2 ###
+
+Una vez terminada la práctica, creamos un nuevo _release_.
+
+- Cuando hayas integrado el último PR, haz un commit en master en el
+  que modifiques la versión del proyecto en el fichero build.sbt:
+
+    ```
+    version := "0.2"
+    ```
+
+  Publica directamente el commit en master (sin hacer PR).
+
+- Añade en GitHub el tag con el número de versión:
+
+    - Pincha enlace `releases` en la página principal
+    - Añade una nueva versión: v0.2 y pulsa el botón para publicar el
+      release. Esto creará la etiqueta y la versión en GitHub.
+
+- Por último, cambia la versión actual (en build.sbt en master) a
+  0.3-SNAPSHOT haciendo y publicando un nuevo commit. De esta forma,
+  indicamos que ahora en master se está desarrollando la versión 0.3.
+
 
 ## 5. Entrega y evaluación
 
