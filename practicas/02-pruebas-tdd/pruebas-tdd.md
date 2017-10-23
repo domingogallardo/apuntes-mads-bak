@@ -16,7 +16,7 @@
     obligatoria)](#43-resto-de-issues-parte-obligatoria)
   - [4.4 Resto de _issues_ (parte
     opcional)](#44-resto-de-issues-parte-opcional)
-  - [4.5. Finalización de la versión 0.2]()
+  - [4.5. Finalización de la versión 0.2](#45-finalización-de-la-versión-02)
 - [5. Entrega y evaluación](#5-entrega-y-evaluación)
     
 
