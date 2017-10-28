@@ -130,14 +130,14 @@ hay después de los dos puntos como el número de versión.
 ```
 $ git clone https://github.com/domingogallardo/mads-todolist-guia.git
 $ cd mads-todolist-guia
-$ docker build -t domingogallardo/mads-todolist:0.1
+$ docker build -t domingogallardo/mads-todolist:0.1 .
 ```
 
 Se puede hacer también en un único comando, pasando a docker la URL
 del repositorio:
 
 ```
-$ $ docker build https://github.com/domingogallardo/mads-todolist-guia.git -t domingogallardo/mads-todolist:0.1
+$ docker build https://github.com/domingogallardo/mads-todolist-guia.git -t domingogallardo/mads-todolist:0.1
 ```
 
 **Subida a docker hub**
@@ -176,6 +176,24 @@ datos, tal y como hacemos en la práctica 2:
 $ docker run --link play-mysql:mysql --rm -d -p 80:9000 \
      -e DB_URL="jdbc:mysql://play-mysql:3306/mads" -e DB_USER_NAME="root" \
      -e DB_USER_PASSWD="mads" -e CONFIG_FILE="conf/integration.conf" domingogallardo/mads-todolist:0.1
+```
+
+
+**Lanzamiento de tests**
+
+Podemos también ejecutar los tests haciendo que se ejecute el comando
+`bash` con el comando que lanza los tests:
+
+```
+$ docker run --rm domingogallardo/mads-todolist:0.1 /bin/bash -c "sbt test"
+```
+
+Para los tests de integración:
+
+```
+$ docker run --link play-mysql:mysql --rm -e DB_URL="jdbc:mysql://play-mysql:3306/mads" \
+     -e DB_USER_NAME="root" -e DB_USER_PASSWD="mads" domingogallardo/mads-todolist:0.1 \
+     /bin/bash -c "sbt '; set javaOptions += \"-Dconfig.file=conf/integration.conf\"; test'"
 ```
 
 <kbd><img src="diapositivas/integracion-entrega-continua.031.png" width="800px"></kbd>
