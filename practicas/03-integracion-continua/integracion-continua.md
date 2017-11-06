@@ -132,7 +132,7 @@ commit, un push de la rama y crear el pull request.
   Poner en la Wiki del proyecto un enlace a la URL de la máquina
   subida a Docker Hub, en una página llamada `Integración continua`.
 
-## 3. Conectar el proyecto `mads-todolist` con Travis
+## 3. Conectar el proyecto `mads-todolist` con Travis ##
 
 Travis es un servicio de integración continua que se integra
 fácilmente con GitHub. Tiene una versión gratuita para proyectos
@@ -162,11 +162,16 @@ el que desarrollarás esta integración.
 ### 3.1. Cómo darse de alta en Travis y conectar el repositorio
 
 Para darte de alta en Travis debes acceder a
-[travis-ci.com](https://travis-ci.com) autentificándote desde GitHub.
+[travis-ci.com](https://travis-ci.com) autentificándote con tu cuenta
+de GitHub.
 
 Debes seguir las instrucciones que aparecerán para conectar el
-repositorio de la práctica 3 con Travis. Comprueba en los ajustes que
-el repositorio se ha conectado correctamente con Travis:
+repositorio de la práctica 3 con Travis. 
+
+<img src="imagenes/travis-settings.png" width="700px">
+
+Comprueba en los ajustes que el repositorio se ha conectado
+correctamente con Travis:
  
 <img src="imagenes/repository-settings.png" width="700px">
 
