@@ -149,7 +149,7 @@ Una vez construida la imagen se puede subir a Docker Hub haciendo
 `docker push`:
 
 ```
-$ docker push domingogallardo/mads-todolist:0.1
+$ docker push domingogallardo/mads-todolist-2017:0.2
 ```
 
 Allí estará disponible para descargarla y ejecutarla desde cualquier servidor.
@@ -162,7 +162,7 @@ Lo más sencillo es ejecutar la aplicación trabajando con la base de
 datos en memoria:
 
 ```
-$ docker run -d --rm -p 80:9000 domingogallardo/mads-todolist:0.1
+$ docker run -d --rm -p 80:9000 domingogallardo/mads-todolist-list:0.2
 ```
 
 También podemos lanzar una configuración específica, por ejemplo,
