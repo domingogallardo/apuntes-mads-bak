@@ -134,14 +134,6 @@ commit, un push de la rama y crear el pull request.
 
 ## 3. Conectar el proyecto `mads-todolist` con Travis
 
-> **Tarea a realizar**: Hay que integrar el repositorio con Travis
-> para que realice el build del proyecto y pase los tests en todas las
-> ramas del mismo.  Deberás modificar el proyecto incluyendo la
-> configuración para Travis y modificando el README.md para que
-> incluya el icono del estado del último build de la rama `master`.
-> Deberás realizar todo ello en un **nuevo issue** abierto en GitHub
-> llamado "Integración con Travis".
-
 Travis es un servicio de integración continua que se integra
 fácilmente con GitHub. Tiene una versión gratuita para proyectos
 abiertos ([travis-ci.org](https://travis-ci.org)) y una versión de
@@ -165,6 +157,8 @@ build:
 
 <img src="imagenes/build-travis.png" width="600px">
 
+Comienza abriendo un nuevo _issue_ llamado `Integración con Travis` en
+el que desarrollarás esta integración.
 
 ### 3.1. Cómo darse de alta en Travis y conectar el repositorio
 
