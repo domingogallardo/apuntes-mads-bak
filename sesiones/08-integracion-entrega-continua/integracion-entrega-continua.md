@@ -133,7 +133,7 @@ hay después de los dos puntos como el número de versión.
 
 ```
 $ cd mads-todolist-guia
-$ docker build -t domingogallardo/mads-todolist-2017:0.1 .
+$ docker build -t domingogallardo/mads-todolist-2017:0.2 .
 ```
 
 Se puede hacer también en un único comando, pasando a docker la URL
