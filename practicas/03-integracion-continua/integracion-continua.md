@@ -142,10 +142,9 @@ pago para proyectos privados
 GitHub nos da permisos para trabajar en la versión de pago de forma
 gratuita.
 
-Travis se conecta con GitHub y lanza un proceso de _build_ que
-descarga, construye la máquina docker y prueba todas las ramas del
-repositorio cada vez que se realiza algún nuevo commit en alguna de
-ellas.
+Travis se conecta con GitHub y lanza un proceso de _build_ síncrono
+que descarga, compila y prueba la rama del repositorio en la que se ha
+subido un nuevo commit.
 
 Una vez hecha la integración con Travis se podrá comprobar en cada
 commit de GitHub si han pasado los tests correctamente:
@@ -166,7 +165,7 @@ Para darte de alta en Travis debes acceder a
 [travis-ci.com](https://travis-ci.com) autentificándote desde GitHub.
 
 Debes seguir las instrucciones que aparecerán para conectar el
-repositorio `mads-todolist` con Travis. Comprueba en los ajustes que
+repositorio de la práctica 3 con Travis. Comprueba en los ajustes que
 el repositorio se ha conectado correctamente con Travis:
  
 <img src="imagenes/repository-settings.png" width="700px">
@@ -174,7 +173,8 @@ el repositorio se ha conectado correctamente con Travis:
 ### 3.2. Cómo configurar el build en Travis
 
 El build en Travis se configura con el fichero `.travis.yml` que debe
-estar en la raíz del repositorio.
+estar en la raíz del repositorio. En este fichero se incluye las
+instrucciones para compilar y ejecutar los tests del proyecto.
 
 Crea una rama nueva en el repositorio local, añade el fichero de
 configuración `.travis.yml` y súbela al repo remoto en GitHub.
@@ -192,16 +192,16 @@ services:
   - docker
 
 before_install:
-   - docker build -t domingogallardo/mads-todolist:0.1 .
+   - docker build -t DOCKER-ID/mads-todolist-2017:0.2 .
 
 script:
-   - docker run --rm domingogallardo/mads-todolist:0.1 /bin/bash -c "sbt test"
+   - docker run --rm DOCKER-ID/mads-todolist-2017:0.2 /bin/bash -c "sbt test"
 ```
 
 Una vez hecho el push, Travis detectará automáticamente el cambio, la
 nueva rama y realizará el build, pasando todos los tests. Podremos ver
 en tiempo real la ejecución de los tests, en el frontal de Travis y en
-`https://travis-ci.com/<usuario>/mads-todolist`.
+`https://travis-ci.com/USUARIO/REPOSITORIO`.
 
 Cuando pasen correctamente los tests podrás ver el tick en el commit de GitHub.
 
