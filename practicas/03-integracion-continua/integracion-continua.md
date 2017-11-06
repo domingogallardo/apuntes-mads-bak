@@ -1,6 +1,7 @@
 
 # Práctica 3: Integración continua y trabajo en equipo
 
+<!--
 - [1. Objetivos](#1-objetivos-y-resumen-de-la-práctica)
 - [2. Conectar el proyecto `mads-todolist` con Travis](#2-conectar-el-proyecto-mads-todolist-con-travis)
     - [2.1. Cómo darse de alta en Travis](#21-cómo-darse-de-alta-en-travis-y-conectar-el-repositorio)
@@ -17,26 +18,128 @@
 - [7. Publicación de la versión 1.1](#7-publicación-de-la-versión-11)
 - [8. Entrega y evaluación](#8-entrega-y-evaluación)
 
-## 1. Objetivos y resumen de la práctica
+-->
+
+
+## 1. Objetivos y resumen de la práctica ##
 
 En esta práctica se pretende conseguir:
 
-- Publicación del proyecto en Travis, un servicio de integración
-  continua.
-- Formar equipos de trabajo y configurar las herramientas (Trello,
-  GitHub) para el trabajo conjunto.
-- Adaptar el flujo de trabajo en Git y en Trello al trabajo en
-  equipo y al trabajo con _features_ de mayor tamaño que los tickets.
 
-## 2. Conectar el proyecto `mads-todolist` con Travis
+1. Formar equipos de trabajo y configurar GitHub para el trabajo
+   conjunto.
+2. Crear una máquina Docker con nuestra aplicación que sea capaz tanto
+   de ejecutar todo tipo de tests (unitarios y de integración) como de
+   poner en marcha la aplicación para las pruebas funcionales.
+3. Conectar el repositorio GitHub con Travis, un servicio de
+   integración continua que cada vez que se suba un cambio a una rama
+   (o se active un pull request) realice las siguientes tareas:
 
+   - Construir la máquina Docker con la aplicación
+   - Lanzar tests unitarios
+   - Lanzar tests de integración
+   - Si todo funciona correctamente, publicar la nueva versión de la
+     aplicación a DockerHub
+
+4. Adaptar el flujo de trabajo en Git y GitHub al trabajo en equipo.
+
+
+## 2. Formación de equipos  ##
+
+Debéis formar equipos de **3 personas**. Utilizad el enlace de GitHub
+Classroom que enviaré al foro de Moodle para crear un equipo nuevo o
+escoger un equipo ya existente. Se creará un repositorio con el nombre
+`todolistgrupo-2017-NOMBRE-GRUPO` que tendrá como miembros los tres
+participantes del grupo. También se creará un equipo en el grupo
+`mads-ua`.
+
+Una vez creado el repositorio debéis crear en él un proyecto para
+gestionar las tarjetas con los _issues_ y los pull requests. Creadlos
+con las mismas columnas que en las prácticas 1 y 2.
+
+Por último, escoged el proyecto que vais a usar en estas dos últimas
+prácticas de entre los proyectos de los miembros del equipo. Intentad
+que se un proyecto con código limpio y fácilmente ampliable.
+
+Subidlo al nuevo repositorio, cambiando la URL del `origin` del
+repositorio local y haciendo un push:
+
+```
+$ git remote set-url origin https://github.com/mads-ua/todolistgrupo-2017-NOMBRE-EQUIPO.git
+$ git push -u origin master
+```
+
+Por último, los otros miembros del equipo deberán clonar el
+repositorio para trabajar con él en local.
+
+
+## 3. Configuración máquina Docker  ##
+
+El objetivo de este apartado es crear una máquina Docker con nuestra
+aplicación que sea capaz tanto de ejecutar todo tipo de tests
+(unitarios y de integración) como de poner en marcha la aplicación
+para las pruebas funcionales.
+   
+Debéis hacer lo siguiente:
+
+- Crear un nuevo _issue_ denominado `Configuración máquina Docker`,
+con el objetivo de construir un fichero `Dockerfile` con el que se
+pueda crear la máquina Docker con nuestra aplicación. Uno de los
+miembros del equipo deberá ser el responsable de su implementación.
+
+Consultar cómo definir el `Dockerfile` en los apuntes de la sesión de
+teoría sobre [integración
+continua](https://github.com/domingogallardo/apuntes-mads/blob/master/sesiones/08-integracion-entrega-continua/integracion-entrega-continua.md).
+
+- Crear una rama para resolver el _issue_, como hacíamos en las
+primeras prácticas. Cuando el `Dockerfile` esté terminado, hacer un
+commit, un push de la rama y crear el pull request.
+
+  Añadir como revisores a los otros dos miembros del equipo, que
+  deberán probar en su repositorio local que el `Dockerfile` funciona
+  correctamente. 
+
+  Para actualizar el repositorio local con las nuevas ramas que se
+  suban al repositorio remoto:
+
+  ```
+  $ git fetch
+
+  # Vemos las referencias a las ramas remotas con el nombre origin/RAMA-REMOTA
+  $ git branch -vva
+  
+  # Creamos la rama local que hace tracking de la rama remota y nos
+  # movemos a ella
+  $ git checkout RAMA-REMOTA
+  ```
+
+  Deber probarse que la máquina docker es capaz de ejecutarse
+  correctamente trabajando con las siguientes configuraciones:
+  
+  - Ejecución de tests trabajando con base de datos en memoria.
+  - Ejecución de tests de integración, lanzando los tests con una base
+  de datos MySQL.
+  - Lanzamiento de una ejecución de la aplicación, trabajando con una
+    configuración de stage.
+
+- Una vez comprobado que la máquina Docker funciona, se aceptará el
+  pull request y se integrará con master.
+  
+- Por último, crear una cuenta en [Docker
+  Hub](https://hub.docker.com) y subir a ella la máquina con el
+  nombre `DOCKER-ID/mads-todolist-2017` y el número de versión 0.2.
+  
+  Poner en la Wiki del proyecto un enlace a la URL de la máquina
+  subida a Docker Hub, en una página llamada `Integración continua`.
+
+## 3. Conectar el proyecto `mads-todolist` con Travis
 
 > **Tarea a realizar**: Hay que integrar el repositorio con Travis
 > para que realice el build del proyecto y pase los tests en todas las
 > ramas del mismo.  Deberás modificar el proyecto incluyendo la
 > configuración para Travis y modificando el README.md para que
 > incluya el icono del estado del último build de la rama `master`.
-> Deberás realizar todo ello en un **nuevo ticket** abierto en Trello
+> Deberás realizar todo ello en un **nuevo issue** abierto en GitHub
 > llamado "Integración con Travis".
 
 Travis es un servicio de integración continua que se integra
@@ -48,9 +151,9 @@ GitHub nos da permisos para trabajar en la versión de pago de forma
 gratuita.
 
 Travis se conecta con GitHub y lanza un proceso de _build_ que
-descarga, construye y prueba todas las ramas del repositorio cada vez
-que se realiza algún nuevo commit en alguna de ellas.
-
+descarga, construye la máquina docker y prueba todas las ramas del
+repositorio cada vez que se realiza algún nuevo commit en alguna de
+ellas.
 
 Una vez hecha la integración con Travis se podrá comprobar en cada
 commit de GitHub si han pasado los tests correctamente:
@@ -63,7 +166,7 @@ build:
 <img src="imagenes/build-travis.png" width="600px">
 
 
-### 2.1. Cómo darse de alta en Travis y conectar el repositorio
+### 3.1. Cómo darse de alta en Travis y conectar el repositorio
 
 Para darte de alta en Travis debes acceder a
 [travis-ci.com](https://travis-ci.com) autentificándote desde GitHub.
@@ -74,50 +177,31 @@ el repositorio se ha conectado correctamente con Travis:
  
 <img src="imagenes/repository-settings.png" width="700px">
 
-
-### 2.2. Cómo configurar el build en Travis
+### 3.2. Cómo configurar el build en Travis
 
 El build en Travis se configura con el fichero `.travis.yml` que debe
 estar en la raíz del repositorio.
 
-**Crea una rama nueva** en el repositorio local, añade el fichero de
-configuración `.travis.yml` y súbela al repo remoto en GitHub:
-
-
-```
-$ git checkout -b tic-20-integracion-travis
-# subimos la rama al repositorio remoto
-$ git push -u origin tic-20-integracion-travis
-# añadimos .travis.yml, hacemos commit y subimos los cambios
-$ git add .
-$ git commit -m "Añadido .travis.yml"
-$ git push 
-```
+Crea una rama nueva en el repositorio local, añade el fichero de
+configuración `.travis.yml` y súbela al repo remoto en GitHub.
 
 El fichero de configuración es el siguiente:
 
 **Fichero `.travis.yml`**: 
 
 ```
-language: scala
-sudo: false
-addons:
-  apt:
-    packages:
-      - oracle-java8-installer
-scala:
-  - 2.11.7
-jdk:
-  - oraclejdk8
-cache:
-  directories:
-    - $HOME/.ivy2/cache
-before_cache:
-  # nos aseguramos de que los cambios en la cache no persisten
-  - rm -rf $HOME/.ivy2/cache/com.typesafe.play/*
-  - rm -rf $HOME/.ivy2/cache/scala_*/sbt_*/com.typesafe.play/*
-  # borramos todos los archivos de ivydata ya que se tocan en cada build
-  - find $HOME/.ivy2/cache -name "ivydata-*.properties" -print0 | xargs -n10 -0 rm
+sudo: required
+
+language: bash
+
+services:
+  - docker
+
+before_install:
+   - docker build -t domingogallardo/mads-todolist:0.1 .
+
+script:
+   - docker run --rm domingogallardo/mads-todolist:0.1 /bin/bash -c "sbt test"
 ```
 
 Una vez hecho el push, Travis detectará automáticamente el cambio, la
@@ -125,30 +209,15 @@ nueva rama y realizará el build, pasando todos los tests. Podremos ver
 en tiempo real la ejecución de los tests, en el frontal de Travis y en
 `https://travis-ci.com/<usuario>/mads-todolist`.
 
-Cuando pasen correctamente los tests (tarda unos 6 minutos la primera
-vez y menos de 3 las siguientes) podrás ver el tick en el commit de GitHub.
+Cuando pasen correctamente los tests podrás ver el tick en el commit de GitHub.
 
-Ahora ya puedes hacer el **merge con `master`**, subir `master` y borrar la
-rama local:
+### 3.3. Modificación del fichero .travis.yml ###
 
-```
-$ git checkout master
-$ git merge tic-20-integracion-travis
-$ git push 
-$ git branch -d tic-20-integracion-travis
-$ 
-```
+Modifica el fichero `.travis.yml` para incluir como último paso la
+ejecución también de los tests de integración ejecutándose contra una
+máquina docker MySQL.
 
-Puedes borrar la rama remota desde línea de comando:
-
-```
-$ git push origin --delete tic-20-integracion-travis
-```
-
-También se puede borrar desde la web de GitHub en la página de _branches_.
-
-
-### 2.3. Modificación del README del proyecto
+### 3.4. Modificación del README del proyecto
 
 Por último, una vez que la rama `master` esté pasando los tests
 correctamente en Travis, renombra el fichero `README` a `README.md`
@@ -164,14 +233,8 @@ Puedes consultar cómo embeber esta imagen en la página de
 documentación de Travis
 [Embedding Status Images](https://docs.travis-ci.com/user/status-images/).
 
-## 3. Formación de equipos
 
-> **Tarea a realizar**: Formar un equipo de 3 o 4 personas, subir la
-> composición al foro de Moodle. Seleccionar el repositorio que va a
-> usar el equipo y añadir los miembros tanto en GitHub como en el
-> tablero Trello del repositorio. Por último cambiar el nombre del
-> proyecto Trello y llamarlo **TodoList (Equipo &lt;número&gt;)**
-
+<!--
 
 ## 4. Nuevo flujo de trabajo en Trello y GitHub
 
@@ -545,3 +608,6 @@ Para la evaluación se tendrá en cuenta:
 - Para cada funcionalidad se debe realizar un documento técnico y un
   pequeño manual de usuario. Escribir una página `.md` para cada
   funcionalidad nueva.
+
+
+-->

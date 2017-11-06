@@ -136,19 +136,25 @@ $ cd mads-todolist-guia
 $ docker build -t domingogallardo/mads-todolist-2017:0.2 .
 ```
 
-Se puede hacer también en un único comando, pasando a docker la URL
-del repositorio:
+Si el repositorio se ha subido a GitHub se puede también construir la
+máquina en un único comando, pasando a docker la URL
+del repositorio en GitHub
 
 ```
-$ docker build https://github.com/domingogallardo/mads-todolist-guia.git -t domingogallardo/mads-todolist:0.1
+$ docker build https://github.com/domingogallardo/mads-todolist-guia.git -t domingogallardo/mads-todolist-2017:0.2
 ```
 
 **Subida a docker hub**
 
 Una vez construida la imagen se puede subir a Docker Hub haciendo
-`docker push`:
+`docker push` (después de autenticarse con `docker login`). Tardará
+bastante la primera vez. En las siguientes compilaciones ya no tardará
+tanto, porque sólo se subirá la parte que cambia de la máquina.
 
 ```
+$ docker login
+Username: <docker-id>
+Password: <contraseña>
 $ docker push domingogallardo/mads-todolist-2017:0.2
 ```
 
@@ -162,11 +168,10 @@ Lo más sencillo es ejecutar la aplicación trabajando con la base de
 datos en memoria:
 
 ```
-$ docker run -d --rm -p 80:9000 domingogallardo/mads-todolist-list:0.2
+$ docker run -d --rm -p 80:9000 domingogallardo/mads-todolist-2017:0.2
 ```
 
-También podemos lanzar una configuración específica, por ejemplo,
-podemos lanzar la base de datos MySQL
+También podemos lanzar la base de datos MySQL:
 
 ```
 $ docker run -d --rm -p 3306:3306 --name play-mysql -e MYSQL_ROOT_PASSWORD=mads -e MYSQL_DATABASE=mads mysql
@@ -178,7 +183,7 @@ datos, tal y como hacemos en la práctica 2:
 ```
 $ docker run --link play-mysql:mysql --rm -d -p 80:9000 \
      -e DB_URL="jdbc:mysql://play-mysql:3306/mads" -e DB_USER_NAME="root" \
-     -e DB_USER_PASSWD="mads" -e CONFIG_FILE="conf/integration.conf" domingogallardo/mads-todolist:0.1
+     -e DB_USER_PASSWD="mads" -e CONFIG_FILE="conf/integration.conf" domingogallardo/mads-todolist-2017:0.2
 ```
 
 
@@ -188,14 +193,14 @@ Podemos también ejecutar los tests haciendo que se ejecute el comando
 `bash` con el comando que lanza los tests:
 
 ```
-$ docker run --rm domingogallardo/mads-todolist:0.1 /bin/bash -c "sbt test"
+$ docker run --rm domingogallardo/mads-todolist-2017:0.2 /bin/bash -c "sbt test"
 ```
 
 Para los tests de integración:
 
 ```
 $ docker run --link play-mysql:mysql --rm -e DB_URL="jdbc:mysql://play-mysql:3306/mads" \
-     -e DB_USER_NAME="root" -e DB_USER_PASSWD="mads" domingogallardo/mads-todolist:0.1 \
+     -e DB_USER_NAME="root" -e DB_USER_PASSWD="mads" domingogallardo/mads-todolist-2017:0.2 \
      /bin/bash -c "sbt '; set javaOptions += \"-Dconfig.file=conf/integration.conf\"; test'"
 ```
 
