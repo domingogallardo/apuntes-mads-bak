@@ -298,7 +298,14 @@ Por ejemplo, Starbucks define su
   no es por nuestra culpa.
 - Hay que verlo desde la perspectiva del cliente. Para el cliente
   tampoco es fácil pedir un cambio. Muchas veces lo hace por necesidad
-  (ventaja competitiva), porque algo ha cambiado en el negocio.
+  (ventaja competitiva), porque algo ha cambiado en el negocio desde
+  que se inició el proyecto. Por ejemplo, ha habido un cambio legal o
+  ha surgido alguna nueva tendencia en la sociedad que es interesante
+  incorporar al producto.  El producto obtenido después de los cambios
+  es mejor que el anterior y tiene características que lo hacen
+  destacar frente a los productos de la competencia (que no ha tenido
+  tiempo de introducir los cambios en el negocio).
+  
 - Debemos dejar de pensar en que los cambios son equivocaciones. Son
   **una forma de aprender**.
 

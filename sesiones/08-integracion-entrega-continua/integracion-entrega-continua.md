@@ -71,12 +71,12 @@
 
 <kbd><img src="diapositivas/integracion-entrega-continua.030.png" width="800px"></kbd>
 
-En el repositorio de GitHub
-[domingogallardo/mads-todolist-guia](https://github.com/domingogallardo/mads-todolist-guia)
-se encuentra la aplicación web en Play Framework que hemos hecho en la
-práctica 1. En la raíz del repositorio está el fichero `Dockerfile`
-con el que podemos realizar la construcción (_build_) de la aplicación
-y generar una imagen docker con la última versión.
+Veamos un ejemplo concreto de fichero `Dockerfile`. Es un fichero que
+vamos a usar en prácticas para _dockerizar_ nuestra aplicación Play y
+generar una imagen que podremos usar para lanzar tests o para ejecutar
+la aplicación.
+
+Debemos colocar el fichero `Dockerfile` en la raíz del proyecto.
 
 **Fichero `Dockerfile`**:
 
@@ -101,6 +101,10 @@ todos los comandos `ADD`, `RUN` o `CMD`. Si el directorio no existe en
 la imagen, se crea. En este caso creamos el directorio `/app` en el
 que se va a compilar la aplicación.
 
+El comando `ADD` copia el directorio actual (y sus subdirectorios) en
+el directorio `/app` de la máquina Docker. De esta forma copiamos
+la aplicación Play.
+
 El comando `RUN` se ejecuta cuando la imagen se construye. En este
 caso se lanza `sbt clean stage` para generar el ejecutable (que se
 guardará en el directorio
@@ -122,15 +126,14 @@ palabra `SECRET`.
 
 **Construcción de la imagen docker**
 
-Para construir la imagen podemos clonar el repositorio y hacer un
-`docker build`. Como nombre de la imagen usaremos
-`domingogallardo/mads-todolist:0.1`. Docker identifica el número que
+Una vez creado el fichero `Dockerfile` ya podemos hacer un
+`docker build` para construir la imagen con nuestra aplicación. Como nombre de la imagen usaremos
+`domingogallardo/mads-todolist-2017:0.2`. Docker identifica el número que
 hay después de los dos puntos como el número de versión.
 
 ```
-$ git clone https://github.com/domingogallardo/mads-todolist-guia.git
 $ cd mads-todolist-guia
-$ docker build -t domingogallardo/mads-todolist:0.1 .
+$ docker build -t domingogallardo/mads-todolist-2017:0.1 .
 ```
 
 Se puede hacer también en un único comando, pasando a docker la URL
