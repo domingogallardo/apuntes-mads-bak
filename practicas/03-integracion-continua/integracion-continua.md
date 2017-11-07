@@ -471,7 +471,7 @@ Pendiente.
 - La práctica tiene una duración de 2 semanas y debe estar terminada
   el martes 21 de noviembre.
 - La parte obligatoria puntúa sobre 7 y la opcional sobre 3 puntos.
-- La calificación de la práctica tiene un peso de un 5% en la nota
+- La calificación de la práctica tiene un peso de un 7% en la nota
   final de la asignatura.
 - Para realizar la entrega uno de los miembros del equipo debe subir a
   Moodle un ZIP que contenga todo el proyecto, incluyendo la historia
