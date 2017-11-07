@@ -42,24 +42,25 @@ En esta práctica se pretende conseguir:
      aplicación a DockerHub
 
 4. Adaptar el flujo de trabajo en Git y GitHub al trabajo en equipo.
-
+5. Desarrollar características adicionales en el proyecto siguiendo el
+   nuevo flujo de trabajo.
 
 ## 2. Formación de equipos  ##
 
 Debéis formar equipos de **3 personas**. Utilizad el enlace de GitHub
 Classroom que enviaré al foro de Moodle para crear un equipo nuevo o
-escoger un equipo ya existente. Se creará un repositorio con el nombre
-`todolistgrupo-2017-NOMBRE-GRUPO` que tendrá como miembros los tres
-participantes del grupo. También se creará un equipo en el grupo
-`mads-ua`.
+escoger un equipo ya existente. El equipo trabajará con un repositorio
+creado por GitHub Classroom con el nombre
+`todolistgrupo-2017-NOMBRE-GRUPO`. También se creará un equipo en el
+grupo `mads-ua`.
 
-Una vez creado el repositorio debéis crear en él un proyecto para
+Una vez creado el repositorio debéis crear en él un tablero para
 gestionar las tarjetas con los _issues_ y los pull requests. Creadlos
 con las mismas columnas que en las prácticas 1 y 2.
 
-Por último, escoged el proyecto que vais a usar en estas dos últimas
-prácticas de entre los proyectos de los miembros del equipo. Intentad
-que se un proyecto con código limpio y fácilmente ampliable.
+Escoged el proyecto que vais a usar en estas dos últimas prácticas de
+entre los proyectos de los miembros del equipo. Intentad que se un
+proyecto con código limpio y fácilmente ampliable.
 
 Subidlo al nuevo repositorio, cambiando la URL del `origin` del
 repositorio local y haciendo un push:
@@ -70,12 +71,12 @@ $ git push -u origin master
 ```
 
 Por último, los otros miembros del equipo deberán clonar el
-repositorio para trabajar con él en local.
+repositorio para que los tres podáis trabajar con él en local.
 
 
 ## 3. Configuración máquina Docker  ##
 
-El objetivo de este apartado es crear una máquina Docker con nuestra
+El objetivo de este apartado es crear una máquina Docker con vuestra
 aplicación que sea capaz tanto de ejecutar todo tipo de tests
 (unitarios y de integración) como de poner en marcha la aplicación
 para las pruebas funcionales.
@@ -113,7 +114,7 @@ commit, un push de la rama y crear el pull request.
   $ git checkout RAMA-REMOTA
   ```
 
-  Deber probarse que la máquina docker es capaz de ejecutarse
+  Debe probarse que la máquina docker es capaz de ejecutarse
   correctamente trabajando con las siguientes configuraciones:
   
   - Ejecución de tests trabajando con base de datos en memoria.
@@ -124,10 +125,10 @@ commit, un push de la rama y crear el pull request.
 
 - Una vez comprobado que la máquina Docker funciona, se aceptará el
   pull request y se integrará con master.
-  
-- Por último, crear una cuenta en [Docker
-  Hub](https://hub.docker.com) y subir a ella la máquina con el
-  nombre `DOCKER-ID/mads-todolist-2017` y el número de versión 0.2.
+
+- Por último, debéis crear una cuenta en [Docker
+  Hub](https://hub.docker.com) y subir a ella la máquina con el nombre
+  `DOCKER-ID/mads-todolist-2017` y el número de versión 0.2.
   
   Poner en la Wiki del proyecto un enlace a la URL de la máquina
   subida a Docker Hub, en una página llamada `Integración continua`.
@@ -181,10 +182,9 @@ El build en Travis se configura con el fichero `.travis.yml` que debe
 estar en la raíz del repositorio. En este fichero se incluye las
 instrucciones para compilar y ejecutar los tests del proyecto.
 
-Crea una rama nueva en el repositorio local, añade el fichero de
-configuración `.travis.yml` y súbela al repo remoto en GitHub.
-
-El fichero de configuración es el siguiente:
+Crea un nuevo _issue_ llamado `Integración con Travis` y una rama
+nueva en el repositorio local. Añade el siguiente fichero de
+configuración `.travis.yml` y sube la rama al repo remoto en GitHub.
 
 **Fichero `.travis.yml`**: 
 
@@ -203,12 +203,17 @@ script:
    - docker run --rm DOCKER-ID/mads-todolist-2017:0.2 /bin/bash -c "sbt test"
 ```
 
-Una vez hecho el push, Travis detectará automáticamente el cambio, la
-nueva rama y realizará el build, pasando todos los tests. Podremos ver
-en tiempo real la ejecución de los tests, en el frontal de Travis y en
+Podéis ver que el fichero de configuración de Travis construye la
+máquina Docker y después la ejecuta, lanzando los tests en memoria. Si
+pasan todos los tests Travis marcará como correcto el build.
+
+Una vez hecho el push, Travis detectará automáticamente el cambio en
+la rama y realizará el build. Podremos ver en tiempo real la ejecución
+de los tests, en el frontal de Travis y en
 `https://travis-ci.com/USUARIO/REPOSITORIO`.
 
-Cuando pasen correctamente los tests podrás ver el tick en el commit de GitHub.
+Cuando pasen correctamente los tests podréis ver el tick en el commit
+de GitHub.
 
 ### 3.3. Modificación del fichero .travis.yml y pull request ###
 
@@ -229,12 +234,15 @@ podemos hacer la integración del pull request sin problemas.
 
 <img src="imagenes/github-travis-pr.png" width="700px">
 
+Realizad el pull request y actualizad los repositorio locales.
 
 ### 3.4. Modificación del README del proyecto
 
-Por último, una vez que has realizada la integración del pull request
-vamos a incluir en el `README.md` una imagen que muestre el estado del
-último build realizado en Travis.
+Por último, subid un commit a `master` con un cambio en el `README.md`
+para incluir en él una imagen que muestre el estado del último build
+realizado en Travis. Lo debe hacer un miembro distinto del que ha
+hecho el issue anterior. No hace falta crear un _issue_ para esta
+modificación.
 
 La imagen final del `README.md` deberá ser similar a la siguiente:
 
@@ -253,18 +261,6 @@ un fallo en algún test. Y sube después otro commit arreglándolo.
 
 ## 4. Nuevo flujo de trabajo en Trello y GitHub
 
-> **Resumen de tareas a realizar**:
->
-> (1) Probar en el repositorio mads-todolist el nuevo flujo de trabajo
-> creando un nuevo ticket en el que se deberá añadir al proyecto una
-> página "Acerca de" con la lista de miembros del equipo y
-> un número de versión genérico (0.3-SNAPSHOT). Todos los miembros del equipo deberán
-> participar en el ticket y añadir cada uno su nombre a la lista.
->
-> (2) Crear una rama remota long-lived llamada **`production`** en la
-> que se publicará las sucesivas releases del proyecto (es la rama que
-> GitFlow llama `master`) y publicar en ella la versión 1.0.
-
 Como ya tenemos equipos de trabajo, debemos adaptar el flujo de
 trabajo tanto en GitHub a más de una persona.
 
@@ -279,10 +275,13 @@ Cambiaremos lo siguiente:
   unirse al ticket y trabajar junto con el responsable.
 - **Pull request**: Cuando el ticket se ha terminado, el responsable
   abre un pull request en GitHub y pone la tarjeta en la columna
-  **En pull request**.
+  `En PR`.
 - **Revisión de código**: Los miembros del equipo revisan el código en
-  el pull request. Al final, todos los miembros del equipo deben dar
-  el OK.
+  el pull request (consultar documentación en GitHub: [Reviewing
+  proposed changes in a pull
+  request](https://help.github.com/articles/reviewing-proposed-changes-in-a-pull-request/)). Al
+  final, todos los miembros del equipo deben dar el OK, añadiendo una
+  reacción.
 - **Integración del pull request**: Cuando todos dan el OK, el
   responsable de la tarea integra el pull request en `master`.
 - **Actualización de los repositorios locales**: Todos hacen un `pull`
@@ -292,7 +291,7 @@ Cambiaremos lo siguiente:
 A continuación explicamos con más detalle algunos aspectos del flujo
 de trabajo.
 
-### 4.1. Rama remota en la que trabajan más de un compañero
+### 4.1. Comandos Git para el trabajo en equipo ###
 
 Veamos algunos comandos de Git relacionados con el trabajo compartido
 con repositorios remotos.
@@ -385,38 +384,32 @@ con repositorios remotos.
     (si están actualizadas o hay cambios en algunas no bajadas o
     subidas).
 
-- Borrado de ramas remotas:
+- Borrado de ramas remotas desde el terminar:
 
     ```
     $ git push origin --delete nueva-rama
+    $ git remote prune origin
     ```
 
+### 4.2. Desarrollo de una página "Acerca de" ###
 
 Probar todos los comandos anteriores en una rama en la que se
-implemente la página "Acerca de" con la lista de miembros del equipo y
-su número de versión (0.3-SNAPSHOT). 
+implemente la página "Acerca de" en la que se muestre una con los
+miembros del equipo y el número de versión de la aplicación
+(0.3-SNAPSHOT).
 
-Todos los miembros del equipo deberán participar en el ticket y añadir
-cada uno su nombre a la lista.
+Crear un _issue_ en el que participen todos los miembros del
+equipo. Crear una rama en la que desarrollar los cambios. Cada miembro
+del equipo deberá realizar un commit en el que se añade su nombre a la lista.
 
-### 4.2. Pull request en GitHub
+Crear el pull request en GitHub, revisar el código y aceptarlo.
 
-Hay que hacer notar que una vez creado el pull request en GitHub se
-puede seguir subiendo cambios a la rama que se quiere mezclar. El pull
-request se actualizará con los cambios que se suban a la rama. Pasa
-igual con los cambios subidos a `master`.
+### 4.3. Configuración de la rama production y publicación de v1.0 ###
 
-Los miembros del equipo revisan el código en el pull request (consultar
-documentación en GitHub:
-[Reviewing proposed changes in a pull request](https://help.github.com/articles/reviewing-proposed-changes-in-a-pull-request/)). Al
-final, todos los miembros del equipo deben dar el OK, añadiendo una reacción.
-
-
-## 4.3. Configuración de la rama production y publicación de v1.0
-
-El flujo de trabajo que vamos a seguir es muy similar al flujo de
-trabajo GitFlow. Pero vamos a introducir alguna variante en la
-nomenclatura de las ramas.
+El flujo de trabajo Git que vamos a seguir es muy similar al flujo de
+trabajo GitFlow (recordad la [clase de
+teoría](https://github.com/domingogallardo/apuntes-mads/blob/master/sesiones/07-git-workflows/git-workflows.md)). Pero
+vamos a introducir alguna variante en la nomenclatura de las ramas.
 
 En la versión original de GitFlow se publican las distintas versiones
 del proyecto en la rama _long-lived_ `master` y se hace el desarrollo en
@@ -429,7 +422,7 @@ El equipo elegirá un responsable de integración que se encargue de
 crear la rama **`production`** y publicar en ella la primera versión
 **v1.0** del proyecto. 
 
-Se creará un _issue_ con la tarea `Lanzar release v1.0` que tendrá como
+Cread un _issue_ con la tarea `Lanzar release v1.0` que tendrá como
 responsable esta persona escogida.
 
 Una vez que se ha integrado en `master` el pull request con la página
@@ -440,22 +433,25 @@ integración deberá publicar la nueva versión siguiendo los pasos de GitFlow:
 - Crear la rama `production` y publicarla en GitHub.
 - Crear la rama local `release-v1.0` a partir de `master`.
 - Realizar en esta rama los cambios específicos de la versión. En
-  nuestro caso, basta con cambiar en la página "Acerca de" "Versión
-  0.3-SNAPSHOT" por "Versión 1.0", añadir la fecha de publicación de la
-  versión y cambiar la versión en el `build.sbt`.
-- Publicar la rama `release-v1.0` en GitHub. y hacer un pull request
+  nuestro caso:
+  - Cambiar en la página "Acerca de" "Versión 0.3-SNAPSHOT" por
+    "Versión 1.0"
+  - Añadir en la página la fecha de publicación de la versión.
+  - Cambiar la versión en el `build.sbt` a `1.0`.
+- Publicar la rama `release-v1.0` en GitHub y hacer un pull request
   sobre `production`.
-- Mezclar también con `master`. Y hacer un commit cambiando el número
-  de versión a "1.1-SNAPSHOT".
+- Mezclar también la rama de release con `master`.
+- Por último, hacer un commit en `master` cambiando el número  de
+  versión a `1.1-SNAPSHOT` (en el "Acerca de" y en el `build.sbt`).
 
-Una vez hecho esto ya se puede borrar la rama `release-v1.0` y la rama
-`production` estará actualizada a la nueva versión. El pull request
-contendrá la información de todos los cambios introducidos.
+Una vez hecho esto ya se puede borrar la rama `release-v1.0` y las
+ramas `production` y `master` estarán actualizadas a las nuevas
+versiones.
 
 La rama `production` también será integrada por Travis. Debemos
 comprobar que pasan todos los tests.
 
-Opcional:
+**Opcional**
 
    - Modificar el fichero de configuración de Travis para que la
      versión de la máquina docker sea la definida por el número de
@@ -465,6 +461,30 @@ Opcional:
      docker en Docker Hub cada vez que se realice un build en la rama
      `master` (consultar en la página de información de Travis [Using
      Docker in Builds](https://docs.travis-ci.com/user/docker/)).
+
+## 5. Desarrollo de características adicionales en equipo ##
+
+Pendiente.
+
+## 6. Entrega y evaluación ##
+
+- La práctica tiene una duración de 2 semanas y debe estar terminada
+  el martes 21 de noviembre.
+- La parte obligatoria puntúa sobre 7 y la opcional sobre 3 puntos.
+- La calificación de la práctica tiene un peso de un 5% en la nota
+  final de la asignatura.
+- Para realizar la entrega uno de los miembros del equipo debe subir a
+  Moodle un ZIP que contenga todo el proyecto, incluyendo la historia
+  Git. Para ello comprime el directorio local del proyecto **después
+  de haber hecho un `clean`**. Debes dejar también en Moodle la URL
+  del repositorio en GitHub.
+
+Para la evaluación se tendrá en cuenta:
+
+- Desarrollo continuo (los _commits_ deben realizarse a lo largo de
+  las 2 semanas y no dejar todo para la última semana).
+- Correcto desarrollo de la metodología.
+- Corrección del código.
 
 
 <!--
