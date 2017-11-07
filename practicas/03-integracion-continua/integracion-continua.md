@@ -232,11 +232,9 @@ podemos hacer la integración del pull request sin problemas.
 
 ### 3.4. Modificación del README del proyecto
 
-Por último, una vez que la rama `master` esté pasando los tests
-correctamente en Travis, renombra el fichero `README` a `README.md`
-(Markdown) y modifica su contenido para que muestre una presentación
-del repositorio en la que aparezca la imagen del estado del último
-build realizado en Travis.
+Por último, una vez que has realizada la integración del pull request
+vamos a incluir en el `README.md` una imagen que muestre el estado del
+último build realizado en Travis.
 
 La imagen final del `README.md` deberá ser similar a la siguiente:
 
@@ -244,8 +242,13 @@ La imagen final del `README.md` deberá ser similar a la siguiente:
 
 Puedes consultar cómo embeber esta imagen en la página de
 documentación de Travis
-[Embedding Status Images](https://docs.travis-ci.com/user/status-images/).
+[Embedding Status
+Images](https://docs.travis-ci.com/user/status-images/). Cuidado con
+indicar correctamente en la URL la rama de la que se va a obtener el
+estado (debe ser `master`).
 
+Comprueba que funciona correctamente subiendo un commit a master con
+un fallo en algún test. Y sube después otro commit arreglándolo.
 
 <!--
 
