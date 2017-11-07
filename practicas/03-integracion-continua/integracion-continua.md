@@ -250,51 +250,41 @@ estado (debe ser `master`).
 Comprueba que funciona correctamente subiendo un commit a master con
 un fallo en algún test. Y sube después otro commit arreglándolo.
 
-<!--
 
 ## 4. Nuevo flujo de trabajo en Trello y GitHub
 
-> **Tareas a realizar**:
+> **Resumen de tareas a realizar**:
 >
-> (1) Probar en el repositorio prueba-git el nuevo flujo de trabajo en
-> el que todos los miembros del equipo trabajen sobre una rama
-> compartida en el repositorio remoto y terminen integrando los
-> cambios usando un pull request.
->
-> (2) Probar en el repositorio mads-todolist el nuevo flujo de trabajo
+> (1) Probar en el repositorio mads-todolist el nuevo flujo de trabajo
 > creando un nuevo ticket en el que se deberá añadir al proyecto una
 > página "Acerca de" con la lista de miembros del equipo y
-> un número de versión genérico (1.x). Todos los miembros del equipo deberán
+> un número de versión genérico (0.3-SNAPSHOT). Todos los miembros del equipo deberán
 > participar en el ticket y añadir cada uno su nombre a la lista.
 >
-> (3) Crear una rama remota long-lived llamada **`production`** en la
+> (2) Crear una rama remota long-lived llamada **`production`** en la
 > que se publicará las sucesivas releases del proyecto (es la rama que
 > GitFlow llama `master`) y publicar en ella la versión 1.0.
 
 Como ya tenemos equipos de trabajo, debemos adaptar el flujo de
-trabajo tanto en Trello como en GitHub a más de una persona.
+trabajo tanto en GitHub a más de una persona.
 
 Cambiaremos lo siguiente:
 
-- **Selección en Trello**: Al pasar un ticket de "Seleccionado" a "En
+- **Selección del _issue_**: Al pasar un _issue_ de "Seleccionado" a "En
   marcha" se debe asignar un responsable.
-- **Nueva rama con el ticket**: El responsable será el que abra una
+- **Nueva rama con el _issue_**: El responsable será el que abra una
   rama nueva para el desarrollo del ticket y la subirá a
-  GitHub. También añadirá la URL de la rama a la descripción de la
-  tarjeta de Trello.
+  GitHub.
 - **Desarrollo**: Se trabaja en la rama. Cualquier compañero puede
   unirse al ticket y trabajar junto con el responsable.
 - **Pull request**: Cuando el ticket se ha terminado, el responsable
-  abre un pull request en GitHub, pone el enlace al pull request en la
-  tarjeta de Trello y la pasa a una nueva columna llamada **En pull
-  request**.
+  abre un pull request en GitHub y pone la tarjeta en la columna
+  **En pull request**.
 - **Revisión de código**: Los miembros del equipo revisan el código en
   el pull request. Al final, todos los miembros del equipo deben dar
   el OK.
 - **Integración del pull request**: Cuando todos dan el OK, el
-  responsable de la tarea integra el pull request en `master` haciendo
-  previamente un rebase para actualizar los cambios que otros hayan
-  podido subir a `master`.
+  responsable de la tarea integra el pull request en `master`.
 - **Actualización de los repositorios locales**: Todos hacen un `pull`
   en `master` para actualizar los cambios del pull request. Y se borra
   la rama local ya integrada.
@@ -401,16 +391,15 @@ con repositorios remotos.
     $ git push origin --delete nueva-rama
     ```
 
+
+Probar todos los comandos anteriores en una rama en la que se
+implemente la página "Acerca de" con la lista de miembros del equipo y
+su número de versión (0.3-SNAPSHOT). 
+
+Todos los miembros del equipo deberán participar en el ticket y añadir
+cada uno su nombre a la lista.
+
 ### 4.2. Pull request en GitHub
-
-Para crear un pull request se debe pulsar el botón `New pull request`
-en la pantalla de ramas de GitHub:
-
-<img src="imagenes/pull-request1.png" width="800px">
-
-Se crea un nuevo pull request:
-
-<img src="imagenes/pull-request2.png" width="800px">
 
 Hay que hacer notar que una vez creado el pull request en GitHub se
 puede seguir subiendo cambios a la rama que se quiere mezclar. El pull
@@ -422,26 +411,10 @@ documentación en GitHub:
 [Reviewing proposed changes in a pull request](https://help.github.com/articles/reviewing-proposed-changes-in-a-pull-request/)). Al
 final, todos los miembros del equipo deben dar el OK, añadiendo una reacción.
 
-El responsable del ticket mezclará el pull request con `master` desde
-GitHub. Justo antes de mezclar el pull request, cuando ya se ha tomado
-la decisión de hacerlo y nadie tiene que subir más cambios, **hará un
-_rebase_ con `master`** para asegurarse que el pull request se
-introduce en cabeza de `master`:
-
-
-```
-$ git checkout master
-$ git pull
-$ git checkout nueva-rama
-$ git rebase master
-# lanzamos los tests para comprobar que todo funciona OK
-# y subimos la rama a GitHub (tenemos que usar --force por el rebase)
-$ git push --force
-```
 
 ## 4.3. Configuración de la rama production y publicación de v1.0
 
-El flujo de trabajo que estamos siguiendo es muy similar al flujo de
+El flujo de trabajo que vamos a seguir es muy similar al flujo de
 trabajo GitFlow. Pero vamos a introducir alguna variante en la
 nomenclatura de las ramas.
 
@@ -454,23 +427,26 @@ con las versiones lanzadas la llamaremos **`production`**.
 
 El equipo elegirá un responsable de integración que se encargue de
 crear la rama **`production`** y publicar en ella la primera versión
-**v1.0** del proyecto. Se **creará en Trello una tarjeta** con la
-tarea "Lanzar release v1.0" que tendrá como responsable esta persona
-escogida.
+**v1.0** del proyecto. 
+
+Se creará un _issue_ con la tarea `Lanzar release v1.0` que tendrá como
+responsable esta persona escogida.
 
 Una vez que se ha integrado en `master` el pull request con la página
 "Acerca de" que contiene la lista de desarrolladores del proyecto y el
-número de versión genérico "Versión 1.x", el responsable de
-integración deberá hacer lo siguiente:
+número de versión "Versión 0.3-SNAPSHOT", el responsable de
+integración deberá publicar la nueva versión siguiendo los pasos de GitFlow:
 
 - Crear la rama `production` y publicarla en GitHub.
-- Crear la rama local `release-v1.0`.
+- Crear la rama local `release-v1.0` a partir de `master`.
 - Realizar en esta rama los cambios específicos de la versión. En
   nuestro caso, basta con cambiar en la página "Acerca de" "Versión
-  1.x" por "Versión 1.0" y añadir la fecha de publicación de la
-  versión.
+  0.3-SNAPSHOT" por "Versión 1.0", añadir la fecha de publicación de la
+  versión y cambiar la versión en el `build.sbt`.
 - Publicar la rama `release-v1.0` en GitHub. y hacer un pull request
   sobre `production`.
+- Mezclar también con `master`. Y hacer un commit cambiando el número
+  de versión a "1.1-SNAPSHOT".
 
 Una vez hecho esto ya se puede borrar la rama `release-v1.0` y la rama
 `production` estará actualizada a la nueva versión. El pull request
@@ -478,6 +454,20 @@ contendrá la información de todos los cambios introducidos.
 
 La rama `production` también será integrada por Travis. Debemos
 comprobar que pasan todos los tests.
+
+Opcional:
+
+   - Modificar el fichero de configuración de Travis para que la
+     versión de la máquina docker sea la definida por el número de
+     build de Travis (en la variable de entorno
+     `TRAVIS_BUILD_NUMBER`).
+   - Añadir en la configuración de Travis la publicación de la máquina
+     docker en Docker Hub cada vez que se realice un build en la rama
+     `master` (consultar en la página de información de Travis [Using
+     Docker in Builds](https://docs.travis-ci.com/user/docker/)).
+
+
+<!--
 
 ## 5. Representación de _features_ en Trello
 
