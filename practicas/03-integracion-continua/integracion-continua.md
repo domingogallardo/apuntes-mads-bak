@@ -210,11 +210,25 @@ en tiempo real la ejecución de los tests, en el frontal de Travis y en
 
 Cuando pasen correctamente los tests podrás ver el tick en el commit de GitHub.
 
-### 3.3. Modificación del fichero .travis.yml ###
+### 3.3. Modificación del fichero .travis.yml y pull request ###
 
 Modifica el fichero `.travis.yml` para incluir como último paso la
 ejecución también de los tests de integración ejecutándose contra una
 máquina docker MySQL.
+
+Una vez comprobado que funciona correctamente, crea un pull request en
+GitHub para cerrar el issue. 
+
+Travis lanzará una ejecución del build del pull request, en el que
+mezclará la rama del PR con la rama master. 
+
+<img src="imagenes/travis-build-pr.png" width="700px">
+
+GitHub nos informará también si los tests pasan correctamente y si
+podemos hacer la integración del pull request sin problemas.
+
+<img src="imagenes/github-travis-pr.png" width="700px">
+
 
 ### 3.4. Modificación del README del proyecto
 
