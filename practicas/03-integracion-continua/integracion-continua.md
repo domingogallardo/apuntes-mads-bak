@@ -217,24 +217,24 @@ de GitHub.
 
 ### 3.3. Modificación del fichero .travis.yml y pull request ###
 
-Modifica el fichero `.travis.yml` para incluir como último paso la
+- Modifica el fichero `.travis.yml` para incluir como último paso la
 ejecución también de los tests de integración ejecutándose contra una
 máquina docker MySQL.
 
-Una vez comprobado que funciona correctamente, crea un pull request en
+- Una vez comprobado que funciona correctamente, crea un pull request en
 GitHub para cerrar el issue. 
 
-Travis lanzará una ejecución del build del pull request, en el que
-mezclará la rama del PR con la rama master. 
+  Travis lanzará una ejecución del build del pull request, en el que
+  mezclará la rama del PR con la rama master. 
 
 <img src="imagenes/travis-build-pr.png" width="700px">
 
-GitHub nos informará también si los tests pasan correctamente y si
-podemos hacer la integración del pull request sin problemas.
+  GitHub nos informará también si los tests pasan correctamente y si
+  podemos hacer la integración del pull request sin problemas.
 
 <img src="imagenes/github-travis-pr.png" width="700px">
 
-Realizad el pull request y actualizad los repositorio locales.
+- Realizad el pull request y actualizad los repositorio locales.
 
 ### 3.4. Modificación del README del proyecto
 
@@ -259,7 +259,7 @@ Comprueba que funciona correctamente subiendo un commit a master con
 un fallo en algún test. Y sube después otro commit arreglándolo.
 
 
-## 4. Nuevo flujo de trabajo en Trello y GitHub
+## 4. Nuevo flujo de trabajo en GitHub
 
 Como ya tenemos equipos de trabajo, debemos adaptar el flujo de
 trabajo tanto en GitHub a más de una persona.
