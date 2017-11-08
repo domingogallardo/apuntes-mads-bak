@@ -133,7 +133,7 @@ commit, un push de la rama y crear el pull request.
   Poner en la Wiki del proyecto un enlace a la URL de la máquina
   subida a Docker Hub, en una página llamada `Integración continua`.
 
-## 3. Conectar el proyecto `mads-todolist` con Travis ##
+## 4. Conectar el proyecto `mads-todolist` con Travis ##
 
 Travis es un servicio de integración continua que se integra
 fácilmente con GitHub. Tiene una versión gratuita para proyectos
@@ -160,7 +160,7 @@ build:
 Comienza abriendo un nuevo _issue_ llamado `Integración con Travis` en
 el que desarrollarás esta integración.
 
-### 3.1. Cómo darse de alta en Travis y conectar el repositorio
+### 4.1. Cómo darse de alta en Travis y conectar el repositorio
 
 Para darte de alta en Travis debes acceder a
 [travis-ci.com](https://travis-ci.com) autentificándote con tu cuenta
@@ -176,7 +176,7 @@ correctamente con Travis:
  
 <img src="imagenes/repository-settings.png" width="700px">
 
-### 3.2. Cómo configurar el build en Travis
+### 4.2. Cómo configurar el build en Travis
 
 El build en Travis se configura con el fichero `.travis.yml` que debe
 estar en la raíz del repositorio. En este fichero se incluye las
@@ -215,7 +215,7 @@ de los tests, en el frontal de Travis y en
 Cuando pasen correctamente los tests podréis ver el tick en el commit
 de GitHub.
 
-### 3.3. Modificación del fichero .travis.yml y pull request ###
+### 4.3. Modificación del fichero .travis.yml y pull request ###
 
 - Modifica el fichero `.travis.yml` para incluir como último paso la
 ejecución también de los tests de integración ejecutándose contra una
@@ -236,7 +236,7 @@ GitHub para cerrar el issue.
 
 - Realizad el pull request y actualizad los repositorio locales.
 
-### 3.4. Modificación del README del proyecto
+### 4.4. Modificación del README del proyecto
 
 Por último, subid un commit a `master` con un cambio en el `README.md`
 para incluir en él una imagen que muestre el estado del último build
@@ -259,7 +259,7 @@ Comprueba que funciona correctamente subiendo un commit a master con
 un fallo en algún test. Y sube después otro commit arreglándolo.
 
 
-## 4. Nuevo flujo de trabajo en GitHub
+## 5. Nuevo flujo de trabajo en GitHub
 
 Como ya tenemos equipos de trabajo, debemos adaptar el flujo de
 trabajo tanto en GitHub a más de una persona.
@@ -291,7 +291,7 @@ Cambiaremos lo siguiente:
 A continuación explicamos con más detalle algunos aspectos del flujo
 de trabajo.
 
-### 4.1. Comandos Git para el trabajo en equipo ###
+### 5.1. Comandos Git para el trabajo en equipo ###
 
 Veamos algunos comandos de Git relacionados con el trabajo compartido
 con repositorios remotos.
@@ -391,7 +391,7 @@ con repositorios remotos.
     $ git remote prune origin
     ```
 
-### 4.2. Desarrollo de una página "Acerca de" ###
+### 5.2. Desarrollo de una página "Acerca de" ###
 
 Probar todos los comandos anteriores en una rama en la que se
 implemente la página "Acerca de" en la que se muestre una con los
@@ -404,7 +404,7 @@ del equipo deberá realizar un commit en el que se añade su nombre a la lista.
 
 Crear el pull request en GitHub, revisar el código y aceptarlo.
 
-### 4.3. Configuración de la rama production y publicación de v1.0 ###
+### 5.3. Configuración de la rama production y publicación de v1.0 ###
 
 El flujo de trabajo Git que vamos a seguir es muy similar al flujo de
 trabajo GitFlow (recordad la [clase de
@@ -462,11 +462,11 @@ comprobar que pasan todos los tests.
      `master` (consultar en la página de información de Travis [Using
      Docker in Builds](https://docs.travis-ci.com/user/docker/)).
 
-## 5. Desarrollo de características adicionales en equipo ##
+## 6. Desarrollo de características adicionales en equipo ##
 
 Pendiente.
 
-## 6. Entrega y evaluación ##
+## 7. Entrega y evaluación ##
 
 - La práctica tiene una duración de 2 semanas y debe estar terminada
   el martes 21 de noviembre.
