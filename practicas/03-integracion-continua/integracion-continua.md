@@ -137,9 +137,8 @@ commit, un push de la rama y crear el pull request.
 
 Travis es un servicio de integración continua que se integra
 fácilmente con GitHub. Tiene una versión gratuita para proyectos
-abiertos ([travis-ci.org](https://travis-ci.org)) y una versión de
-pago para proyectos privados
-([travis-ci.com](https://travis-ci.org)). La cuenta educativa de
+abiertos y una versión de pago para proyectos privados
+([travis-ci.com](https://travis-ci.com)). La cuenta educativa de
 GitHub nos da permisos para trabajar en la versión de pago de forma
 gratuita.
 
