@@ -1,24 +1,20 @@
 
 # Práctica 3: Integración continua y trabajo en equipo
 
-<!--
-- [1. Objetivos](#1-objetivos-y-resumen-de-la-práctica)
-- [2. Conectar el proyecto `mads-todolist` con Travis](#2-conectar-el-proyecto-mads-todolist-con-travis)
-    - [2.1. Cómo darse de alta en Travis](#21-cómo-darse-de-alta-en-travis-y-conectar-el-repositorio)
-    - [2.2. Cómo configurar el build en Travis](#22-cómo-configurar-el-build-en-travis)
-- [3. Formación de equipos](#3-formación-de-equipos)
-- [4. Nuevo flujo de trabajo en Trello y GitHub](#4-nuevo-flujo-de-trabajo-en-trello-y-github)
-    - [4.1. Rama remota en la que trabajan más de un compañero](#41-rama-remota-en-la-que-trabajan-más-de-un-compañero)
-    - [4.2. Pull request en GitHub](#42-pull-request-en-github)
-    - [4.3. Configuración de la rama production y publicación de v1.0](#43-configuración-de-la-rama-production-y-publicación-de-v10)
-- [5. Representación de _features_ en Trello](#5-representación-de-features-en-trello)
-- [6. Desarrollo de 3 features en equipo](#6-desarrollo-de-3-features-en-equipo)
-    - [6.1. Feature 1: Login, registro y tareas](#61-feature-1-login-registro-y-tareas)
-    - [6.2. Feature 2: Proyectos](#62-feature-2-proyectos)
-- [7. Publicación de la versión 1.1](#7-publicación-de-la-versión-11)
-- [8. Entrega y evaluación](#8-entrega-y-evaluación)
-
--->
+- [1. Objetivos y resumen de la práctica](#1-objetivos-y-resumen-de-la-práctica)
+- [2. Formación de equipos](#2-formación-de-equipos)
+- [3. Configuración máquina Docker](#3-configuración-máquina-docker)
+- [4.Conectar el proyecto mads-todolist con Travis](#4-conectar-el-proyecto-mads-todolist-con-travis)
+    - [4.1. Cómo darse de alta en Travis y conectar el repositorio](#41-cómo-darse-de-alta-en-travis-y-conectar-el-repositorio)
+    - [4.2. Cómo configurar el build en Travis](#42-cómo-configurar-el-build-en-travis)
+    - [4.3. Modificación del fichero .travys.yml y pull request](#43-modificación-del-fichero-travisyml-y-pull-request)
+    - [4.4. Modificación del README del proyecto](#44-modificación-del-readme-del-proyecto)
+- [5. Nuevo flujo de trabajo en GitHub](#5-nuevo-flujo-de-trabajo-en-github)
+    - [5.1. Comandos git para el trabajo en equipo](#51-comandos-git-para-el-trabajo-en-equipo)
+    - [5.2. Desarrollo de una página Acerca de](#52-desarrollo-de-una-página-acerca-de)
+    - [5.3. Configuración de la rama production y publicación de v1.0](#53-configuración-de-la-rama-production-y-publicación-de-v10)
+- [6. Desarrollo de características adicionales en equipo](#6-desarrollo-de-caracter%C3%ADsticas-adicionales-en-equipo)
+- [7. Entrega y evaluación](#7-entrega-y-evaluación)
 
 
 ## 1. Objetivos y resumen de la práctica ##
@@ -464,9 +460,9 @@ versiones.
 La rama `production` también será integrada por Travis. Debemos
 comprobar que pasan todos los tests.
 
-**Opcional**
+### 5.4. Publicación automática de nuevas versiones ###
 
-Implementad un nuevo _issue_ en el que hagáis lo siguiente:
+Implementad en `master` un nuevo _issue_ en el que hagáis lo siguiente:
 
    - Modificar el fichero de configuración de Travis para que la
      versión de la máquina docker sea la definida por el número de
@@ -507,7 +503,7 @@ responsables (por ejemplo, si es un _issue_ orientado a crear las
 vistas y en el equipo hay una persona que domina Bootstrap y el diseño
 de interfaces de usuario).
 
-### Funcionalidades adicionales ###
+### 6.1. Funcionalidades adicionales ###
 
 Proponemos tres historias de usuario pequeñas, que se pueden
 desarrollar todas en una semana. Para las historias 2 y 3 se deben
@@ -543,7 +539,7 @@ Si queréis incluir alguna funcionalidad opcional que hayáis
 implementado, podéis hacerlo además de lo anterior. Debéis añadir la
 página correspondiente con la funcionalidad en la wiki.
 
-### Publicación de la versión 1.1  ###
+### 6.2. Publicación de la versión 1.1  ###
 
 Una vez terminadas y probadas todas las historias de usuario, se
 deberá crear una rama para la versión 1.1 e integrarla en la rama
@@ -561,7 +557,6 @@ también en `master` y modificando el número de versión a `1.2-SNAPSHOT`.
 
 - La práctica tiene una duración de 2 semanas y debe estar terminada
   el martes 21 de noviembre.
-- La parte obligatoria puntúa sobre 7 y la opcional sobre 3 puntos.
 - La calificación de la práctica tiene un peso de un 7% en la nota
   final de la asignatura.
 - Para realizar la entrega uno de los miembros del equipo debe subir a
