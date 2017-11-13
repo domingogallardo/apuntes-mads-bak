@@ -4,7 +4,7 @@
 - [1. Objetivos y resumen de la práctica](#1-objetivos-y-resumen-de-la-práctica)
 - [2. Formación de equipos](#2-formación-de-equipos)
 - [3. Configuración máquina Docker](#3-configuración-máquina-docker)
-- [4.Conectar el proyecto mads-todolist con Travis](#4-conectar-el-proyecto-mads-todolist-con-travis)
+- [4. Conectar el proyecto mads-todolist con Travis](#4-conectar-el-proyecto-mads-todolist-con-travis)
     - [4.1. Cómo darse de alta en Travis y conectar el repositorio](#41-cómo-darse-de-alta-en-travis-y-conectar-el-repositorio)
     - [4.2. Cómo configurar el build en Travis](#42-cómo-configurar-el-build-en-travis)
     - [4.3. Modificación del fichero .travys.yml y pull request](#43-modificación-del-fichero-travisyml-y-pull-request)
@@ -13,7 +13,10 @@
     - [5.1. Comandos git para el trabajo en equipo](#51-comandos-git-para-el-trabajo-en-equipo)
     - [5.2. Desarrollo de una página Acerca de](#52-desarrollo-de-una-página-acerca-de)
     - [5.3. Configuración de la rama production y publicación de v1.0](#53-configuración-de-la-rama-production-y-publicación-de-v10)
+    - [5.4. Publicación automática de nuevas versiones](#54-publicación-automática-de-nuevas-versiones)
 - [6. Desarrollo de características adicionales en equipo](#6-desarrollo-de-caracter%C3%ADsticas-adicionales-en-equipo)
+    - [6.1. Funcionalidades adicionales](#61-funcionalidades-adicionales)
+    - [6.2. Publicación de la versión 1.1](#62-publicación-de-la-versión-11)
 - [7. Entrega y evaluación](#7-entrega-y-evaluación)
 
 
@@ -496,12 +499,14 @@ termine esta práctica 3.
 Cada historia de usuario deberá tener un responsable distinto, que
 será se encargará de realizar la formulación de la historia en
 la página wiki, descomponerla en issues y de probar que se cumplen las
-condiciones de satisfacción antes de darla por terminada. Aunque lo
-normal es que los issues en los que se descompone una historia tengan
-el mismo responsable que la historia, también se pueden definir otros
-responsables (por ejemplo, si es un _issue_ orientado a crear las
-vistas y en el equipo hay una persona que domina Bootstrap y el diseño
-de interfaces de usuario).
+condiciones de satisfacción antes de darla por terminada. Escribid el
+responsable de la historia en su página.
+
+Aunque lo normal es que los issues en los que se descompone una
+historia tengan el mismo responsable que la historia, también se
+pueden definir otros responsables (por ejemplo, si es un _issue_
+orientado a crear las vistas y en el equipo hay una persona que domina
+Bootstrap y el diseño de interfaces de usuario).
 
 ### 6.1. Funcionalidades adicionales ###
 
@@ -513,7 +518,7 @@ y 2. Aunque no es obligatorio, puedes desarrollarlas usando TDD.
 1. Arreglo de la interfaz de usuario de tareas y tableros, definiendo
    una [barra de
    navegación](https://bootstrapdocs.com/v3.3.6/docs/components/#navbar)
-   con las opciones: `TodoList` (título de la aplicación), `Mis tareas`
+   de Bootstrap con las opciones: `TodoList` (título de la aplicación), `Mis tareas`
    (enlace a la página de tareas), `Mis tableros` (enlace a la página de
    tableros) y a la derecha un desplegable con el nombre del usuario y
    las opciones `Perfil` (enlace al perfil, si está implementado) y
