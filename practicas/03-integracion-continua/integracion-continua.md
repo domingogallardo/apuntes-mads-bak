@@ -479,7 +479,83 @@ Implementad un nuevo _issue_ en el que hagáis lo siguiente:
 
 ## 6. Desarrollo de características adicionales en equipo ##
 
-Pendiente.
+En esta parte desarrollaréis tres características (historias de
+usuario) adicionales en el proyecto. 
+
+Debéis definir una página en la wiki para cada una de ellas, y crear
+la página principal de la wiki con el título **Versión 1.1** y con dos
+tablas (_pendientes_ y _terminadas_) que contenga los títulos, enlaces
+y una breve descripción de cada una de las características (como hemos
+hecho en la wiki en las prácticas 1 y 2).
+
+También igual que en las prácticas 1 y 2, se creará una etiqueta para
+cada una de las historias de usuario y se marcarán con ella los
+_issues_ que las conforman. Una de historia de usuario puede contener
+varios _issues_ o sólo uno.
+
+También se marcarán los issues/pull requests con el `milestone 1.1`, que
+será el número de versión definitiva de la aplicación cuando se
+termine esta práctica 3.
+
+Cada historia de usuario deberá tener un responsable distinto, que
+será se encargará de realizar la formulación de la historia en
+la página wiki, descomponerla en issues y de probar que se cumplen las
+condiciones de satisfacción antes de darla por terminada. Aunque lo
+normal es que los issues en los que se descompone una historia tengan
+el mismo responsable que la historia, también se pueden definir otros
+responsables (por ejemplo, si es un _issue_ orientado a crear las
+vistas y en el equipo hay una persona que domina Bootstrap y el diseño
+de interfaces de usuario).
+
+### Funcionalidades adicionales ###
+
+Proponemos tres historias de usuario pequeñas, que se pueden
+desarrollar todas en una semana. Para las historias 2 y 3 se deben
+realizar tests, como hemos venido haciendo en las prácticas 1
+y 2. Aunque no es obligatorio, puedes desarrollarlas usando TDD.
+
+1. Arreglo de la interfaz de usuario de tareas y tableros, definiendo
+   una [barra de
+   navegación](https://bootstrapdocs.com/v3.3.6/docs/components/#navbar)
+   con las opciones: `TodoList` (título de la aplicación), `Mis tareas`
+   (enlace a la página de tareas), `Mis tableros` (enlace a la página de
+   tableros) y a la derecha un desplegable con el nombre del usuario y
+   las opciones `Perfil` (enlace al perfil, si está implementado) y
+   `Salir` (salir y enlace a login).
+
+2. Añadir los siguientes campos adicionales a la tarea :
+   `fechaCreacion`. Poner como fecha de creación la fecha y hora en la
+   que se crea la tarea (hacerlo de forma automática, sin pedírselo al
+   usuario, ni que el usuario pueda modificarlo). Y dejar que el
+   usuario introduzca opcionalmente la fecha límite en la página de
+   creación/edición de una tarea.
+   
+   En la tabla con el listado de tareas no mostrar la fecha de
+   creación (es un atributo interno, que por ahora no mostramos) pero
+   sí la fecha límite.
+
+3. Añadir un campo adicional de `terminado` a las tareas. Añadir una
+   acción en el listado de tareas para terminar una tarea. En el
+   listado de tareas aparecerán solo las tareas que no se hayan
+   terminado. Pon un enlace `Terminadas` para mostrar las tareas terminadas.
+
+Si queréis incluir alguna funcionalidad opcional que hayáis
+implementado, podéis hacerlo además de lo anterior. Debéis añadir la
+página correspondiente con la funcionalidad en la wiki.
+
+### Publicación de la versión 1.1  ###
+
+Una vez terminadas y probadas todas las historias de usuario, se
+deberá crear una rama para la versión 1.1 e integrarla en la rama
+`production` tal y como se ha hecho con la versión 1.0. 
+
+Realizar en la rama de versión los commits necesarios para el cambio
+de versión (en el fichero `build.sbt` y en la página `Acerca de`) y
+para actualizar los ficheros relacionados con el esquema de datos (el
+fichero `schema.sql` y `upgradeXX.sql`).
+
+Igual que se hizo con la versión 1.0, terminar integrando esta rama
+también en `master` y modificando el número de versión a `1.2-SNAPSHOT`.
 
 ## 7. Entrega y evaluación ##
 
