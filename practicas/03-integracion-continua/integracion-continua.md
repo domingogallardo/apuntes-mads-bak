@@ -410,12 +410,26 @@ trabajo GitFlow (recordad la [clase de
 teoría](https://github.com/domingogallardo/apuntes-mads/blob/master/sesiones/07-git-workflows/git-workflows.md)). Pero
 vamos a introducir alguna variante en la nomenclatura de las ramas.
 
+#### Ramas de largo recorrido ####
+
 En la versión original de GitFlow se publican las distintas versiones
 del proyecto en la rama _long-lived_ `master` y se hace el desarrollo en
 la rama `develop`. Nosotros vamos a adoptar esta idea, pero cambiando
 el nombre de las ramas. La rama de desarrollo será la rama
 **`master`** en la que hemos trabajado desde el principio, y la rama
 con las versiones lanzadas la llamaremos **`production`**.
+
+#### Ramas de feature ####
+
+Desde el comienzo de trabajo con Git en las prácticas 1 y 2 estamos
+haciendo un desarrollo basado en ramas de corto recorrido,
+equivalentes a las ramas de _features_ de GitFlow. 
+
+La diferencia es que en GitFlow estas ramas se integran con la rama de
+desarrollo manualmente haciendo `merge`, mientras que nosotros las
+integramos haciendo un pull request.
+
+#### Configuración paso a paso ####
 
 El equipo elegirá un responsable de integración que se encargue de
 crear la rama **`production`** y publicar en ella la primera versión
@@ -451,6 +465,8 @@ La rama `production` también será integrada por Travis. Debemos
 comprobar que pasan todos los tests.
 
 **Opcional**
+
+Implementad un nuevo _issue_ en el que hagáis lo siguiente:
 
    - Modificar el fichero de configuración de Travis para que la
      versión de la máquina docker sea la definida por el número de
