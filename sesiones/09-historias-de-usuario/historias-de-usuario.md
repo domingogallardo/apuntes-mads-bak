@@ -8,7 +8,7 @@
 
 <img src="diapositivas/historias-usuario.003.png" width="800px">
 
-**Objetivo de las historias de usuario**
+## Objetivo de las historias de usuario ##
 
 Las palabras escritas son ambiguas y se prestan a malentendidos cuando
 se utilizan para expresar los requisitos de algo tan complejo como el
@@ -23,7 +23,7 @@ comunicación directa.
 Una historia de usuario describe una funcionalidad que será valiosa al
 usuario final o al cliente que nos compra el software. 
 
-**Definición de una historia**
+## Definición de una historia ##
 
 Una historia de usuario es una descripción rápida y sencilla de una
 forma en la que un usuario utilizará el software. La mayoría de
@@ -58,10 +58,7 @@ Se cual sea el formato, es importante que la historia conteste a tres preguntas:
 - Qué quiere hacer el usuario
 - Por qué lo quiere hacer
 
-
-
 <img src="diapositivas/historias-usuario.005.png" width="800px">
-
 
 Una historia de usuario está compuesta de tres aspectos:
 
@@ -179,10 +176,11 @@ Ejemplo:
 La velocidad del equipo puede cambiar conforme avanza el proyecto. El
 tamaño de las historias, sin embargo, permanece constante.
 
-
 <img src="diapositivas/historias-usuario.011.png" width="800px">
 
 <img src="diapositivas/historias-usuario.012.png" width="800px">
+
+[Web con productos de Atlassian](https://www.atlassian.com)
 
 <img src="diapositivas/historias-usuario.013.png" width="800px">
 
@@ -190,17 +188,29 @@ tamaño de las historias, sin embargo, permanece constante.
 
 <img src="diapositivas/historias-usuario.015.png" width="800px">
 
-- [The Purpose Of Storyboarding](https://www.youtube.com/watch?v=BSOJiSUI0z8)
-
 <img src="diapositivas/historias-usuario.016.png" width="800px">
 
 <img src="diapositivas/historias-usuario.017.png" width="800px">
 
-- [Balsamic](https://balsamiq.com)
-
 <img src="diapositivas/historias-usuario.018.png" width="800px">
 
 <img src="diapositivas/historias-usuario.019.png" width="800px">
+
+<img src="diapositivas/historias-usuario.020.png" width="800px">
+
+<img src="diapositivas/historias-usuario.021.png" width="800px">
+
+- [The Purpose Of Storyboarding](https://www.youtube.com/watch?v=BSOJiSUI0z8)
+
+<img src="diapositivas/historias-usuario.022.png" width="800px">
+
+<img src="diapositivas/historias-usuario.023.png" width="800px">
+
+- [Balsamic](https://balsamiq.com)
+
+<img src="diapositivas/historias-usuario.024.png" width="800px">
+
+<img src="diapositivas/historias-usuario.025.png" width="800px">
 
 - Jeff Patton - [The New User Story Backlog is a Map](http://jpattonassociates.com/the-new-backlog/)
 - Jeff Patton - [It's all in how you slice it](http://jpattonassociates.com/wp-content/uploads/2015/01/how_you_slice_it.pdf)
