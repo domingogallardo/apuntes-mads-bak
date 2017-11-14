@@ -96,7 +96,6 @@
 
 <img src="diapositivas/mapping-de-historias-de-usuario.046.png" width="800px">
 
-
 ## 2. Workshop práctico `TodoList`
 
 Vamos a hacer un ejercicio práctico en el que pongamos en práctica la
@@ -117,39 +116,39 @@ para que las personas y empresas puedan organizar sus tareas
 pendientes**. La web debe ser útil, aportar valor a la persona o a un
 equipo. Incluso podemos pensar en agrupar las funcionalidades en
 diferentes niveles de precios: proporcionar unas funcionalidades
-gratuitas y otras en las que se paga un precio por usuario.
+gratuitas y otras en las que se paga un precio por usuario (ya nos han
+pisado la idea: [asana.com](https://asana.com)).
 
 ¿Qué funcionalidades podríamos añadir? Vamos a generarlas y
 organizarlas usando la técnica del mapa de historias de usuario.
 
 - Dividimos la clase en 3 grupos y cada grupo va a trabajar en una zona
-de la pared, pegando los post-its en ella. 
+de mesas, organizando las tarjetas sobre ellas.
 
 - Para construir el mapa de historias de usuario:
 
     1. Escribir historias de usuario (tareas, en la terminología del
-       mapping) en los **post-its amarillos**. 
+       mapping) en las **tarjetas blancas**
            - Escribir la historia de usuario con el formato que hemos
            visto en clase (tipo de usuario, acción, resultado u objetivo).
-           - Escribir las condiciones de satisfacción en una hoja
-           aparte, bajo el título de la historia. 
-           - Estimar el tamaño de la historia (_Small_, _Medium_,
-           _Large_) y escribirlo en una esquina de la etiqueta.
+           - Escribir las condiciones de satisfacción en la parte de
+           detrás de la tarjeta.
+           - Estimar el tamaño de la historia (`S`-_Small_, `M`-_Medium_,
+           `L`-_Large_) y escribirlo en una esquina de la tarjeta.
 
     2. Agrupar las historias de usuario en grandes áreas
        (actividades). 
-           - Escribir el nombre de las actividades en los post-its
-             verdes y colocarlas sobre las actividades.
+           - Escribir el nombre de las actividades en las tarjetas
+             rojas y colocarlas sobre las actividades.
            - Intentar que las actividades se puedan leer de izquierda
              a derecha en forma de historia: "Un usuario entra en la
              web, después hace X, después Y, ..., también puede hacer
              Z, ... ". X, Y, Z son grandes áreas (actividades) que
-             están compuestas de tareas (post-its amarillos debajo).
+             están compuestas de tareas (tarjetas blancas debajo).
 
     3. Ordenar las tareas en vertical, en función del valor que
        proporcionan (más valor arriba y menos abajo), de forma que
        podamos planificar distintas _releases_.
-
 
 Después, en los 10 minutos de presentación, uno o varios
 representantes del grupo explicarán:
