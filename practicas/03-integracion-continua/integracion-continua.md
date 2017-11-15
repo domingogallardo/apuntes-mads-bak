@@ -474,7 +474,13 @@ Implementad en `master` un nuevo _issue_ en el que hagáis lo siguiente:
    - Añadir en la configuración de Travis la publicación de la máquina
      docker en Docker Hub cada vez que se realice un build en la rama
      `master` (consultar en la página de información de Travis [Using
-     Docker in Builds](https://docs.travis-ci.com/user/docker/)).
+     Docker in
+     Builds](https://docs.travis-ci.com/user/docker/)). Deberéis
+     publicar dos versiones de la máquina: la versión con el último
+     número de build y la versión `latest`. De esta forma, en Docker
+     Hub estará siempre actualizada la versión `latest` a última
+     versión compilada en `master` y también se tendrá un histórico de
+     todas las versiones compilads.
 
 ## 6. Desarrollo de características adicionales en equipo ##
 
