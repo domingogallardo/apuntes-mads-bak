@@ -108,7 +108,7 @@ para organizar el trabajo de personas y empresas.
 
 El _workshop_ tendrá una duración de 1 hora y 15 minutos. En los
 primeros 45 minutos cada grupo creará un mapa de historias de usuario
-y en los 30 minutos restantes se presentarán los mapas resultantes (10
+y en los 30 minutos restantes se presentarán los mapas resultantes (8
 minutos cada grupo).
 
 > Supongamos que queremos lanzar una startup que ofrezca una **web
@@ -122,7 +122,7 @@ pisado la idea: [asana.com](https://asana.com)).
 ¿Qué funcionalidades podríamos añadir? Vamos a generarlas y
 organizarlas usando la técnica del mapa de historias de usuario.
 
-- Dividimos la clase en 3 grupos y cada grupo va a trabajar en una zona
+- Dividimos la clase en 4 grupos y cada grupo va a trabajar en una zona
 de mesas, organizando las tarjetas sobre ellas.
 
 - Para construir el mapa de historias de usuario:
