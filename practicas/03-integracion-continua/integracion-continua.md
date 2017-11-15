@@ -191,6 +191,11 @@ sudo: required
 
 language: bash
 
+branches:
+  only:
+  - master
+  - production
+
 services:
   - docker
 
