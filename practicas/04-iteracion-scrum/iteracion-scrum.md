@@ -109,14 +109,14 @@ la descripción de la historia.
 Se deben incluir en el sprint historias por un tamaño total 6 puntos x
 número de personas del equipo:
 
-- Equipo de 2 personas: 12 puntos
-- Equipo de 3 personas: 18 puntos
+- Equipo de 2 personas: 8 puntos
+- Equipo de 3 personas: 12 puntos
 
 Suponemos la siguiente asignación de puntos al tamaño de las tareas:
 
 - S: 1 punto
-- M: 2 puntos
-- L: 4 puntos
+- M: 2 puntos (el doble que una S)
+- L: 4 puntos (el doble que una M)
 
 Cuando se seleccione la historia para el sprint actual y se pase a la
 columna de **Sprint** se añadirá un enlace a la página correspondiente
