@@ -106,7 +106,7 @@ la descripción de la historia.
 
 ### 2.2. Planificación del sprint ###
 
-Se deben incluir en el sprint historias por un tamaño total 6 puntos x
+Se deben incluir en el sprint historias por un tamaño total 4 puntos x
 número de personas del equipo:
 
 - Equipo de 2 personas: 8 puntos
