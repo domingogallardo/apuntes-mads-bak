@@ -19,10 +19,10 @@ de la asignatura.
   requests_, wiki y tablero de proyecto.
 - P02 (3 semanas): [Gestión de configuraciones y TDD con Play Framework](practicas/02-pruebas-tdd/pruebas-tdd.md)
   Tests en Play Framework y TDD. 
-- P03 (2 semanas): [Integración contínua](practicas/03-integracion-continua/integracion-continua.md). Flujo de trabajo Git y
+- P03 (2 semanas): [Integración continua](practicas/03-integracion-continua/integracion-continua.md). Flujo de trabajo Git y
   GitHub modificado para el trabajo en equipo. Integración continua con Travis y Docker.
 - P04 (4 semanas):
-  **Sprint de Scrum** para realizar una iteración de desarrollo.
+  [Sprint de Scrum](practicas/04-iteracion-scrum/iteracion-scrum.md) para realizar una iteración de desarrollo.
   seleccionamos las historias de usuario de un ejercicio de _mapping
   de historias de usuario_ y las desarrollamos durante una iteración
   de Scrum, practicando alguno de sus elementos (artefactos,
