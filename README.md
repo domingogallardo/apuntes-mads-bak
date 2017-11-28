@@ -52,19 +52,19 @@ Las sesiones tienen una duración variable, entre 45 y 90 minutos.
   - Vincent Driessen - [A successful Git branching model](lecturas/vincent-driessen_a-successful-git-branching-model.pdf)
 - S08: [Integración y entrega continua](sesiones/08-integracion-entrega-continua/integracion-entrega-continua.md)
   - Martin Fowler - [Continuous Integration](lecturas/martin-fowler_continuous-integration.pdf)
-- S09: Herramientas de integración continua
 
 ### Bloque 3: Historias de usuario (2 semanas)
 
-- S11: Historias de usuario
-- S12: Jeff Patton - User Story Mapping
+- S09: [Historias de usuario](sesiones/09-historias-de-usuario/historias-de-usuario.md)
+- S12: [Jeff Patton - User Story Mapping](sesiones/10-mapping-de-historias-de-usuario/mapping-de-historias-de-usuario.md)
+  - Jeff Patton - [It's all in how you slice it](lecturas/jeff-patton-how-you-slice-it.pdf)
 
 ### Bloque 4: Scrum y Kanban (4 semanas)
 
-- S13: Scrum
+- S13: [Scrum](sesiones/11-scrum/scrum.md)
   - Schwaber y Sutherland - [The Scrum Guide](lecturas/schwaver-sutherland_scrum-guide.pdf)
   - Henrik Kniberg - [Agile Product Ownership in a Nutshell](lecturas/henrik-kniberg_agile-product-ownership.pdf)
-- S14: Kanban
+- S14: [Kanban](sesiones/12-kanban/kanban.md)
 - S15: Kanban vs. Scrum
   - Henrik Kniberg - [Kanban and Scrum](lecturas/henrik-kniberg-kanban-and-scrum.pdf)
 - S16: Escalando Ágil - ¿Cómo coordinar múltiples equipos ágiles?
