@@ -170,25 +170,34 @@ duración y su desarrollo:
   en la wiki de la historia de usuario del issue **los tests manuales que habría que hacer**.
 - Modificamos las columnas del tablero de issues de GitHub para
   adaptarlo mejor a Kanban:
-    - **Seleccionados** - Issue listo para el desarrollo. 
+    - **Pendientes** - Se añaden aquí los issues de una historia de
+      usuario cuando la historia de usuario se pasa a **En marcha** en Trello.
     - **En desarrollo** - Issue en desarrollo. Cada issue debe corresponderse con una rama de Git.
-    - **En desarrollo - Done** - Se ha terminado el desarrollo y los tests unitarios.
+    - **En desarrollo - Done** - Se ha terminado el desarrollo y los
+      tests unitarios. Si la columna de Integración no ha alcanzado su
+      WIP, crear el PR, eliminar el issue de la columna y añadir en la
+      columna `Integración` el PR.
     - **Integración** - Se ha creado el pull request pidiendo la
       integración del issue en la rama `master`. Se solicita la
       revisión del código por al menos 1 compañero.
-    - **Integración - Done** - Se ha aprobado el pull request, se ha
-      realizado la integración `master` y Travis da el OK. 
+    - **Esperando tests funcionales** - Se ha aprobado el pull request, se ha
+      realizado la integración `master` y Travis da el OK. El issue
+      está a la espera de que se realicen los tests funcionales
+      (cuando la historia de usuario pase a la columna de Trello `QA`.
     - **Terminados**- La historia de usuario correspondiente al issue
       ha pasado las pruebas funcionales.
 - Límite de _Work In Progress_ (WIP): Estimar un número de límite de
-  WIP para las columnas `Seleccionados`, `En desarrollo` e
-  `Integración`. No se podrá incluir en esas columnas más tarjetas que
-  las definidas en el número límite de WIP. Las tarjetas en las
-  columnas _done_ correspondientes también se suman a las que hay en
-  las propias columnas. El límite WIP va a depender del número de
-  integrantes del equipo. Si se define un límite WIP demasiado bajo
-  habrá personas ociosas, mientras que si se define un límite WIP
-  demasiado alto habrá acumulación de tareas sin terminar.
+  WIP para las columnas `En desarrollo` e `Integración`. No se podrá
+  incluir en esas columnas más tarjetas que las definidas en el número
+  límite de WIP. 
+  
+  Las tarjetas en las columna `En desarrollo - Done` se suman a las
+  que hay en la columna `En desarrollo`.
+  
+  El límite WIP va a depender del número de integrantes del equipo. Si
+  se define un límite WIP demasiado bajo habrá personas ociosas,
+  mientras que si se define un límite WIP demasiado alto habrá
+  acumulación de tareas sin terminar.
 - Seguimos usando Travis para la integración continua.
 
 ### 3.2. Publicación de nueva versión  ###
