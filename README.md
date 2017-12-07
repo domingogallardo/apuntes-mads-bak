@@ -27,7 +27,7 @@ de la asignatura.
   de historias de usuario_ y las desarrollamos durante una iteración
   de Scrum, practicando alguno de sus elementos (artefactos,
   reuniones). Mejoraremos también el tablero de GitHub para acercarlo
-  más a un tablero de Kanban.
+  a un tablero de Kanban.
 
 ## Diapositivas y lecturas
 
