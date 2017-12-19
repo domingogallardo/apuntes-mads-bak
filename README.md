@@ -56,18 +56,18 @@ Las sesiones tienen una duración variable, entre 45 y 90 minutos.
 ### Bloque 3: Historias de usuario (2 semanas)
 
 - S09: [Historias de usuario](sesiones/09-historias-de-usuario/historias-de-usuario.md)
-- S12: [Jeff Patton - User Story Mapping](sesiones/10-mapping-de-historias-de-usuario/mapping-de-historias-de-usuario.md)
+- S10: [Jeff Patton - User Story Mapping](sesiones/10-mapping-de-historias-de-usuario/mapping-de-historias-de-usuario.md)
   - Jeff Patton - [It's all in how you slice it](lecturas/jeff-patton-how-you-slice-it.pdf)
 
 ### Bloque 4: Scrum y Kanban (4 semanas)
 
-- S13: [Scrum](sesiones/11-scrum/scrum.md)
+- S11: [Scrum](sesiones/11-scrum/scrum.md)
   - Schwaber y Sutherland - [The Scrum Guide](lecturas/schwaver-sutherland_scrum-guide.pdf)
   - Henrik Kniberg - [Agile Product Ownership in a Nutshell](lecturas/henrik-kniberg_agile-product-ownership.pdf)
-- S14: [Kanban](sesiones/12-kanban/kanban.md)
-- S15: Kanban vs. Scrum
+- S12: [Kanban](sesiones/12-kanban/kanban.md)
+- S13: [Kanban vs. Scrum](13-kanban-y-scrum/kanban-y-scrum.md)
   - Henrik Kniberg - [Kanban and Scrum](lecturas/henrik-kniberg-kanban-and-scrum.pdf)
-- S16: Escalando Ágil - ¿Cómo coordinar múltiples equipos ágiles?
+- S14: [Escalando Ágil](sesiones/14-escalando-agil/escalando-agil.md) - ¿Cómo coordinar múltiples equipos ágiles?
 
 
 ## Evaluación
