@@ -65,7 +65,7 @@ Las sesiones tienen una duración variable, entre 45 y 90 minutos.
   - Schwaber y Sutherland - [The Scrum Guide](lecturas/schwaver-sutherland_scrum-guide.pdf)
   - Henrik Kniberg - [Agile Product Ownership in a Nutshell](lecturas/henrik-kniberg_agile-product-ownership.pdf)
 - S12: [Kanban](sesiones/12-kanban/kanban.md)
-- S13: [Kanban vs. Scrum](13-kanban-y-scrum/kanban-y-scrum.md)
+- S13: [Kanban vs. Scrum](sesiones/13-kanban-y-scrum/kanban-y-scrum.md)
   - Henrik Kniberg - [Kanban and Scrum](lecturas/henrik-kniberg-kanban-and-scrum.pdf)
 - S14: [Escalando Ágil](sesiones/14-escalando-agil/escalando-agil.md) - ¿Cómo coordinar múltiples equipos ágiles?
 
