@@ -414,7 +414,7 @@ adelante en la asignatura estudiaremos más sobre Docker.
 3. Descarga la imagen de Docker para poder compilar y ejecutar los
    proyectos Play:
 
-   <pre><code>$ <b>docker pull domingogallardo\playframework</b>
+   <pre><code>$ <b>docker pull domingogallardo/playframework</b>
    $ <b>docker image ls</b>
    REPOSITORY                      TAG                 IMAGE ID            CREATED             SIZE
    domingogallardo/playframework   latest              95c1eb17ecb4        5 weeks ago         530MB
