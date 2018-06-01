@@ -373,7 +373,7 @@ Para lanzar esta imagen tenemos que ejecutar el siguiente comando,
 estando en el directorio de la aplicación Play:
 
 <pre><code>$ <b>cd /path/to/my/play/project</b>
-$ <b>docker run --rm  -it -v "${PWD}:/code" -p 80:9000 domingogallardo/playframework</b>
+$ <b>docker run --rm  -it -v "${PWD}:/code" -p 9000:9000 domingogallardo/playframework</b>
 </code></pre>
 
 El comando `docker run` buscará la imagen
@@ -450,7 +450,7 @@ adelante en la asignatura estudiaremos más sobre Docker.
    
    <pre><code>$ <b>git clone https://github.com/mads-ua/todolist-2017-usuario.git</b>
    $ <b>cd todolist-2017-usuario</b>
-   $ <b>docker run --rm  -it -v "${PWD}:/code" -p 80:9000 domingogallardo/playframework</b>
+   $ <b>docker run --rm  -it -v "${PWD}:/code" -p 9000:9000 domingogallardo/playframework</b>
    [info] Loading project definition from /code/project
    [info] Updating {file:/code/project/}code-build...
    [info] Resolving org.fusesource.jansi#jansi;1.4 ...
@@ -463,7 +463,7 @@ adelante en la asignatura estudiaremos más sobre Docker.
    [play-java] $ <b>run</b>
    </code></pre>
    
-   Comprueba que la aplicación está funcionando en <http://localhost>
+   Comprueba que la aplicación está funcionando en <http://localhost:9000>
    en la máquina host.
    
    <img src="imagenes/play-start-application.png" width="600px"/>
@@ -502,7 +502,7 @@ adelante en la asignatura estudiaremos más sobre Docker.
    Si ahora vuelves a lanzar la máquina Docker en el proyecto, verás
    que ha cambiado el nombre del proyecto:
    
-   <pre><code>$ <b>docker run --rm  -it -v "${PWD}:/code" -p 80:9000 domingogallardo/playframework</b>
+   <pre><code>$ <b>docker run --rm  -it -v "${PWD}:/code" -p 9000:9000 domingogallardo/playframework</b>
    ...
    $ [info] Set current project to mads-todolist-2017 (in build file:/code/)
    [mads-todolist-2017] $ 
@@ -886,7 +886,7 @@ encontrar fácilmente en el PR que cierra el _issue_.
   Para comprobar el funcionamiento de este commit tendremos que lanzar
   la aplicación y probar que funciona la ruta que se acaba de añadir:
 
-  <pre><code>$ <b>docker run -it --rm -v ${PWD}:/code -p 80:9000 domingogallardo/playframework</b>
+  <pre><code>$ <b>docker run -it --rm -v ${PWD}:/code -p 9000:9000 domingogallardo/playframework</b>
   [mads-todolist-2017] $ <b>run</b>
   </code></pre>
 
@@ -896,7 +896,7 @@ encontrar fácilmente en el PR que cierra el _issue_.
    GET     /saludo/:msg  controllers.UsuarioController.saludo(msg: String)`
    ```
 
-   accederemos a la URL <http://localhost/saludo/Hola>. Play obtiene
+   accederemos a la URL <http://localhost:9000/saludo/Hola>. Play obtiene
    la cadena `Hola` de la petición y la pasa como parámetro al
    controlador `UsuarioController.saludo`.
 
@@ -907,7 +907,7 @@ encontrar fácilmente en el PR que cierra el _issue_.
 Este es otro ejemplo de un _commit_ que no tiene test, pero que se
 debe probar realizando una prueba manual.
 
-- Para probarlo abrimos la URL <http://localhost/registro> y probamos a
+- Para probarlo abrimos la URL <http://localhost:9000/registro> y probamos a
   introducir los datos de un nuevo usuario.
 
 - Puede ser que sea necesario hacer un `clean` antes del `run`.
