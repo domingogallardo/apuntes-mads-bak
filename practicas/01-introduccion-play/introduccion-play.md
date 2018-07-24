@@ -16,7 +16,6 @@
   - [4.6. Finalización de la versión 0.1](#46-finalización-de-la-versión-01)
 - [5. Entrega y evaluación](#5-entrega-y-evaluación)
 
-
 ## 1. Objetivos y conceptos previos
 
 En la primera práctica de la asignatura vamos a desarrollar paso a
@@ -192,7 +191,8 @@ mundo Java. Permite gestionar la persistencia directamente con el
 modelo de objetos de la aplicación (se denominan _entidades_),
 independizándola del modelo relacional basado en tablas y registros.
 
-La implementación de JPA ObjectDB tiene unos tutoriales muy completos y accesibles:
+La implementación de JPA ObjectDB tiene unos tutoriales muy completos
+y accesibles:
 
 - [JPA Quick tour](http://www.objectdb.com/java/jpa/getting/started)
 - [Entity classes](http://www.objectdb.com/java/jpa/entity)
@@ -205,6 +205,15 @@ aplicación. Vamos a utilizar lo más básico de JPA y en la mayoría de
 las ocasiones se va a proporcionar el código necesario. Además, en
 caso de duda, siempre podrás realizar preguntas sobre cómo implementar
 una determinada funcionalidad en el foro de Moodle.
+
+La implementación de JPA que se utiliza en PlayFramework 2.5 es
+Hibernate 5.1.0.Final.
+
+Puedes encontrar toda la información sobre esta implementación en la
+guía de usuario:
+
+- [Hibernate ORM 5.1 User Guide](http://docs.jboss.org/hibernate/orm/5.1/userguide/html_single/Hibernate_User_Guide.html#associations-many-to-one)
+
 
 #### Bootstrap
 
@@ -349,8 +358,9 @@ En las máquinas de los laboratorios de la EPS están instaladas en
 Linux las herramientas necesarias para su desarrollo. También las
 puedes instalar en cualquier sistema operativo:
    
-- [Atom](https://atom.io), editor de código. También puedes editar
-  Markdow en él y previsualizar el documento resultante.
+- [IntelliJ IDEA](https://www.jetbrains.com/idea/) IDE para trabajar en el desarrollo del
+  proyecto. Es de pago, pero puedes conseguir una licencia educativa
+  en [https://www.jetbrains.com/student/](https://www.jetbrains.com/student/)
 - [Git](https://git-scm.com/downloads)
 - [Docker](https://www.docker.com/community-edition), para ejecutar la
    imagen (similar a una máquina virtual) que contiene Java y Play
@@ -427,12 +437,12 @@ adelante en la asignatura estudiaremos más sobre Docker.
    
 5. Una vez logeado en GitHub, copia el enlace con una invitación que
    compartiremos en el foro de Moodle. Con esa invitación se creará
-   automáticamente el repositorio `todolist-2017-<usuario>` en la
-   organización [mads-ua](https://github.com/mads-ua). Es un
+   automáticamente el repositorio `todolist-2018-<usuario>` en la
+   organización [mads-ua-18](https://github.com/mads-ua-18). Es un
    repositorio privado al que tienes acceso tú y el
    profesor. Contiene el código inicial de un proyecto base Play (es
    una copia de
-   [domingogallardo/play-proyecto-inicial-2017](https://github.com/domingogallardo/play-proyecto-inicial-2017)). 
+   [domingogallardo/play-proyecto-inicial](https://github.com/domingogallardo/play-proyecto-inicial)). 
 
    Es importante que tengas en cuenta que este repositorio no reside
    en tu cuenta, sino en la organización `mads-ua`. Puedes acceder a
@@ -474,20 +484,30 @@ adelante en la asignatura estudiaremos más sobre Docker.
    
    Para salir del contenedor haremos `CTRL+c`.
 
+<!-- 
+Cambiar IntelliJ por Visual Studio Code 
+-->
+
 6. Por último, realiza un primer _commit_ en la rama `master` en el que
    cambies el nombre del proyecto y la versión actual.
 
-   - Utiliza _Atom_. Escoge la opción _File > Add Project Folder..._
-     para añadir al menú lateral izquierdo el directorio donde se
-     encuentra el proyecto y seleccionar fácilmente los ficheros
-     necesarios.
+   - Utiliza _IntelliJ_. Abre el proyecto con la opción `Open` y deja
+     las opciones por defecto en el panel de importación.
+
+     <img src="imagenes/import-intellij.png" width="500px" />
+     
+   - Aunque desde IntelliJ es posible lanzar sbt, en el _sbt shell_,
+     vamos a seguir el sbt proporcionado por la máquina Docker,
+     pudiendo lanzarla desde un terminal exterior o desde el panel
+     Terminal de IntelliJ.
    
    - Cambia en `build.sbt` el nombre del proyecto a
-     `mads-todolist-2017` y la versión a `0.1-SNAPSHOT`. El sufijo
+     `mads-todolist-2018` y la versión a `0.1-SNAPSHOT`. El sufijo
      `SNAPSHOT` indica _en desarrollo_. Al final de la práctica 1
      terminaremos esta versión `0.1` y se eliminará el sufijo.
 
-   - Realiza el commit en `master` y publícalo en el repositorio:
+   - Realiza el commit en `master` desde el terminal y publícalo en tu
+     repositorio:
    
    <pre><code>$ <b>git add build.sbt</b>
    $ <b>git commit -m "Cambiado el nombre del proyecto y la versión"</b>
@@ -504,8 +524,8 @@ adelante en la asignatura estudiaremos más sobre Docker.
    
    <pre><code>$ <b>docker run --rm  -it -v "${PWD}:/code" -p 9000:9000 domingogallardo/playframework</b>
    ...
-   $ [info] Set current project to mads-todolist-2017 (in build file:/code/)
-   [mads-todolist-2017] $ 
+   $ [info] Set current project to mads-todolist-2018 (in build file:/code/)
+   [mads-todolist-2018] $ 
    </code></pre>
 
 ## 4. Desarrollo de la práctica
@@ -525,6 +545,12 @@ en los que se desarrolla paso a paso cada _issue_) o tablero del
 proyecto. Hasta llegar a la aplicación final.
 
 Vamos a ello paso a paso.
+
+<!--
+Centrar el repaso de la historia en un repaso de
+los PR. PR=Trabajo hecho e incorporado. Issue=Problema a resolver
+Es más fácil encontrar los PRs que los issues cerrados.
+--> 
 
 ### 4.1. Desarrollo de la primera historia de usuario
 
