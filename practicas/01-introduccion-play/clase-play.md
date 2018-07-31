@@ -188,9 +188,10 @@ resultante de renderizar la vista `index`.
 
 ### Vistas ###
 
-Las vistas se definen mediante plantillas Scala definidas en el
-directorio `views`. En la llamada a renderizar la vista se pueden
-pasar parámetros cuyos valores se utilizan en la propia vista.
+Las páginas HTML que se devuelven se construyen mediante
+_vistas_. Las vistas se definen mediante plantillas Scala definidas
+en el directorio `views`. En la llamada a renderizar la vista se
+pueden pasar parámetros cuyos valores se utilizan en la propia vista.
 
 Por ejemplo, la vista anterior `index` se define en el fichero
 `index.scala.html` situado en el directorio `views`.
@@ -294,12 +295,16 @@ Para incorporar el valor del parámetro en la plantilla hay que
 preceder el parámetro con `@`. En el ejemplo anterior se obtiene así
 el mensaje, que se pinta en la parte superior de la página.
 
+
+La página HTML resultante mostrada en el navegador es la siguiente:
+
+<img src="imagenes/vista-main.png" width="500px"/>
+
 La directiva `@defining` permite obtener un valor y
 asignárselo a una variable que se utiliza en un bloque de código. En
 el caso anterior se utiliza para obtener la versión de Play. Otro
-ejemplo de su utilización es el que aparece en la [documentación de
-Play](https://www.playframework.com/documentation/2.5.x/JavaTemplates)
-sobre plantillas:
+ejemplo de su utilización es el que aparece en la documentación de
+Play sobre plantillas:
 
 ```html
 @defining(user.getFirstName() + " " + user.getLastName()) { fullName =>
@@ -307,7 +312,181 @@ sobre plantillas:
 }
 ```
 
-La página HTML resultante mostrada en el navegador es la siguiente:
 
-<img src="imagenes/vista-main.png" width="500px"/>
+### La aplicación `mads-todolist-inicial` ###
 
+La aplicación `mads-todolist-inicial` es una versión inicial de la
+aplicación que se va a desarrollar durante todo el cuatrimestre en la
+asignatura. 
+
+Es una aplicación bastante más compleja que la vista
+anteriormente. Entre otros, tiene los siguientes elementos:
+
+- Distintos comandos HTTP en el fichero de rutas: GET, POST, DELETE.
+- Recogida de datos en formularios HTML y validación de los datos.
+- Base de datos gestionada con JPA (_Java Persisence API), un ORM (_Object Relational
+  Mapping_) implementado por la librería Hibernate. Se utiliza una
+  capa de persistencia basada en clases _repository_.
+- _Capa de servicio_ que proporciona la **lógica de negocio** a los
+  controllers.
+- Las _clases controller_ sólo se encargan de hacer de interfaz de la
+  capa de servicio: 
+    - Recoger datos de la petición HTTP,
+    - tratar y validar estas entradas, 
+    - llamar a la clase de servicio para que se realice la acción
+      requerida, y
+    - convertir la respuesta obtenida de la aplicación en una vista
+      que se devuelve como respuesta de la petición.
+- En las plantillas se incluye _Bootstrap_ y scripts JavaScript.
+- Las clases de servicio y de _repository_ se obtienen por inyección
+  de dependencias.
+- Gran número de tests que prueban sobre todo la capa de servicios.
+- Distintos ficheros de configuración para poder arrancar la
+  aplicación en distintos entornos: desarrollo, integración y _stage_
+  (similar a producción).
+
+A continuación se muestran dos de sus pantallas.
+
+<table>
+<tr>
+<td><img src="imagenes/login.png" width="700px"/></td>
+</tr>
+<tr>
+<td align="center"> Pantalla de login </td>
+</table>
+
+
+<table>
+<tr>
+<td><img src="imagenes/tareas.png" width="700px"/></td>
+</tr>
+<tr>
+<td align="center"> Pantalla con listado de tareas </td>
+</table>
+
+
+### Descarga de la aplicación `mads-todolist-inicial` ###
+
+Se encuentra en GitHub:
+<https://github.com/domingogallardo/mads-todolist-inicial>. 
+
+Puedes descargarla con el comando `git clone`:
+
+```text
+$ git clone https://github.com/domingogallardo/mads-todolist-inicial.git
+```
+
+Se creará el directorio `mads-todolist-inicial` en el que se habrá
+descargado la aplicación.
+
+### Importación en IntellJ IDEA ###
+
+Al importar la aplicación en IntelliJ IDEA aparece el aviso de que
+se ha detectado el framework JPA y da la opción de configurarlo. La
+configuración es sencilla, sólo hay que aceptar la localización del
+fichero `persistence.xml` que nos muestra la ventana de diálogo.
+
+Hablaremos más adelante de JPA.
+
+### Ejecución de la aplicación usando la base de datos en memoria ###
+
+Si ejecutamos la aplicación usando el comando `docker run` ya visto se
+utilizará la base de datos H2 en memoria. Los datos almacenados en
+ella sólo durarán mientras que está en marcha el contenedor.
+
+```text
+$ docker run --rm  -it -v "${PWD}:/code" -p 9000:9000 domingogallardo/playframework
+```
+
+
+### Base de datos MySQL con Docker ###
+
+Si queremos que los datos introducidos persistan a distintas
+activaciones de la aplicación web debemos usar una base de datos
+externa. Esto es necesario cuando la aplicación esté en producción,
+pero también puede ser útil para realizar pruebas manuales en
+desarrollo.
+
+Utilizaremos también Docker para poner en marcha un servidor
+MySQL con el siguiente comando:
+
+```text
+$ docker run -d --rm -p 3306:3306 --name play-mysql -e MYSQL_ROOT_PASSWORD=mads -e MYSQL_DATABASE=mads mysql
+```
+
+El comando pone en marcha un servidor MySQL escuchando en el puerto
+por defecto (3306) con el nombre docker `play-mysql`, con la
+contraseña de root indicada y creando la base de datos `mads`.
+
+Podemos comprobar que el contenedor está funcionando con el comando `docker container ls`:
+
+```text
+$ docker container ls
+CONTAINER ID  IMAGE  COMMAND                  CREATED         STATUS         PORTS                  NAMES
+7c1bed0b5b7e  mysql  "docker-entrypoint..."   6 seconds ago   Up 4 seconds   0.0.0.0:3306->3306/tcp play-mysql
+```
+
+El comando `docker container ls` lista los contenedores activos. Con
+la opción `-a` se listarían también los contenedores parados. Podemos
+usar el identificador o el nombre del contenedor para pararlo:
+
+```text
+$ docker container stop play-mysql
+```
+
+Una vez parado se borrará automáticamente por haber usado la opción
+`--rm` en su lanzamiento. (en el caso de no usar esta opción tendremos
+que borrarlo nosotros manualmente con el comando `docker container rm
+play-mysql`).
+
+### Ejecución de la aplicación usando la base de datos MySQL ###
+
+Lanzamos la aplicación con docker, definiendo en variables de entorno
+la URL, el usuario y la contraseña con la que debe conectarse la
+aplicación a la base de datos.
+
+```text
+$  docker run --link play-mysql:mysql --rm -it -p 9000:9000 -e \
+DB_URL="jdbc:mysql://play-mysql:3306/mads" -e DB_USER_NAME="root" -e \
+DB_USER_PASSWD="mads" -v "${PWD}:/code" domingogallardo/playframework
+```
+
+Y desde la consola sbt modificamos la preferencia `config.file` para
+que la aplicación utilice la configuración definida en el fichero
+`conf/integration.con` (lo explicamos más adelante).
+
+```text
+[mads-todolist-2018] $ set javaOptions += "-Dconfig.file=conf/integration.conf"
+[mads-todolist-2018] $ run
+```
+
+
+### Panel `Database` de IntelliJ ###
+
+Desde el panel `Database` de IntelliJ (en la esquina superior derecha)
+es posible crear una conexión a la base de datos que nos permitirá
+verificar cómo se guardan los datos de la aplicación.
+
+Hay que añadir una base de datos de tipo MySQL y configurarla con los
+siguientes parámentros:
+
+<img src="imagenes/conexionbd-intellij.png" width="500px"/>
+
+Es posible examinar el esquema de la base de datos:
+
+<img src="imagenes/esquema-bd.png" width="300px"/>
+
+Y examinar tablas en concreto:
+
+<img src="imagenes/tablabd-intellij.png" width="300px"/>
+
+### Configuración de la aplicación ###
+
+
+
+
+
+### Recursos ###
+
+- [Documentación sobre plantillas](https://www.playframework.com/documentation/2.5.x/JavaTemplates)
+- [Ejemplos de uso de plantillas](https://www.playframework.com/documentation/2.5.x/JavaTemplateUseCases)
