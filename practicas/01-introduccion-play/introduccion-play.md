@@ -1,10 +1,8 @@
 # Práctica 1: Primera aplicación Play Framework Java
 
-- [1. Objetivos y conceptos previos](#1-objetivos-y-conceptos-previos)
+- [1. Objetivos](#1-objetivos)
   - [1.1. Aplicación a desarrollar](#11-aplicación-a-desarrollar)
-  - [1.2. Arquitectura de la aplicación](#12-arquitectura-de-la-aplicación)
-  - [1.3. Tecnologías](#13-tecnologías)
-  - [1.4. Metodología de desarrollo](#14-metodología-de-desarrollo)
+  - [1.2. Metodología de desarrollo](#12-metodología-de-desarrollo)
 - [2. Entorno para realizar la práctica](#2-entorno-para-realizar-la-práctica)
 - [3. Antes de empezar la práctica](#3-antes-de-empezar-la-práctica)
 - [4. Desarrollo de la práctica](#4-desarrollo-de-la-práctica)
@@ -16,29 +14,33 @@
   - [4.6. Finalización de la versión 0.1](#46-finalización-de-la-versión-01)
 - [5. Entrega y evaluación](#5-entrega-y-evaluación)
 
-## 1. Objetivos y conceptos previos
+## 1. Objetivos
 
-En la primera práctica de la asignatura vamos a desarrollar paso a
-paso una aplicación web con
-_Play Framework_ en Java siguiendo una
-estricta metodología de desarrollo usando Git y GitHub.
+En la primera práctica de la asignatura vamos a tomar contacto con el
+_framework_ de desarrollo de aplicaciones web en Java _Play
+Framework_, trabajando sobre la aplicación inicial
+[domingogallardo/mads-todolist-inicial](https://github.com/domingogallardo/mads-todolist-inicial).
 
 La práctica tendrá una duración de tres semanas. Será una práctica
 guiada que deberás realizar de forma individual, siguiendo las
-indicaciones que encontrarás en este documento. Una gran parte del
-código, _issues_, PRs, etc. que vas a tener que realizar en la
-práctica lo encontrarás en el repositorio
-[domingogallardo/mads-todolist-guia](https://github.com/domingogallardo/mads-todolist-guia)
-en GitHub.
+indicaciones que encontrarás en este documento. Tendrás que
+desarrollar código y trabajar en GitHub desarrollando _issues_, _pull
+requests_, _releases_ y actualizando la wiki del proyecto.
 
+Antes de comenzar la práctica debes leer la [introducción a Play
+Framework para las prácticas de MADS](./intro-play-teoria.md).
 
-### 1.1. Aplicación a desarrollar
+### 1.1. Aplicación inicial
 
-Al terminar la práctica habrás desarrollado una aplicación para
+La aplicación inicial es una aplicación para
 gestionar listas de tareas pendientes de los usuarios de una
-empresa. Se podrán registrar y logear usuarios y los usuarios
-registrados podrán añadir, modificar y borrar tareas pendientes de
+empresa. Se pueden registrar y logear usuarios y los usuarios
+registrados pueden añadir, modificar y borrar tareas pendientes de
 hacer.
+
+También tiene unas funcionalidades iniciales básicas relacionadas con
+la gestión de equipos de usuarios. Un usuario puede participar en
+varios equipos.
 
 A continuación puedes ver dos de sus pantallas.
 
@@ -59,173 +61,11 @@ A continuación puedes ver dos de sus pantallas.
 <td align="center"> Pantalla con listado de tareas </td>
 </table>
 
-Iremos desarrollando las características de la aplicación a lo largo
-de las prácticas. La aplicación tiene como nombre clave **SGT**
-(_Sistema de Gestión de Tareas_). El nombre común de la aplicación es
-**ToDoList**.
-
-### 1.2. Arquitectura de la aplicación
-
-La arquitectura de la aplicación será la típica de una aplicación web
-que refuerza una separación entre presentación, controlador, servicio
-y persistencia:
-
-- La **capa de presentación** contendrá todas las _vistas_ (páginas
-  HTML, CSS).
-- La **capa de controlador** gestionará las peticiones HTTP para realizar
-  acciones como crear una tarea, logearse, etc.
-- La **capa de servicio** proporcionará los métodos Java que implementan
-  los métodos de negocio de la aplicación.
-- La **capa de persistencia** proporcionara las clases repositorio y
-  las entidades persistentes que trabajan con la base de datos.
+Iremos desarrollando características adicionales de la aplicación a lo
+largo de las prácticas. El nombre de la aplicación es **ToDo List**.
 
 
-Vamos a utilizar un enfoque basado en **servicios REST** para definir
-las rutas de las peticiones. Por ejemplo, para obtener todas las 
-tareas del usuario con identificador `12` utilizaremos la petición:
-
-```
-GET /usuarios/12/tareas
-```
-
-Pero no implementaremos un servicio REST propiamente dicho, en el que
-se devolvería la lista de tareas en formato JSON, sino que
-devolveremos páginas HTML que constituyen la interfaz de la
-aplicación. Tampoco seremos estrictos en el formato de las
-peticiones. Por ejemplo, en lugar de hacer una petición PUT para
-modificar un recurso (como deberíamos hacer si siguiéramos la
-recomendación REST) vamos a realizar una petición POST
-similar a la de su creación. 
-
-Eso sí, el desarrollo se va a basar totalmente en las tecnologías HTTP
-y HTML. Es conveniente repasarlas para tener claros los conceptos más
-importantes, tanto de HTTP (tipo de petición, códigos de respuesta,
-elementos de una petición, cookies, etc.) como de HTML (formularios, CSS, algo
-de JavaScript, etc.).
-
-- Un libro imprescindible sobre HTTP que debe estar en la biblioteca de
-cualquier informático es el de O'Reilly:
-[HTTP - The Definitive Guide](http://shop.oreilly.com/product/9781565925090.do). 
-- Para repasar HTML, CSS y JavaScript son muy interesantes los
-[tutoriales de Mozilla](https://developer.mozilla.org/en-US/docs/Web/Tutorials).
-
-
-### 1.3. Tecnologías
-
-Esta práctica servirá para tomar un primer contacto con todas las
-tecnologías de desarrollo de aplicaciones web que vamos a utilizar en
-la asignatura:
-
-- _Play Framework_ como _framework_ de desarrollo de aplicaciones
-  web. Nos permitirá realizar un diseño modular basado en la separación entre
-  persistencia, servicio, controlador y presentación.
-- JPA (Java Persistence API) como API para gestionar la persistencia
-  de la aplicación usando un modelo de entidades persistentes ORM
-  (_Object Relational Mapping_). JPA también es conocido como
-  _Hibernate_, su implementación más popular.
-- Para el diseño de la interfaz de usuario de la aplicación usaremos
-  las plantillas de _Play Framework_, en las que se combina HTML y CSS
-  con código Scala. Para hacer más atractivo el diseño de las páginas
-  HTML vamos a usar el _framework_ CSS Bootstrap. 
-
-
-#### Play Framework
-
-[Play Framework](https://playframework.com) es un framework de
-desarrollo rápido de aplicaciones web disponible en los lenguajes Java
-y Scala. Vamos a utilizar la versión Java. El framework proporciona un
-soporte de ejecución que tiene como base el servidor
-[Netty](http://netty.io). Con este soporte es posible diseñar y poner
-en marcha distintos tipos de aplicaciones: servicios HTTP, servicios
-HTTP asíncronos basados en websockets, aplicaciones asíncronas basadas
-en eventos, etc. Nosotros vamos a implementar una aplicación
-tradicional que implementa un servicio HTTP. Vamos a utilizar la
-[versión 2.5 en Java](https://www.playframework.com/documentation/2.5.x/JavaHome).
-
-Para entender el funcionamiento de esta primera práctica es necesario
-consultar la siguiente documentación del framework:
-
-Sobre el funcionamiento de Play:
-
-- [Using the Play console](https://playframework.com/documentation/2.5.x/PlayConsole)
-- [Anatomy of a Play application](https://playframework.com/documentation/2.5.x/Anatomy)
-
-Sobre peticiones y respuestas HTTP:
-
-- [Actions, Controllers and Results](https://www.playframework.com/documentation/2.5.x/JavaActions)
-- [HTTP routing](https://www.playframework.com/documentation/2.5.x/JavaRouting)
-- [Session and Flash scope](https://www.playframework.com/documentation/2.5.x/JavaSessionFlash)
-
-Sobre plantillas:
-
-- [The template engine](https://www.playframework.com/documentation/2.5.x/JavaTemplates)
-- [Common template use cases](https://www.playframework.com/documentation/2.5.x/JavaTemplateUseCases)
-
-Sobre envío de datos de formularios:
-
-- [Handling form submission](https://www.playframework.com/documentation/2.5.x/JavaForms)
-- [Rendering an <input> element](https://www.playframework.com/documentation/2.5.x/JavaFormHelpers#Rendering-an-%3Cinput%3E-element)
-
-Sobre el acceso a datos mediante JPA
-
-- [Integrating with JPA](https://www.playframework.com/documentation/2.5.x/JavaJPA)
-
-Sobre la inyección de dependencias
-
-- [Dependency Injection](https://playframework.com/documentation/2.5.x/JavaDependencyInjection)
-
-Sobre los tests en Play:
-
-- [Testing your application](https://playframework.com/documentation/2.5.x/JavaTest)
-
-#### Java Persistence API (JPA)
-
-JPA es el API que utilizaremos para acceder a bases de datos y
-gestionar entidades persistentes usando un modelo ORM (_Object
-Relational Mapping_). Está integrado en Play, no es necesario instalar
-ninguna librería adicional.
-
-JPA también es conocido por el nombre de una de sus implementaciones
-más populares, Hibernate. Es una tecnología muy usada y madura en el
-mundo Java. Permite gestionar la persistencia directamente con el
-modelo de objetos de la aplicación (se denominan _entidades_),
-independizándola del modelo relacional basado en tablas y registros.
-
-La implementación de JPA ObjectDB tiene unos tutoriales muy completos
-y accesibles:
-
-- [JPA Quick tour](http://www.objectdb.com/java/jpa/getting/started)
-- [Entity classes](http://www.objectdb.com/java/jpa/entity)
-- [Using JPA](http://www.objectdb.com/java/jpa/persistence)
-- [JPA Queries](http://www.objectdb.com/java/jpa/query)
-
-No es necesario estudiar todos los tutoriales. El objetivo de las
-prácticas no es aprender JPA, sino desarrollar de forma ágil una
-aplicación. Vamos a utilizar lo más básico de JPA y en la mayoría de
-las ocasiones se va a proporcionar el código necesario. Además, en
-caso de duda, siempre podrás realizar preguntas sobre cómo implementar
-una determinada funcionalidad en el foro de Moodle.
-
-La implementación de JPA que se utiliza en PlayFramework 2.5 es
-Hibernate 5.1.0.Final.
-
-Puedes encontrar toda la información sobre esta implementación en la
-guía de usuario:
-
-- [Hibernate ORM 5.1 User Guide](http://docs.jboss.org/hibernate/orm/5.1/userguide/html_single/Hibernate_User_Guide.html#associations-many-to-one)
-
-
-#### Bootstrap
-
-Para hacer más atractivo el diseño de las páginas HTML vamos a usuar
-el framework CSS
-[Bootstrap](https://getbootstrap.com/docs/3.3/getting-started/). Es conveniente
-tener a mano su documentación, en concreto la lista de componentes:
-
-- [Bootstrap components](https://getbootstrap.com/docs/3.3/components/)
-
-
-### 1.4. Metodología de desarrollo
+### 1.2. Metodología de desarrollo
 
 En cuanto a la metodología de desarrollo, en esta primera práctica
 repasaremos e introduciremos el uso de:

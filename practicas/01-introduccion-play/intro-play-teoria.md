@@ -801,7 +801,7 @@ Para la gestión de la persistencia de los datos en una aplicación Play
 usaremos JPA (_Java Persistence API_), en concreto la implementación
 5.2.5 de Hibernate.
 
-### Definición del modelo de datos ###
+#### Definición del modelo de datos ####
 
 El framework JPA permite definir el esquema de la base de datos usando
 anotaciones en las clases denominadas de entidad. Para cada clase de
@@ -1937,16 +1937,106 @@ public class EquipoServiceTest {
 ```
 
 
-### Recursos sobre Play Framework 2.5 ###
+## Tecnologías usadas ##
 
-- [Actions, Controllers and  Results](https://www.playframework.com/documentation/2.5.x/JavaActions)
-- [Rutas](https://www.playframework.com/documentation/2.5.x/JavaRouting)
-- [Session and Flash scopes](https://www.playframework.com/documentation/2.5.x/JavaSessionFlash)
-- [Plantillas](https://www.playframework.com/documentation/2.5.x/JavaTemplates)
-- [Ejemplos de uso de plantillas](https://www.playframework.com/documentation/2.5.x/JavaTemplateUseCases)
-- [Validación y envío de Forms](https://www.playframework.com/documentation/2.5.x/JavaForms)
-- [Configuración](https://www.playframework.com/documentation/2.5.x/ConfigFile)
+### Play Framework ###
+
+[Play Framework](https://playframework.com) es un framework de
+desarrollo rápido de aplicaciones web disponible en los lenguajes Java
+y Scala. Vamos a utilizar la versión Java. El framework proporciona un
+soporte de ejecución que tiene como base el servidor
+[Netty](http://netty.io). Con este soporte es posible diseñar y poner
+en marcha distintos tipos de aplicaciones: servicios HTTP, servicios
+HTTP asíncronos basados en websockets, aplicaciones asíncronas basadas
+en eventos, etc. Nosotros vamos a implementar una aplicación
+tradicional que implementa un servicio HTTP. Vamos a utilizar la
+[versión 2.5 en Java](https://www.playframework.com/documentation/2.5.x/JavaHome).
+
+Para entender el funcionamiento de esta primera práctica es necesario
+consultar la siguiente documentación del framework:
+
+Sobre el funcionamiento de Play:
+
+- [Using the Play console](https://playframework.com/documentation/2.5.x/PlayConsole)
+- [Anatomy of a Play application](https://playframework.com/documentation/2.5.x/Anatomy)
+
+Sobre peticiones y respuestas HTTP:
+
+- [Actions, Controllers and Results](https://www.playframework.com/documentation/2.5.x/JavaActions)
+- [HTTP routing](https://www.playframework.com/documentation/2.5.x/JavaRouting)
+- [Session and Flash scope](https://www.playframework.com/documentation/2.5.x/JavaSessionFlash)
+
+Sobre plantillas:
+
+- [The template engine](https://www.playframework.com/documentation/2.5.x/JavaTemplates)
+- [Common template use cases](https://www.playframework.com/documentation/2.5.x/JavaTemplateUseCases)
+
+Sobre envío de datos de formularios:
+
+- [Handling form submission](https://www.playframework.com/documentation/2.5.x/JavaForms)
+- [Rendering an <input> element](https://www.playframework.com/documentation/2.5.x/JavaFormHelpers#Rendering-an-%3Cinput%3E-element)
+
+Sobre el acceso a base de datos y JPA
+
 - [Acceso a base de datos SQL](https://www.playframework.com/documentation/2.5.x/JavaDatabase)
-- [JPA](https://www.playframework.com/documentation/2.5.x/JavaJPA)
-- [Inyección de dependencias](https://www.playframework.com/documentation/2.5.x/JavaDependencyInjection)
-- [Tests](https://www.playframework.com/documentation/2.5.x/JavaTest)
+- [Integrating with JPA](https://www.playframework.com/documentation/2.5.x/JavaJPA)
+
+Sobre la inyección de dependencias
+
+- [Dependency Injection](https://playframework.com/documentation/2.5.x/JavaDependencyInjection)
+
+Sobre los tests en Play:
+
+- [Testing your application](https://playframework.com/documentation/2.5.x/JavaTest)
+
+Sobre la configuración de la aplicación Play:
+
+- [Configuración](https://www.playframework.com/documentation/2.5.x/ConfigFile)
+
+### Java Persistence API (JPA) ###
+
+JPA es el API que utilizaremos para acceder a bases de datos y
+gestionar entidades persistentes usando un modelo ORM (_Object
+Relational Mapping_). Está integrado en Play, no es necesario instalar
+ninguna librería adicional.
+
+JPA también es conocido por el nombre de una de sus implementaciones
+más populares, Hibernate. Es una tecnología muy usada y madura en el
+mundo Java. Permite gestionar la persistencia directamente con el
+modelo de objetos de la aplicación (se denominan _entidades_),
+independizándola del modelo relacional basado en tablas y registros.
+
+La implementación de JPA ObjectDB tiene unos tutoriales muy completos
+y accesibles:
+
+- [JPA Quick tour](http://www.objectdb.com/java/jpa/getting/started)
+- [Entity classes](http://www.objectdb.com/java/jpa/entity)
+- [Using JPA](http://www.objectdb.com/java/jpa/persistence)
+- [JPA Queries](http://www.objectdb.com/java/jpa/query)
+
+No es necesario estudiar todos los tutoriales. El objetivo de las
+prácticas no es aprender JPA, sino desarrollar de forma ágil una
+aplicación. Vamos a utilizar lo más básico de JPA y en la mayoría de
+las ocasiones se va a proporcionar el código necesario. Además, en
+caso de duda, siempre podrás realizar preguntas sobre cómo implementar
+una determinada funcionalidad en el foro de Moodle.
+
+La implementación de JPA que se utiliza en PlayFramework 2.5 es
+Hibernate 5.1.0.Final.
+
+Puedes encontrar toda la información sobre esta implementación en la
+guía de usuario:
+
+- [Hibernate ORM 5.1 User Guide](http://docs.jboss.org/hibernate/orm/5.1/userguide/html_single/Hibernate_User_Guide.html#associations-many-to-one)
+
+
+### Bootstrap ###
+
+Para hacer más atractivo el diseño de las páginas HTML vamos a usuar
+el framework CSS
+[Bootstrap](https://getbootstrap.com/docs/3.3/getting-started/). Es conveniente
+tener a mano su documentación, en concreto la lista de componentes:
+
+- [Bootstrap components](https://getbootstrap.com/docs/3.3/components/)
+
+
