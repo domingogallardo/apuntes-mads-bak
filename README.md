@@ -1,7 +1,7 @@
 # Metodologías Ágiles de Desarrollo de Software
 
 Materiales del curso 2018-19 de la asignatura
-_[Metodologías Ágiles de Desarrollo de Software](https://cvnet.cpd.ua.es/Guia-Docente/GuiaDocente/Index?wlengua=es&wcodasi=34037&scaca=2018-19)
+[Metodologías Ágiles de Desarrollo de Software](https://cvnet.cpd.ua.es/Guia-Docente/GuiaDocente/Index?wlengua=es&wcodasi=34037&scaca=2018-19)
 de la Universidad de Alicante.
 
 La asignatura se imparte en 15 semanas de clases. Cada semana tiene
