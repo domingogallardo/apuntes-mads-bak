@@ -15,7 +15,7 @@ de la asignatura.
 
 - P01 (3 semanas):
   [Primera aplicación Play Framework Java](practicas/01-introduccion-play/introduccion-play.md). Desarrollo
-  de la versión 0.1 del proyecto. Play Framework en Java, Git y GitHub (incluyendo _issues_, _pull
+  de la versión 1.1.0 del proyecto. Play Framework en Java, Git y GitHub (incluyendo _issues_, _pull
   requests_, wiki y tablero de proyecto. Se debe leer la [Introducción
   a Play para las prácticas de MADS](practicas/01-introduccion-play/intro-play-teoria.md).
 - P02 (3 semanas): [Gestión de configuraciones y TDD con Play Framework](practicas/02-pruebas-tdd/pruebas-tdd.md)
