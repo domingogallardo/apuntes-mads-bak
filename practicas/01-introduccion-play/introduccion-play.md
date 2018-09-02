@@ -21,11 +21,11 @@ _framework_ de desarrollo de aplicaciones web en Java _Play
 Framework_, trabajando sobre la aplicación inicial
 [domingogallardo/mads-todolist-inicial](https://github.com/domingogallardo/mads-todolist-inicial).
 
-La práctica tendrá una duración de tres semanas. Será una práctica
-guiada que deberás realizar de forma individual, siguiendo las
-indicaciones que encontrarás en este documento. Tendrás que
-desarrollar código y trabajar en GitHub desarrollando _issues_, _pull
-requests_, _releases_ y actualizando la wiki del proyecto.
+La práctica tendrá una duración de tres semanas. Deberás realizarla de
+forma individual, siguiendo las indicaciones que encontrarás en este
+documento. Tendrás que desarrollar código y trabajar en GitHub
+desarrollando _issues_, _pull requests_, _releases_ y actualizando la
+wiki del proyecto.
 
 Antes de comenzar la práctica debes leer la [introducción a Play
 Framework para las prácticas de MADS](./intro-play-teoria.md).
@@ -33,16 +33,16 @@ Framework para las prácticas de MADS](./intro-play-teoria.md).
 ### 1.1. Aplicación inicial
 
 La aplicación inicial es una aplicación para
-gestionar listas de tareas pendientes de los usuarios de una
+gestionar listas de tareas pendientes de los empleados de una
 empresa. Se pueden registrar y logear usuarios y los usuarios
 registrados pueden añadir, modificar y borrar tareas pendientes de
 hacer.
 
 También tiene unas funcionalidades iniciales básicas relacionadas con
-la gestión de equipos de usuarios. Un usuario puede participar en
-varios equipos.
+la gestión de equipos de usuarios, de las que sólo se ha implementado
+el esqueleto, sin apenas interfaz de usuario.
 
-A continuación puedes ver dos de sus pantallas.
+A continuación puedes ver dos de las pantallas de la aplicación.
 
 <table>
 <tr>
@@ -70,8 +70,6 @@ largo de las prácticas. El nombre de la aplicación es **ToDo List**.
 En cuanto a la metodología de desarrollo, en esta primera práctica
 repasaremos e introduciremos el uso de:
 
-- JUnit y DBUnit para realizar continuamente pruebas unitarias que
-  validen el desarrollo.
 - [Git](https://git-scm.com) como sistema de control de versiones que nos permitirá
   registrar paso a paso los cambios realizados en el desarrollo,
   realizando e integrando ramas de _features_ en las que
@@ -82,6 +80,8 @@ repasaremos e introduciremos el uso de:
   gran número de características de GitHub para realizar el
   seguimiento del desarrollo del proyecto: _issues_, _labels_,
   _milestones_, etc.
+- JUnit y DBUnit para realizar continuamente pruebas unitarias que
+  validen el desarrollo.
 
 #### Git
 
@@ -118,7 +118,7 @@ inicialmente un flujo de trabajo Git denominado _feature branch_
 [guía de GitHub](https://guides.github.com/introduction/flow/)) en el
 que cada característica nueva se implementa en una rama separada que
 después se mezcla con la rama principal de desarrollo. Más adelante
-veremos otros flujo de trabajo. Puedes ver una introducción a
+veremos otros flujos de trabajo. Puedes ver una introducción a
 distintos flujos de trabajo básicos con Git en este
 [documento de Atlassian](https://www.atlassian.com/git/tutorials/comparing-workflows).
 
@@ -132,13 +132,17 @@ miembros del equipo:
   terminado. Consultar
   [Mastering Issues](https://guides.github.com/features/issues/).
 
-  Dividiremos las características a desarrollar en un conjunto de
-  _issues_ que se implementarán en ramas y convertiremos en _pull
-  requests_ que los cerrarán.
-  
-  <img src="imagenes/github-issues.png" width="700px"/>
+  <img src="imagenes/github-issues.png" width="400px"/>
 
+  Definiremos distintos tipos de _issues_ en función de su
+  propósito: _feature_, _bug_ y _technical_.
   
+  <img src="imagenes/labels-issues.png" width="400px"/>
+  
+  Cada _issue_ se desarrollará en una rama de Git y se integrará en la
+  rama _master_ haciendo un _pull request_.
+
+
 - **Pull Requests**: Un _pull request_ permite avisar al equipo de que
   se va a integrar en la rama principal una rama con un desarrollo
   nuevo. Cuando creamos un PR, GitHub crea una página en la que se
@@ -152,14 +156,33 @@ miembros del equipo:
   
   <img src="imagenes/github-pr.png" width="700px"/>
 
+  Más adelante añadiremos otra rama de largo recorrido `releases` para
+  incluir en ella las _releases_ del proyecto.
+
+- **Milestones** y **Releases**: Etiquetaremos cada _issue_ con el
+  _milestone_ en el que queremos que se lance. Para identificar el
+  _milestone_ usaremos el [versionado semántico](https://semver.org):
+  MAJOR.MINOR.PATCH. 
+  
+  <img src="imagenes/github-milestones.png" width="500px"/>
+  
+  Usaremos la funcionalidad de GitHub _Releases_ para etiquetar los
+  commits en los que queramos marcar una versión nueva del
+  proyecto. Podemos añadir información sobre las novedades de la versión
+  (normalmente serán enlaces a los _issues_ y _pull requests_ de ese
+  _milestone_).
+  
+  <img src="imagenes/github-releases.png" width="400px"/>
+
 - **Tablero de proyecto**: Un tablero de proyecto nos ayudará a hacer
   un seguimiento de en qué estado se encuentra cada _issue_ o PR:
   cuáles han sido implementados, cuáles faltan por asignar,
   implementar, probar, etc. Vamos a utilizar la funcionalidad propia
-  de GitHub llamada _project_. Consultar
+  de GitHub llamada _Projects_. Consultar
   [project boards](https://help.github.com/articles/tracking-the-progress-of-your-work-with-project-boards/).
 
   <img src="imagenes/github-tablero.png" width="700px"/>
+  
   
 - **Wiki**: Por último, GitHub ofrece una wiki en que utilizaremos
   para documentar las nuevas _features_ (también llamadas
@@ -183,14 +206,6 @@ ofrece GitHub es suficiente para lo que vamos a realizar en la
 asignatura y tiene la ventaja de estar integrado en una misma
 plataforma.
 
-En el repositorio guía del proyecto se ha utilizado esta metodología,
-que vas a tener que reproducir en tu propio repositorio. Puedes
-consultar todos los elementos desarrollados en la guía:
-
-- [_Issues_ terminados](https://github.com/domingogallardo/mads-todolist-guia/issues?q=is%3Aissue+is%3Aclosed)
-- [_Pull requests_ integrados](https://github.com/domingogallardo/mads-todolist-guia/pulls?q=is%3Apr+is%3Aclosed)
-- [Wiki con las historias de usuario](https://github.com/domingogallardo/mads-todolist-guia/wiki)
-- [Tablero](https://github.com/domingogallardo/mads-todolist-guia/projects/1?)
 
 ## 2. Entorno para realizar la práctica
 
