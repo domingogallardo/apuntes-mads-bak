@@ -616,8 +616,15 @@ Utilizaremos también Docker para poner en marcha un servidor
 MySQL con el siguiente comando:
 
 ```text
-$ docker run -d --rm -p 3306:3306 --name play-mysql -e MYSQL_ROOT_PASSWORD=mads -e MYSQL_DATABASE=mads mysql
+$ docker run -d --rm -p 3316:3306 --name play-mysql -e MYSQL_ROOT_PASSWORD=mads -e MYSQL_DATABASE=mads mysql:5
 ```
+
+Ponemos como puerto local el 3316 para evitar posibles conflictos con
+un posible servidor de MySQL que tengamos funcionando en local.
+
+**Importante** En los laboratorios de la EPS está instalada la imagen
+5.7.18 de MySQL. Hay que definir explícitamente esa versión en el
+comando docker, escribiendo `mysql:5.7.18`.
 
 El comando pone en marcha un servidor MySQL escuchando en el puerto
 por defecto (3306) con el nombre docker `play-mysql`, con la
@@ -628,7 +635,7 @@ Podemos comprobar que el contenedor está funcionando con el comando `docker con
 ```text
 $ docker container ls
 CONTAINER ID  IMAGE  COMMAND                  CREATED         STATUS         PORTS                  NAMES
-7c1bed0b5b7e  mysql  "docker-entrypoint..."   6 seconds ago   Up 4 seconds   0.0.0.0:3306->3306/tcp play-mysql
+7c1bed0b5b7e  mysql  "docker-entrypoint..."   6 seconds ago   Up 4 seconds   0.0.0.0:3316->3306/tcp play-mysql
 ```
 
 El comando `docker container ls` lista los contenedores activos. Con
@@ -687,7 +694,7 @@ es posible crear una conexión a la base de datos que nos permitirá
 verificar cómo se guardan los datos de la aplicación.
 
 Hay que añadir una base de datos de tipo MySQL y configurarla con los
-siguientes parámentros:
+siguientes parámetros:
 
 <img src="imagenes/conexionbd-intellij.png" width="500px"/>
 
