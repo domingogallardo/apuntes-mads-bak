@@ -215,7 +215,11 @@ puedes instalar en cualquier sistema operativo:
    
 - [IntelliJ IDEA](https://www.jetbrains.com/idea/) IDE para trabajar en el desarrollo del
   proyecto. Es de pago, pero puedes conseguir una licencia educativa
-  en [https://www.jetbrains.com/student/](https://www.jetbrains.com/student/)
+  en
+  [https://www.jetbrains.com/student/](https://www.jetbrains.com/student/). Para
+  poder compilar el proyecto Play en IntelliJ y disfrutar de
+  todas las ventajas del IDE (autocompletar código o ejecutar los tests
+  directamente desde el IDE) es necesario disponer del JDK Java 8.
 - [Git](https://git-scm.com/downloads)
 - [Docker](https://www.docker.com/community-edition), para ejecutar la
    imagen (similar a una máquina virtual) que contiene Java y Play
@@ -237,9 +241,10 @@ aplicaciones Play.
 Para lanzar esta imagen tenemos que ejecutar el siguiente comando,
 estando en el directorio de la aplicación Play:
 
-<pre><code>$ <b>cd /path/to/my/play/project</b>
-$ <b>docker run --rm  -it -v "${PWD}:/code" -p 9000:9000 domingogallardo/playframework</b>
-</code></pre>
+```text
+$ cd /path/to/my/play/project
+$ docker run --rm  -it -v "${PWD}:/code" -p 9000:9000 domingogallardo/playframework
+```
 
 El comando `docker run` buscará la imagen
 `domingogallardo/playframework` en local y la descargará si no la
@@ -257,33 +262,28 @@ mirar el fichero `Dockerfile` de la imagen de la asignatura en
 [este enlace](https://github.com/domingogallardo/playframework/blob/master/Dockerfile). Más
 adelante en la asignatura estudiaremos más sobre Docker.
 
-
 ## 3. Antes de empezar la práctica
 
-1. Lee el apartado 1 y visita todos los enlaces que se incluyen. El
-   objetivo no es que estudies todos los enlaces, sino que te hagas
-   una idea de qué puedes encontrar en cada uno, para poder después
-   encontrar más información cuando la necesites.
+1. Descarga e instala el software indicado en el apartado anterior.
 
-2. Instala el software mencionado en el apartado 2 para configurar el
-   entorno de desarrollo en el que vamos a realizar la práctica.
-
-   Inicializa tu nombre de usuario y tu correo en Git. El nombre de
+2. Inicializa tu nombre de usuario y tu correo en Git. El nombre de
    usuario será el nombre que aparecerá en los _commits_. Pon tu nombre
    y apellido.
    
-   <pre><code>$ <b>git config --global user.name "Pepe Perez"</b>
-   $ <b>git config --global user.email pepe.perez@example.com</b>
-   </code></pre>
+   ```text
+   $ git config --global user.name "Pepe Perez"
+   $ git config --global user.email pepe.perez@example.com<
+   ```
 
 3. Descarga la imagen de Docker para poder compilar y ejecutar los
    proyectos Play:
 
-   <pre><code>$ <b>docker pull domingogallardo/playframework</b>
-   $ <b>docker image ls</b>
+   ```text
+   $ docker pull domingogallardo/playframework
+   $ docker image ls
    REPOSITORY                      TAG                 IMAGE ID            CREATED             SIZE
    domingogallardo/playframework   latest              95c1eb17ecb4        5 weeks ago         530MB
-   </code></pre>
+   ```
 
 4. Crea una cuenta en GitHub. Puedes usar el nombre de usuario que
    quieras (o usar el que ya tienes), pero **escribe correctamente tu
@@ -296,116 +296,260 @@ adelante en la asignatura estudiaremos más sobre Docker.
    organización [mads-ua-18](https://github.com/mads-ua-18). Es un
    repositorio privado al que tienes acceso tú y el
    profesor. Contiene el código inicial de un proyecto base Play (es
-   una copia de
-   [domingogallardo/play-proyecto-inicial](https://github.com/domingogallardo/play-proyecto-inicial)). 
+   una copia del repositorio
+   [domingogallardo/mads-todolist-inicial](https://github.com/domingogallardo/mads-todolist-inicial))
+   en la que se han comprimido todos los commits en uno.
 
-   Es importante que tengas en cuenta que este repositorio no reside
-   en tu cuenta, sino en la organización `mads-ua`. Puedes acceder a
-   él desde el _dashboard_ de GitHub que aparece cuando te logeas:
+   Es importante que tengas en cuenta que el repositorio recién creado
+   no reside en tu cuenta, sino en la organización `mads-ua`. Puedes
+   acceder a él desde el _dashboard_ de GitHub que aparece cuando te
+   logeas:
    
    <img src="imagenes/dashboard-github.png" width="600px"/>
 
    También el profesor te invitará a formar parte de la organización y
    recibirás un mensaje de correo electrónico en el que deberás
    aceptar esta invitación. También se puede aceptar la invitación
-   accediendo a <https://github.com/mads-ua>.
+   accediendo a <https://github.com/mads-ua-18>.
    
-4. Descarga el proyecto y comprueba que se compila y ejecuta
-   correctamente con la imagen de Docker:
+6. Descarga el proyecto y comprueba que se compila y ejecuta
+   correctamente con la imagen de Docker y usando la base de datos de
+   memoria (muy útil para pruebas y lanzar los tests).
    
-   <pre><code>$ <b>git clone https://github.com/mads-ua/todolist-2017-usuario.git</b>
-   $ <b>cd todolist-2017-usuario</b>
-   $ <b>docker run --rm  -it -v "${PWD}:/code" -p 9000:9000 domingogallardo/playframework</b>
+   ```text 
+   $ git clone https://github.com/mads-ua/todolist-2018-usuario.git
+   $ cd todolist-2018-usuario
+   $ docker run --rm  -it -v "${PWD}:/code" -p 9000:9000 domingogallardo/playframework
    [info] Loading project definition from /code/project
    [info] Updating {file:/code/project/}code-build...
    [info] Resolving org.fusesource.jansi#jansi;1.4 ...
    [info] Done updating.
    [info] Set current project to play-java (in build file:/code/)
-   [play-java] $ <b>test</b>
+   [mads-todolist-inicial] $ test
    ...
-   [info] Passed: Total 3, Failed 0, Errors 0, Passed 3
-   [success] Total time: 58 s, completed Aug 24, 2017 10:43:59 AM   
-   [play-java] $ <b>run</b>
-   </code></pre>
+   [info] Passed: Total 35, Failed 0, Errors 0, Passed 35
+   [success] Total time: 35 s, completed Sep 4, 2018 9:34:04 AM
+   [mads-todolist-inicial] $ run
+   ```
    
    Comprueba que la aplicación está funcionando en <http://localhost:9000>
    en la máquina host.
    
-   <img src="imagenes/play-start-application.png" width="600px"/>
+   <img src="imagenes/login.png" width="600px"/>
    
    Para salir del comando `run` de `sbt` debemos hacer `CTRL+d`. Podemos
    lanzar cualquier otro comando de sbt (consultar
    [Using the SBT console](https://playframework.com/documentation/2.5.x/PlayConsole).  
    
-   Para salir del contenedor haremos `CTRL+c`.
+   Para salir del contenedor podemos escribir el comando `exit` o hacer `CTRL+c`.
 
-<!-- 
-Cambiar IntelliJ por Visual Studio Code 
--->
+7. Prueba que la aplicación funciona correctamente trabajando con la
+   base de datos MySQL (el funcionamiento real de la aplicación y para
+   hacer pruebas de integración).
 
-6. Por último, realiza un primer _commit_ en la rama `master` en el que
-   cambies el nombre del proyecto y la versión actual.
-
-   - Utiliza _IntelliJ_. Abre el proyecto con la opción `Open` y deja
-     las opciones por defecto en el panel de importación.
-
-     <img src="imagenes/import-intellij.png" width="500px" />
-     
-   - Aunque desde IntelliJ es posible lanzar sbt, en el _sbt shell_,
-     vamos a seguir el sbt proporcionado por la máquina Docker,
-     pudiendo lanzarla desde un terminal exterior o desde el panel
-     Terminal de IntelliJ.
+   Lanza MySQL con Docker:
    
-   - Cambia en `build.sbt` el nombre del proyecto a
-     `mads-todolist-2018` y la versión a `0.1-SNAPSHOT`. El sufijo
-     `SNAPSHOT` indica _en desarrollo_. Al final de la práctica 1
-     terminaremos esta versión `0.1` y se eliminará el sufijo.
+   ```text
+   $ docker run -d --rm -p 3316:3306 --name play-mysql -e MYSQL_ROOT_PASSWORD=mads -e MYSQL_DATABASE=mads mysql:5
+   ```
 
-   - Realiza el commit en `master` desde el terminal y publícalo en tu
-     repositorio:
-   
-   <pre><code>$ <b>git add build.sbt</b>
-   $ <b>git commit -m "Cambiado el nombre del proyecto y la versión"</b>
-   $ <b>git push</b>
-   </code></pre>
+   **Importante** En los laboratorios de la EPS está instalada la
+   imagen 5.7.18 de MySQL. Hay que definir explícitamente esa versión
+   en el comando docker, escribiendo `mysql:5.7.18`.
 
-   Consulta en GitHub que el _commit_ se ha subido.
+   Lanza la aplicación con docker, definiendo ahora en variables de
+   entorno la URL, el usuario y la contraseña con la que debe
+   conectarse la aplicación a la base de datos. Usamos la opción
+   `link` de docker para definir el nombre lógico del contenedor al
+   que debe conectarse la aplicación.
+
+   ```text
+   $ docker run --link play-mysql --rm -it -p 9000:9000 -e \
+   DB_URL="jdbc:mysql://play-mysql:3306/mads" -e DB_USER_NAME="root" -e \
+   DB_USER_PASSWD="mads" -v "${PWD}:/code" domingogallardo/playframework
+   ```
+
+   Y desde la consola sbt modificamos la preferencia `config.file`
+   para que la aplicación utilice la configuración definida en el
+   fichero `conf/develop-mysql.conf`.
+
+   ```text
+   [mads-todolist-inicial] $ set javaOptions += "-Dconfig.file=conf/develop-mysql.conf"
+   [mads-todolist-inicial] $ run
+   ```
+
+   Prueba que la aplicación funciona correctamente. Puedes comprobar
+   las tablas y los datos almacenados en la base de datos conectándote
+   a la base de datos en el puerto 3316 desde cualquier cliente
+   MySQL. Por ejemplo, la consola MySQL de IntelliJ:
    
-   De esta forma habrás comprobado que tienes permiso de escritura en
-   el repositorio y que ya puedes comenzar a realizar la práctica.
+   <img src="imagenes/conexionbd-intellij.png" width="500px"/>
+
+   Es posible examinar el esquema de la base de datos:
+
+   <img src="imagenes/esquema-bd.png" width="300px"/>
+
+   Y examinar tablas en concreto:
+
+   <img src="imagenes/tablabd-intellij.png" width="300px"/>
+
+8. Con todo lo hecho hasta ahora ya hemos comprobado que la aplicación
+   se compila correctamente y se ejecuta sin problema en las dos
+   configuraciones más importantes con las que trabajaremos: base de
+   datos en memoria y base de datos MySQL.
+
+   Para el desarrollo de la práctica que viene a continuación es
+   fundamental que entiendas el funcionamiento de Play Framework. Lo
+   explicaremos rápidamente en la clase de teoría usando el documento
+   [introducción a Play Framework para las prácticas de
+   MADS](./intro-play-teoria.md). Pero es imprescindible que hagas tú
+   un esfuerzo descargando, probando y modificando las dos
+   aplicaciones: `domingogallardo/play-proyecto-inicial` y
+   `domingogallardo/mads-todolist-inicial` (es la aplicación que se ha
+   copiado en tu repositorio).
    
-   Si ahora vuelves a lanzar la máquina Docker en el proyecto, verás
-   que ha cambiado el nombre del proyecto:
-   
-   <pre><code>$ <b>docker run --rm  -it -v "${PWD}:/code" -p 9000:9000 domingogallardo/playframework</b>
-   ...
-   $ [info] Set current project to mads-todolist-2018 (in build file:/code/)
-   [mads-todolist-2018] $ 
-   </code></pre>
+   Puedes trabajar en estos proyectos sin miedo de estropearlos. Es
+   más, cuanto más los estropees mejor, porque es la forma de
+   aprender. No deberás entregar nada de estos proyectos.
 
 ## 4. Desarrollo de la práctica
 
 En esta primera práctica vamos a desarrollar las siguientes dos
 historias de usuario o _features_:
 
-- SGT-1: Login de usuarios
-- SGT-2: Gestión de tareas
+1. Página _Acerca de_
+2. Barra de menú
+3. Página listado de equipos
+4. Página descripción de equipo
 
-Puedes encontrar todos los detalles en la wiki del proyecto
-[mads-todolist-guia](https://github.com/domingogallardo/mads-todolist-guia).
+La práctica va a consistir en la realización en tu proyecto de todos
+los elementos necesarios para implementar estas _features_ : wiki,
+_issues_, _pull requests_ (con sus _commits_ en los que se desarrolla paso a paso
+cada _issue_) y tablero del proyecto. 
 
-La práctica va a consistir en una recreación en tu proyecto de todos
-los elementos del proyecto guía: wiki, _issues_ y PRs (con sus _commits_
-en los que se desarrolla paso a paso cada _issue_) o tablero del
-proyecto. Hasta llegar a la aplicación final.
+Haremos paso a paso la primera característica, creando la primera
+versión 1.0.0 de la aplicación. Las siguientes características las
+deberás desarrollar tu mismo y entregar la versión 1.1.0.
 
-Vamos a ello paso a paso.
+### Versión 1.0.0 ###
 
-<!--
-Centrar el repaso de la historia en un repaso de
-los PR. PR=Trabajo hecho e incorporado. Issue=Problema a resolver
-Es más fácil encontrar los PRs que los issues cerrados.
---> 
+La versión 1.0.0 será la versión inicial de la
+aplicación. Desarrollaremos en esta versión la primera característica:
+**Página _Acerca de_**.
+
+#### Wiki ####
+
+Utilizaremos la Wiki del proyecto GitHub para documentar las
+características a desarrollar en la aplicación. Deberá haber una
+página para cada característica. La página principal de la Wiki será
+el _backlog_ del proyecto y deberá tener los enlaces a todas las
+características desarrolladas y pendientes de desarrollar.
+
+Añade la página principal, en la que organizarás el listado de
+_features_ desarrolladas en proyecto. Un posible ejemplo de
+organización es el siguiente:
+
+<img src="imagenes/wiki-practica.png" width="700px"/>
+
+Añade una página con la descripción de la característica **Página
+_Acerca de_**:
+
+<img src="imagenes/wiki-practica-acerca-de.png" width="700px"/>
+
+#### Issues ####
+
+Añade el primer _issue_, correspondiente a la _feature_ a desarrollar
+**Página _Acerca de_**. Añade las etiquetas que inicialmente vamos a
+usar (ver la imagen) y el _milestone_ 1.0.0.
+
+<img src="imagenes/labels-issues.png" width="500px"/>
+
+<img src="imagenes/issue-acerca-de-listado.png" width="500px"/>
+
+<img src="imagenes/issue-acerca-de-detalle.png" width="500px"/>
+
+
+#### Desarrollo ####
+
+Para desarrollar el _issue_ abriremos una rama en Git, realizaremos
+commits sobre ella hasta estar terminado y después crearemos un _pull
+request_ en GitHub para realizar la integración con la rama `master`.
+
+Empezamos importando el proyecto en IntelliJ y creando dos pestañas en
+el panel `Terminal`: una para lanzar el proyecto con Docker y trabajar
+con Sbt y la otra para trabajar con Git.
+
+<img src="imagenes/intellij-practica.png" width="700px"/>
+
+Creamos la rama en la que desarrollaremos la _feature_ y la subimos a
+GitHub (en el panel `Git`):
+
+```text
+$ git checkout -b acerca-de
+Switched to a new branch 'acerca-de'
+$ git push -u origin acerca-de
+Total 0 (delta 0), reused 0 (delta 0)
+To https://github.com/mads-ua-18/todolist-2018-domingogallardo2.git
+ * [new branch]      acerca-de -> acerca-de
+Branch 'acerca-de' set up to track remote branch 'acerca-de' from 'origin'.
+```
+
+**Primer commit**
+
+Hacemos un primer commit.
+
+Cambia en `build.sbt` el nombre del proyecto a `mads-todolist-<tu-nombre>` y
+la versión a `1.0.0-SNAPSHOT`. El sufijo `SNAPSHOT` indica _en
+desarrollo_. Cuando hagamos el _release_ de la versión 1.0.0
+eliminaremos el sufijo.
+
+Realiza el commit y súbelo a GitHub:
+   
+```text
+$ git add build.sbt
+$ git status
+On branch acerca-de
+Your branch is up to date with 'origin/acerca-de'.
+
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        modified:   build.sbt
+
+$ git commit -m "Cambiado el nombre del proyecto y empezamos versión 1.0.0"
+[acerca-de f6180cc] Cambiado el nombre del proyecto y empezamos versión 1.0.0
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+$ git push
+Username for 'https://github.com': domingogallardo2
+Password for 'https://domingogallardo2@github.com': 
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 367 bytes | 367.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/mads-ua-18/todolist-2018-domingogallardo2.git
+   6767016..a332017  acerca-de -> acerca-de
+```
+
+Consulta en GitHub que el _commit_ se ha subido en GitHub:
+
+<img src="imagenes/commit-practica-github.png" width="400px"/>
+   
+De esta forma habrás comprobado que tienes permiso de escritura en
+el repositorio y que ya puedes comenzar a realizar la práctica.
+   
+Si ahora vuelves a lanzar la máquina Docker en el proyecto, verás
+que ha cambiado el nombre del proyecto (en el panel `Sbt`):
+   
+```text
+$ docker run --rm  -it -v "${PWD}:/code" -p 9000:9000 domingogallardo/playframework
+[info] Loading project definition from /code/project
+[info] Set current project to mads-todolist-dgallardo (in build file:/code/)
+[mads-todolist-dgallardo] $ 
+```
+
 
 ### 4.1. Desarrollo de la primera historia de usuario
 
