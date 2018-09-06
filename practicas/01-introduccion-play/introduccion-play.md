@@ -6,13 +6,16 @@
 - [2. Entorno para realizar la práctica](#2-entorno-para-realizar-la-práctica)
 - [3. Antes de empezar la práctica](#3-antes-de-empezar-la-práctica)
 - [4. Desarrollo de la práctica](#4-desarrollo-de-la-práctica)
-  - [4.1. Desarrollo de la primera historia de usuario](#41-desarrollo-de-la-primera-historia-de-usuario)
+
+<!-- 
+- [4.1. Desarrollo de la primera historia de usuario](#41-desarrollo-de-la-primera-historia-de-usuario)
   - [4.2. Algunas indicaciones sobre el desarrollo de la primera funcionalidad](#42-algunas-indicaciones-sobre-el-desarrollo-de-la-primera-funcionalidad)
   - [4.3. Finalización de la primera historia de usuario y continuación con la siguiente](#43-finalización-de-la-primera-historia-de-usuario-y-continuación-con-la-siguiente)
   - [4.4. Finalización de la segunda historia de usuario](#44-finalización-de-la-segunda-historia-de-usuario)
   - [4.5. Realización de una tercera historia de usuario (opcional)](#45-realización-de-una-tercera-historia-de-usuario-opcional)
   - [4.6. Finalización de la versión 0.1](#46-finalización-de-la-versión-01)
 - [5. Entrega y evaluación](#5-entrega-y-evaluación)
+-->
 
 ## 1. Objetivos
 
@@ -431,13 +434,13 @@ Haremos paso a paso la primera característica, creando la primera
 versión 1.0.0 de la aplicación. Las siguientes características las
 deberás desarrollar tu mismo y entregar la versión 1.1.0.
 
-### Versión 1.0.0 ###
+### 4.1. Versión 1.0.0 ###
 
 La versión 1.0.0 será la versión inicial de la
 aplicación. Desarrollaremos en esta versión la primera característica:
 **Página _Acerca de_**.
 
-#### Wiki ####
+#### 4.1.1. Wiki ####
 
 Utilizaremos la Wiki del proyecto GitHub para documentar las
 características a desarrollar en la aplicación. Deberá haber una
@@ -456,7 +459,38 @@ _Acerca de_**:
 
 <img src="imagenes/wiki-practica-acerca-de.png" width="700px"/>
 
-#### Issues ####
+
+#### 4.1.2. Tablero del proyecto ####
+
+Configura el tablero del proyecto, poniendo como nombre `ToDoList` y
+seleccionando como plantilla `Automated kanban`. Elimina las tarjetas
+en la columna `To do` y añade la columna `In pull request` entre `In
+progress` y `Done`.
+
+<img src="imagenes/project-practica.png" width="900px">
+
+En las columnas deberán aparecer los _issues_ y _pull requests_ del
+proyecto. GitHub permite automatizar el movimiento de las tarjetas de
+una columna a otra. A continuación mostramos la configuración que
+usaremos:
+
+<img src="imagenes/projecto-practica-automation.png" width="900px"/>
+
+Deberemos mover manualmente las tarjetas en algún caso, porque GitHub
+no podrá detectar las condiciones. En resumen, las condiciones de las
+fichas que habrá en cada columna son las siguientes:
+
+- Columna `To do`: Nuevos _issues_ añadidos al proyecto. GitHub lo
+  detecta automáticamente.
+- Columna `In progress`: _Issues_ que se han comenzado a implementar
+  (se ha creado una rama su desarrollo). Manual.
+- Columna `In pull request`: _Pull request_ creados. GitHub lo detecta
+  automáticamente. Cuando se incluya el _pull request_ de un _issue_
+  deberemos eliminar el _issue_ del tablero (ya que está su _pull
+  request_ asociado).
+- Columna `Done`: _Pull requests_ cerrados. GitHub lo detecta automáticamente.
+
+#### 4.1.3. Issues ####
 
 Añade el primer _issue_, correspondiente a la _feature_ a desarrollar
 **Página _Acerca de_**. Añade las etiquetas que inicialmente vamos a
@@ -468,16 +502,24 @@ usar (ver la imagen) y el _milestone_ 1.0.0.
 
 <img src="imagenes/issue-acerca-de-detalle.png" width="500px"/>
 
+Añade el _issue_ al tablero (desde la página del _issue_) y
+automáticamente se añadirá en la columna `To do`.
 
-#### Desarrollo ####
+
+#### 4.1.4. Desarrollo ####
 
 Para desarrollar el _issue_ abriremos una rama en Git, realizaremos
 commits sobre ella hasta estar terminado y después crearemos un _pull
 request_ en GitHub para realizar la integración con la rama `master`.
 
-Empezamos importando el proyecto en IntelliJ y creando dos pestañas en
-el panel `Terminal`: una para lanzar el proyecto con Docker y trabajar
-con Sbt y la otra para trabajar con Git.
+Mueve en el tablero la tarjeta con el _issue_ a la columna `In
+progress`.
+
+<img src="imagenes/in-progress-issue-1.png" width="300px" />
+
+Empezamos el desarrollo importando el proyecto en IntelliJ y creando
+dos pestañas en el panel `Terminal`: una para lanzar el proyecto con
+Docker y trabajar con Sbt y la otra para trabajar con Git.
 
 <img src="imagenes/intellij-practica.png" width="700px"/>
 
@@ -488,13 +530,15 @@ GitHub (en el panel `Git`):
 $ git checkout -b acerca-de
 Switched to a new branch 'acerca-de'
 $ git push -u origin acerca-de
+Username for 'https://github.com': domingogallardo2
+Password for 'https://domingogallardo2@github.com': 
 Total 0 (delta 0), reused 0 (delta 0)
 To https://github.com/mads-ua-18/todolist-2018-domingogallardo2.git
  * [new branch]      acerca-de -> acerca-de
 Branch 'acerca-de' set up to track remote branch 'acerca-de' from 'origin'.
 ```
 
-**Primer commit**
+##### Primer commit #####
 
 Hacemos un primer commit.
 
@@ -520,8 +564,6 @@ $ git commit -m "Cambiado el nombre del proyecto y empezamos versión 1.0.0"
 [acerca-de f6180cc] Cambiado el nombre del proyecto y empezamos versión 1.0.0
  1 file changed, 2 insertions(+), 2 deletions(-)
 $ git push
-Username for 'https://github.com': domingogallardo2
-Password for 'https://domingogallardo2@github.com': 
 Enumerating objects: 5, done.
 Counting objects: 100% (5/5), done.
 Delta compression using up to 4 threads.
@@ -549,6 +591,305 @@ $ docker run --rm  -it -v "${PWD}:/code" -p 9000:9000 domingogallardo/playframew
 [info] Set current project to mads-todolist-dgallardo (in build file:/code/)
 [mads-todolist-dgallardo] $ 
 ```
+
+##### Segundo commit #####
+
+En el segundo commit incluiremos el desarrollo de los elementos
+necesarios para la página _acerca de_:
+
+- Ruta
+- Acción en controller
+- Vista
+
+Realiza los siguientes cambios.
+
+**Fichero `conf/routes`**:
+
+```diff
+GET     /equipos/addUsuario         controllers.EquipoController.formularioAddUsuarioEquipo()
+POST    /equipos/addUsuario         controllers.EquipoController.addUsuarioEquipo()
+
++ GET     /about                      controllers.HomeController.about()
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+```
+
+**Fichero `app/controllers/HomeController.java`**:
+
+
+```diff
+    public Result index() {
+        return ok(index.render("Your new application is ready."));
+    }
+
++   public Result about() {
++       return ok(about.render());
++   }
+}
+```
+
+
+**Fichero `app/views/about.scala.html`**:
+
+```diff
++ @main("Acerca de") {
++      <h1>ToDo List</h1>
++      <ul>
++          <li>Desarrollada por Domingo Gallardo</li>
++          <li>Versión 1.0.0 (en desarrollo)</li>
++          <li>Fecha de release: pendiente de release</li>
++      </ul>
++ }
+```
+
+Prueba la página accediendo a la url <http://localhost:9000/about>.
+
+<img src="imagenes/pagina-acerca-de.png" width="400px"/>
+
+Por último, confirma el commit en la rama y súbelo a GitHub. En el
+panel `Git`:
+
+```text
+$ git add .
+$ git status
+
+On branch acerca-de
+Your branch is up to date with 'origin/acerca-de'.
+
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        modified:   app/controllers/HomeController.java
+        new file:   app/views/about.scala.html
+        modified:   conf/routes
+$ git commit -m "Añadida ruta, vista y controller 'about'"
+[acerca-de 2831312] Añadida ruta, vista y controller 'about'
+ 3 files changed, 14 insertions(+)
+ create mode 100644 app/views/about.scala.html
+$ git push
+```
+
+
+##### Tercer commit #####
+
+En el tercer commit pondremos un enlace a la página _acerca de_ en la página de
+login de la aplicación.
+
+Realiza el siguiente cambio:
+
+**Fichero `app/views/formLogin.scala.html`**:
+
+```diff
+            <a class="btn btn-link" href="@routes.UsuarioController.registroUsuario()">Ir a registro</a>
+        </p>
++       <p><a class="btn btn-link" href="@routes.HomeController.about()">Acerca de</a></p>
+     }
+```
+
+Prueba que funciona correctamente, haz el commit y súbelo a GitHub:
+
+```text
+$ git commit -am "Añadido enlace a página 'about' en página 'login'"[acerca-de 672c28f] Añadido enlace a página 'about' en página 'login'
+1 file changed, 1 insertion(+)
+$ git push
+```
+
+
+#### 4.1.5. Pull request ####
+
+Una vez terminada la implementación de la _feature_ en la rama,
+creamos un _pull request_ en GitHub para indicar que estamos listos
+para mezclar la rama con la _feature_ con la rama principal de
+desarrollo (_master_).
+
+Más adelante añadiremos al _pull request_ una comprobación automática
+de las pruebas y una revisión de código por parte de compañeros del
+equipo. Por ahora haremos nosotros ambas tareas.
+
+Vamos a verlo paso a paso.
+
+Empezamos por mezclar la rama de forma local con `master`, antes de
+hacer el _pull request_ en GitHub, para probar que no se ha roto nada
+(todos los tests deben seguir pasando) y que los tests que hemos
+añadido también funcionan correctamente (en este caso no hemos añadido
+ninguno).
+
+En el panel `Git`:
+
+```text
+$ git checkout master
+Switched to branch 'master'
+Your branch is up to date with 'origin/master'.
+$ git merge acerca-de 
+Updating 6767016..672c28f
+Fast-forward
+ app/controllers/HomeController.java | 4 ++++
+ app/views/about.scala.html          | 8 ++++++++
+ app/views/formLogin.scala.html      | 1 +
+ build.sbt                           | 4 ++--
+ conf/routes                         | 2 ++
+ 5 files changed, 17 insertions(+), 2 deletions(-)
+ create mode 100644 app/views/about.scala.html
+```
+
+En el panel `Sbt`:
+
+```text
+[mads-todolist-dgallardo] $ test
+...
+[info] Passed: Total 35, Failed 0, Errors 0, Passed 35
+[success] Total time: 71 s, completed Sep 6, 2018 10:04:55 AM
+[mads-todolist-dgallardo] $ 
+```
+
+Una vez que hemos comprobado que todo funciona bien, deshacemos el
+merge que acabamos de realizar en la rama `master`, ya que
+actualizaremos después la rama con el resultado del _pull request_ en
+GitHub:
+
+```text
+$ git reset --hard origin/master
+HEAD is now at 6767016 Commit inicial
+$ git checkout acerca-de 
+Switched to branch 'acerca-de'
+Your branch is up to date with 'origin/acerca-de'.
+```
+
+Ya podemos crear el _pull request_ en GitHub. 
+
+Accede a la rama y comprueba que están todos los cambios pulsando
+`Compare`. Pulsa después el botón `New pull request` para crear el
+_pull request_.
+
+<img src="imagenes/rama-acerca-de.png" width="700px"/>
+
+Introduce el nombre del _pull request_, el comentario, el _milestone_
+y la etiqueta. Copia los datos del _issue_, y en el comentario escribe
+
+```text
+Closes #1
+```
+
+De esta forma, cuando se cierre el _pull request_ se cerrará
+automáticamente el _issue_. El número `#1` lo convierte GitHub en un
+enlace al _issue_ correspondiente. De esta forma podemos examinar el
+_issue_ resuelto por el PR.
+
+<img src="imagenes/pull-request-practica.png" width="700px"/>
+
+Añade también el PR al tablero del proyecto. Se colocará
+automáticamente la columna `In pull request`. Entra en el proyecto y
+archiva la tarjeta con el _issue_, ya que la actividad de desarrollar
+la _feature_ queda representada por el _pull request_.
+
+En este momento se debería hacer una revisión del código del pull
+request y comprobar de forma automática que la integración con
+_master_ no introduce errores en los tests. Lo haremos en siguientes
+prácticas.
+
+GitHub informa de que no hay conflictos con la rama `master` y que es
+posible hacer el merge. Pulsa el botón de `Merge` y confírmalo. Borra
+la rama en GitHub, pulsando el botón correspondiente.
+
+<img src="imagenes/merge-pull-request-1.png" width="500px"/>
+
+Por último, este _merge_ lo has hecho en GitHub, debes integrarlo en tu
+repositorio local. En la pestaña de Git:
+
+```text
+$ git fetch
+remote: Counting objects: 1, done.
+remote: Total 1 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (1/1), done.
+From https://github.com/mads-ua-18/todolist-2018-domingogallardo2
+   6767016..9527ae2  master     -> origin/master
+$ git pull
+Updating 6767016..9527ae2
+Fast-forward
+ app/controllers/HomeController.java | 4 ++++
+ app/views/about.scala.html          | 8 ++++++++
+ app/views/formLogin.scala.html      | 1 +
+ build.sbt                           | 4 ++--
+ conf/routes                         | 2 ++
+ 5 files changed, 17 insertions(+), 2 deletions(-)
+ create mode 100644 app/views/about.scala.html
+$ git branch -d acerca-de 
+Deleted branch acerca-de (was 672c28f).
+$ git remote prune origin
+Pruning origin
+URL: https://github.com/mads-ua-18/todolist-2018-domingogallardo2.git
+ * [pruned] origin/acerca-de
+$ git log --oneline --graph --all
+*   9527ae2 (HEAD -> master, origin/master, origin/HEAD) Merge pull request #2 from mads-ua-18/acerca-de
+|\  
+| * 672c28f Añadido enlace a página 'about' en página 'login'
+| * 3fdfb83 Añadida ruta, vista y controller 'about'
+| * a332017 Cambiado el nombre del proyecto y empezamos versión 1.0.0
+|/  
+* 6767016 Commit inicial
+```
+
+Comprobamos también la historia de _commits_ en GitHub. Aparecerá el
+_commit_ de _merge_ introducido por el _pull request_.
+
+<img src="imagenes/historia-commits-practica1.png" width="800px"/>
+
+De esta forma hemos cerrado el PR e integrado su código en la rama
+principal de desarrollo. En el tablero de proyecto debe haber cambiado
+la tarjeta con el PR a la columna `Done`.
+
+
+#### 4.1.6. Versión 1.0.0 ####
+
+Por último creamos el _release_ 1.0.0. Haremos un commit directamente
+sobre la rama `master` (más adelante explicaremos una forma más
+elaborada de hacer un _release_, cuando expliquemos el flujo de
+trabajo de GitFlow).
+
+
+Crea un commit con la confirmación del número de versión y fecha en
+los ficheros `build.sbt` y `about.scala.html`
+
+**Fichero `build.sbt`**:
+
+```diff
+ name := """mads-todolist-dgallardo"""
+ 
+-version := "1.0.0-SNAPSHOT"
++version := "1.0.0"
+ 
+ lazy val root = (project in file(".")).enablePlugins(PlayJava)
+ 
+```
+
+**Fichero `app/views/about.scala.html`**:
+
+```diff
+    <h1>ToDo List</h1>
+        <ul>
+            <li>Desarrollada por Domingo Gallardo</li>
+-           <li>Versión 1.0.0 (en desarrollo)</li>
+-           <li>Fecha de release: pendiente de release</li>
++           <li>Versión 1.0.0</li>
++           <li>Fecha de release: 6/9/2018</li>
+        </ul>
+}
+```
+
+Añadimos el commit y lo subimos a GitHub
+
+```text
+$ git add .
+$ git commit -m "Cambio de versión a 1.0.0"
+[master 61d4ac8] Cambio de versión a 1.0.0
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+$ git push
+```
+
+Y, por último, creamos la versión 1.0.0 en GitHub
+
+<!--
 
 
 ### 4.1. Desarrollo de la primera historia de usuario
@@ -1081,3 +1422,4 @@ Para la evaluación se tendrá en cuenta:
 - Corrección del código en las características adicionales desarrolladas.
 
 
+-->
