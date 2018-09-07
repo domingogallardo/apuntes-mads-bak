@@ -192,8 +192,6 @@ miembros del equipo:
   funcionalidades o historias de usuario) a implementar. Consultar
   [documenting your projects on GitHub](https://guides.github.com/features/wikis/).
 
-  <img src="imagenes/github-wiki.png" width="700px"/>
-
   La documentación en la Wiki, en los _issues_, en los PRs y en el
   propio `README.md` del proyecto hay que escribirla en **Markdown**,
   un lenguaje de marcado muy popular y sencillo de dominar. Si no has
@@ -887,7 +885,24 @@ $ git commit -m "Cambio de versión a 1.0.0"
 $ git push
 ```
 
-Y, por último, creamos la versión 1.0.0 en GitHub
+Y, por último, creamos la versión 1.0.0 en GitHub pulsando en el
+enlace `release` en la página principal (pestaña `Code`).
+
+<img src="imagenes/release-practica1.png" width="700px"/>
+
+Un _release_ en GitHub se guarda como una una etiqueta Git, junto con
+información asociada. Se suelen indicar las nuevas _features_ añadidas
+en el _release_ mediante enlaces a los _pull requests_
+añadidos. También añadiremos enlaces a la página de la Wiki en la que
+se describe la característica.
+
+
+<img src="imagenes/primer-release-practica1.png" width="700px"/>
+
+El resultado será:
+
+<img src="imagenes/release-practica1-terminado.png" width="400px"/>
+
 
 <!--
 
