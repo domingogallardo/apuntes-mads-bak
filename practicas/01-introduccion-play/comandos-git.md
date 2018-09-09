@@ -90,10 +90,12 @@ Al final del documento se incluyen enlaces a apartados del libro [**Pro Git**](h
 
 - Consultar los mensajes de los commits (toda la historia de la rama
   actual). La opción `--oneline` muestra sólo la primera línea del
-  mensaje y la opción `--graph` muestra el grafo de dependencias:
+  mensaje, la opción `--graph` muestra el grafo de dependencias y la
+  opción `--all`muestra el grafo completo, no sólo aquel en el que
+  estamos (`HEAD`).
 
     ```
-    $ git log [--oneline] [--graph]
+    $ git log [--oneline] [--graph] [--all]
     ```
 
 - Comprobar las diferencias entre dos commits:
