@@ -101,8 +101,8 @@ La calificación de la asignatura está repartida en las siguientes
 actividades como se indica:
 
 - Entregas de prácticas: 30%
-  - Práctica 1: 8%
-  - Práctica 2: 7%
+  - Práctica 1: 9%
+  - Práctica 2: 6%
   - Práctica 3: 5%
   - Práctica 4: 10%
 - Exámenes de prácticas: 30%
