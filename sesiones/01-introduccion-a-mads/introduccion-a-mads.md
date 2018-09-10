@@ -135,9 +135,13 @@ digital), y alguno de ellos están disponibles on-line.
 - Un pequeño debate sobre qué conocéis a priori de las metodologías
   ágiles. Haremos un resumen en la pizarra.
   
-<kbd><img src="diapositivas/introduccion-a-mads.016.png" width="800px"></kbd>
 <kbd><img src="diapositivas/introduccion-a-mads.017.png" width="800px"></kbd>
 <kbd><img src="diapositivas/introduccion-a-mads.018.png" width="800px"></kbd>
+
+Enlace:
+
+- [Introducción a Play Framework para las prácticas de MADS](https://github.com/domingogallardo/apuntes-mads/blob/master/practicas/01-introduccion-play/intro-play-teoria.md)
+
 <kbd><img src="diapositivas/introduccion-a-mads.019.png" width="800px"></kbd>
 <kbd><img src="diapositivas/introduccion-a-mads.020.png" width="800px"></kbd>
 <kbd><img src="diapositivas/introduccion-a-mads.021.png" width="800px"></kbd>
