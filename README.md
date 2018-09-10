@@ -65,7 +65,18 @@ Las sesiones tienen una duración variable, entre 45 y 90 minutos.
   - Martin Fowler - [Continuous Integration](lecturas/martin-fowler_continuous-integration.pdf)
 -->
 
-### Bloque 3: Metodologías ágiles: Scrum y Kanban (4 semanas)
+
+### Bloque 3: Desarrollo centrado en el usuario: historias de usuario y desarrollo dirigido por características (2 semanas)
+
+<!--
+
+- S09: [Historias de usuario](sesiones/09-historias-de-usuario/historias-de-usuario.md)
+- S10: [Jeff Patton - User Story Mapping](sesiones/10-mapping-de-historias-de-usuario/mapping-de-historias-de-usuario.md)
+  - Jeff Patton - [It's all in how you slice it](lecturas/jeff-patton-how-you-slice-it.pdf)
+
+-->
+
+### Bloque 4: Metodologías ágiles: Scrum y Kanban (4 semanas)
 
 <!--
 
@@ -79,15 +90,6 @@ Las sesiones tienen una duración variable, entre 45 y 90 minutos.
 
 -->
 
-### Bloque 4: Desarrollo centrado en el usuario: historias de usuario y desarrollo dirigido por características (3 semanas)
-
-<!--
-
-- S09: [Historias de usuario](sesiones/09-historias-de-usuario/historias-de-usuario.md)
-- S10: [Jeff Patton - User Story Mapping](sesiones/10-mapping-de-historias-de-usuario/mapping-de-historias-de-usuario.md)
-  - Jeff Patton - [It's all in how you slice it](lecturas/jeff-patton-how-you-slice-it.pdf)
-
--->
 
 ## Evaluación
 
@@ -95,10 +97,10 @@ La calificación de la asignatura está repartida en las siguientes
 actividades como se indica:
 
 - Entregas de prácticas: 40%
-  - Práctica 1: 14%
-  - Práctica 2: 6%
-  - Práctica 3: 6%
-  - Práctica 4: 14%
+  - Práctica 1: 12%
+  - Práctica 2: 8%
+  - Práctica 3: 5%
+  - Práctica 4: 15%
 - Examen de prácticas (laboratorio): 20%
 - Exámenes de teoría: 40%
   - Parcial 1, bloque 1 y 2 (tipo test y preguntas cortas): 20%
