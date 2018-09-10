@@ -40,7 +40,7 @@ de la asignatura.
 
 Las sesiones tienen una duración variable, entre 45 y 90 minutos.
 
-### Bloque 1: Valores y principios ágiles para el desarrollo de software (3 semanas)
+### Bloque 1: Valores y principios ágiles para el desarrollo de software (4 semanas)
 
 <!--
 - S01: [Introducción a la asignatura](sesiones/01-introduccion-a-mads/introduccion-a-mads.md)
@@ -52,16 +52,10 @@ Las sesiones tienen una duración variable, entre 45 y 90 minutos.
   - Mary Poppendieck - [Lean Programming](lecturas/mary-poppendieck-lean-programming-2001.pdf)
 - S05: [eXtreme Programming (XP)](sesiones/05-extreme-programming/extreme-programming.md)
   - Ron Jeffreis - [What is eXtreme Programming](lecturas/ron-jeffreis_what-is-extreme-programming.pdf)
-
--->
-
-### Bloque 2: Pruebas ágiles y desarrollo dirigido por los tests (2 semanas) ###
-
-<!--
 - S06: [TDD y pruebas ágiles](sesiones/06-tdd-pruebas-agiles/tdd-pruebas-agiles.md)
 -->
 
-### Bloque 3: Integración y entrega continua (3 semanas)
+### Bloque 2: Integración y entrega continua (3 semanas)
 
 <!--
 
@@ -71,7 +65,7 @@ Las sesiones tienen una duración variable, entre 45 y 90 minutos.
   - Martin Fowler - [Continuous Integration](lecturas/martin-fowler_continuous-integration.pdf)
 -->
 
-### Bloque 4: Scrum y Kanban (3 semanas)
+### Bloque 3: Metodologías ágiles: Scrum y Kanban (4 semanas)
 
 <!--
 
@@ -85,7 +79,7 @@ Las sesiones tienen una duración variable, entre 45 y 90 minutos.
 
 -->
 
-### Bloque 5: Desarrollo centrado en el usuario (3 semanas)
+### Bloque 4: Desarrollo centrado en el usuario: historias de usuario y desarrollo dirigido por características (3 semanas)
 
 <!--
 
