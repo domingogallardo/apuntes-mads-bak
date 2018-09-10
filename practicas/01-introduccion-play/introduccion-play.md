@@ -6,16 +6,7 @@
 - [2. Entorno para realizar la práctica](#2-entorno-para-realizar-la-práctica)
 - [3. Antes de empezar la práctica](#3-antes-de-empezar-la-práctica)
 - [4. Desarrollo de la práctica](#4-desarrollo-de-la-práctica)
-
-<!-- 
-- [4.1. Desarrollo de la primera historia de usuario](#41-desarrollo-de-la-primera-historia-de-usuario)
-  - [4.2. Algunas indicaciones sobre el desarrollo de la primera funcionalidad](#42-algunas-indicaciones-sobre-el-desarrollo-de-la-primera-funcionalidad)
-  - [4.3. Finalización de la primera historia de usuario y continuación con la siguiente](#43-finalización-de-la-primera-historia-de-usuario-y-continuación-con-la-siguiente)
-  - [4.4. Finalización de la segunda historia de usuario](#44-finalización-de-la-segunda-historia-de-usuario)
-  - [4.5. Realización de una tercera historia de usuario (opcional)](#45-realización-de-una-tercera-historia-de-usuario-opcional)
-  - [4.6. Finalización de la versión 0.1](#46-finalización-de-la-versión-01)
 - [5. Entrega y evaluación](#5-entrega-y-evaluación)
--->
 
 ## 1. Objetivos
 
