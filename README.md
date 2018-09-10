@@ -100,14 +100,12 @@ Las sesiones tienen una duración variable, entre 45 y 90 minutos.
 La calificación de la asignatura está repartida en las siguientes
 actividades como se indica:
 
-- Entregas de prácticas: 30%
-  - Práctica 1: 9%
+- Entregas de prácticas: 40%
+  - Práctica 1: 14%
   - Práctica 2: 6%
-  - Práctica 3: 5%
-  - Práctica 4: 10%
-- Exámenes de prácticas: 30%
-  - Parcial 1, prácticas 1 y 2 (laboratorio): 15%
-  - Parcial 2, prácticas 3 y 4 (tipo test y preguntas cortas, el día del parcial 2 de teoría): 15%
+  - Práctica 3: 6%
+  - Práctica 4: 14%
+- Examen de prácticas (laboratorio): 20%
 - Exámenes de teoría: 40%
   - Parcial 1, bloque 1 y 2 (tipo test y preguntas cortas): 20%
   - Parcial 2, bloque 3 y 4 (tipo test y preguntas cortas): 20%
