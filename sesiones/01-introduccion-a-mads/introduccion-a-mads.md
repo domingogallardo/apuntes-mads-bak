@@ -5,6 +5,10 @@
 
 <kbd><img src="diapositivas/introduccion-a-mads.002.png" width="800px"></kbd>
 
+<kbd><img src="diapositivas/introduccion-a-mads.003.png" width="800px"></kbd>
+
+<kbd><img src="diapositivas/introduccion-a-mads.004.png" width="800px"></kbd>
+
 Puedes consultar la ficha UA de la asignatura en
 [este enlace](http://cv1.cpd.ua.es/ConsPlanesEstudio/cvFichaAsiEEES.asp?wcodasi=34037&wLengua=C&scaca=2017-18).
 
@@ -22,7 +26,7 @@ Herramientas docentes:
   podrá consultar los últimos cambios que se hayan introducido en los
   materiales.
 
-<kbd><img src="diapositivas/introduccion-a-mads.003.png" width="800px"></kbd>
+<kbd><img src="diapositivas/introduccion-a-mads.005.png" width="800px"></kbd>
 
 - [Henry Kniberg](https://www.crisp.se/konsulter/henrik-kniberg) ha
   sido un importantísimo divulgador de las metodologías ágiles. Ha
@@ -37,19 +41,16 @@ Herramientas docentes:
   ciclo de mejora continua (consultar
   [Kaizen](https://en.wikipedia.org/wiki/Kaizen) en la Wikipedia) de las metodologías _lean_.
 
-<kbd><img src="diapositivas/introduccion-a-mads.004.png" width="800px"></kbd>
+<kbd><img src="diapositivas/introduccion-a-mads.006.png" width="800px"></kbd>
 
 - Hay una relación importante entre teoría y práctica:
     - En la metodología de desarrollo de la práctica 1 se introducen
       muchos elementos de integración continua y metodologías ágiles:
       historias de usuario, tablero de _issues_, desarrollo basado en
       ramas o _pull requests_.
-    - En la práctica 2 se aplican conceptos de pruebas,
+    - En las prácticas 2 y 3 se aplican conceptos de pruebas,
       TDD, flujos de trabajo Git e integración continua que se
       imparten en el bloque 2 de teoría.
-    - En la práctica 3 se ponen en práctica conceptos de entrega
-      continua (tubería de despliegue, herramientas de automatización
-      de pruebas en distintos entornos) vistos en el bloque 2 de teoría.
     - En el bloque 3 y comienzo del bloque 4 de teoría se introducen
       los conceptos de historias de usuario, Scrum y Kanban necesarios
       para la práctica 4.
@@ -73,10 +74,6 @@ Herramientas docentes:
   de una pequeña aplicación Play Framework poniendo en práctica las
   tecnologías y metodología vistas en las prácticas 1 y 2.
 
-<kbd><img src="diapositivas/introduccion-a-mads.005.png" width="800px"></kbd>
-
-<kbd><img src="diapositivas/introduccion-a-mads.006.png" width="800px"></kbd>
-
 <kbd><img src="diapositivas/introduccion-a-mads.007.png" width="800px"></kbd>
 
 <kbd><img src="diapositivas/introduccion-a-mads.008.png" width="800px"></kbd>
@@ -87,6 +84,10 @@ Herramientas docentes:
 
 <kbd><img src="diapositivas/introduccion-a-mads.011.png" width="800px"></kbd>
 
+<kbd><img src="diapositivas/introduccion-a-mads.012.png" width="800px"></kbd>
+
+<kbd><img src="diapositivas/introduccion-a-mads.013.png" width="800px"></kbd>
+
 Enlaces:
 
 - [Play Framework](https://www.playframework.com)
@@ -94,9 +95,9 @@ Enlaces:
 - [Git](https://git-scm.com/book/en/v2)
 - [Docker](https://www.docker.com)
 
-<kbd><img src="diapositivas/introduccion-a-mads.012.png" width="800px"></kbd>
+<kbd><img src="diapositivas/introduccion-a-mads.014.png" width="800px"></kbd>
 
-<kbd><img src="diapositivas/introduccion-a-mads.013.png" width="800px"></kbd>
+<kbd><img src="diapositivas/introduccion-a-mads.015.png" width="800px"></kbd>
 
 Todos los libros se encuentran en la biblioteca (en formato físico y/o
 digital), y alguno de ellos están disponibles on-line.
@@ -129,8 +130,25 @@ digital), y alguno de ellos están disponibles on-line.
 - Lisa Crispin: Agile Testing -
   [Biblioteca UA](http://gaudi.ua.es/uhtbin/cgisirsi/0/x/0/05?searchdata1=9780321534460)
 
-<kbd><img src="diapositivas/introduccion-a-mads.014.png" width="800px"></kbd>
+<kbd><img src="diapositivas/introduccion-a-mads.016.png" width="800px"></kbd>
 
 - Un pequeño debate sobre qué conocéis a priori de las metodologías
   ágiles. Haremos un resumen en la pizarra.
+  
+<kbd><img src="diapositivas/introduccion-a-mads.016.png" width="800px"></kbd>
+<kbd><img src="diapositivas/introduccion-a-mads.017.png" width="800px"></kbd>
+<kbd><img src="diapositivas/introduccion-a-mads.018.png" width="800px"></kbd>
+<kbd><img src="diapositivas/introduccion-a-mads.019.png" width="800px"></kbd>
+<kbd><img src="diapositivas/introduccion-a-mads.020.png" width="800px"></kbd>
+<kbd><img src="diapositivas/introduccion-a-mads.021.png" width="800px"></kbd>
+
+<kbd><img src="diapositivas/introduccion-a-mads.022.png" width="800px"></kbd>
+
+- [La charla de TED](https://www.ted.com/talks/tom_wujec_build_a_tower?language=en)
+
+<kbd><img src="diapositivas/introduccion-a-mads.023.png" width="800px"></kbd>
+
+
+
+
 
