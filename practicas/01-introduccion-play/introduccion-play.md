@@ -201,17 +201,25 @@ plataforma.
 
 ## 2. Entorno para realizar la práctica
 
-En las máquinas de los laboratorios de la EPS están instaladas en
-Linux las herramientas necesarias para su desarrollo. También las
-puedes instalar en cualquier sistema operativo:
-   
-- [IntelliJ IDEA](https://www.jetbrains.com/idea/) IDE para trabajar en el desarrollo del
-  proyecto. Es de pago, pero puedes conseguir una licencia educativa
-  en
-  [https://www.jetbrains.com/student/](https://www.jetbrains.com/student/). Para
-  poder compilar el proyecto Play en IntelliJ y disfrutar de
-  todas las ventajas del IDE (autocompletar código o ejecutar los tests
-  directamente desde el IDE) es necesario disponer del JDK Java 8.
+En los laboratorios de la EPS puedes trabajar de dos formas:
+
+- Usando el software instalado en Linux. Por problemas de
+  configuración no es posible usar _IntelliJ IDEA_ como
+  editor. Deberás usar _Visual Studio Code_.
+- Usando _VirtualBox_ y una máquina virtual de la asignatura que
+  contiene _IntelliJ IDEA_ y el resto de software en Linux.
+
+También puedes trabajar en tu propio ordenador, instalando el software necesario:
+
+- [Visual Studio Code](https://code.visualstudio.com): IDE para
+  trabajar en el desarrollo del proyecto si no es posible usar
+  IntelliJ. No tiene las funcionalidades de IntelliJ de autocompletar
+  código, depuración, lanzamiento individual de tests, etc.
+- [IntelliJ IDEA](https://www.jetbrains.com/idea/): IDE para trabajar
+  en el desarrollo del proyecto. Es de pago, pero puedes conseguir una
+  licencia educativa en
+  [https://www.jetbrains.com/student/](https://www.jetbrains.com/student/). Es
+  necesario disponer del **JDK Java 8**.
 - [Git](https://git-scm.com/downloads)
 - [Docker](https://www.docker.com/community-edition), para ejecutar la
    imagen (similar a una máquina virtual) que contiene Java y Play

@@ -25,8 +25,9 @@ descargado la aplicación Play.
 
 ### Uso de IntelliJ para trabajar con la aplicación Play ###
 
-Vamos a desarrollar las aplicaciones Play usando el IDE IntelliJ
-IDEA.
+Aunque es posible trabajar con editores como _Visual Studio Code_,
+vamos a explicar cómo desarrollar las aplicaciones Play usando el IDE
+IntelliJ IDEA.
 
 Las aplicaciones Play se pueden escribir en Java y en Scala. Nosotros
 usaremos Java. Una parte importante de las librerías del framework
@@ -71,6 +72,18 @@ Utilizaremos el panel `Terminal` para trabajar con `sbt` y con
 
 <img src="imagenes/terminal.png" width="500px"/>
 
+
+### Uso de Visual Studio Code para trabajar con la aplicación Play ###
+
+Si no es posible utilizar un editor avanzado como IntelliJ es posible
+usar en su lugar _Visual Studio Code_.
+
+Abre la carpeta con el directorio del proyecto y abre un terminal con
+la opción _Ver > Terminal integrado_. En ese terminal lanzaremos el
+comando Docker para trabajar con `sbt`. Puedes abrir otro terminal
+pulsando en el símbolo `+` para trabajar con Git.
+
+<img src="imagenes/visual-studio-code.png" width="700px"/>
 
 ### Lanzar la aplicación Play ###
 
