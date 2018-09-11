@@ -201,13 +201,12 @@ plataforma.
 
 ## 2. Entorno para realizar la práctica
 
-En los laboratorios de la EPS puedes trabajar de dos formas:
+En los laboratorios de la EPS puedes trabajar:
 
 - Usando el software instalado en Linux. Por problemas de
   configuración no es posible usar _IntelliJ IDEA_ como
-  editor. Deberás usar _Visual Studio Code_.
-- Usando _VirtualBox_ y una máquina virtual de la asignatura que
-  contiene _IntelliJ IDEA_ y el resto de software en Linux.
+  editor. Deberás usar _Visual Studio Code_ para editar el código y
+  _Docker_ para compilar y ejecutar.
 
 También puedes trabajar en tu propio ordenador, instalando el software necesario:
 
@@ -216,14 +215,15 @@ También puedes trabajar en tu propio ordenador, instalando el software necesari
   IntelliJ. No tiene las funcionalidades de IntelliJ de autocompletar
   código, depuración, lanzamiento individual de tests, etc.
 - [IntelliJ IDEA](https://www.jetbrains.com/idea/): IDE para trabajar
-  en el desarrollo del proyecto. Es de pago, pero puedes conseguir una
+  en el desarrollo del proyecto. En su instalación se debe instalar el
+  plugin de Scala. Es de pago, pero puedes conseguir una
   licencia educativa en
   [https://www.jetbrains.com/student/](https://www.jetbrains.com/student/). Es
   necesario disponer del **JDK Java 8**.
 - [Git](https://git-scm.com/downloads)
 - [Docker](https://www.docker.com/community-edition), para ejecutar la
    imagen (similar a una máquina virtual) que contiene Java y Play
-   Framework.
+   Framework. Se utiliza para compilar y ejecutar los proyectos Play.
 
 [Docker](https://docs.docker.com) es una tecnología que ha tenido una
 gran expansión en los últimos años. Permite construir máquinas
@@ -354,7 +354,7 @@ adelante en la asignatura estudiaremos más sobre Docker.
    ```
 
    **Importante** En los laboratorios de la EPS está instalada la
-   imagen 5.7.18 de MySQL. Hay que definir explícitamente esa versión
+   imagen Docker 5.7.18 de MySQL. Hay que definir explícitamente esa versión
    en el comando docker, escribiendo `mysql:5.7.18`.
 
    Lanza la aplicación con docker, definiendo ahora en variables de
