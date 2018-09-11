@@ -381,7 +381,10 @@ adelante en la asignatura estudiaremos más sobre Docker.
    Prueba que la aplicación funciona correctamente. Puedes comprobar
    las tablas y los datos almacenados en la base de datos conectándote
    a la base de datos en el puerto 3316 desde cualquier cliente
-   MySQL. Por ejemplo, la consola MySQL de IntelliJ:
+   MySQL:
+   
+   - En los laboratorios de la EPS, usando _MySQL Workbench_. 
+   - En IntelliJ IDEA puedes usar la consola MySQL:
    
    <img src="imagenes/conexionbd-intellij.png" width="500px"/>
 
