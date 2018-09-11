@@ -77,6 +77,18 @@ repasaremos e introduciremos el uso de:
 - JUnit y DBUnit para realizar continuamente pruebas unitarias que
   validen el desarrollo.
 
+El objetivo es desarrollar software de una forma similar a cómo se
+hace en cientos de proyectos punteros de desarrollo _open
+source_. 
+
+Algunos ejemplos de repositorios en GitHub:
+
+- [CartoDB](https://github.com/CartoDB/cartodb)
+- [Vapor](https://github.com/vapor/vapor)
+- [Guice](https://github.com/google/guice)
+- [Play Framework](https://github.com/playframework/playframework)
+- [swift-nio](https://github.com/apple/swift-nio)
+
 #### Git
 
 Git es el sistema de control de versiones más utilizado en la
