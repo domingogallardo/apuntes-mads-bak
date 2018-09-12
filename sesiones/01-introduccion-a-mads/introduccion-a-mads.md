@@ -60,19 +60,19 @@ Herramientas docentes:
   siguientes. Las dos primeras son individuales y las dos siguientes
   serán en grupo. Los grupos deberán tener 3 personas.
 
-- El **primer examen parcial de prácticas** se realizará en el
-  laboratorio, el **miércoles 25 de octubre** y el de **teoría** el **jueves 2
-  de noviembre**. Los segundos parciales coincidirán con la fecha
-  oficial del examen de la asignatura (**viernes 19 de enero de 2018**).
+- El **primer examen parcial de teoría** se realizará el **miércoles 31
+  de octubre de 2018** en el horario de teoría (de 11 a 13 h.). El segundo
+  parcial de teoría y el examen de prácticas coincidirán con la fecha
+  oficial del examen de la asignatura (**23 de enero de 2019**).
 
-- En cuanto a la evaluación, el **70% por ciento** de la calificación
-  será por la nota en los exámenes parciales y el **30% por las
-  prácticas**. No hay examen final. Las preguntas de los parciales de
-  teoría y del segundo de prácticas serán de tipo test y de respuestas
-  cortas. El primer parcial de prácticas se realizará en el
-  laboratorio y consistirá en el desarrollo
-  de una pequeña aplicación Play Framework poniendo en práctica las
-  tecnologías y metodología vistas en las prácticas 1 y 2.
+- En cuanto a la evaluación, el **40% por ciento** de la calificación
+  será por la nota en los exámenes de teoría, el **40% por el
+  desarrollo de las prácticas** y el **20% por el examen de
+  prácticas**por. No hay examen final. Las preguntas de los parciales
+  de teoría de tipo test y de respuestas cortas. El examen de
+  prácticas se realizará en el laboratorio y consistirá en el
+  desarrollo de una pequeña aplicación Play Framework utilizando las
+  tecnologías y metodología vistas en las prácticas.
 
 <kbd><img src="diapositivas/introduccion-a-mads.007.png" width="800px"></kbd>
 
