@@ -953,7 +953,7 @@ La aplicación deberá tener una barra de menú común a todas sus
 páginas, menos en las páginas de login y registro.
 
 - La barra de menú estará situada en la parte superior de la página y
-será un [Navbar](https://getbootstrap.com/docs/3.3/components/#navbar)
+será un [Navbar](https://getbootstrap.com/docs/4.0/components/navbar/).
 de Bootstrap.
 - La barra de menú tendrá como mínimo los siguientes elementos (de
 izquierda a derecha):
