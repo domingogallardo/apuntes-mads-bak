@@ -705,7 +705,8 @@ Realiza el siguiente cambio:
 Prueba que funciona correctamente, haz el commit y súbelo a GitHub:
 
 ```text
-$ git commit -am "Añadido enlace a página 'about' en página 'login'"[acerca-de 672c28f] Añadido enlace a página 'about' en página 'login'
+$ git commit -am "Añadido enlace a página 'about' en página 'login'"
+[acerca-de 672c28f] Añadido enlace a página 'about' en página 'login'
 1 file changed, 1 insertion(+)
 $ git push
 ```
