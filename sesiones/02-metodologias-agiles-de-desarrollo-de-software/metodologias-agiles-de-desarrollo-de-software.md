@@ -475,7 +475,14 @@
 <kbd><img src="diapositivas/metodologias-agiles-de-desarrollo-de-software.043.png" width="800px"></kbd>
 
 - En España cada vez más empresas están introduciendo estas
-  metodologías. Sobre todo empresas nuevas y _startups_.
+  metodologías. Sobre todo empresas nuevas y _startups_. En la
+  diapositiva mostramos algunas _startups_ y empresas de desarrollo
+  de software españolas relevantes:
+  - [Carto](https://carto.com)
+  - [8fit](https://8fit.com)
+  - [Scytl](https://www.scytl.com/en/)
+  - [Typeform](https://www.typeform.com)
+  - [The cocktail](the-cocktail.com)
 - Cada vez más asistencia a eventos como la
   Conferencia Agile Spain ([vídeo resumen CAS 2017](https://www.youtube.com/watch?v=Zc-8zkkudLc)). **Este año
   la [CAS 2018](https://cas2018.agile-spain.org) se celebra en Alicante**.
