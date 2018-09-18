@@ -60,8 +60,8 @@ Herramientas docentes:
   siguientes. Las dos primeras son individuales y las dos siguientes
   serán en grupo. Los grupos deberán tener 3 personas.
 
-- El **primer examen parcial de teoría** se realizará el **miércoles 31
-  de octubre de 2018** en el horario de teoría (de 11 a 13 h.). El segundo
+- El **primer examen parcial de teoría** se realizará el **miércoles 7
+  de noviembre de 2018** en el horario de teoría (de 11 a 13 h.). El segundo
   parcial de teoría y el examen de prácticas coincidirán con la fecha
   oficial del examen de la asignatura (**23 de enero de 2019**).
 
