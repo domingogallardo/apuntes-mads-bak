@@ -213,29 +213,28 @@ plataforma.
 
 ## 2. Entorno para realizar la práctica
 
-En los laboratorios de la EPS puedes trabajar:
+Software necesario:
 
-- Usando el software instalado en Linux. Por problemas de
-  configuración no es posible usar _IntelliJ IDEA_ como
-  editor. Deberás usar _Visual Studio Code_ para editar el código y
-  _Docker_ para compilar y ejecutar.
-
-También puedes trabajar en tu propio ordenador, instalando el software necesario:
-
-- [Visual Studio Code](https://code.visualstudio.com): IDE para
-  trabajar en el desarrollo del proyecto si no es posible usar
-  IntelliJ. No tiene las funcionalidades de IntelliJ de autocompletar
-  código, depuración, lanzamiento individual de tests, etc.
-- [IntelliJ IDEA](https://www.jetbrains.com/idea/): IDE para trabajar
-  en el desarrollo del proyecto. En su instalación se debe instalar el
-  plugin de Scala. Es de pago, pero puedes conseguir una
-  licencia educativa en
-  [https://www.jetbrains.com/student/](https://www.jetbrains.com/student/). Es
-  necesario disponer del **JDK Java 8**.
 - [Git](https://git-scm.com/downloads)
 - [Docker](https://www.docker.com/community-edition), para ejecutar la
    imagen (similar a una máquina virtual) que contiene Java y Play
-   Framework. Se utiliza para compilar y ejecutar los proyectos Play.
+   Framework. En esta primera práctica se utiliza para compilar y
+   ejecutar los proyectos Play y para lanzar el servicio de base de
+   datos MySQL.
+- Como entorno de desarrollo proporcionamos dos opciones:
+   - [Visual Studio Code](https://code.visualstudio.com): IDE para
+     trabajar en el desarrollo del proyecto si no es posible usar
+     IntelliJ. No tiene las funcionalidades de IntelliJ de
+     autocompletar código, depuración, etc.
+   - [IntelliJ IDEA](https://www.jetbrains.com/idea/): IDE recomendado
+     para trabajar en el desarrollo del proyecto. Debes descargar la
+     versión **Ultimate**. Es de pago, pero puedes conseguir una
+     licencia educativa en
+     [https://www.jetbrains.com/student/](https://www.jetbrains.com/student/). Es
+     necesario disponer del **JDK Java 8**.  En la instalación se debe
+     instalar el **plugin de Scala**.
+
+### Docker ###
 
 [Docker](https://docs.docker.com) es una tecnología que ha tenido una
 gran expansión en los últimos años. Permite construir máquinas
@@ -247,11 +246,18 @@ muchísimo más rápida que las máquinas virtuales tradicionales.
 
 Utilizaremos la imagen Docker
 [domingogallardo/playframework](https://hub.docker.com/r/domingogallardo/playframework/),
-que lanza el comando `sbt` necesario para compilar y ejecutar
-aplicaciones Play.
+que **lanza el comando `sbt` sobre el directorio actual** necesario
+para compilar y ejecutar aplicaciones Play.
 
-Para lanzar esta imagen tenemos que ejecutar el siguiente comando,
-estando en el directorio de la aplicación Play:
+Cada máquina docker se define con un fichero `Dockerfile`. Puedes
+mirar el fichero `Dockerfile` de la imagen de la asignatura en [este
+enlace](https://github.com/domingogallardo/playframework/blob/master/Dockerfile). Más
+adelante en la asignatura estudiaremos más sobre Docker.
+
+Tal y como hemos explicado en la [introducción a Play Framework para
+las prácticas de MADS](./intro-play-teoria.md) para lanzar esta imagen
+tenemos que ejecutar el siguiente comando, estando en el directorio de
+la aplicación Play:
 
 ```text
 $ cd /path/to/my/play/project
@@ -263,16 +269,137 @@ El comando `docker run` buscará la imagen
 encuentra. Después la ejecutará montando el directorio actual en el
 directorio `/code` y mapeando el puerto 80 de la máquina host en el
 puerto 9000 del contenedor. La imagen está configurada para lanzar el
-comando `sbt` sobre el directorio `code`. Como en este directorio está
-montado el directorio de la máquina _host_ en donde tienes el
-proyecto, podrás editar y modificar los ficheros en la propia máquina
-_host_ y compilarlos y ejecutarlos desde el comando `sbt` en el
-contenedor.
+comando `sbt` sobre el directorio `code`.
 
-Cada máquina docker se define con un fichero `Dockerfile`. Puedes
-mirar el fichero `Dockerfile` de la imagen de la asignatura en
-[este enlace](https://github.com/domingogallardo/playframework/blob/master/Dockerfile). Más
-adelante en la asignatura estudiaremos más sobre Docker.
+Como en este directorio está montado el directorio de la máquina
+_host_ en donde tienes el proyecto, podrás editar y modificar los
+ficheros en la propia máquina _host_ y compilarlos y ejecutarlos desde
+el comando `sbt` en el contenedor.
+
+En la configuración por defecto (fichero `conf/application.conf`) la
+aplicación trabaja con la base de datos en memoria. Existe otra
+configuración (`conf/develop-mysql.conf`) para que la aplicación
+trabaje con una base de datos MySQL. La utilizaremos también en la práctica.
+
+### Entorno de trabajo  ###
+
+Es importante que el entorno de trabajo permita el desarrollo y la
+prueba de la aplicación con facilidad.
+
+#### Pruebas manuales y automáticas ####
+
+Durante el desarrollo de la práctica será necesario realizar **pruebas
+manuales** de la aplicación, introducir datos en sus pantallas y
+comprobar que los cambios que hemos añadido funcionan correctamente.
+
+Para estas pruebas manuales recomendamos utilizar la configuración de
+ejecución trabajando sobre la **base de datos real MySQL**. De esta forma
+podemos introducir datos y reutilizarlos en posteriores pruebas
+manuales.
+
+También durante el desarrollo hay que implementar y lanzar **tests
+automáticos**. Recomendamos en este caso usar la **base de datos de
+memoria**, en lugar de la base de datos MySQL, para que la ejecución de
+los tests tenga más velocidad y para que no se borren los datos
+introducidos en las pruebas manuales.
+
+Debemos configurar el entorno de trabajo para que sea posible realizar
+los dos tipos de pruebas, manuales y automáticas,
+simultáneamente. Dependiendo de si utilizamos o no IntelliJ lo haremos
+de forma distinta.
+
+#### Configuración de trabajo usando Visual Studio Code ####
+
+Si tu ordenador no tiene prestaciones suficientes para trabajar con
+IntelliJ IDEA puedes usar un editor como Visual Studio Code.
+
+Recomendamos trabajar con tres pestañas de terminal abiertas en el editor:
+
+- **Terminal 1**: ejecución de la aplicación para hacer **pruebas
+  manuales** sobre base de datos MySQL. Lanzamos en el shell el
+  comando docker para lanzar la aplicación usando la base de datos
+  MySQL.
+
+   ```text
+   $ docker run --link play-mysql --rm -it -p 9000:9000 -e \
+   DB_URL="jdbc:mysql://play-mysql:3306/mads" -e DB_USER_NAME="root" -e \
+   DB_USER_PASSWD="mads" -v "${PWD}:/code" domingogallardo/playframework
+   ```
+
+   Y desde la consola sbt modificamos la preferencia `config.file`
+   para que la aplicación utilice la configuración definida en el
+   fichero `conf/develop-mysql.conf` 
+
+   ```text
+   [mads-todolist-dgallardo] $ set javaOptions += "-Dconfig.file=conf/develop-mysql.conf"
+   [mads-todolist-dgallardo] $ run
+   ```
+  
+- **Terminal 2**: **pruebas automáticas** sobre la base de datos de
+  memoria. Lanzamos en el shell el comando docker para lanzar sbt.
+  No hace falta exportar el puerto 9000 porque sólo se va
+  a usar el contenedor para lanzar los tests:
+
+
+   ```text
+   $ docker run --rm  -it -v "${PWD}:/code" domingogallardo/playframework
+   [mads-todolist-dgallardo] $ test
+   ```
+
+- **Terminal 3**: shell en el que usaremos git:
+
+   ```text
+   $ git status
+   On branch master
+   Your branch is up to date with 'origin/master'.
+
+   nothing to commit, working tree clean
+   ```
+
+
+#### Configuración de trabajo usando IntelliJ ####
+
+Si tenemos un ordenador con suficiente capacidad es recomendable usar
+IntelliJ IDEA como entorno de desarrollo.
+
+Recomendamos la siguiente configuración:
+
+- **Pruebas manuales**: para lanzar la aplicación y poder realizar
+  pruebas manuales usando la base de datos MySQL debemos crear una
+  [configuración de run/debug que trabaje sobre
+  MySQL](./intro-play-teoria.md#desde-el-rundebug-de-intellij) y
+  lanzar la ejecución.
+
+- **Pruebas automáticas**: se lanza `sbt` desde la propia pestaña de
+  IntelliJ o desde un terminal con el comando `docker run`
+  anterior. Como hemos comentado anteriormente, no es necesario mapear
+  el puerto 9000 porque el contenedor sólo se va a usar para lanzar
+  los tests:
+  
+   ```text
+   $ docker run --rm  -it -v "${PWD}:/code" domingogallardo/playframework
+   [mads-todolist-dgallardo] $ 
+   ```
+
+   Y se lanza el comando `test`.
+
+- **Shell de git**: es recomendable tener abierta una ventana de
+  terminal adicional para trabajar con git.
+
+**Cuidado**: En las máquinas virtuales Ubuntu de la EPS, la aplicación
+Docker se ejecuta con el usuario `root`. Si se lanza una ejecución de
+la máquina de docker con el directorio del proyecto antes de haberlo
+compilado con IntelliJ, se crearán directorios de trabajo propiedad de
+`root`. Esto provocará un error de permisos cuando vayamos a compilar desde
+IntelliJ y hará imposible la compilación desde el IDE. 
+
+Una posible **solución** es lanzar IntelliJ con `sudo` para que se
+ejecute también con el usuario `root`:
+
+```text
+$ sudo bin/idea.sh
+```
+
 
 ## 3. Antes de empezar la práctica
 
