@@ -625,15 +625,16 @@ externa. Esto es necesario cuando la aplicación esté en producción,
 pero también puede ser útil para realizar pruebas manuales en
 desarrollo.
 
-Utilizaremos también Docker para poner en marcha un servidor
-MySQL con el siguiente comando:
+Podemos utilizar Docker para poner en marcha un servidor MySQL con el
+siguiente comando:
 
 ```text
 $ docker run -d --rm -p 3316:3306 --name play-mysql -e MYSQL_ROOT_PASSWORD=mads -e MYSQL_DATABASE=mads mysql:5
 ```
 
-Ponemos como puerto local el 3316 para evitar posibles conflictos con
-un posible servidor de MySQL que tengamos funcionando en local.
+El puerto del host 3316 se mapea con el puerto 3306. Ponemos el puerto
+3316 para evitar posibles conflictos con un posible servidor de MySQL
+que tengamos funcionando en el host.
 
 **Importante** En los laboratorios de la EPS está instalada la imagen
 5.7.18 de MySQL. Hay que definir explícitamente esa versión en el
@@ -666,9 +667,9 @@ play-mysql`).
 
 ### Ejecución de la aplicación usando la base de datos MySQL ###
 
-#### Desde docker ####
+#### Desde Docker ####
 
-Lanzamos la aplicación con docker, definiendo en variables de entorno
+Lanzamos la aplicación con Docker, definiendo en variables de entorno
 la URL, el usuario y la contraseña con la que debe conectarse la
 aplicación a la base de datos. Usamos la opción `link` de docker para
 definir el nombre lógico del contenedor al que debe conectarse la
@@ -693,11 +694,18 @@ que la aplicación utilice la configuración definida en el fichero
 
 También es posible definir una configuración de run/debug en IntelliJ
 en la que se inicialice la preferencia `config.file` y las variables
-de entorno para conectarse con la base de datos:
+de entorno para conectarse con la base de datos, en el puerto del host
+en el que está escuchando (3331, si hemos lanzado el servicio de base
+de datos usando Docker como hemos visto anteriormente):
 
 <img src="imagenes/bdexterna-intellij.png" width="600px"/>
 
 <img src="imagenes/variables-entorno-intellij.png" width="300px"/>
+
+**Cuidado**: Si estás lanzando MySQL usando _Docker Toolbox_ debes
+modificar la `DB_URL` indicando el _host_ al que conectarse (no será
+_localhost_). La dirección IP será la que aparece en la consola de
+docker al arrancar. Por ejemplo `jdbd:mysql://192.168.99.100/mads`.
 
 
 ### Panel `Database` de IntelliJ ###
@@ -710,6 +718,11 @@ Hay que añadir una base de datos de tipo MySQL y configurarla con los
 siguientes parámetros:
 
 <img src="imagenes/conexionbd-intellij.png" width="500px"/>
+
+**Cuidado**: Igual que en el apartado anterior, si estás lanzando
+MySQL usando _Docker Toolbox_ debes indicar el _host_ al que
+conectarse (no será _localhost_) escribiendo la dirección IP que
+aparece en la consola de docker al arrancar. 
 
 Es posible examinar el esquema de la base de datos:
 
