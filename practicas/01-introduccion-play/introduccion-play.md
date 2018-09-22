@@ -371,10 +371,9 @@ Recomendamos la siguiente configuración:
   lanzar la ejecución.
 
 - **Pruebas automáticas**: se lanza `sbt` desde la propia pestaña de
-  IntelliJ o desde un terminal con el comando `docker run`
-  anterior. Como hemos comentado anteriormente, no es necesario mapear
-  el puerto 9000 porque el contenedor sólo se va a usar para lanzar
-  los tests:
+  IntelliJ o desde un terminal con el comando `docker run`. Como hemos
+  comentado anteriormente, no es necesario mapear el puerto 9000
+  porque el contenedor sólo se va a usar para lanzar los tests:
   
    ```text
    $ docker run --rm  -it -v "${PWD}:/code" domingogallardo/playframework
