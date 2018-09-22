@@ -284,7 +284,7 @@ trabaje con una base de datos MySQL. La utilizaremos también en la práctica.
 ### Entorno de trabajo  ###
 
 Es importante que el entorno de trabajo permita realizar con facilidad
-tanto el desarrollo de la aplicación como las sobre ella.
+tanto el desarrollo de la aplicación como las pruebas.
 
 #### Pruebas manuales y automáticas ####
 
