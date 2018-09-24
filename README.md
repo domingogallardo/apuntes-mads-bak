@@ -46,10 +46,10 @@ Las sesiones tienen una duración variable, entre 45 y 90 minutos.
 - S01: [Introducción a la asignatura](sesiones/01-introduccion-a-mads/introduccion-a-mads.md)
 - S02: [Metodologías Ágiles de Desarrollo de Software](sesiones/02-metodologias-agiles-de-desarrollo-de-software/metodologias-agiles-de-desarrollo-de-software.md)
   - Martin Fowler - [The New Methodology](lecturas/martin-fowler_the-new-methodology.pdf)
-
-<!--
 - S03: [Manifiesto Ágil](sesiones/03-manifiesto-agil/manifiesto-agil.md)
   - [The Agile Manifesto](lecturas/agile-manifesto.pdf)
+
+<!--
 - S04: [Desarrollo lean](sesiones/04-desarrollo-lean/desarrollo-lean.md)
   - Mary Poppendieck - [Lean Programming](lecturas/mary-poppendieck-lean-programming-2001.pdf)
 - S05: [eXtreme Programming (XP)](sesiones/05-extreme-programming/extreme-programming.md)
