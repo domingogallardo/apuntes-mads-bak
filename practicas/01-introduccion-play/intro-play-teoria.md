@@ -531,7 +531,7 @@ seleccionada.
 <img src="imagenes/tests-intellij.png" width="400px"/>
 
 
-## La aplicación `mads-todolist-inicial` ##
+## Aplicación `mads-todolist-inicial` ##
 
 La aplicación `mads-todolist-inicial` es una versión inicial de la
 aplicación que se va a desarrollar durante todo el cuatrimestre en la
