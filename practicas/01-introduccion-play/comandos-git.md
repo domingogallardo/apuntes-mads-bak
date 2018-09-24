@@ -47,7 +47,7 @@ Al final del documento se incluyen enlaces a apartados del libro [**Pro Git**](h
 
     El área de _stage_ también se llama el _index_. Es muy importante entender su funcionamiento para trabajar con Git. El siguiente dibujo muestra su funcionamiento:
 
-    <img src="imagenes/staging-area.png" width="400px">
+    <img src="https://user-images.githubusercontent.com/847172/45941356-0d34a900-bfde-11e8-9f94-9f320446407d.png">
 
 
 - Hacer un commit de los ficheros en el _stage_:
