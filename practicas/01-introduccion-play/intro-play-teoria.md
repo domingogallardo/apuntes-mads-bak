@@ -629,22 +629,24 @@ Podemos utilizar Docker para poner en marcha un servidor MySQL con el
 siguiente comando:
 
 ```text
-$ docker run -d --rm -p 3316:3306 --name play-mysql -e MYSQL_ROOT_PASSWORD=mads -e MYSQL_DATABASE=mads mysql:5
+$ docker run -d -p 3316:3306 --name play-mysql -e MYSQL_ROOT_PASSWORD=mads -e MYSQL_DATABASE=mads mysql:5
 ```
 
-El puerto del host 3316 se mapea con el puerto 3306. Ponemos el puerto
-3316 para evitar posibles conflictos con un posible servidor de MySQL
-que tengamos funcionando en el host.
+El comando pone en marcha un servidor MySQL escuchando en el puerto
+3316 del host con el nombre docker `play-mysql`, con la contraseña de
+root indicada y creando la base de datos `mads`.
+
+El puerto del host 3316 se mapea con el puerto interno del
+contenedor 3306. Ponemos el puerto 3316 para evitar posibles
+conflictos con un posible servidor de MySQL que tengamos funcionando
+en el host.
 
 **Importante** En los laboratorios de la EPS está instalada la imagen
 5.7.18 de MySQL. Hay que definir explícitamente esa versión en el
 comando docker, escribiendo `mysql:5.7.18`.
 
-El comando pone en marcha un servidor MySQL escuchando en el puerto
-por defecto (3306) con el nombre docker `play-mysql`, con la
-contraseña de root indicada y creando la base de datos `mads`.
-
-Podemos comprobar que el contenedor está funcionando con el comando `docker container ls`:
+Podemos comprobar que el contenedor está funcionando con el comando
+`docker container ls`:
 
 ```text
 $ docker container ls
@@ -652,18 +654,36 @@ CONTAINER ID  IMAGE  COMMAND                  CREATED         STATUS         POR
 7c1bed0b5b7e  mysql  "docker-entrypoint..."   6 seconds ago   Up 4 seconds   0.0.0.0:3316->3306/tcp play-mysql
 ```
 
-El comando `docker container ls` lista los contenedores activos. Con
-la opción `-a` se listarían también los contenedores parados. Podemos
-usar el identificador o el nombre del contenedor para pararlo:
+Para parar y volver a poner en marcha el contenedor mysql puedes usar
+los comandos `docker stop <container-id>` y `docker start
+<container-id>`. Los datos añadidos en la base de datos se mantendrán
+mientras que el contenedor no se borre. El comando `docker container
+ls` lista los contenedores en marcha, y con la opción `-a` también los
+parados.
+   
+```text
+$ docker container ls
+CONTAINER ID        IMAGE                CREATED             STATUS              PORTS                               NAMES
+bd057639b6ac        mysql:5              30 minutes ago      Up 22 minutes       33060/tcp, 0.0.0.0:3316->3306/tcp   play-mysql
+$ docker container stop bd057639b6ac
+$ docker container ls -a
+CONTAINER ID        IMAGE                CREATED             STATUS                     PORTS               NAMES
+bd057639b6ac        mysql:5              31 minutes ago      Exited (0) 7 seconds ago                       play-mysql
+$ docker container start bd057639b6ac
+$ docker container ls
+CONTAINER ID        IMAGE                CREATED             STATUS              PORTS                               NAMES
+bd057639b6ac        mysql:5              32 minutes ago      Up 5 seconds        33060/tcp, 0.0.0.0:3316->3306/tcp   play-mysql
+```
+
+Podemos usar el identificador o el nombre del contenedor para pararlo:
 
 ```text
 $ docker container stop play-mysql
 ```
 
-Una vez parado se borrará automáticamente por haber usado la opción
-`--rm` en su lanzamiento. (en el caso de no usar esta opción tendremos
-que borrarlo nosotros manualmente con el comando `docker container rm
-play-mysql`).
+Para borrar un contenedor debe estar parado y debemos usar el comando
+`docker container rm <container-id>`.
+
 
 ### Ejecución de la aplicación usando la base de datos MySQL ###
 

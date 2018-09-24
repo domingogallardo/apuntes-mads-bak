@@ -488,15 +488,34 @@ $ sudo bin/idea.sh
    Lanza MySQL con Docker:
    
    ```text
-   $ docker run -d --rm -p 3316:3306 --name play-mysql -e MYSQL_ROOT_PASSWORD=mads -e MYSQL_DATABASE=mads mysql:5
+   $ docker run -d -p 3316:3306 --name play-mysql -e MYSQL_ROOT_PASSWORD=mads -e MYSQL_DATABASE=mads mysql:5
    ```
 
    **Importante** En los laboratorios de la EPS está instalada la
    imagen Docker 5.7.18 de MySQL. Hay que definir explícitamente esa versión
    en el comando docker, escribiendo `mysql:5.7.18`.
 
-   Lanza la aplicación con docker, definiendo ahora en variables de
-   entorno la URL, el usuario y la contraseña con la que debe
+   Para parar y volver a poner en marcha el contenedor mysql puedes
+   usar los comandos `docker stop` y `docker start`. Los datos
+   añadidos en la base de datos se mantendrán mientras que el
+   contenedor no se borre. El comando `docker container ls -a` lista
+   todos los contenedores existentes (parados y en marcha):
+   
+   ```text
+   $ docker container ls
+   CONTAINER ID        IMAGE               CREATED             STATUS              PORTS                               NAMES
+   bd057639b6ac        mysql:5             30 minutes ago      Up 22 minutes       33060/tcp, 0.0.0.0:3316->3306/tcp   play-mysql
+   $ docker container stop bd057639b6ac
+   CONTAINER ID        IMAGE               CREATED             STATUS                     PORTS               NAMES
+   bd057639b6ac        mysql:5             31 minutes ago      Exited (0) 7 seconds ago                       play-mysql
+   $ docker container start bd057639b6ac
+   CONTAINER ID        IMAGE               CREATED             STATUS              PORTS                               NAMES
+   bd057639b6ac        mysql:5             32 minutes ago      Up 5 seconds        33060/tcp, 0.0.0.0:3316->3306/tcp   play-mysql
+   ```
+
+   Ahora ya podemos lanzar la aplicación con docker para que trabaje
+   con la base de datos del contenedor, definiendo ahora en variables
+   de entorno la URL, el usuario y la contraseña con la que debe
    conectarse la aplicación a la base de datos. Usamos la opción
    `link` de docker para definir el nombre lógico del contenedor al
    que debe conectarse la aplicación.
