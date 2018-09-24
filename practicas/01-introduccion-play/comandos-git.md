@@ -47,7 +47,7 @@ Al final del documento se incluyen enlaces a apartados del libro [**Pro Git**](h
 
     El área de _stage_ también se llama el _index_. Es muy importante entender su funcionamiento para trabajar con Git. El siguiente dibujo muestra su funcionamiento:
 
-    <img src="https://user-images.githubusercontent.com/847172/45941356-0d34a900-bfde-11e8-9f94-9f320446407d.png">
+    <img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/staging-area.png" width="400px"/>
 
 
 - Hacer un commit de los ficheros en el _stage_:
@@ -114,7 +114,7 @@ móviles. La rama en la que estamos se actualiza de posición cada vez
 que hacemos un nuevo commit. Git mantiene en la referencia `HEAD` la
 rama actual.
 
-<img src="imagenes/ramas.png" width="500px"/>
+<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/ramas.png" width="500px"/>
 
 - Crear una rama nueva:
 
@@ -192,7 +192,7 @@ rama actual.
     Applying: Corregido bug2
     ```
 
-    <img src="imagenes/rebase.png" width="600px">
+    <img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/rebase.png" width="600px">
 
     El comando cambia la historia de la rama: primero la mueve al final de la rama master (_rewind head_) y a partir de ahí aplica los cambios propios de la rama.
 
