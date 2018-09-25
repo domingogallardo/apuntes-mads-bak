@@ -52,7 +52,7 @@ $ git diff
   [_stage_](http://programmers.stackexchange.com/questions/119782/what-does-stage-mean-in-git)
   (añadirlo para el próximo commit):
 
- ```
+```
 $ git add <fichero o directorio>
 ```
 
