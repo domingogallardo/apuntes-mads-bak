@@ -14,7 +14,7 @@ de la asignatura.
 
 ## Prácticas
 
-([Versión HTML de las prácticas](https://domingogallardo.github.io/practicas-mads/) con un índice de contenidos en cada página.)
+([Versión HTML de las prácticas](https://domingogallardo.github.io/practicas-mads/) con un índice de contenidos en cada página)
 
 - Práctica 1 (4 semanas) :
   [Primera aplicación Play Framework Java](practicas/01-introduccion-play/introduccion-play.md). Desarrollo
