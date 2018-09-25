@@ -37,7 +37,7 @@ Scala en IntelliJ.
 Se debe importar el proyecto usando la opción `sbt`, la herramienta de
 build que usa Play. 
 
-<img src="imagenes/import-intellij-1.png" width="400px"/>
+<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/import-intellij-1.png" width="400px"/>
 
 Sbt es una herramienta similar a Maven para Java, es la herramienta que
 se usa para construir proyectos Scala. El fichero de configuración de
