@@ -1,12 +1,4 @@
-# Práctica 1: Primera aplicación Play Framework Java
-
-- [1. Objetivos](#1-objetivos)
-  - [1.1. Aplicación a desarrollar](#11-aplicación-a-desarrollar)
-  - [1.2. Metodología de desarrollo](#12-metodología-de-desarrollo)
-- [2. Entorno para realizar la práctica](#2-entorno-para-realizar-la-práctica)
-- [3. Antes de empezar la práctica](#3-antes-de-empezar-la-práctica)
-- [4. Desarrollo de la práctica](#4-desarrollo-de-la-práctica)
-- [5. Entrega y evaluación](#5-entrega-y-evaluación)
+# Enunciado práctica 1
 
 ## 1. Objetivos
 
@@ -138,15 +130,15 @@ miembros del equipo:
   terminado. Consultar
   [Mastering Issues](https://guides.github.com/features/issues/).
 
-  <img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/github-issues.png" width="400px"/>
+<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/github-issues.png" width="400px"/>
 
-  Definiremos distintos tipos de _issues_ en función de su
-  propósito: _feature_, _bug_ y _technical_.
+Definiremos distintos tipos de _issues_ en función de su
+propósito: _feature_, _bug_ y _technical_.
   
-  <img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/labels-issues.png" width="400px"/>
+<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/labels-issues.png" width="400px"/>
   
-  Cada _issue_ se desarrollará en una rama de Git y se integrará en la
-  rama _master_ haciendo un _pull request_.
+Cada _issue_ se desarrollará en una rama de Git y se integrará en la
+rama _master_ haciendo un _pull request_.
 
 
 - **Pull Requests**: Un _pull request_ permite avisar al equipo de que
@@ -156,29 +148,29 @@ miembros del equipo:
   políticas de aceptación del PR. Consultar
   [About pull requests](https://help.github.com/articles/about-pull-requests/).
   
-  Implementaremos cada _issue_ en una rama separada de git y la
-  integraremos en la rama `master` haciendo un _pull request_. Cuando
-  se mezcle el PR en `master` el _issue_ se cerrará.
+Implementaremos cada _issue_ en una rama separada de git y la
+integraremos en la rama `master` haciendo un _pull request_. Cuando se
+mezcle el PR en `master` el _issue_ se cerrará.
   
-  <img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/github-pr.png" width="700px"/>
+<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/github-pr.png" width="700px"/>
 
-  Más adelante añadiremos otra rama de largo recorrido `releases` para
-  incluir en ella las _releases_ del proyecto.
+Más adelante añadiremos otra rama de largo recorrido `releases` para
+incluir en ella las _releases_ del proyecto.
 
 - **Milestones** y **Releases**: Etiquetaremos cada _issue_ con el
   _milestone_ en el que queremos que se lance. Para identificar el
   _milestone_ usaremos el [versionado semántico](https://semver.org):
   MAJOR.MINOR.PATCH. 
   
-  <img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/github-milestones.png" width="500px"/>
+<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/github-milestones.png" width="500px"/>
   
-  Usaremos la funcionalidad de GitHub _Releases_ para etiquetar los
-  commits en los que queramos marcar una versión nueva del
-  proyecto. Podemos añadir información sobre las novedades de la versión
-  (normalmente serán enlaces a los _issues_ y _pull requests_ de ese
-  _milestone_).
+Usaremos la funcionalidad de GitHub _Releases_ para etiquetar los
+commits en los que queramos marcar una versión nueva del
+proyecto. Podemos añadir información sobre las novedades de la versión
+(normalmente serán enlaces a los _issues_ y _pull requests_ de ese
+_milestone_).
   
-  <img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/github-releases.png" width="400px"/>
+<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/github-releases.png" width="400px"/>
 
 - **Tablero de proyecto**: Un tablero de proyecto nos ayudará a hacer
   un seguimiento de en qué estado se encuentra cada _issue_ o PR:
@@ -187,7 +179,7 @@ miembros del equipo:
   de GitHub llamada _Projects_. Consultar
   [project boards](https://help.github.com/articles/tracking-the-progress-of-your-work-with-project-boards/).
 
-  <img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/github-tablero.png" width="700px"/>
+<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/github-tablero.png" width="700px"/>
   
   
 - **Wiki**: Por último, GitHub ofrece una wiki en que utilizaremos
@@ -195,11 +187,11 @@ miembros del equipo:
   funcionalidades o historias de usuario) a implementar. Consultar
   [documenting your projects on GitHub](https://guides.github.com/features/wikis/).
 
-  La documentación en la Wiki, en los _issues_, en los PRs y en el
-  propio `README.md` del proyecto hay que escribirla en **Markdown**,
-  un lenguaje de marcado muy popular y sencillo de dominar. Si no has
-  trabajado todavía con él puedes leer estas
-  [guías de GitHub](https://help.github.com/categories/writing-on-github/).
+La documentación en la Wiki, en los _issues_, en los PRs y en el
+propio `README.md` del proyecto hay que escribirla en **Markdown**, un
+lenguaje de marcado muy popular y sencillo de dominar. Si no has
+trabajado todavía con él puedes leer estas [guías de
+GitHub](https://help.github.com/categories/writing-on-github/).
 
 Existen herramientas y servicios más avanzados para gestionar todos
 estos elementos del desarrollo. Por ejemplo [Jira](https://www.atlassian.com/software/jira),
@@ -320,20 +312,20 @@ Recomendamos trabajar con tres pestañas de terminal abiertas en el editor:
   comando docker para lanzar la aplicación usando la base de datos
   MySQL.
 
-   ```text
-   $ docker run --link play-mysql --rm -it -p 9000:9000 -e \
-   DB_URL="jdbc:mysql://play-mysql:3306/mads" -e DB_USER_NAME="root" -e \
-   DB_USER_PASSWD="mads" -v "${PWD}:/code" domingogallardo/playframework
-   ```
+```text
+$ docker run --link play-mysql --rm -it -p 9000:9000 -e \
+DB_URL="jdbc:mysql://play-mysql:3306/mads" -e DB_USER_NAME="root" -e \
+DB_USER_PASSWD="mads" -v "${PWD}:/code" domingogallardo/playframework
+```
 
-   Y desde la consola sbt modificamos la preferencia `config.file`
-   para que la aplicación utilice la configuración definida en el
-   fichero `conf/develop-mysql.conf` 
+Y desde la consola sbt modificamos la preferencia `config.file` para
+que la aplicación utilice la configuración definida en el fichero
+`conf/develop-mysql.conf`
 
-   ```text
-   [mads-todolist-dgallardo] $ set javaOptions += "-Dconfig.file=conf/develop-mysql.conf"
-   [mads-todolist-dgallardo] $ run
-   ```
+```text
+[mads-todolist-dgallardo] $ set javaOptions += "-Dconfig.file=conf/develop-mysql.conf"
+[mads-todolist-dgallardo] $ run
+```
   
 - **Terminal 2**: **pruebas automáticas** sobre la base de datos de
   memoria. Lanzamos en el shell el comando docker para lanzar sbt.
@@ -341,20 +333,20 @@ Recomendamos trabajar con tres pestañas de terminal abiertas en el editor:
   a usar el contenedor para lanzar los tests:
 
 
-   ```text
-   $ docker run --rm  -it -v "${PWD}:/code" domingogallardo/playframework
-   [mads-todolist-dgallardo] $ test
-   ```
+```text
+$ docker run --rm  -it -v "${PWD}:/code" domingogallardo/playframework
+[mads-todolist-dgallardo] $ test
+```
 
 - **Terminal 3**: shell en el que usaremos git:
 
-   ```text
-   $ git status
-   On branch master
-   Your branch is up to date with 'origin/master'.
+```text
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
 
-   nothing to commit, working tree clean
-   ```
+nothing to commit, working tree clean
+```
 
 
 #### Configuración de trabajo usando IntelliJ ####
@@ -375,12 +367,12 @@ Recomendamos la siguiente configuración:
   comentado anteriormente, no es necesario mapear el puerto 9000
   porque el contenedor sólo se va a usar para lanzar los tests:
   
-   ```text
-   $ docker run --rm  -it -v "${PWD}:/code" domingogallardo/playframework
-   [mads-todolist-dgallardo] $ 
-   ```
+```text
+$ docker run --rm  -it -v "${PWD}:/code" domingogallardo/playframework
+[mads-todolist-dgallardo] $ 
+```
 
-   Y se lanza el comando `test`.
+Y se lanza el comando `test`.
 
 - **Shell de git**: es recomendable tener abierta una ventana de
   terminal adicional para trabajar con git.
@@ -408,20 +400,20 @@ $ sudo bin/idea.sh
    usuario será el nombre que aparecerá en los _commits_. Pon tu nombre
    y apellido.
    
-   ```text
-   $ git config --global user.name "Pepe Perez"
-   $ git config --global user.email pepe.perez@example.com<
-   ```
+```text
+$ git config --global user.name "Pepe Perez"
+$ git config --global user.email pepe.perez@example.com<
+```
 
 3. Descarga la imagen de Docker para poder compilar y ejecutar los
    proyectos Play:
 
-   ```text
-   $ docker pull domingogallardo/playframework
-   $ docker image ls
-   REPOSITORY                      TAG                 IMAGE ID            CREATED             SIZE
-   domingogallardo/playframework   latest              95c1eb17ecb4        5 weeks ago         530MB
-   ```
+```text
+$ docker pull domingogallardo/playframework
+$ docker image ls
+REPOSITORY                      TAG                 IMAGE ID            CREATED             SIZE
+domingogallardo/playframework   latest              95c1eb17ecb4        5 weeks ago         530MB
+```
 
 4. Crea una cuenta en GitHub. Puedes usar el nombre de usuario que
    quieras (o usar el que ya tienes), pero **escribe correctamente tu
@@ -438,139 +430,139 @@ $ sudo bin/idea.sh
    [domingogallardo/mads-todolist-inicial](https://github.com/domingogallardo/mads-todolist-inicial))
    en la que se han comprimido todos los commits en uno.
 
-   Es importante que tengas en cuenta que el repositorio recién creado
-   no reside en tu cuenta, sino en la organización `mads-ua`. Puedes
-   acceder a él desde el _dashboard_ de GitHub que aparece cuando te
-   logeas:
+Es importante que tengas en cuenta que el repositorio recién creado no
+reside en tu cuenta, sino en la organización `mads-ua`. Puedes acceder
+a él desde el _dashboard_ de GitHub que aparece cuando te logeas:
    
-   <img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/dashboard-github.png" width="600px"/>
+<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/dashboard-github.png" width="600px"/>
 
-   También el profesor te invitará a formar parte de la organización y
-   recibirás un mensaje de correo electrónico en el que deberás
-   aceptar esta invitación. También se puede aceptar la invitación
-   accediendo a <https://github.com/mads-ua-18>.
+También el profesor te invitará a formar parte de la organización y
+recibirás un mensaje de correo electrónico en el que deberás aceptar
+esta invitación. También se puede aceptar la invitación accediendo a
+<https://github.com/mads-ua-18>.
    
 6. Descarga el proyecto y comprueba que se compila y ejecuta
    correctamente con la imagen de Docker y usando la base de datos de
    memoria (muy útil para pruebas y lanzar los tests).
    
-   ```text 
-   $ git clone https://github.com/mads-ua/todolist-2018-usuario.git
-   $ cd todolist-2018-usuario
-   $ docker run --rm  -it -v "${PWD}:/code" -p 9000:9000 domingogallardo/playframework
-   [info] Loading project definition from /code/project
-   [info] Updating {file:/code/project/}code-build...
-   [info] Resolving org.fusesource.jansi#jansi;1.4 ...
-   [info] Done updating.
-   [info] Set current project to play-java (in build file:/code/)
-   [mads-todolist-inicial] $ test
-   ...
-   [info] Passed: Total 35, Failed 0, Errors 0, Passed 35
-   [success] Total time: 35 s, completed Sep 4, 2018 9:34:04 AM
-   [mads-todolist-inicial] $ run
-   ```
+```text 
+$ git clone https://github.com/mads-ua/todolist-2018-usuario.git
+$ cd todolist-2018-usuario
+$ docker run --rm  -it -v "${PWD}:/code" -p 9000:9000 domingogallardo/playframework
+[info] Loading project definition from /code/project
+[info] Updating {file:/code/project/}code-build...
+[info] Resolving org.fusesource.jansi#jansi;1.4 ...
+[info] Done updating.
+[info] Set current project to play-java (in build file:/code/)
+[mads-todolist-inicial] $ test
+...
+[info] Passed: Total 35, Failed 0, Errors 0, Passed 35
+[success] Total time: 35 s, completed Sep 4, 2018 9:34:04 AM
+[mads-todolist-inicial] $ run
+```
    
-   Comprueba que la aplicación está funcionando en <http://localhost:9000>
-   en la máquina host.
+Comprueba que la aplicación está funcionando en
+<http://localhost:9000> en la máquina host.
    
-   <img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/login.png" width="600px"/>
+<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/login.png" width="600px"/>
+ 
+Para salir del comando `run` de `sbt` debemos hacer `CTRL+d`. Podemos
+lanzar cualquier otro comando de sbt (consultar
+[Using the SBT console](https://playframework.com/documentation/2.5.x/PlayConsole).  
    
-   Para salir del comando `run` de `sbt` debemos hacer `CTRL+d`. Podemos
-   lanzar cualquier otro comando de sbt (consultar
-   [Using the SBT console](https://playframework.com/documentation/2.5.x/PlayConsole).  
-   
-   Para salir del contenedor podemos escribir el comando `exit` o hacer `CTRL+c`.
+Para salir del contenedor podemos escribir el comando `exit` o hacer `CTRL+c`.
 
 7. Prueba que la aplicación funciona correctamente trabajando con la
    base de datos MySQL (el funcionamiento real de la aplicación y para
    hacer pruebas de integración).
 
-   Lanza MySQL con Docker:
+Lanza MySQL con Docker:
    
-   ```text
-   $ docker run -d -p 3316:3306 --name play-mysql -e MYSQL_ROOT_PASSWORD=mads -e MYSQL_DATABASE=mads mysql:5
-   ```
+```text
+$ docker run -d -p 3316:3306 --name play-mysql -e MYSQL_ROOT_PASSWORD=mads -e MYSQL_DATABASE=mads mysql:5
+```
 
-   **Importante** En los laboratorios de la EPS está instalada la
+!!! Importante
+
+   En los laboratorios de la EPS está instalada la
    imagen Docker 5.7.18 de MySQL. Hay que definir explícitamente esa versión
    en el comando docker, escribiendo `mysql:5.7.18`.
 
-   Para parar y volver a poner en marcha el contenedor mysql puedes
-   usar los comandos `docker stop` y `docker start`. Los datos
-   añadidos en la base de datos se mantendrán mientras que el
-   contenedor no se borre. El comando `docker container ls -a` lista
-   todos los contenedores existentes (parados y en marcha):
+Para parar y volver a poner en marcha el contenedor mysql puedes
+usar los comandos `docker stop` y `docker start`. Los datos
+añadidos en la base de datos se mantendrán mientras que el
+contenedor no se borre. El comando `docker container ls -a` lista
+todos los contenedores existentes (parados y en marcha):
    
-   ```text
-   $ docker container ls
-   CONTAINER ID        IMAGE               CREATED             STATUS              PORTS                               NAMES
-   bd057639b6ac        mysql:5             30 minutes ago      Up 22 minutes       33060/tcp, 0.0.0.0:3316->3306/tcp   play-mysql
-   $ docker container stop bd057639b6ac
-   CONTAINER ID        IMAGE               CREATED             STATUS                     PORTS               NAMES
-   bd057639b6ac        mysql:5             31 minutes ago      Exited (0) 7 seconds ago                       play-mysql
-   $ docker container start bd057639b6ac
-   CONTAINER ID        IMAGE               CREATED             STATUS              PORTS                               NAMES
-   bd057639b6ac        mysql:5             32 minutes ago      Up 5 seconds        33060/tcp, 0.0.0.0:3316->3306/tcp   play-mysql
-   ```
+```text
+$ docker container ls
+CONTAINER ID        IMAGE               CREATED             STATUS              PORTS                               NAMES
+bd057639b6ac        mysql:5             30 minutes ago      Up 22 minutes       33060/tcp, 0.0.0.0:3316->3306/tcp   play-mysql
+$ docker container stop bd057639b6ac
+CONTAINER ID        IMAGE               CREATED             STATUS                     PORTS               NAMES
+bd057639b6ac        mysql:5             31 minutes ago      Exited (0) 7 seconds ago                       play-mysql
+$ docker container start bd057639b6ac
+CONTAINER ID        IMAGE               CREATED             STATUS              PORTS                               NAMES
+bd057639b6ac        mysql:5             32 minutes ago      Up 5 seconds        33060/tcp, 0.0.0.0:3316->3306/tcp   play-mysql
+```
 
-   Ahora ya podemos lanzar la aplicación con docker para que trabaje
-   con la base de datos del contenedor, definiendo ahora en variables
-   de entorno la URL, el usuario y la contraseña con la que debe
-   conectarse la aplicación a la base de datos. Usamos la opción
-   `link` de docker para definir el nombre lógico del contenedor al
-   que debe conectarse la aplicación.
+Ahora ya podemos lanzar la aplicación con docker para que trabaje con
+la base de datos del contenedor, definiendo ahora en variables de
+entorno la URL, el usuario y la contraseña con la que debe conectarse
+la aplicación a la base de datos. Usamos la opción `link` de docker
+para definir el nombre lógico del contenedor al que debe conectarse la
+aplicación.
 
-   ```text
-   $ docker run --link play-mysql --rm -it -p 9000:9000 -e \
-   DB_URL="jdbc:mysql://play-mysql:3306/mads" -e DB_USER_NAME="root" -e \
-   DB_USER_PASSWD="mads" -v "${PWD}:/code" domingogallardo/playframework
-   ```
+```text
+$ docker run --link play-mysql --rm -it -p 9000:9000 -e \
+DB_URL="jdbc:mysql://play-mysql:3306/mads" -e DB_USER_NAME="root" -e \
+DB_USER_PASSWD="mads" -v "${PWD}:/code" domingogallardo/playframework
+```
 
-   Y desde la consola sbt modificamos la preferencia `config.file`
-   para que la aplicación utilice la configuración definida en el
-   fichero `conf/develop-mysql.conf`.
+Y desde la consola sbt modificamos la preferencia `config.file` para
+que la aplicación utilice la configuración definida en el fichero
+`conf/develop-mysql.conf`.
 
-   ```text
-   [mads-todolist-inicial] $ set javaOptions += "-Dconfig.file=conf/develop-mysql.conf"
-   [mads-todolist-inicial] $ run
-   ```
+```text
+[mads-todolist-inicial] $ set javaOptions += "-Dconfig.file=conf/develop-mysql.conf"
+[mads-todolist-inicial] $ run
+```
 
-   Prueba que la aplicación funciona correctamente. Puedes comprobar
-   las tablas y los datos almacenados en la base de datos conectándote
-   a la base de datos en el puerto 3316 desde cualquier cliente
-   MySQL:
+Prueba que la aplicación funciona correctamente. Puedes comprobar las
+tablas y los datos almacenados en la base de datos conectándote a la
+base de datos en el puerto 3316 desde cualquier cliente MySQL:
    
-   - En los laboratorios de la EPS, usando _MySQL Workbench_. 
-   - En IntelliJ IDEA puedes usar la consola MySQL:
+- En los laboratorios de la EPS, usando _MySQL Workbench_. 
+- En IntelliJ IDEA puedes usar la consola MySQL:
    
-   <img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/conexionbd-intellij.png" width="500px"/>
+<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/conexionbd-intellij.png" width="500px"/>
 
-   Es posible examinar el esquema de la base de datos:
+Es posible examinar el esquema de la base de datos:
 
-   <img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/esquema-bd.png" width="300px"/>
+<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/esquema-bd.png" width="300px"/>
 
-   Y examinar tablas en concreto:
+Y examinar tablas en concreto:
 
-   <img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/tablabd-intellij.png" width="300px"/>
+<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/tablabd-intellij.png" width="300px"/>
 
 8. Con todo lo hecho hasta ahora ya hemos comprobado que la aplicación
    se compila correctamente y se ejecuta sin problema en las dos
    configuraciones más importantes con las que trabajaremos: base de
    datos en memoria y base de datos MySQL.
 
-   Para el desarrollo de la práctica que viene a continuación es
-   fundamental que entiendas el funcionamiento de Play Framework. Lo
-   explicaremos rápidamente en la clase de teoría usando el documento
-   [introducción a Play Framework para las prácticas de
-   MADS](./intro-play-teoria.md). Pero es imprescindible que hagas tú
-   un esfuerzo descargando, probando y modificando las dos
-   aplicaciones: `domingogallardo/play-proyecto-inicial` y
-   `domingogallardo/mads-todolist-inicial` (es la aplicación que se ha
-   copiado en tu repositorio).
+Para el desarrollo de la práctica que viene a continuación es
+fundamental que entiendas el funcionamiento de Play Framework. Lo
+explicaremos rápidamente en la clase de teoría usando el documento
+[introducción a Play Framework para las prácticas de
+MADS](./intro-play-teoria.md). Pero es imprescindible que hagas tú un
+esfuerzo descargando, probando y modificando las dos aplicaciones:
+`domingogallardo/play-proyecto-inicial` y
+`domingogallardo/mads-todolist-inicial` (es la aplicación que se ha
+copiado en tu repositorio).
    
-   Puedes trabajar en estos proyectos sin miedo de estropearlos. Es
-   más, cuanto más los estropees mejor, porque es la forma de
-   aprender. No deberás entregar nada de estos proyectos.
+Puedes trabajar en estos proyectos sin miedo de estropearlos. Es más,
+cuanto más los estropees mejor, porque es la forma de aprender. No
+deberás entregar nada de estos proyectos.
 
 ## 4. Desarrollo de la práctica
 
