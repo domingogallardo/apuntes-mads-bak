@@ -14,7 +14,7 @@ de la asignatura.
 
 ## Prácticas
 
-- Práctica 1 (4 semanas):
+- Práctica 1 (4 semanas) :
   [Primera aplicación Play Framework Java](practicas/01-introduccion-play/introduccion-play.md). Desarrollo
   de la versión 1.1.0 del proyecto. Play Framework en Java, Git y GitHub (incluyendo _issues_, _pull
   requests_, wiki y tablero de proyecto. Se debe leer la [Introducción
