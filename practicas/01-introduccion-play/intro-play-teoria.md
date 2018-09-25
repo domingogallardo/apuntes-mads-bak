@@ -49,7 +49,7 @@ JDK. Nos aseguramos de que aparece en el panel de importación. Si no,
 seleccionamos el directorio donde se encuentra la versión del JDK que
 vamos a utilizar.
 
-<img src="imagenes/import-intellij-2.png" width="400px"/>
+<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/import-intellij-2.png" width="400px"/>
 
 Es conveniente activar la auto-importación del proyecto sbt. De esta
 forma, si IntelliJ detecta algún cambio en la configuración sbt
