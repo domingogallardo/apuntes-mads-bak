@@ -49,28 +49,28 @@ JDK. Nos aseguramos de que aparece en el panel de importación. Si no,
 seleccionamos el directorio donde se encuentra la versión del JDK que
 vamos a utilizar.
 
-<img src="imagenes/import-intellij-2.png" width="400px"/>
+<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/import-intellij-2.png" width="400px"/>
 
 Es conveniente activar la auto-importación del proyecto sbt. De esta
 forma, si IntelliJ detecta algún cambio en la configuración sbt
 realiza la importación de forma automática.
 
-<img src="imagenes/sbt-enable-auto-import.png" width="300px"/>
+<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/sbt-enable-auto-import.png" width="300px"/>
 
 Si se pincha en el icono de la esquina inferior izquierda de la
 ventana de IntelliJ podremos activar o desactivar la visualización de
 los nombres de los paneles en los bordes de la ventana. 
 
-<img src="imagenes/mostrar-nombre-paneles.png" width="80px"/>
+<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/mostrar-nombre-paneles.png" width="80px"/>
 
 Es recomendable dejarlos visibles.
 
-<img src="imagenes/bordes-con-nombres-paneles.png" width="400px"/>
+<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/bordes-con-nombres-paneles.png" width="400px"/>
 
 Utilizaremos el panel `Terminal` para trabajar con `sbt` y con
 `git`. Es recomendable abrir dos tabs, uno para cada cosa. 
 
-<img src="imagenes/terminal.png" width="500px"/>
+<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/terminal.png" width="500px"/>
 
 
 ### Uso de Visual Studio Code para trabajar con la aplicación Play ###
@@ -83,7 +83,7 @@ la opción _Ver > Terminal integrado_. En ese terminal lanzaremos el
 comando Docker para trabajar con `sbt`. Puedes abrir otro terminal
 pulsando en el símbolo `+` para trabajar con Git.
 
-<img src="imagenes/visual-studio-code.png" width="700px"/>
+<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/visual-studio-code.png" width="700px"/>
 
 ### Lanzar la aplicación Play ###
 
@@ -128,7 +128,7 @@ contenedor y se elimina el contenedor de Docker.
 También es posible arrancar el shell de `sbt` en un panel propio que
 proporciona IntelliJ.
 
-<img src="imagenes/sbt-shell.png" width="400px"/>
+<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/sbt-shell.png" width="400px"/>
 
 Cuando lo ejecutamos por primera vez se descargan todas las librerías
 necesarias. 
@@ -139,13 +139,13 @@ También podemos crear una configuración de ejecución de IntelliJ con
 la que podremos ejecutar y depurar los proyectos con la opción _Run >
 Edit Configurations.._.
 
-<img src="imagenes/run-debug-configuration.png" width="400px"/>
+<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/run-debug-configuration.png" width="400px"/>
 
 Una vez creada la configuración podremos seleccionarla y realizar una
 ejecución o una depuración de la aplicación pulsando los botones
 correspondientes en la parte superior de la ventana de IntelliJ.
 
-<img src="imagenes/botones-run-debug.png" width="200px"/>
+<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/botones-run-debug.png" width="200px"/>
 
 
 ### Fichero routes ###
@@ -322,7 +322,7 @@ el mensaje, que se pinta en la parte superior de la página.
 
 La página HTML resultante mostrada en el navegador es la siguiente:
 
-<img src="imagenes/vista-main.png" width="500px"/>
+<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/vista-main.png" width="500px"/>
 
 La directiva `@defining` permite obtener un valor y
 asignárselo a una variable que se utiliza en un bloque de código. En
@@ -528,7 +528,7 @@ También es posible lanzar los tests desde el entorno IntelliJ pulsando
 con el botón derecho la opción `Run` sobre la clase de test
 seleccionada.
 
-<img src="imagenes/tests-intellij.png" width="400px"/>
+<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/tests-intellij.png" width="400px"/>
 
 
 ## Aplicación `mads-todolist-inicial` ##
@@ -567,7 +567,7 @@ A continuación se muestran dos de sus pantallas.
 
 <table>
 <tr>
-<td><img src="imagenes/login.png" width="700px"/></td>
+<td><img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/login.png" width="700px"/></td>
 </tr>
 <tr>
 <td align="center"> Pantalla de login </td>
@@ -576,7 +576,7 @@ A continuación se muestran dos de sus pantallas.
 
 <table>
 <tr>
-<td><img src="imagenes/tareas.png" width="700px"/></td>
+<td><img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/tareas.png" width="700px"/></td>
 </tr>
 <tr>
 <td align="center"> Pantalla con listado de tareas </td>
@@ -718,9 +718,9 @@ de entorno para conectarse con la base de datos, en el puerto del host
 en el que está escuchando (3331, si hemos lanzado el servicio de base
 de datos usando Docker como hemos visto anteriormente):
 
-<img src="imagenes/bdexterna-intellij.png" width="600px"/>
+<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/bdexterna-intellij.png" width="600px"/>
 
-<img src="imagenes/variables-entorno-intellij.png" width="300px"/>
+<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/variables-entorno-intellij.png" width="300px"/>
 
 **Cuidado**: Si estás lanzando MySQL usando _Docker Toolbox_ debes
 modificar la `DB_URL` indicando el _host_ al que conectarse (no será
@@ -737,7 +737,7 @@ verificar cómo se guardan los datos de la aplicación.
 Hay que añadir una base de datos de tipo MySQL y configurarla con los
 siguientes parámetros:
 
-<img src="imagenes/conexionbd-intellij.png" width="500px"/>
+<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/conexionbd-intellij.png" width="500px"/>
 
 **Cuidado**: Igual que en el apartado anterior, si estás lanzando
 MySQL usando _Docker Toolbox_ debes indicar el _host_ al que
@@ -746,11 +746,11 @@ aparece en la consola de docker al arrancar.
 
 Es posible examinar el esquema de la base de datos:
 
-<img src="imagenes/esquema-bd.png" width="300px"/>
+<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/esquema-bd.png" width="300px"/>
 
 Y examinar tablas en concreto:
 
-<img src="imagenes/tablabd-intellij.png" width="300px"/>
+<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/tablabd-intellij.png" width="300px"/>
 
 
 ### Configuración de la aplicación ###
