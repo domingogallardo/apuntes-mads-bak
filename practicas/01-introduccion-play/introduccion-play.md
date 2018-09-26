@@ -315,20 +315,16 @@ Recomendamos trabajar con tres pestañas de terminal abiertas en el editor:
   comando docker para lanzar la aplicación usando la base de datos
   MySQL.
 
-        ```text
         $ docker run --link play-mysql --rm -it -p 9000:9000 -e \
         DB_URL="jdbc:mysql://play-mysql:3306/mads" -e DB_USER_NAME="root" -e \
         DB_USER_PASSWD="mads" -v "${PWD}:/code" domingogallardo/playframework
-        ```
 
 Y desde la consola sbt modificamos la preferencia `config.file` para
 que la aplicación utilice la configuración definida en el fichero
 `conf/develop-mysql.conf`
 
-        ```text
         [mads-todolist-dgallardo] $ set javaOptions += "-Dconfig.file=conf/develop-mysql.conf"
         [mads-todolist-dgallardo] $ run
-        ```
   
 - **Terminal 2**: **pruebas automáticas** sobre la base de datos de
   memoria. Lanzamos en el shell el comando docker para lanzar sbt.
@@ -336,20 +332,16 @@ que la aplicación utilice la configuración definida en el fichero
   a usar el contenedor para lanzar los tests:
 
 
-        ```text
         $ docker run --rm  -it -v "${PWD}:/code" domingogallardo/playframework
         [mads-todolist-dgallardo] $ test
-        ```
 
 - **Terminal 3**: shell en el que usaremos git:
 
-        ```text
         $ git status
         On branch master
         Your branch is up to date with 'origin/master'.
 
         nothing to commit, working tree clean
-        ```
 
 
 #### Configuración de trabajo usando IntelliJ ####
@@ -370,10 +362,8 @@ Recomendamos la siguiente configuración:
   comentado anteriormente, no es necesario mapear el puerto 9000
   porque el contenedor sólo se va a usar para lanzar los tests:
   
-        ```text
         $ docker run --rm  -it -v "${PWD}:/code" domingogallardo/playframework
         [mads-todolist-dgallardo] $ 
-        ```
 
     Y se lanza el comando `test`.
 
@@ -391,13 +381,9 @@ Recomendamos la siguiente configuración:
 
     Para que funcione correctamente la compilación desde IntelliJ
     debemos eliminar esos directorios y hacer que sea IntelliJ quien
-    los cree. Por ejemplo, podemos borrarlos a mano:
-    
-    ```text
-    $ sudo rm -rf logs
-    $ sudo rm -rf target
-    ```
-    
+    los cree. Por ejemplo, podemos borrarlos a mano con `$ sudo rm
+    -rf logs` y `$ sudo rm -rf target`.
+
     O podemos volver a descargar el proyecto de GitHub y compilarlo
     por primera vez con IntelliJ.
 
@@ -410,20 +396,16 @@ Recomendamos la siguiente configuración:
    usuario será el nombre que aparecerá en los _commits_. Pon tu nombre
    y apellido.
    
-        ```text
         $ git config --global user.name "Pepe Perez"
         $ git config --global user.email pepe.perez@example.com<
-        ```
 
 3. Descarga la imagen de Docker para poder compilar y ejecutar los
    proyectos Play:
 
-        ```text
         $ docker pull domingogallardo/playframework
         $ docker image ls
         REPOSITORY                      TAG                 IMAGE ID            CREATED             SIZE
         domingogallardo/playframework   latest              95c1eb17ecb4        5 weeks ago         530MB
-        ```
 
 4. Crea una cuenta en GitHub. Puedes usar el nombre de usuario que
    quieras (o usar el que ya tienes), pero **escribe correctamente tu
@@ -456,7 +438,6 @@ Recomendamos la siguiente configuración:
    correctamente con la imagen de Docker y usando la base de datos de
    memoria (muy útil para pruebas y lanzar los tests).
    
-        ```text 
         $ git clone https://github.com/mads-ua/todolist-2018-usuario.git
         $ cd todolist-2018-usuario
         $ docker run --rm  -it -v "${PWD}:/code" -p 9000:9000 domingogallardo/playframework
@@ -470,7 +451,6 @@ Recomendamos la siguiente configuración:
         [info] Passed: Total 35, Failed 0, Errors 0, Passed 35
         [success] Total time: 35 s, completed Sep 4, 2018 9:34:04 AM
         [mads-todolist-inicial] $ run
-        ```
    
     Comprueba que la aplicación está funcionando en
     <http://localhost:9000> en la máquina host.
@@ -489,9 +469,7 @@ Recomendamos la siguiente configuración:
 
     Lanza MySQL con Docker:
    
-        ```text
         $ docker run -d -p 3316:3306 --name play-mysql -e MYSQL_ROOT_PASSWORD=mads -e MYSQL_DATABASE=mads mysql:5
-        ```
 
     !!! Warning "Importante"
 
@@ -505,7 +483,6 @@ Recomendamos la siguiente configuración:
     contenedor no se borre. El comando `docker container ls -a` lista
     todos los contenedores existentes (parados y en marcha):
    
-        ```text
         $ docker container ls
         CONTAINER ID        IMAGE               CREATED             STATUS              PORTS                               NAMES
         bd057639b6ac        mysql:5             30 minutes ago      Up 22 minutes       33060/tcp, 0.0.0.0:3316->3306/tcp   play-mysql
@@ -515,7 +492,6 @@ Recomendamos la siguiente configuración:
         $ docker container start bd057639b6ac
         CONTAINER ID        IMAGE               CREATED             STATUS              PORTS                               NAMES
         bd057639b6ac        mysql:5             32 minutes ago      Up 5 seconds        33060/tcp, 0.0.0.0:3316->3306/tcp   play-mysql
-        ```
 
     Ahora ya podemos lanzar la aplicación con docker para que trabaje
     con la base de datos del contenedor, definiendo ahora en variables
@@ -524,20 +500,16 @@ Recomendamos la siguiente configuración:
     `link` de docker para definir el nombre lógico del contenedor al
     que debe conectarse la aplicación.
 
-        ```text
         $ docker run --link play-mysql --rm -it -p 9000:9000 -e \
         DB_URL="jdbc:mysql://play-mysql:3306/mads" -e DB_USER_NAME="root" -e \
         DB_USER_PASSWD="mads" -v "${PWD}:/code" domingogallardo/playframework
-        ```
 
     Y desde la consola sbt modificamos la preferencia `config.file`
     para que la aplicación utilice la configuración definida en el
     fichero `conf/develop-mysql.conf`.
 
-        ```text
         [mads-todolist-inicial] $ set javaOptions += "-Dconfig.file=conf/develop-mysql.conf"
         [mads-todolist-inicial] $ run
-        ```
 
     Prueba que la aplicación funciona correctamente. Puedes comprobar
     las tablas y los datos almacenados en la base de datos
