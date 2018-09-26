@@ -641,9 +641,11 @@ contenedor 3306. Ponemos el puerto 3316 para evitar posibles
 conflictos con un posible servidor de MySQL que tengamos funcionando
 en el host.
 
-**Importante** En los laboratorios de la EPS está instalada la imagen
-5.7.18 de MySQL. Hay que definir explícitamente esa versión en el
-comando docker, escribiendo `mysql:5.7.18`.
+!!! Warning "Cuidado"
+
+    En los laboratorios de la EPS está instalada la imagen
+    5.7.18 de MySQL. Hay que definir explícitamente esa versión en el
+    comando docker, escribiendo `mysql:5.7.18`.
 
 Podemos comprobar que el contenedor está funcionando con el comando
 `docker container ls`:
@@ -682,7 +684,10 @@ $ docker container stop play-mysql
 ```
 
 Para borrar un contenedor debe estar parado y debemos usar el comando
-`docker container rm <container-id>`.
+
+```text
+docker container rm <container-id> o <container-name>
+```
 
 
 ### Ejecución de la aplicación usando la base de datos MySQL ###
@@ -722,10 +727,12 @@ de datos usando Docker como hemos visto anteriormente):
 
 <img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/variables-entorno-intellij.png" width="300px"/>
 
-**Cuidado**: Si estás lanzando MySQL usando _Docker Toolbox_ debes
-modificar la `DB_URL` indicando el _host_ al que conectarse (no será
-_localhost_). La dirección IP será la que aparece en la consola de
-docker al arrancar. Por ejemplo `jdbd:mysql://192.168.99.100/mads`.
+!!! Warning "Cuidado"
+
+    Si estás lanzando MySQL usando _Docker Toolbox_ debes
+    modificar la `DB_URL` indicando el _host_ al que conectarse (no será
+    _localhost_). La dirección IP será la que aparece en la consola de
+    docker al arrancar. Por ejemplo `jdbd:mysql://192.168.99.100/mads`.
 
 
 ### Panel `Database` de IntelliJ ###
@@ -739,10 +746,12 @@ siguientes parámetros:
 
 <img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/01-introduccion-play/imagenes/conexionbd-intellij.png" width="500px"/>
 
-**Cuidado**: Igual que en el apartado anterior, si estás lanzando
-MySQL usando _Docker Toolbox_ debes indicar el _host_ al que
-conectarse (no será _localhost_) escribiendo la dirección IP que
-aparece en la consola de docker al arrancar. 
+!!! Warning "Cuidado"
+
+    Igual que en el apartado anterior, si estás lanzando
+    MySQL usando _Docker Toolbox_ debes indicar el _host_ al que
+    conectarse (no será _localhost_) escribiendo la dirección IP que
+    aparece en la consola de docker al arrancar. 
 
 Es posible examinar el esquema de la base de datos:
 

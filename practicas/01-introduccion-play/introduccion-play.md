@@ -315,20 +315,20 @@ Recomendamos trabajar con tres pestañas de terminal abiertas en el editor:
   comando docker para lanzar la aplicación usando la base de datos
   MySQL.
 
-```text
-$ docker run --link play-mysql --rm -it -p 9000:9000 -e \
-DB_URL="jdbc:mysql://play-mysql:3306/mads" -e DB_USER_NAME="root" -e \
-DB_USER_PASSWD="mads" -v "${PWD}:/code" domingogallardo/playframework
-```
+        ```text
+        $ docker run --link play-mysql --rm -it -p 9000:9000 -e \
+        DB_URL="jdbc:mysql://play-mysql:3306/mads" -e DB_USER_NAME="root" -e \
+        DB_USER_PASSWD="mads" -v "${PWD}:/code" domingogallardo/playframework
+        ```
 
 Y desde la consola sbt modificamos la preferencia `config.file` para
 que la aplicación utilice la configuración definida en el fichero
 `conf/develop-mysql.conf`
 
-```text
-[mads-todolist-dgallardo] $ set javaOptions += "-Dconfig.file=conf/develop-mysql.conf"
-[mads-todolist-dgallardo] $ run
-```
+        ```text
+        [mads-todolist-dgallardo] $ set javaOptions += "-Dconfig.file=conf/develop-mysql.conf"
+        [mads-todolist-dgallardo] $ run
+        ```
   
 - **Terminal 2**: **pruebas automáticas** sobre la base de datos de
   memoria. Lanzamos en el shell el comando docker para lanzar sbt.
@@ -336,20 +336,20 @@ que la aplicación utilice la configuración definida en el fichero
   a usar el contenedor para lanzar los tests:
 
 
-```text
-$ docker run --rm  -it -v "${PWD}:/code" domingogallardo/playframework
-[mads-todolist-dgallardo] $ test
-```
+        ```text
+        $ docker run --rm  -it -v "${PWD}:/code" domingogallardo/playframework
+        [mads-todolist-dgallardo] $ test
+        ```
 
 - **Terminal 3**: shell en el que usaremos git:
 
-```text
-$ git status
-On branch master
-Your branch is up to date with 'origin/master'.
+        ```text
+        $ git status
+        On branch master
+        Your branch is up to date with 'origin/master'.
 
-nothing to commit, working tree clean
-```
+        nothing to commit, working tree clean
+        ```
 
 
 #### Configuración de trabajo usando IntelliJ ####
@@ -370,29 +370,36 @@ Recomendamos la siguiente configuración:
   comentado anteriormente, no es necesario mapear el puerto 9000
   porque el contenedor sólo se va a usar para lanzar los tests:
   
-    ```text
-    $ docker run --rm  -it -v "${PWD}:/code" domingogallardo/playframework
-    [mads-todolist-dgallardo] $ 
-    ```
+        ```text
+        $ docker run --rm  -it -v "${PWD}:/code" domingogallardo/playframework
+        [mads-todolist-dgallardo] $ 
+        ```
 
     Y se lanza el comando `test`.
 
 - **Shell de git**: es recomendable tener abierta una ventana de
   terminal adicional para trabajar con git.
 
-**Cuidado**: En las máquinas virtuales Ubuntu de la EPS, la aplicación
-Docker se ejecuta con el usuario `root`. Si se lanza una ejecución de
-la máquina de docker con el directorio del proyecto antes de haberlo
-compilado con IntelliJ, se crearán directorios de trabajo propiedad de
-`root`. Esto provocará un error de permisos cuando vayamos a compilar desde
-IntelliJ y hará imposible la compilación desde el IDE. 
+!!! Warning "Cuidado en las máquinas de la EPS"
 
-Una posible **solución** es lanzar IntelliJ con `sudo` para que se
-ejecute también con el usuario `root`:
+    En las máquinas virtuales Ubuntu de la EPS, la aplicación
+    Docker se ejecuta con el usuario `root`. Si se lanza una ejecución de
+    la máquina de docker con el directorio del proyecto antes de haberlo
+    compilado con IntelliJ, se crearán directorios de trabajo `logs` y
+    `target` con propiedad de `root`. Esto provocará un error de permisos cuando vayamos a compilar desde
+    IntelliJ y hará imposible la compilación desde el IDE. 
 
-```text
-$ sudo bin/idea.sh
-```
+    Para que funcione correctamente la compilación desde IntelliJ
+    debemos eliminar esos directorios y hacer que sea IntelliJ quien
+    los cree. Por ejemplo, podemos borrarlos a mano:
+    
+    ```text
+    $ sudo rm -rf logs
+    $ sudo rm -rf target
+    ```
+    
+    O podemos volver a descargar el proyecto de GitHub y compilarlo
+    por primera vez con IntelliJ.
 
 
 ## 3. Antes de empezar la práctica
