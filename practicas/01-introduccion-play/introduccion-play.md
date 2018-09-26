@@ -1160,7 +1160,8 @@ equipos (la opción de borrar la dejamos para más adelante).
   aparecerá una tabla con todos los usuarios. Se podrá eliminar
   usuarios del equipo o añadir nuevos usuarios al mismo. 
 - Los usuarios a añadir se escogerán de un desplegable en el que se
-  mostrarán todos los usuarios no pertenecientes a un equipo.
+  mostrarán todos los usuarios no pertenecientes al equipo que se está
+  modificando.
 
 
 ## 5. Entrega y evaluación ##
