@@ -1223,6 +1223,156 @@ Y las _queries_ se implementan de la siguiente manera:
 }
 ```
 
+#### Recuperación _eager_ y _lazy_ de las colecciones ####
+
+En la aplicación se definen relaciones _a-muchos_ entre las
+entidades:
+
+- Relación _uno-a-muchos_ entre usuarios y tareas: un usuario tiene muchas tareas
+- Relación _muchos-a-muchos_ entre usuarios y equipos: un equipo tiene
+  muchos usuarios y un usuario participa en varios equipos.
+  
+En las entidades estas relaciones se definen de la siguiente forma:
+
+```java
+@Entity
+public class Usuario {
+    ...
+    // Relación uno-a-muchos entre usuario y tarea
+    @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
+    private Set<Tarea> tareas = new HashSet<>();
+    @ManyToMany(mappedBy = "usuarios", fetch = FetchType.EAGER)
+    private Set<Equipo> equipos = new HashSet<>();
+    ...
+}
+
+@Entity
+public class Tarea {
+    ...
+    // Relación muchos-a-uno entre tareas y usuario
+    @ManyToOne
+    // Nombre de la columna en la BD que guarda físicamente
+    // el ID del usuario con el que está asociado una tarea
+    @JoinColumn(name = "usuarioId")
+    public Usuario usuario;
+    ...
+}
+
+public class Equipo {
+    ...
+    @ManyToMany
+    @JoinTable(name = "Equipo_Usuario",
+        joinColumns = { @JoinColumn(name = "fk_equipo") },
+        inverseJoinColumns = {@JoinColumn(name = "fk_usuario")})
+    private Set<Usuario> usuarios = new HashSet<>();
+    ...
+}
+```
+
+**Relaciones _lazy_**
+
+Por defecto, todas las relaciones _a-muchos_ en JPA se definen de
+tipo `LAZY`. 
+
+La característica de los atributos marcados como _lazy_ en JPA es que
+no se traen a memoria cuando se recupera la entidad, sino cuando se
+consultan. Por ejemplo, en el caso de equipos y usuarios, la lista de
+usuarios de un equipo es un atributo _lazy_. Veamos el método
+`findById` de un equipo que devuelve una entidad `Equipo` a partir de
+su identificador:
+
+
+```java
+public Equipo findById(Long idEquipo) {
+    return jpaApi.withTransaction(entityManager -> {
+        return entityManager.find(Equipo.class, idEquipo);
+    });
+}
+```
+
+El método `jpaApi.withTransaction` abre y cierra una conexión con la base de
+datos que es gestionada por el _entity manager_. La conexión está
+abierta mientras se ejecuta el código dentro del `withTransaction` (la
+llamada a `find` que recupera el equipo). Pero cuando se hace el
+`return` esa conexión se cierra y se devuelve un equipo cuya lista de
+usuarios no se ha cargado a memoria. 
+
+Si intentamos acceder a una colección _lazy_ sin estar en el ámbito
+del _entity manager_ se producirá un error porque no se puede
+inicializar esa colección. Por ejemplo, el siguiente test produce un
+error cuando se llama al método `size()` y se intenta contar los
+elementos de la conexión _lazy_:
+
+```java
+@Test
+public void errorLazy() {
+    EquipoRepository equipoRepository = injector.instanceOf(EquipoRepository.class);
+    Equipo equipo = equipoRepository.findById(1005L);
+    assertEquals(1, equipo.getUsuarios().size());
+}
+
+// Se produce el siguiente error:
+// Test models.EquipoTest.errorLazy failed:
+// org.hibernate.LazyInitializationException: failed to lazily initialize a collection 
+// of role: models.Equipo.usuarios, could not initialize proxy - no Session
+```
+
+¿Cómo podemos solucionar esto? La clave es que sólo podremos recuperar
+una colección _lazy_ **estando en un _entity manager_
+abierto**. 
+
+Por ejemplo, podemos hacer un método específico que devuelve la
+colección de usuarios de un equipo:
+
+```java
+// Versión en la que se obtienen los usuarios accediendo a la colección lazy
+public List<Usuario> findUsuariosEquipo(Long idEquipo) {
+    return jpaApi.withTransaction(entityManager -> {
+        Equipo equipo = entityManager.find(Equipo.class, idEquipo);
+        equipo.getUsuarios().size();
+        List<Usuario> usuarios = new ArrayList(equipo.getUsuarios());
+        return usuarios;
+    });
+}
+```
+
+La llamada a `size()` en la línea 5 accede a la colección estando el
+_entity manager_ abierto y trae a memoria sus elementos de la base de
+datos. Por ello la colección de usuarios que se devuelve ya contiene
+todos los usuarios del equipo.
+
+Otra forma de recuperar colecciones _lazy_ es haciendo directamente
+una query:
+
+```java
+// Versión en la que obtienen los usuarios mediante una query
+public List<Usuario> findUsuariosEquipo(Long idEquipo) {
+    return jpaApi.withTransaction(entityManager -> {
+        TypedQuery<Usuario> query = entityManager.createQuery(
+                "select u from Usuario u join u.equipos e where e.id = :idEquipo", Usuario.class);
+        try {
+            return query.setParameter("idEquipo", idEquipo).getResultList();
+        } catch (NoResultException ex) {
+            return null;
+        }
+    });
+}
+```
+
+**Relaciones _eager_**
+
+Frente a la recuperación _lazy_ de colecciones, también existe la
+posibilidad de definir una colección como de tipo _EAGER_. En este
+caso JPA se traerá siempre a memoria todos los elementos. Es el caso
+de la relación entre un usuario y sus tareas.
+
+En general, no es conveniente definir una relación como _eager_ porque
+puede provocar problemas de rendimiento en el caso en que haya muchos
+elementos relacionados. 
+
+Pero si no hay muchos datos en la relación y los vamos a usar con
+frecuencia, sí que es aconsejable usar el tipo _EAGER_ para facilitar
+el manejo de la entidad.
 
 ### Servicios ###
 
