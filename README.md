@@ -23,7 +23,6 @@ de la asignatura.
   a Play para las prácticas de MADS](practicas/01-introduccion-play/intro-play-teoria.md).
 
 <!--
-
 - P02 (3 semanas): [Gestión de configuraciones y TDD con Play Framework](practicas/02-pruebas-tdd/pruebas-tdd.md)
   Tests en Play Framework y TDD. 
 - P03 (2 semanas): [Integración continua](practicas/03-integracion-continua/integracion-continua.md). Flujo de trabajo Git y
@@ -35,7 +34,6 @@ de la asignatura.
   de Scrum, practicando alguno de sus elementos (artefactos,
   reuniones). Mejoraremos también el tablero de GitHub para acercarlo
   a un tablero de Kanban.
-
 -->
 
 ## Diapositivas y lecturas
@@ -44,18 +42,16 @@ Las sesiones tienen una duración variable, entre 45 y 90 minutos.
 
 ### Bloque 1: Valores y principios ágiles para el desarrollo de software (4 semanas)
 
-
 - S01: [Introducción a la asignatura](sesiones/01-introduccion-a-mads/introduccion-a-mads.md)
 - S02: [Metodologías Ágiles de Desarrollo de Software](sesiones/02-metodologias-agiles-de-desarrollo-de-software/metodologias-agiles-de-desarrollo-de-software.md)
   - Martin Fowler - [The New Methodology](lecturas/martin-fowler_the-new-methodology.pdf)
 - S03: [Manifiesto Ágil](sesiones/03-manifiesto-agil/manifiesto-agil.md)
   - [The Agile Manifesto](lecturas/agile-manifesto.pdf)
-
-<!--
 - S04: [Desarrollo lean](sesiones/04-desarrollo-lean/desarrollo-lean.md)
   - Mary Poppendieck - [Lean Programming](lecturas/mary-poppendieck-lean-programming-2001.pdf)
 - S05: [eXtreme Programming (XP)](sesiones/05-extreme-programming/extreme-programming.md)
   - Ron Jeffreis - [What is eXtreme Programming](lecturas/ron-jeffreis_what-is-extreme-programming.pdf)
+<!--
 - S06: [TDD y pruebas ágiles](sesiones/06-tdd-pruebas-agiles/tdd-pruebas-agiles.md)
 -->
 
