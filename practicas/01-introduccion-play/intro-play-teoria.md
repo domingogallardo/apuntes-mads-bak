@@ -1922,13 +1922,13 @@ que utilizar los nombres de las tablas y de las columnas de la propia
 base de datos, no los de las entidades JPA. Hay que incluir en el
 fichero de dataset todas las tablas de la aplicación, incluyendo las
 tablas auxiliares de las relaciones muchos-a-muchos, para que se
-vacíen de datos (por ejemplo, la tabla `Equipo_Usuario`).
+inicialicen los de datos de prueba (por ejemplo, la tabla
+`Equipo_Usuario`).
 
 Por último, se debe tener cuidado con las claves ajenas. No es posible
 borrar una tabla si hay claves ajenas que referencian a algunos de sus
 elementos. Para esto hay que considerar que DBUnit inserta los datos
 de arriba a abajo y los borra de abajo a arriba.
-
 
 **Fichero `test/resources/test_dataset.xml`**:
 
@@ -1943,8 +1943,11 @@ de arriba a abajo y los borra de abajo a arriba.
     <Tarea id="1002" titulo="Práctica 1 MADS" usuarioId="1000"/>
     <Equipo id="1003" nombre="Equipo A"/>
     <Equipo id="1004" nombre="Equipo B"/>
-    <Equipo_Usuario/>
- </dataset>
+    <Equipo id="1005" nombre="Equipo C"/>
+    <Equipo_Usuario fk_equipo="1003" fk_usuario="1000"/>
+    <Equipo_Usuario fk_equipo="1003" fk_usuario="1005"/>
+    <Equipo_Usuario fk_equipo="1004" fk_usuario="1000"/> 
+  </dataset>
 ```
 
 En cuanto a los tests propiamente dichos hay que resaltar algunos
@@ -1970,6 +1973,7 @@ puntos.
 ```java
 package models;
 
+
 public class EquipoTest {
     static Database db;
     static private Injector injector;
@@ -1980,7 +1984,7 @@ public class EquipoTest {
         // Creamos la aplicación a partir del fichero de configuración.
         // El fichero de configuración se puede cambiar en el comando
         // para lanzar sbt y los tests:
-        // sbt '; set javaOptions += "-Dconfig.file=conf/develop-mysql.conf"; testOnly models.EquipoTest'
+        // sbt '; set javaOptions += "-Dconfig.file=conf/develop-mysql.conf"; testOnly Integration*'
         GuiceApplicationBuilder guiceApplicationBuilder =
                 new GuiceApplicationBuilder().in(Environment.simple());
         injector = guiceApplicationBuilder.injector();
@@ -2068,6 +2072,22 @@ public class EquipoTest {
         equipo = repository.findById(1003L);
         assertNull(equipo);
     }
+
+    @Test
+    public void testAddUsuarioEquipo() {
+        EquipoRepository equipoRepository = injector.instanceOf(EquipoRepository.class);
+        UsuarioRepository usuarioRepository = injector.instanceOf(UsuarioRepository.class);
+        Equipo equipo = equipoRepository.findById(1005L);
+        Usuario usuario = usuarioRepository.findById(1005L);
+        equipoRepository.addUsuarioEquipo(usuario, equipo);
+
+        // Recuperamos las entidades de la base de datos y comprobamos
+        // que los datos se han actualizado
+        List<Usuario> usuarios = equipoRepository.findUsuariosEquipo(equipo.getId());
+        assertEquals(1, usuarios.size());
+        Usuario usuarioBD = usuarioRepository.findById(1005L);
+        assertEquals(2, usuarioBD.getEquipos().size());
+    }
 }
 ```
 
@@ -2097,39 +2117,30 @@ public class EquipoServiceTest {
         databaseTester.onSetup();
     }
 
-    @Test(expected = EquipoServiceException.class)
-    public void addEquipoNombreRepetido() {
-        EquipoService equipoService = injector.instanceOf(EquipoService.class);
-        equipoService.addEquipo("Equipo A");
-    }
-
     @Test
     public void listaEquipos() {
         EquipoService equipoService = injector.instanceOf(EquipoService.class);
         List<Equipo> equipos = equipoService.allEquipos();
-        assertEquals(2, equipos.size());
+        assertEquals(3, equipos.size());
     }
 
     @Test
     public void addUsuarioEquipo() {
         EquipoService equipoService = injector.instanceOf(EquipoService.class);
         UsuarioService usuarioService = injector.instanceOf(UsuarioService.class);
-        equipoService.addUsuarioEquipo("juangutierrez", "Equipo A");
+        equipoService.addUsuarioEquipo(1000L, 1005L);
         Usuario usuario = usuarioService.findUsuarioPorLogin("juangutierrez");
         List<Equipo> equipos = new ArrayList(usuario.getEquipos());
-        assertEquals(1, equipos.size());
-        assertEquals("Equipo A", equipos.get(0).getNombre());
+        assertEquals(3, equipos.size());
     }
 
     @Test
     public void getUsuariosEquipo() {
         EquipoService equipoService = injector.instanceOf(EquipoService.class);
         UsuarioService usuarioService = injector.instanceOf(UsuarioService.class);
-        equipoService.addUsuarioEquipo("juangutierrez", "Equipo A");
-        equipoService.addUsuarioEquipo("anagarcia", "Equipo A");
-        List<Usuario> usuarios = equipoService.findUsuariosEquipo("Equipo A");
+        List<Usuario> usuarios = equipoService.findUsuariosEquipo(1003L);
         assertEquals(2, usuarios.size());
-        Usuario usuario = usuarioService.findUsuarioPorLogin("juangutierrez");
+        Usuario usuario = usuarioService.findUsuarioPorLogin("anagarcia");
         assertEquals(1, usuario.getEquipos().size());
     }
 
@@ -2137,13 +2148,11 @@ public class EquipoServiceTest {
     public void deleteUsuarioEquipo() {
         EquipoService equipoService = injector.instanceOf(EquipoService.class);
         UsuarioService usuarioService = injector.instanceOf(UsuarioService.class);
-        equipoService.addUsuarioEquipo("juangutierrez", "Equipo A");
-        equipoService.addUsuarioEquipo("anagarcia", "Equipo A");
-        equipoService.deleteUsuarioEquipo("juangutierrez", "Equipo A");
-        List<Usuario> usuarios = equipoService.findUsuariosEquipo("Equipo A");
+        equipoService.deleteUsuarioEquipo(1000L, 1003L);
+        List<Usuario> usuarios = equipoService.findUsuariosEquipo(1003L);
         assertEquals(1, usuarios.size());
         Usuario usuario = usuarioService.findUsuarioPorLogin("juangutierrez");
-        assertEquals(0, usuario.getEquipos().size());
+        assertEquals(1, usuario.getEquipos().size());
     }
 }
 ```
