@@ -1984,7 +1984,7 @@ public class EquipoTest {
         // Creamos la aplicación a partir del fichero de configuración.
         // El fichero de configuración se puede cambiar en el comando
         // para lanzar sbt y los tests:
-        // sbt '; set javaOptions += "-Dconfig.file=conf/develop-mysql.conf"; testOnly Integration*'
+        // sbt '; set javaOptions += "-Dconfig.file=conf/develop-mysql.conf"; testOnly models.EquipoTest*'
         GuiceApplicationBuilder guiceApplicationBuilder =
                 new GuiceApplicationBuilder().in(Environment.simple());
         injector = guiceApplicationBuilder.injector();
