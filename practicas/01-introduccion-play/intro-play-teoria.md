@@ -1046,7 +1046,70 @@ public class Equipo {
 }
 ```
 
+#### Fichero de configuración de JPA ####
 
+El fichero `conf/META-INF/persistence.xml` es necesario para que JPA
+funcione correctamente. Es el fichero de configuración en el que se
+definen distintos elementos necesarios para la configuración de JPA.
+
+- Nombre JNDI de la fuente de datos con la que se conectará la
+  aplicación: `DBTodoList`, definida en el fichero de configuración de
+  la aplicación Play (`/conf/application.conf`).
+- Clases entidad que se definen en la aplicación.
+- Propiedad `hibernate.hbm2ddl.auto` que indica cómo JPA va a
+  gestionar las tablas en la base de datos.
+    - Si el valor es `update`, al arrancar la aplicación las tablas de
+      la base de datos se actualizan (o se crean, si la base de datos
+      está vacía) para que se correspondan con las entidades. Se suele
+      utilizar este valor cuando estamos desarrollando la aplicación.
+    - Si el valor es `validate`, al arrancar la aplicación se
+      comprueba si la base de datos contiene tablas que se
+      corresponden con las definiciones de las entidades. Si no es
+      así, JPA lanza una excepción y deja de funcionar. Se suele
+      utilizar este valor en el funcionamiento de la aplicación en
+      producción.
+      
+Definimos dos configuraciones, una denominada `develop` y otra
+denominada `production`. La única diferencia entre ellas es el valor
+de la propiedad `hibernate.hbm2ddl.auto`.
+
+**Fichero `conf/META-INF/persistence.xml`**:
+
+```xml
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+   version="2.1">
+
+    <!-- MySQL Persistence Unit - Develop: hbm2ddl.auto = UPDATE -->
+
+<persistence-unit name="develop" transaction-type="RESOURCE_LOCAL">
+   <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+   <non-jta-data-source>DBTodoList</non-jta-data-source>
+   <class>models.Usuario</class>
+   <class>models.Tarea</class>
+   <class>models.Equipo</class>
+   <properties>
+        <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
+        <property name="hibernate.hbm2ddl.auto" value="update"/>
+   </properties>
+</persistence-unit>
+
+<!-- MySQL Persistence Unit - Production: hbm2ddl.auto = VALIDATE -->
+
+<persistence-unit name="production" transaction-type="RESOURCE_LOCAL">
+   <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+   <non-jta-data-source>DBTodoList</non-jta-data-source>
+   <class>models.Usuario</class>
+   <class>models.Tarea</class>
+   <class>models.Equipo</class>
+   <properties>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
+      <property name="hibernate.hbm2ddl.auto" value="validate"/>
+   </properties>
+</persistence-unit>
+</persistence>
+```
 
 #### Actualización de los datos ####
 
