@@ -158,6 +158,24 @@
 
 <kbd><img src="diapositivas/desarrollo-lean.009.png" width="800px"></kbd>
 
+En el artículo anteriormente mencionado de Joel Spolsky se mencionan
+tres tipos de inventario que se pueden encontrar en el desarrollo de
+software que deben minimizarse:
+
+- **Backlog de _features_**: el 90% de las _features_ en el backlog no
+  llega a implementarse. **Solución**: limitar el backlog a 1 o 2
+  meses. Una vez que esté lleno no se introducirán nuevos ítems si no
+  se quita alguno.
+- **Base de datos de bugs**: algunas empresas mantienen bases de datos
+  con cientos de bugs que nunca llegan a corregirse. **Solución**:
+  implementar un sistema de triaje que indique si un bug debe
+  corregirse o marcarse como cerrado. No hay que preocuparse en
+  equivocarse, los bugs importantes reaparecerán.
+- **_Features_ no desplegadas**: _features_ implementadas pero puestas
+  en producción por ser el proceso de despliegue muy
+  lento. **Solución**: mejorar el proceso de despliegue con
+  integración continua.
+
 <kbd><img src="diapositivas/desarrollo-lean.010.png" width="800px"></kbd>
 
 - WIP: **Work In Process**, es un término lean que indica el número de
