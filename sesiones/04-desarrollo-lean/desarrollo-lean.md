@@ -30,13 +30,32 @@
 
 <kbd><img src="diapositivas/desarrollo-lean.004.png" width="800px"></kbd>
 
+- Joel Spolsky (creador de _Stack Overflow_) explica en el artículo
+  [Software
+  Inventory](https://www.joelonsoftware.com/2012/07/09/software-inventory/)
+  de su famoso blog [Joel on Software](https://www.joelonsoftware.com)
+  la relación entre el desarrollo de software y un proceso de
+  fabricación:
+  
+  Piensa en las **ideas** a añadir al producto como el **material
+  bruto**. Dependiendo del proceso, estas ideas pueden pasar por
+  distintos puntos de ensamblaje antes de ser entregadas como
+  **_features_ terminadas** al cliente:
+  
+  - Proceso de toma de decisión (¿deberíamos implementar esta
+    _feature_?)
+  - Proceso de diseño (especificaciones, pizarras, mockups, etc.)
+  - Proceso de implementación (escribir código)
+  - Proceso de prueba (encontrar bugs)
+  - Proceso de depuración (arreglar bugs)
+  - Proceso de despliegue (enviar el código a los clientes, ponerlo en
+    el servidor web, etc.)
+  
 - Ya hemos enlazado alguna otra vez las
-  [diapositivas](http://dl.dropbox.com/u/1018963/Henrik%20Kniberg%20Agile%20Lean%20Slides.pdf)
+  [diapositivas](http://blog.crisp.se/tag/slides)
   de [Henrik Kniberg](https://www.crisp.se/konsulter/henrik-kniberg).
 
-
 <kbd><img src="diapositivas/desarrollo-lean.005.png" width="800px"></kbd>
-
 
 <kbd><img src="diapositivas/desarrollo-lean.006.png" width="800px"></kbd>
 
@@ -173,7 +192,6 @@
 
 <kbd><img src="diapositivas/desarrollo-lean.013.png" width="800px"></kbd>
 
-
 - Henrik Kniberg:
   [Lean from the trenches](https://pragprog.com/book/hklean/lean-from-the-trenches)
   ([PDF](https://www.google.es/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0ahUKEwie0Pe2gbXPAhUCOxQKHfE_DwkQFggeMAA&url=https%3A%2F%2Fwww.crisp.se%2Ffile-uploads%2FLean-from-the-trenches.pdf&usg=AFQjCNFLq9y4a6bq1CCWa03EfonPhMbV5w))
@@ -183,6 +201,12 @@
 Vamos a hacer una nueva actividad en clase. Simulamos un proceso de
 fabricación que pasa ítems de trabajo (monedas) por distintas
 fases y mediamos el tiempo de entrega al cliente.
+
+Hay que voltear las monedas y pasarlas al siguiente trabajador, hasta
+que lleguen al cliente.
+
+- Los trabajadores 1, 3 y 4 usan las dos manos.
+- El trabajador 2 usa sólo una mano.
 
 ¿Es mejor dividir los trabajos en bloques grandes o pequeños? ¿Hay
 diferencia entre los resultados?
