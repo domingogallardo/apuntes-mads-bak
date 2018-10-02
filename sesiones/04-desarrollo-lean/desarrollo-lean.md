@@ -14,15 +14,15 @@
 
 - El proceso de desarrollo de software es un **proceso creativo** que
   tiene más elementos de **diseño** que de fabricación.
-      - Los procesos de fabricación tradicionales son rígidos. En
-        general los planos y características del objeto a producir
-        están claramente determinados a priori y hay pocas decisiones
-        que tomar.
-      - En un proceso de diseño hay muchos **grados de libertad**, se
-        deben escoger entre muchas posibles soluciones. El proceso
-        intenta obtener la mejor opción, cumpliendo un conjunto de
-        **restricciones** necesarias. Por ejemplo: el diseño de nuevo
-        móvil, de un automóvil o de un mueble.
+    - Los procesos de fabricación tradicionales son rígidos. En
+      general los planos y características del objeto a producir están
+      claramente determinados a priori y hay pocas decisiones que
+      tomar.
+    - En un proceso de diseño hay muchos **grados de libertad**, se
+      deben escoger entre muchas posibles soluciones. El proceso
+      intenta obtener la mejor opción, cumpliendo un conjunto de
+      **restricciones** necesarias. Por ejemplo: el diseño de nuevo
+      móvil, de un automóvil o de un mueble.
 
 - Veremos que la filosofía _lean_ acerca ambos planteamientos: permite
   introducir **flexibilidad** en los procesos de fabricación tradicionales
@@ -180,11 +180,28 @@
 
 <kbd><img src="diapositivas/desarrollo-lean.014.png" width="800px"></kbd>
 
+Vamos a hacer una nueva actividad en clase. Simulamos un proceso de
+fabricación que pasa ítems de trabajo (monedas) por distintas
+fases y mediamos el tiempo de entrega al cliente.
+
+¿Es mejor dividir los trabajos en bloques grandes o pequeños? ¿Hay
+diferencia entre los resultados?
+
+**¡¡¡Vamos a comprobarlo!!!**
+
 <kbd><img src="diapositivas/desarrollo-lean.015.png" width="800px"></kbd>
 
 <kbd><img src="diapositivas/desarrollo-lean.016.png" width="800px"></kbd>
 
 <kbd><img src="diapositivas/desarrollo-lean.017.png" width="800px"></kbd>
+
+Ponemos en común y discutimos los resultados.
+
+<kbd><img src="diapositivas/desarrollo-lean.018.png" width="800px"></kbd>
+
+<kbd><img src="diapositivas/desarrollo-lean.019.png" width="800px"></kbd>
+
+<kbd><img src="diapositivas/desarrollo-lean.020.png" width="800px"></kbd>
 
 
 Mary Poppendieck propone 7 tipos de _waste_ en el desarrollo del
@@ -223,7 +240,7 @@ software:
 - **Defectos**: Defectos técnicos que se van acumulando, errores en la
   comprensión de features que producen un producto de poco valor.
 
-<kbd><img src="diapositivas/desarrollo-lean.018.png" width="800px"></kbd>
+<kbd><img src="diapositivas/desarrollo-lean.021.png" width="800px"></kbd>
 
 El
 [artículo](https://www.researchgate.net/publication/313360479_Software_Development_Waste)
@@ -284,9 +301,9 @@ el artículo.
   incompleta, incorrecta, engañosa, ineficiente o ausente.
 
 
-<kbd><img src="diapositivas/desarrollo-lean.019.png" width="800px"></kbd>
+<kbd><img src="diapositivas/desarrollo-lean.022.png" width="800px"></kbd>
 
-<kbd><img src="diapositivas/desarrollo-lean.020.png" width="800px"></kbd>
+<kbd><img src="diapositivas/desarrollo-lean.023.png" width="800px"></kbd>
 
 - Para hacer un diagrama de flujo acumulado (_cummulative flow
   diagram_) de una fase del desarrollo (columna del tablero Kanban o
@@ -328,7 +345,7 @@ el artículo.
     - Henrik Kniberg: [Lean from the trenches](https://pragprog.com/book/hklean/lean-from-the-trenches)
 
 
-<kbd><img src="diapositivas/desarrollo-lean.021.png" width="800px"></kbd>
+<kbd><img src="diapositivas/desarrollo-lean.024.png" width="800px"></kbd>
 
 - Cuando estamos comenzando a desarrollar las primeras funcionalidades
   del sistema, deberíamos **evitar tomar decisiones** sobre elementos
@@ -370,20 +387,20 @@ el artículo.
   podemos tomar decisiones que después tengamos que cambiar. Usemos la
   flexibilidad del software para desarrollar y desplegar pensando que
   podemos tener que deshacer lo que ya hemos hecho:
-      - Sistema de control de versiones que permita recuperar
-versiones pasadas puestas en producción.
-      - Sistema de revisión de código que permita deshacer la
-        integración de funcionalidades.
-      - Sistema flexible de puesta en producción que permita deshacer
-        el último cambio si las métricas caen después de haber sido
-        probado por millones de personas.
-
-<kbd><img src="diapositivas/desarrollo-lean.022.png" width="800px"></kbd>
-
-<kbd><img src="diapositivas/desarrollo-lean.023.png" width="800px"></kbd>
-
-<kbd><img src="diapositivas/desarrollo-lean.024.png" width="800px"></kbd>
+    - Sistema de control de versiones que permita recuperar versiones
+      pasadas puestas en producción.
+    - Sistema de revisión de código que permita deshacer la
+      integración de funcionalidades.
+    - Sistema flexible de puesta en producción que permita deshacer
+      el último cambio si las métricas caen después de haber sido
+      probado por millones de personas.
 
 <kbd><img src="diapositivas/desarrollo-lean.025.png" width="800px"></kbd>
+
+<kbd><img src="diapositivas/desarrollo-lean.026.png" width="800px"></kbd>
+
+<kbd><img src="diapositivas/desarrollo-lean.027.png" width="800px"></kbd>
+
+<kbd><img src="diapositivas/desarrollo-lean.028.png" width="800px"></kbd>
 
 - Post de 2001 de Mary Poppendieck: [Lean Programming](http://www.leanessays.com/2010/11/lean-programming.html)
