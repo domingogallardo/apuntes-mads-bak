@@ -477,6 +477,19 @@ definidas por las distintas metodologías (_Lean_, XP y Scrum):
 
 <kbd><img src="diapositivas/manifiesto-agil.017.png" width="800px"></kbd>
 
+
+<kbd><img src="diapositivas/manifiesto-agil.017b.png" width="800px"></kbd>
+
+En la puesta en común hemos obtenido la tabla anterior.
+
+Resumen de los principios que favorecen cada uno de los valores:
+
+- Individuos frente a procesos: 6 principios (4,5,6,8,11,12)
+- Software en funcionamiento frente a documentación: 5 principios (1,3,7,9,10)
+- Colaboración con el cliente frente a contratos: 5 principios
+  (1,2,3,4,6)
+- Responder al cambio frente a seguir un plan: 3 principios (2,9,10)
+
 - El
 [enlace](https://blog.crisp.se/2018/09/26/henrikkniberg/slides-from-kth-agile-intro)
 a las diapositivas de la charla de Henrik Kniberg de hace un par de
