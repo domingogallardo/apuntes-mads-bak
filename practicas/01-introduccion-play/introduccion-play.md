@@ -1151,10 +1151,11 @@ equipos (la opción de borrar la dejamos para más adelante).
 - La calificación de la práctica tiene un peso de un 9% en la nota
   final de la asignatura. 
 - Para realizar la entrega se debe subir a Moodle un ZIP que contenga
-  todo el proyecto, incluyendo la historia Git. Para ello comprime tu
-  directorio local del proyecto **después de haber hecho un
-  `clean`**. Debes dejar también en Moodle la URL del repositorio en
-  GitHub.
+  todo el proyecto, incluyendo el directorio `.git` que contiene la
+  historia Git. Para ello comprime tu directorio local del proyecto
+  **después de haber hecho un `clean` en `sbt`** para eliminar el
+  directorio `target` que contiene los binarios compilados. Debes
+  dejar también en Moodle la URL del repositorio en GitHub.
 
 Para la evaluación se tendrá en cuenta:
 
