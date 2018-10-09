@@ -1,7 +1,7 @@
 
-## Conversión de números arábigos a romanos usando TDD ##
+## Conversión de números decimales a romanos usando TDD ##
 
-Queremos diseñar una función que convierta números arábigos a romanos:
+Queremos diseñar una función que convierta números decimales a romanos:
 
 - `1` -> `I`
 - `2` -> `II`
@@ -26,7 +26,7 @@ Test:
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
-public class TestArabigoARomano {
+public class TestDecimalARomano {
     @Test
     public void testConvierteUno() {
         assertEquals("I", Convertir.aRomano(1));
