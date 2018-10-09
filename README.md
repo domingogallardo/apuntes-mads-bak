@@ -22,9 +22,10 @@ de la asignatura.
   requests_, wiki y tablero de proyecto. Se debe leer la [Introducción
   a Play para las prácticas de MADS](practicas/01-introduccion-play/intro-play-teoria.md).
 
-<!--
-- P02 (3 semanas): [Gestión de configuraciones y TDD con Play Framework](practicas/02-pruebas-tdd/pruebas-tdd.md)
+- P02 (2 semanas): [Integración continua y TDD](practicas/02-pruebas-tdd/integration-tdd.md)
   Tests en Play Framework y TDD. 
+
+<!--
 - P03 (2 semanas): [Integración continua](practicas/03-integracion-continua/integracion-continua.md). Flujo de trabajo Git y
   GitHub modificado para el trabajo en equipo. Integración continua con Travis y Docker.
 - P04 (4 semanas):
