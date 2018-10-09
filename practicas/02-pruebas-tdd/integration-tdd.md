@@ -185,25 +185,21 @@ que sean visibles dentro de `sbt`:
 
 - En el shell en el que se lanza el comando `sbt`
   
-        ```text
         $ export DB_URL="jdbc:mysql://localhost:3316/mads"
         $ export DB_USER_NAME=root
         $ export DB_USER_PASSWD=mads
         $ sbt '; set javaOptions += \"-Dconfig.file=conf/develop-mysql.conf\"; test'
-        ```
     
     En la última línea vemos cómo es posible lanzar `sbt` junto con
     unos comandos que se lanzarán dentro del propio `sbt`.
     
 - Desde dentro del propio `sbt` con `set javaOptions`:
 
-        ```text
         [mads-todolist-dgallardo] $ set javaOptions += "-Dconfig.file=conf/develop-mysql.conf"
         [mads-todolist-dgallardo] $ set javaOptions += "-DDB_URL=jdbc:mysql://localhost:3316/mads"
         [mads-todolist-dgallardo] $ set javaOptions += "-DDB_USER_NAME=root"
         [mads-todolist-dgallardo] $ set javaOptions += "-DDB_USER_PASSWD=mads"
         [mads-todolist-dgallardo] $ test
-        ```
 
 
 ### Pasos a seguir en la práctica ###
@@ -216,7 +212,7 @@ de datos MySQL (que deberás tener activa).
 nombre de la base de datos `MySQL`. Por ejemplo, si ejecutas `sbt`
 desde IntelliJ, la pantalla resultante deberá ser como la siguiente:
 
-<img src="imagenes/salida-test-mysql.png" width="500px"/>
+<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/02-pruebas-tdd/imagenes/salida-test-mysql.png" width="500px"/>
 
 
 ## Construcción y publicación de la imagen docker ##
@@ -288,25 +284,23 @@ ENV SECRET=abcdefghijk
 CMD target/universal/stage/bin/mads-todolist-2017 -Dplay.crypto.secret=$SECRET -Dconfig.file=$CONFIG_FILE
 ```
 
-La línea `FROM` indica la imagen docker base sobre la que se construye
-la aplicación.
+Algunos puntos a destacar:
 
-La línea `WORKDIR` indica el directorio en el que se van a ejecutar
+- La línea `FROM` indica la imagen docker base sobre la que se construye
+la aplicación.
+- La línea `WORKDIR` indica el directorio en el que se van a ejecutar
 todos los comandos `COPY`, `RUN` o `CMD`. Si el directorio no existe en
 la imagen, se crea. En este caso creamos el directorio `/app` en el
 que se va a compilar la aplicación.
-
-El comando `COPY` copia el directorio actual (y sus subdirectorios) en
+- El comando `COPY` copia el directorio actual (y sus subdirectorios) en
 el directorio `/app` de la máquina Docker. De esta forma copiamos
 el fuente de la aplicación Play.
-
-El comando `RUN` ejecuta lo que hay a continuación dentro de la
+- El comando `RUN` ejecuta lo que hay a continuación dentro de la
 máquina virtual en el proceso de construcción de la imagen. En este
 caso se lanza `sbt clean stage` para compilar el proyecto y generar el
 ejecutable (que se guardará en el directorio
 `target/universal/stage/bin/NOMBRE_PROYECTO`).
-
-Los siguientes comandos ya son para cuando se ejecuta el
+- Los siguientes comandos ya son para cuando se ejecuta el
 contenedor. El comando `EXPOSE` define un puerto a mapear con la
 máquina host. En este caso el puerto 9000, que es en el que se lanza
 la aplicación. El comando `ENV` define valores por defecto de
@@ -314,8 +308,7 @@ variables de entorno. Estas variables pueden ser sobreescritas con el
 parámetro `-e` en un `docker run`. En nuestro caso definimos el
 fichero de configuración por defecto y la palabra `SECRET` por
 defecto.
-
-Por último, `CMD` define el comando que se ejecuta en el contenedor
+- Por último, `CMD` define el comando que se ejecuta en el contenedor
 cuando se realiza un `docker run`. En nuestro caso llamamos a la
 aplicación pasando como parámetro el fichero de configuración y la
 palabra `SECRET`.
@@ -467,12 +460,12 @@ Docker Hub.
 En GitHub podemos encontrar la configuración de Travis en _Settings >
 Integration & Services_.
 
-<img src="imagenes/travis-github-integration.png" width="600px"/>
+<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/02-pruebas-tdd/imagenes/travis-github-integration.png" width="600px"/>
 
 Hay que definir la configuración para permitirle acceder al
 repositorio en el que estamos trabajando.
 
-<img src="imagenes/github-travis-access.png" width="500px"/>
+<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/02-pruebas-tdd/imagenes/github-travis-access.png" width="500px"/>
 
 ### Tests en los pull requests ###
 
@@ -485,7 +478,7 @@ Travis comprueba si la integración de master con la rama pasa los
 tests definidos en el fichero de configuración. Sólo si los tests
 pasan es posible realizar el _merge_ del PR en master.
 
-<img src="imagenes/pull-request-travis.png" width="600px"/>
+<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/02-pruebas-tdd/imagenes/pull-request-travis.png" width="600px"/>
 
 
 
@@ -557,7 +550,7 @@ En Travis tenemos toda la información de los _builds_. Es posible
 visualizarla una vez ha terminado el _build_ o mientras se está
 ejecutando.
 
-<img src="imagenes/builds-travis.png" width="600px"/>
+<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/02-pruebas-tdd/imagenes/builds-travis.png" width="600px"/>
 
 !!! Note "Nota"
 
@@ -571,7 +564,7 @@ ejecutando.
 En Docker Hub tendremos el histórico de versiones generadas en la
 integración continua. Y la última estará etiquetada con `latest`.
 
-<img src="imagenes/docker-hub.png" width="500px"/>
+<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/02-pruebas-tdd/imagenes/docker-hub.png" width="500px"/>
 
 
 ### Pasos a seguir en la práctica ###
