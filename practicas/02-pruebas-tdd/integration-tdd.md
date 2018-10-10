@@ -247,7 +247,7 @@ El script generado lanza la aplicación en modo producción. En este modo es
 necesario definir la variable `play.http.secret.key` con una cadena inicial.
 
 ```
-$ target/universal/stage/bin/mads-todolist-dgallardo -Dplay.http.secret.key=abcdefghijk
+$ target/universal/stage/bin/mads-todolist-dgallardo -Dplay.crypto.secret.key=abcdefghijk
 ```
 
 
