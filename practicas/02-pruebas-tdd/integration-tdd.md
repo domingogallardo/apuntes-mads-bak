@@ -569,7 +569,7 @@ integración continua. Y la última estará etiquetada con `latest`.
 
 ### Pasos a seguir en la práctica ###
 
-- Date de alta en Travis y conéctalo al repositorio de la práctica.
+- Date de alta en [Travis-ci.com](https://travis-ci.com) y conéctalo al repositorio de la práctica.
 - Adapta el fichero `.travis.yml` a tu práctica y añádelo con un
   commit a la rama `integracion-continua`.
 - Sube el commit a GitHub y abre un _pull request_ con la rama.
