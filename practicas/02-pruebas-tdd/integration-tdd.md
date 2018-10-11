@@ -10,6 +10,9 @@ En esta práctica 2 de la asignatura realizaremos dos tareas principales:
 Debes realizar todas las acciones indicadas en los apartados con el título
 `Pasos a seguir en la práctica`.
 
+La duración de la práctica es de 2 semanas y la fecha límita de
+entrega es el día 23 de octubre.
+
 ## Configuración de la aplicación ##
 
 Hasta ahora hemos trabajado con la aplicación en una configuración
@@ -587,4 +590,4 @@ integración continua. Y la última estará etiquetada con `latest`.
 
 ## TDD ##
 
-Pediente.
+Pediente. 
