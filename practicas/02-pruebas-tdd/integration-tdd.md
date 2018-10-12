@@ -240,19 +240,19 @@ funciona correctamente.
 
 El comando `stage` de `sbt` genera un comando ejecutable con el que se puede
 lanzar la aplicación sin usar `sbt`. Genera un script con el nombre de
-la aplicación en el directorio `target/universal/stage/bin`.
+la aplicación en el directorio `target/universal/stage/bin`. Genera
+también un fichero `bat` para Windows.
 
 ```
 [mads-todolist-dgallardo] $ stage
 ```
 
 El script generado lanza la aplicación en modo producción. En este modo es
-necesario definir la variable `play.http.secret.key` con una cadena inicial.
+necesario definir la variable `play.crypto.key` con una cadena inicial.
 
 ```
 $ target/universal/stage/bin/mads-todolist-dgallardo -Dplay.crypto.secret=abcdefghijk
 ```
-
 
 Al lanzar el comando generado por `sbt stage` es posible definir el
 fichero de configuración que va a usar la ejecución de la
