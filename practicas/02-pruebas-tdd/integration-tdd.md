@@ -604,12 +604,12 @@ vez asignadas, podrán modificar esa asignación.
 
 Detalles
 
-    * En la página de añadir tarea habrá un campo en el que el usuario
+    * En la página de 'añadir tarea' habrá un campo de texto en el que el usuario
     podrá introducir las etiquetas separadas entre comas.
     * Las etiquetas serán una palabra sin espacios.
     * Las etiquetas aparecerán en la lista de tareas, a la derecha del
     nombre de la tarea.
-    * En la página de modificar habrá un campo en el que usuario podrá
+    * En la página de modificar tarea' habrá también un campo texto en el que usuario podrá
     modificar las etiquetas de la tarea, añadiendo nuevas etiquetas,
     borrando las ya existentes o modificando su nombre.
     * Definiremos una relación 1:N entre usuarios y etiquetas y una
