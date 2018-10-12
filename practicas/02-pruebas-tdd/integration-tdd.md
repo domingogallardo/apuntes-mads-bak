@@ -590,4 +590,252 @@ integración continua. Y la última estará etiquetada con `latest`.
 
 ## TDD ##
 
-Pediente. 
+En la segunda parte de la práctica desarrollaremos, usando TDD (_Test
+Driven Design_), una nueva _feature_ de la aplicación: la posibilidad
+de asignar etiquetas a las tareas de un usuario.
+
+La descripción de la historia de usuario es la siguiente:
+
+```text
+Asignación de etiquetas a tareas
+
+Los usuarios podrán asignar una o varias etiquetas a sus tarea. Una
+vez asignadas, podrán modificar esa asignación.
+
+Detalles
+
+    * En la página de añadir tarea habrá un campo en el que el usuario
+    podrá introducir las etiquetas separadas entre comas.
+    * Las etiquetas serán una palabra sin espacios.
+    * Las etiquetas aparecerán en la lista de tareas, a la derecha del
+    nombre de la tarea.
+    * En la página de modificar habrá un campo en el que usuario podrá
+    modificar las etiquetas de la tarea, añadiendo nuevas etiquetas,
+    borrando las ya existentes o modificando su nombre.
+    * Definiremos una relación 1:N entre usuarios y etiquetas y una
+    relación N:N entre etiquetas y tareas. 
+```
+
+
+Para seguir la técnica de TDD:
+
+- Primero debes escribir el test.
+- Después debes escribir el código que hace pasar el test (**únicamente el código
+necesario, no puedes escribir código de más**)
+- Y, si es necesario, realizar una refactorización del código (los
+  tests deben seguir pasando después de la refactorización).
+
+A continuación listamos uno a uno los primeros tests. 
+
+### Primer test ###
+
+El primer test es para crear la entidad `Etiqueta`. Por ahora sólo
+creamos la clase Java, sin las anotaciones JPA.
+
+**Fichero `test/models/EtiquetaTest.java**:
+```java
+package models;
+
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+
+public class EtiquetaTest {
+    @Test
+    public void crearEtiqueta() {
+        Etiqueta etiqueta = new Etiqueta("Importante");
+        assertEquals("Importante", etiqueta.getTexto());
+    }
+}
+```
+
+### Segundo test ###
+
+Con el segundo test queremos conseguir que funcione JPA con la entidad
+`Etiqueta` y que podamos añadir una nueva entidad a la tabla de
+etiquetas. 
+
+Comprobamos que funciona correctamente comprobando que el
+método `add` devuelve una entidad con un identificador
+asignado. Si fuéramos estrictos deberíamos escribir también en el test
+la comprobación de que en la base de datos existe una tabla con las
+etiquetas y se ha añadido, pero no lo hacemos para simplificar el test.
+
+**Fichero `test/models/EtiquetaTest.java**:
+```java
+public class EtiquetaTest {
+     static private Injector injector;
+
+     @BeforeClass
+     static public void initApplication() {
+         GuiceApplicationBuilder guiceApplicationBuilder =
+                 new GuiceApplicationBuilder().in(Environment.simple());
+         injector = guiceApplicationBuilder.injector();
+         injector.instanceOf(JPAApi.class);
+     }
+
+     public void crearEtiqueta() {
+         Etiqueta etiqueta = new Etiqueta("Importante");
+         assertEquals("Importante", etiqueta.getTexto());
+     }
+
+     @Test
+     public void addEtiquetaDB() {
+         EtiquetaRepository etiquetaRepository = injector.instanceOf(EtiquetaRepository.class);
+         Etiqueta etiqueta = new Etiqueta("Importante");
+         etiqueta = etiquetaRepository.add(etiqueta);
+         assertNotNull(etiqueta.getId());
+     }
+}
+```
+
+
+### Tercer test ###
+
+Ahora que hemos introducido el `id` de la etiqueta escribimos un test
+para comprobar que dos etiquetas son iguales. Debes escribir el código
+de los métodos `equals` y `hashCode` (necesario este último para que
+funcione correctamente la comprobación de igualdades en las
+colecciones).
+
+**Fichero `test/models/EtiquetaTest.java**:
+```java
+public class EtiquetaTest {
+    ...
+
+    @Test
+    public void equalsEtiquetas() {
+        // La igualdad en etiquetas sin id se basa en el texto
+        Etiqueta etiqueta1 = new Etiqueta("A");
+        Etiqueta etiqueta2 = new Etiqueta("A");
+        Etiqueta etiqueta3 = new Etiqueta("B");
+        assertEquals(etiqueta1, etiqueta2);
+        assertNotEquals(etiqueta1, etiqueta3);
+
+        // La igualdad en etiquetas con id se basa en el id
+        etiqueta1.setId(1000L);
+        etiqueta2.setId(1001L);
+        etiqueta3.setId(1000L);
+        assertEquals(etiqueta1, etiqueta3);
+        assertNotEquals(etiqueta1, etiqueta2);
+    }
+}
+```
+
+
+### Cuarto test ###
+
+El cuarto test introduce el método `findEtiquetaPorTexto` para poder
+buscar etiquetas por su texto. Modificamos el _dataset_ para incluir
+ejemplos de etiquetas.
+
+
+**Fichero `test/models/EtiquetaTest.java**:
+```java
+public class EtiquetaTest {
+    ...
+
+    @Before
+    public void initData() throws Exception {
+        JndiDatabaseTester databaseTester = new JndiDatabaseTester("DBTodoList");
+        IDataSet initialDataSet = new FlatXmlDataSetBuilder().build(new
+                FileInputStream("test/resources/test_dataset.xml"));
+        databaseTester.setDataSet(initialDataSet);
+        databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
+        databaseTester.onSetup();
+    }
+
+    ...
+    
+    @Test
+    public void findEtiquetaPorTexto() {
+        EtiquetaRepository etiquetaRepository = injector.instanceOf(EtiquetaRepository.class);
+        Etiqueta etiqueta = etiquetaRepository.findEtiquetaPorTexto("Hoy");
+        assertEquals(1000L, (long) etiqueta.getId());
+    }
+```
+
+**Fichero `test/resources/test_dataset.xml`**:
+```diff
+    <Equipo_Usuario fk_equipo="1003" fk_usuario="1005"/>
+    <Equipo_Usuario fk_equipo="1004" fk_usuario="1000"/>
++   <Etiqueta id="1000" texto="Hoy"/>
+ </dataset>
+```
+
+### Quinto test ###
+
+En el quinto test definimos la relación muchos a muchos entre
+etiquetas y tareas. Añadimos en _data set_ ejemplos de la relación y
+comprobamos que funciona correctamente.
+
+**Fichero `test/models/EtiquetaTest.java**:
+```java
+public class EtiquetaTest {
+     ...
+
+    @Test
+    public void getEtiquetasTarea() {
+        TareaRepository tareaRepository = injector.instanceOf(TareaRepository.class);
+        EtiquetaRepository etiquetaRepository = injector.instanceOf(EtiquetaRepository.class);
+
+        Tarea tarea = tareaRepository.findById(1001L);
+        Etiqueta etiquetaHoy = etiquetaRepository.findEtiquetaPorTexto("Hoy");
+
+        Set<Etiqueta> etiquetas = tarea.getEtiquetas();
+        Set<Tarea> tareas = etiquetaHoy.getTareas();
+
+        assertTrue(etiquetas.contains(etiquetaHoy));
+        assertTrue(tareas.contains(tarea));
+    }
+}
+```
+
+Fichero `test/resources/test_dataset.xml`**:
+```diff
+    <Etiqueta id="1000" texto="Hoy"/>
++   <Etiqueta id="1001" texto="Casa"/>
++   <Etiqueta_Tarea fk_etiqueta="1000" fk_tarea="1001"/>
++   <Etiqueta_Tarea fk_etiqueta="1001" fk_tarea="1001"/>
+```
+
+
+### Pasos a seguir en la práctica ###
+
+- Crea una _feature_ nueva en la wiki, un nuevo _issue_ para
+  resolverla (con el _milestone_ 1.2.0) y una nueva rama en la que
+  desarrollarás el _issue_. 
+- Completa el código para pasar los tests, uno a uno, y **haciendo un commit después de cada fase
+Test-Code-Refactor**.
+- Continua usando TDD para terminar de implementar la _feature_,
+  escribiendo los tests necesarios para terminar de implementar la capa de
+  repositorio y la capa de servicio con los métodos necesarios para
+  implementar la nueva funcionalidad.
+- Termina de implementar la historia de usuario modificando las vistas
+  y los controllers necesarios.
+- Crea un _pull request_ y mezcla en `master` la nueva
+  funcionalidad. Se subirá a Docker Hub la nueva versión de la máquina docker.
+- Realiza el nuevo _release_ con el número `1.2.0`, genera a mano la máquina
+  docker con esa versión y súbela a Docker Hub.
+  
+## Entrega y evaluación ##
+
+- La práctica tiene una duración de 2 semanas y debe estar terminada
+  el martes 23 de octubre.
+- La calificación de la práctica tiene un peso de un 8% en la nota
+  final de la asignatura. 
+- Para realizar la entrega se debe subir a Moodle un ZIP que contenga
+  todo el proyecto, incluyendo el directorio `.git` que contiene la
+  historia Git. Para ello comprime tu directorio local del proyecto
+  **después de haber hecho un `clean` en `sbt`** para eliminar el
+  directorio `target` que contiene los binarios compilados. Debes
+  dejar también en Moodle la URL del repositorio en GitHub y la URL de
+  la máquina en Docker Hub.
+
+Para la evaluación se tendrá en cuenta:
+
+- Desarrollo continuo (los _commits_ deben realizarse a lo largo de
+  las 2 semanas y no dejar todo para la última semana).
+- Correcto desarrollo de la metodología.
+- Diseño e implementación del código y de los tests de las
+  características desarrolladas.
+
