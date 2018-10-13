@@ -612,8 +612,7 @@ Detalles
     * En la página de modificar tarea' habrá también un campo texto en el que usuario podrá
     modificar las etiquetas de la tarea, añadiendo nuevas etiquetas,
     borrando las ya existentes o modificando su nombre.
-    * Definiremos una relación 1:N entre usuarios y etiquetas y una
-    relación N:N entre etiquetas y tareas. 
+    * Definiremos una relación N:N entre etiquetas y tareas. 
 ```
 
 
