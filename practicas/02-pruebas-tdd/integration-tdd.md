@@ -10,7 +10,7 @@ En esta práctica 2 de la asignatura realizaremos dos tareas principales:
 Debes realizar todas las acciones indicadas en los apartados con el título
 `Pasos a seguir en la práctica`.
 
-La duración de la práctica es de 2 semanas y la fecha límita de
+La duración de la práctica es de 3 semanas y la fecha límita de
 entrega es el día 30 de octubre.
 
 ## Configuración de la aplicación ##
@@ -824,8 +824,8 @@ Test-Code-Refactor**.
   
 ## Entrega y evaluación ##
 
-- La práctica tiene una duración de 2 semanas y debe estar terminada
-  el martes 23 de octubre.
+- La práctica tiene una duración de 3 semanas y debe estar terminada
+  el martes 30 de octubre.
 - La calificación de la práctica tiene un peso de un 8% en la nota
   final de la asignatura. 
 - Para realizar la entrega se debe subir a Moodle un ZIP que contenga
