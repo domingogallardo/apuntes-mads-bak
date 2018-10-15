@@ -11,7 +11,7 @@ Debes realizar todas las acciones indicadas en los apartados con el título
 `Pasos a seguir en la práctica`.
 
 La duración de la práctica es de 2 semanas y la fecha límita de
-entrega es el día 23 de octubre.
+entrega es el día 30 de octubre.
 
 ## Configuración de la aplicación ##
 
@@ -806,9 +806,12 @@ Fichero `test/resources/test_dataset.xml`**:
 - Completa el código para pasar los tests, uno a uno, y **haciendo un commit después de cada fase
 Test-Code-Refactor**.
 - Continua usando TDD para terminar de implementar la _feature_,
-  escribiendo los tests necesarios para terminar de implementar la capa de
-  repositorio y la capa de servicio con los métodos necesarios para
-  implementar la nueva funcionalidad.
+  escribiendo los tests necesarios para terminar de implementar la
+  capa de repositorio y la capa de servicio con los métodos necesarios
+  para implementar la nueva funcionalidad. Los incrementos de código
+e  introducidos por los tests deben ser pequeños. Debe haber **entre 15 y
+  25 líneas de código** añadidas en las fases de codificación (sin
+  contar el código de los tests).
 - Termina de implementar la historia de usuario modificando las vistas
   y los controllers necesarios.
 - Crea un _pull request_ y mezcla en `master` la nueva
@@ -833,7 +836,7 @@ Test-Code-Refactor**.
 Para la evaluación se tendrá en cuenta:
 
 - Desarrollo continuo (los _commits_ deben realizarse a lo largo de
-  las 2 semanas y no dejar todo para la última semana).
+  las 3 semanas y no dejar todo para la última semana).
 - Correcto desarrollo de la metodología.
 - Diseño e implementación del código y de los tests de las
   características desarrolladas.
