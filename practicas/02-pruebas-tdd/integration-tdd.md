@@ -809,9 +809,12 @@ Test-Code-Refactor**.
   escribiendo los tests necesarios para terminar de implementar la
   capa de repositorio y la capa de servicio con los métodos necesarios
   para implementar la nueva funcionalidad. Los incrementos de código
-e  introducidos por los tests deben ser pequeños. Debe haber **entre 15 y
+  introducidos por los tests deben ser pequeños. Debe haber **entre 15 y
   25 líneas de código** añadidas en las fases de codificación (sin
-  contar el código de los tests).
+  contar el código de los tests). No tomes este número de forma
+  demasiado estricta; si en algún ciclo hay que añadir 35
+  líneas no pasa nada. Pero estaría mal tener que añadir 70 líneas
+  para resolver un test.
 - Termina de implementar la historia de usuario modificando las vistas
   y los controllers necesarios.
 - Crea un _pull request_ y mezcla en `master` la nueva
