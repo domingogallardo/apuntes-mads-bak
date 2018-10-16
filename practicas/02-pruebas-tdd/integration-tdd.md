@@ -467,8 +467,7 @@ En tu cuenta de Travis, una vez logeado, podrás sincronizar tu
 repositorio y configurar la conexión. Verás una pantalla como la
 siguiente:
 
-<img src="imagenes/conexion-travis.png" width="600px"/>
-
+<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/02-pruebas-tdd/imagenes/conexion-travis.png" width="700px"/>
 
 
 ### Tests en los pull requests ###
