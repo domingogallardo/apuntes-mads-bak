@@ -29,7 +29,11 @@
 
 <kbd><img src="diapositivas/git-workflows.013.png" width="800px"></kbd>
 
+<kbd><img src="diapositivas/git-workflows.013b.png" width="800px"></kbd>
+
 <kbd><img src="diapositivas/git-workflows.014.png" width="800px"></kbd>
+
+<kbd><img src="diapositivas/git-workflows.014b.png" width="800px"></kbd>
 
 <kbd><img src="diapositivas/git-workflows.015.png" width="800px"></kbd>
 
