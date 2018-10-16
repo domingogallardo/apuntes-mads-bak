@@ -438,7 +438,7 @@ Una vez subida esta imagen es la que se descargará si se hace un `pull` del rep
 
 ## Integración continua con Travis ##
 
-[Travis](https://travis-ci.com/) es un servicio que permite realizar
+[Travis-ci.com](https://travis-ci.com/) es un servicio que permite realizar
 integración continua on-line, sin necesidad de configurar un servidor
 propio de integración continua.
 
@@ -458,17 +458,18 @@ de datos MySQL) y para que cuando se realice el _merge_ con `master`
 se suba una nueva versión de la máquina docker con la aplicación a
 Docker Hub.
 
-### Configuración en GitHub ###
+### Conexión con GitHub ###
 
-En GitHub podemos encontrar la configuración de Travis en _Settings >
-Integration & Services_.
+En GitHub está configurada la conexión con Travis para todos los
+proyectos en la organización `mads-u-18`. 
 
-<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/02-pruebas-tdd/imagenes/travis-github-integration.png" width="600px"/>
+En tu cuenta de Travis, una vez logeado, podrás sincronizar tu
+repositorio y configurar la conexión. Verás una pantalla como la
+siguiente:
 
-Hay que definir la configuración para permitirle acceder al
-repositorio en el que estamos trabajando.
+<img src="imagenes/conexion-travis.png" width="600px"/>
 
-<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/02-pruebas-tdd/imagenes/github-travis-access.png" width="500px"/>
+
 
 ### Tests en los pull requests ###
 
