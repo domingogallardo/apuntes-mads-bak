@@ -675,9 +675,7 @@ public class EtiquetaTest {
      public void crearEtiqueta() {
          Etiqueta etiqueta = new Etiqueta("Importante");
          assertEquals("Importante", etiqueta.getTexto());
-     }
 
-     @Test
      public void addEtiquetaDB() {
          EtiquetaRepository etiquetaRepository = injector.instanceOf(EtiquetaRepository.class);
          Etiqueta etiqueta = new Etiqueta("Importante");
@@ -723,47 +721,7 @@ public class EtiquetaTest {
 
 ### Cuarto test ###
 
-El cuarto test introduce el método `findEtiquetaPorTexto` para poder
-buscar etiquetas por su texto. Modificamos el _dataset_ para incluir
-ejemplos de etiquetas.
-
-
-**Fichero `test/models/EtiquetaTest.java**:
-```java
-public class EtiquetaTest {
-    ...
-
-    @Before
-    public void initData() throws Exception {
-        JndiDatabaseTester databaseTester = new JndiDatabaseTester("DBTodoList");
-        IDataSet initialDataSet = new FlatXmlDataSetBuilder().build(new
-                FileInputStream("test/resources/test_dataset.xml"));
-        databaseTester.setDataSet(initialDataSet);
-        databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
-        databaseTester.onSetup();
-    }
-
-    ...
-    
-    @Test
-    public void findEtiquetaPorTexto() {
-        EtiquetaRepository etiquetaRepository = injector.instanceOf(EtiquetaRepository.class);
-        Etiqueta etiqueta = etiquetaRepository.findEtiquetaPorTexto("Hoy");
-        assertEquals(1000L, (long) etiqueta.getId());
-    }
-```
-
-**Fichero `test/resources/test_dataset.xml`**:
-```diff
-    <Equipo_Usuario fk_equipo="1003" fk_usuario="1005"/>
-    <Equipo_Usuario fk_equipo="1004" fk_usuario="1000"/>
-+   <Etiqueta id="1000" texto="Hoy"/>
- </dataset>
-```
-
-### Quinto test ###
-
-En el quinto test definimos la relación muchos a muchos entre
+En el cuarto test definimos la relación muchos a muchos entre
 etiquetas y tareas. Añadimos en _data set_ ejemplos de la relación y
 comprobamos que funciona correctamente.
 
@@ -795,6 +753,42 @@ Fichero `test/resources/test_dataset.xml`**:
 +   <Etiqueta id="1001" texto="Casa"/>
 +   <Etiqueta_Tarea fk_etiqueta="1000" fk_tarea="1001"/>
 +   <Etiqueta_Tarea fk_etiqueta="1001" fk_tarea="1001"/>
+```
+
+### Quinto test ###
+
+Fijaros que puede haber etiquetas con el mismo nombre creadas por
+distintos usuarios. Van a ser etiquetas distintas, con distinto
+identificador.
+
+El quinto test introduce el método `findEtiquetaPorTextoUsuario` para poder
+buscar etiquetas por su texto y por el usuario que la ha
+creado al asignarla a una de sus tareas. 
+
+
+**Fichero `test/models/EtiquetaTest.java**:
+```java
+public class EtiquetaTest {
+    ...
+
+    @Before
+    public void initData() throws Exception {
+        JndiDatabaseTester databaseTester = new JndiDatabaseTester("DBTodoList");
+        IDataSet initialDataSet = new FlatXmlDataSetBuilder().build(new
+                FileInputStream("test/resources/test_dataset.xml"));
+        databaseTester.setDataSet(initialDataSet);
+        databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
+        databaseTester.onSetup();
+    }
+
+    ...
+    
+    @Test
+    public void findEtiquetaPorTexto() {
+        EtiquetaRepository etiquetaRepository = injector.instanceOf(EtiquetaRepository.class);
+        Etiqueta etiqueta =  etiquetaRepository.findEtiquetaPorTextoUsuario("Hoy", 1000L);
+        assertEquals(1000L, (long) etiqueta.getId());
+    }
 ```
 
 
