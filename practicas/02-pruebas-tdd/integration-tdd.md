@@ -653,6 +653,11 @@ Con el segundo test queremos conseguir que funcione JPA con la entidad
 `Etiqueta` y que podamos añadir una nueva entidad a la tabla de
 etiquetas. 
 
+Para que funcione la inyección de dependencias con la clase
+`EtiquetaRepository.java` deberás actualizar el
+fichero `Module.java`. También deberás actualizar el fichero
+`META-INF/persistence.xml` para añadir la nueva entidad.
+
 Comprobamos que funciona correctamente comprobando que el
 método `add` devuelve una entidad con un identificador
 asignado. Si fuéramos estrictos deberíamos escribir también en el test
