@@ -615,9 +615,9 @@ Detalles
     * Definiremos una relación N:N entre etiquetas y tareas. 
 ```
 
-Un ejemplo de la vista para modificar tareas:
+Un ejemplo de la vista para modificar una tarea (similar a la de añadir):
 
-<img src="imagenes/modificar-tarea.png" width="500px"/>
+<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/02-pruebas-tdd/imagenes/modificar-tarea.png" width="500px"/>
 
 
 Para seguir la técnica de TDD:
