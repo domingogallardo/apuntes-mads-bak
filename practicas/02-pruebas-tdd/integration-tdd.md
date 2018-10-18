@@ -789,9 +789,11 @@ public class EtiquetaTest {
     ...
     
     @Test
-    public void findEtiquetaPorTexto() {
+    public void findEtiquetaPorTextoUsuario() {
         EtiquetaRepository etiquetaRepository = injector.instanceOf(EtiquetaRepository.class);
-        Etiqueta etiqueta =  etiquetaRepository.findEtiquetaPorTextoUsuario("Hoy", 1000L);
+        UsuarioRepository usuarioRepository = injector.instanceOf(UsuarioRepository.class);
+        Usuario usuario = usuarioRepository.findById(1000L);
+        Etiqueta etiqueta = etiquetaRepository.findEtiquetaPorTextoUsuario("Hoy", usuario);
         assertEquals(1000L, (long) etiqueta.getId());
     }
 ```
