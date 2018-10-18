@@ -618,15 +618,33 @@ Detalles
 Un ejemplo de la vista para modificar una tarea (similar a la de añadir):
 
 <img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/02-pruebas-tdd/imagenes/modificar-tarea.png" width="500px"/>
+ 
+Para aplicar la técnica de TDD debes pensar qué métodos vas a
+necesitar para implementar la historia de usuario e ir escribiendo los
+tests que construyan esta funcionalidad **de abajo a arriba**: primero
+la capa de modelo (clases de entidad y repository) y después la capa
+de servicios.
 
+Por último, una vez implementados los métodos de servicios necesarios,
+deberás implementar (ya sin tests) las vistas y controllers. 
 
-Para seguir la técnica de TDD:
+!!! Important "Importante"
 
-- Primero debes escribir el test.
-- Después debes escribir el código que hace pasar el test (**únicamente el código
+   Los controllers no deben implementar ningún código adicional, sólo
+   llamar al método de servicio necesario. De esta forma nos
+   aseguramos que todo el código importante para la funcionalidad está
+   testeado y ha sido creado mediante TDD.
+
+Recuerda que los pasos seguir la técnica de TDD:
+
+- **Test**: Primero debes escribir el test.
+- **Code**: Después debes escribir el código que hace pasar el test (**únicamente el código
 necesario, no puedes escribir código de más**)
-- Y, si es necesario, realizar una refactorización del código (los
+- **Refactor**: Y, si es necesario, realizar una refactorización del código (los
   tests deben seguir pasando después de la refactorización).
+
+Deberás hacer un commit por cada fase Test-Code. Si haces
+refactorización deberás hacerlo en otro commit adicional.
 
 A continuación listamos uno a uno los primeros tests. 
 
