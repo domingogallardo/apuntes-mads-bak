@@ -629,7 +629,6 @@ Por último, una vez implementados los métodos de servicios necesarios,
 deberás implementar (ya sin tests) las vistas y controllers. 
 
 !!! Important "Importante"
-
    Los controllers no deben implementar ningún código adicional, sólo
    llamar al método de servicio necesario. De esta forma nos
    aseguramos que todo el código importante para la funcionalidad está
