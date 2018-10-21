@@ -763,7 +763,7 @@ public class EtiquetaTest {
         EtiquetaRepository etiquetaRepository = injector.instanceOf(EtiquetaRepository.class);
 
         Tarea tarea = tareaRepository.findById(1001L);
-        Etiqueta etiquetaHoy = etiquetaRepository.findEtiquetaPorTexto("Hoy");
+        Etiqueta etiquetaHoy = etiquetaRepository.findById(1001L);
 
         Set<Etiqueta> etiquetas = tarea.getEtiquetas();
         Set<Tarea> tareas = etiquetaHoy.getTareas();
@@ -774,7 +774,7 @@ public class EtiquetaTest {
 }
 ```
 
-Fichero `test/resources/test_dataset.xml`**:
+**Fichero `test/resources/test_dataset.xml`**:
 ```diff
     <Etiqueta id="1000" texto="Hoy"/>
 +   <Etiqueta id="1001" texto="Casa"/>
