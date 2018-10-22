@@ -54,19 +54,17 @@ Las sesiones tienen una duración variable, entre 45 y 90 minutos.
   - Ron Jeffreis - [What is eXtreme Programming](lecturas/ron-jeffreis_what-is-extreme-programming.pdf)
 - S06: [TDD y pruebas ágiles](sesiones/06-tdd-pruebas-agiles/tdd-pruebas-agiles.md)
 
-### Bloque 2: Integración y entrega continua (3 semanas)
+### Bloque 2: Integración y entrega continua (2 semanas)
 
 - S07: [Workflows de Git](sesiones/07-git-workflows/git-workflows.md)
   - Vincent Driessen - [A successful Git branching model](lecturas/vincent-driessen_a-successful-git-branching-model.pdf)
-<!--
 - S08: [Integración y entrega continua](sesiones/08-integracion-entrega-continua/integracion-entrega-continua.md)
-- Martin Fowler - [Continuous Integration](lecturas/martin-fowler_continuous-integration.pdf)
--->
+  - Martin Fowler - [Continuous Integration](lecturas/martin-fowler_continuous-integration.pdf)
 
+<!--
 
 ### Bloque 3: Desarrollo centrado en el usuario: historias de usuario y desarrollo dirigido por características (2 semanas)
 
-<!--
 
 - S09: [Historias de usuario](sesiones/09-historias-de-usuario/historias-de-usuario.md)
 - S10: [Jeff Patton - User Story Mapping](sesiones/10-mapping-de-historias-de-usuario/mapping-de-historias-de-usuario.md)
