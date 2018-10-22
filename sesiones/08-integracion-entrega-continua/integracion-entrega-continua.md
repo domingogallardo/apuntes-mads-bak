@@ -25,6 +25,8 @@
 
 <kbd><img src="diapositivas/integracion-entrega-continua.012.png" width="800px"></kbd>
 
+<kbd><img src="diapositivas/integracion-entrega-continua.013.png" width="800px"></kbd>
+
 <kbd><img src="diapositivas/integracion-entrega-continua.014.png" width="800px"></kbd>
 
 <kbd><img src="diapositivas/integracion-entrega-continua.015.png" width="800px"></kbd>
@@ -76,7 +78,7 @@ $ docker ps
 Comprobamos las imágenes que hay descargadas en nuestra máquina:
 
 ```
-$ docker images
+$ docker image ls
 ```
 
 Ejecutamos una imagen:
@@ -115,16 +117,31 @@ Podemos ejecutar un contenedor basado en una imagen Linux Alpine
 $ docker run alpine /bin/echo 'Hello world'
 ```
 
-O hacerlo de forma interactiva:
+Una vez lanzado el comando `/bin/echo` el contenedor se queda parado:
 
 ```
-$ docker run -it alpine /bin/sh
+$ docker container ls -a
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                     PORTS                               NAMES
+ecf8be2a3ead        alpine              "/bin/echo 'Hello wo…"   8 seconds ago       Exited (0) 7 seconds ago                                       agitated_bhaskara
+```
+
+Se puede borrar:
+
+```
+$ docker container rm ecf8be2a3ead
+```
+
+También se puede lanzar un contenedor de forma interactiva, con el
+flag `-it`. El flag `--rm` borra el contenedor cuando se para.
+
+```
+$ docker run --rm -it alpine /bin/sh
 ```
 
 También como un demonio, que está en ejecución hasta que lo paramos:
 
 ```
-$ docker run -d ubuntu /bin/sh -c "while true; do echo hello world; sleep 1; done"
+$ docker run --rm -d alpine /bin/sh -c "while true; do echo hello world; sleep 1; done"
 
 1e5535038e285177d5214659a068137486f96ee5c2e85a4ac52dc83f2ebe4147
 
@@ -140,7 +157,7 @@ hello world
 ...
 
 $ docker stop insane_babbage
-$ docker ps
+$ docker container ls -a
 
 CONTAINER ID  IMAGE         COMMAND               CREATED        STATUS       PORTS NAMES
 ```
@@ -179,7 +196,7 @@ $ docker build -t docker-whale .
 Comprobamos que se ha añadido al repositorio local de imágenes:
 
 ```
-$ docker images
+$ docker image ls
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 docker-whale        latest              244786599109        13 seconds ago      275 MB
 ubuntu              latest              42118e3df429        3 months ago        124.8 MB
@@ -272,7 +289,7 @@ $ docker build -t nginx-example .
 Podemos comprobar que se ha construido listando las imágenes:
 
 ```
-$ docker images
+$ docker image ls
 ```
 
 Por último, lanzamos el servidor web:
@@ -323,27 +340,33 @@ actualiza también en el contenedor.
 - Para borrar un contenedor
 
     ```
-    $ docker rm <ID o nombre contenedor>
+    $ docker container rm <ID o nombre contenedor>
     ```
 
-- Para borrar todos los contenedores:
+- Para borrar todos los contenedores parados:
 
     ```
-    $ docker rm $(docker ps -a -q)
+    $ docker container prune 
     ```
 
 - Para borrar una imagen:
 
     ```
-    $ docker rmi <nombre imagen>
+    $ docker image rm <nombre imagen>
     ```
 
-- Para borrar todas las imágenes:
+- Para borrar todas las imágenes no usadas:
 
     ```
-    $ docker rmi $(docker images -q)
+    $ docker image prune
     ```
 
+- Para borrar todo lo no usado (contenedores e imágenes):
+
+    ```
+    $ docker system prune -a
+    ```
+    
 ### Más información sobre Docker ###
 
 - [Docker Overview](https://docs.docker.com/engine/understanding-docker/)
@@ -352,138 +375,10 @@ actualiza también en el contenedor.
 
 <kbd><img src="diapositivas/integracion-entrega-continua.030.png" width="800px"></kbd>
 
-Veamos un ejemplo concreto de fichero `Dockerfile`. Es un fichero que
-vamos a usar en prácticas para _dockerizar_ nuestra aplicación Play y
-generar una imagen que podremos usar para lanzar tests o para ejecutar
-la aplicación.
-
-Debemos colocar el fichero `Dockerfile` en la raíz del proyecto.
-
-**Fichero `Dockerfile`**:
-
-```dockerfile
-FROM domingogallardo/playframework
-WORKDIR /app
-ADD . /app
-RUN sbt clean stage
-
-EXPOSE 9000
-ENV CONFIG_FILE=conf/application.conf
-ENV SECRET=abcdefghijk
-
-CMD target/universal/stage/bin/mads-todolist-2017 -Dplay.crypto.secret=$SECRET -Dconfig.file=$CONFIG_FILE
-```
-
-La línea `FROM` indica la imagen docker base sobre la que se construye
-la aplicación.
-
-La línea `WORKDIR` indica el directorio en el que se van a ejecutar
-todos los comandos `ADD`, `RUN` o `CMD`. Si el directorio no existe en
-la imagen, se crea. En este caso creamos el directorio `/app` en el
-que se va a compilar la aplicación.
-
-El comando `ADD` copia el directorio actual (y sus subdirectorios) en
-el directorio `/app` de la máquina Docker. De esta forma copiamos
-la aplicación Play.
-
-El comando `RUN` se ejecuta cuando la imagen se construye. En este
-caso se lanza `sbt clean stage` para generar el ejecutable (que se
-guardará en el directorio
-`target/universal/stage/bin/NOMBRE_PROYECTO`).
-
-Los siguientes comandos ya son para cuando se ejecuta el
-contenedor. El comando `EXPOSE` define un puerto a mapear con la
-máquina host. En este caso el puerto 9000, que es en el que se lanza
-la aplicación. El comando `ENV` define valores por defecto de
-variables de entorno. Estas variables pueden ser sobreescritas con el
-parámetro `-e` en un `docker run`. En nuestro caso definimos el
-fichero de configuración por defecto y la palabra `SECRET` por
-defecto.
-
-Por último, `CMD` define el comando que se ejecuta en el contenedor
-cuando se realiza un `docker run`. En nuestro caso llamamos a la
-aplicación pasando como parámetro el fichero de configuración y la
-palabra `SECRET`.
-
-**Construcción de la imagen docker**
-
-Una vez creado el fichero `Dockerfile` ya podemos hacer un
-`docker build` para construir la imagen con nuestra aplicación. Como nombre de la imagen usaremos
-`domingogallardo/mads-todolist-2017:0.2`. Docker identifica el número que
-hay después de los dos puntos como el número de versión.
-
-```
-$ cd mads-todolist-guia
-$ docker build -t domingogallardo/mads-todolist-2017:0.2 .
-```
-
-Si el repositorio se ha subido a GitHub se puede también construir la
-máquina en un único comando, pasando a docker la URL
-del repositorio en GitHub
-
-```
-$ docker build https://github.com/domingogallardo/mads-todolist-guia.git -t domingogallardo/mads-todolist-2017:0.2
-```
-
-**Subida a docker hub**
-
-Una vez construida la imagen se puede subir a Docker Hub haciendo
-`docker push` (después de autenticarse con `docker login`). Tardará
-bastante la primera vez. En las siguientes compilaciones ya no tardará
-tanto, porque sólo se subirá la parte que cambia de la máquina.
-
-```
-$ docker login
-Username: <docker-id>
-Password: <contraseña>
-$ docker push domingogallardo/mads-todolist-2017:0.2
-```
-
-Allí estará disponible para descargarla y ejecutarla desde cualquier servidor.
-
-**Ejecución de la aplicación**
-
-Para ejecutar la aplicación debemos usar el comando `docker run`. 
-
-Lo más sencillo es ejecutar la aplicación trabajando con la base de
-datos en memoria:
-
-```
-$ docker run -d --rm -p 80:9000 domingogallardo/mads-todolist-2017:0.2
-```
-
-También podemos lanzar la base de datos MySQL:
-
-```
-$ docker run -d --rm -p 3306:3306 --name play-mysql -e MYSQL_ROOT_PASSWORD=mads -e MYSQL_DATABASE=mads mysql
-```
-
-y lanzar la ejecución de integración que trabaja con esa base de
-datos, tal y como hacemos en la práctica 2:
-
-```
-$ docker run --link play-mysql:mysql --rm -d -p 80:9000 \
-     -e DB_URL="jdbc:mysql://play-mysql:3306/mads" -e DB_USER_NAME="root" \
-     -e DB_USER_PASSWD="mads" -e CONFIG_FILE="conf/integration.conf" domingogallardo/mads-todolist-2017:0.2
-```
-
-
-**Lanzamiento de tests**
-
-Podemos también ejecutar los tests haciendo que se ejecute el comando
-`bash` con el comando que lanza los tests:
-
-```
-$ docker run --rm domingogallardo/mads-todolist-2017:0.2 /bin/bash -c "sbt test"
-```
-
-Para los tests de integración:
-
-```
-$ docker run --link play-mysql:mysql --rm -e DB_URL="jdbc:mysql://play-mysql:3306/mads" \
-     -e DB_USER_NAME="root" -e DB_USER_PASSWD="mads" domingogallardo/mads-todolist-2017:0.2 \
-     /bin/bash -c "sbt '; set javaOptions += \"-Dconfig.file=conf/integration.conf\"; test'"
-```
+En la [práctica
+2](https://domingogallardo.github.io/practicas-mads/02-pruebas-tdd/integration-tdd/)
+hemos construido una imagen docker de nuestra aplicación. Repasa el
+fichero `Dockerfile` definido en esa práctica.
 
 <kbd><img src="diapositivas/integracion-entrega-continua.031.png" width="800px"></kbd>
 
@@ -497,15 +392,16 @@ $ docker run --link play-mysql:mysql --rm -e DB_URL="jdbc:mysql://play-mysql:330
 
 - [Charla Jezz Humble - Adopting Continuous Delivery](https://vimeo.com/68320415)
 
+
 <kbd><img src="diapositivas/integracion-entrega-continua.034.png" width="800px"></kbd>
 
 <kbd><img src="diapositivas/integracion-entrega-continua.035.png" width="800px"></kbd>
 
 <kbd><img src="diapositivas/integracion-entrega-continua.036.png" width="800px"></kbd>
 
-- [Charla John Allspaw](http://www.slideshare.net/jallspaw/ops-metametrics-the-currency-you-pay-for-change)
-
 <kbd><img src="diapositivas/integracion-entrega-continua.037.png" width="800px"></kbd>
+
+- [Charla John Allspaw](http://www.slideshare.net/jallspaw/ops-metametrics-the-currency-you-pay-for-change)
 
 <kbd><img src="diapositivas/integracion-entrega-continua.038.png" width="800px"></kbd>
 
@@ -521,23 +417,43 @@ $ docker run --link play-mysql:mysql --rm -e DB_URL="jdbc:mysql://play-mysql:330
 
 <kbd><img src="diapositivas/integracion-entrega-continua.044.png" width="800px"></kbd>
 
-- [Oracle - Data Access Object](http://www.oracle.com/technetwork/java/dataaccessobject-138824.html)
-
 <kbd><img src="diapositivas/integracion-entrega-continua.045.png" width="800px"></kbd>
 
 <kbd><img src="diapositivas/integracion-entrega-continua.046.png" width="800px"></kbd>
 
 <kbd><img src="diapositivas/integracion-entrega-continua.047.png" width="800px"></kbd>
 
-- [Etsy’s Product Development with Continuous Experimentation](https://www.infoq.com/presentations/Etsy-Deployment)
+- [Elastic Load Balancing](https://aws.amazon.com/elasticloadbalancing/)
 
 <kbd><img src="diapositivas/integracion-entrega-continua.048.png" width="800px"></kbd>
+
+La idea del [_canary
+release_](https://martinfowler.com/bliki/CanaryRelease.html) consiste
+en configurar un sistema de despliegue que permita mantener
+simultáneamente en producción dos versiones de la aplicación. En el caso
+de una aplicación web, podríamos configurar un proxy o router
+intermedio que se encargue de encauzar las peticiones de los usuarios
+a una versión de la aplicación o a otra.
+
+Cuando se lanza una característica nueva se puede configurar el proxy
+para que sólo sea probada por una pequeña cantidad de usuarios y
+detectar posibles errores en este despliegue reducido. Cuando se haya
+comprobado con este pequeño grupo que todo funciona correctamente se
+modifica la configuración del proxy para que todos accedan a la nueva
+versión.
+
+La configuración del proxy puede llegar a ser bastante compleja,
+haciendo el filtro de usuarios en función de parámetros que nos
+interesen (localización, tipo de usuario, etc.).
+
+Este sistema también puede utilizarse, junto con el de interruptores
+de características, para realizar [pruebas
+A/B](https://en.wikipedia.org/wiki/A/B_testing) de nuevas
+características.
 
 <kbd><img src="diapositivas/integracion-entrega-continua.049.png" width="800px"></kbd>
 
 <kbd><img src="diapositivas/integracion-entrega-continua.050.png" width="800px"></kbd>
-
-- [Elastic Load Balancing](https://aws.amazon.com/elasticloadbalancing/)
 
 <kbd><img src="diapositivas/integracion-entrega-continua.051.png" width="800px"></kbd>
 
@@ -549,33 +465,21 @@ $ docker run --link play-mysql:mysql --rm -e DB_URL="jdbc:mysql://play-mysql:330
 
 <kbd><img src="diapositivas/integracion-entrega-continua.055.png" width="800px"></kbd>
 
+- [Deploying the Netflix API](http://techblog.netflix.com/2013/08/deploying-netflix-api.html)
+
 <kbd><img src="diapositivas/integracion-entrega-continua.056.png" width="800px"></kbd>
 
 <kbd><img src="diapositivas/integracion-entrega-continua.057.png" width="800px"></kbd>
 
 <kbd><img src="diapositivas/integracion-entrega-continua.058.png" width="800px"></kbd>
 
-<kbd><img src="diapositivas/integracion-entrega-continua.059.png" width="800px"></kbd>
-
-- [Etsy’s Product Development with Continuous Experimentation](https://www.infoq.com/presentations/Etsy-Deployment)
-
-<kbd><img src="diapositivas/integracion-entrega-continua.060.png" width="800px"></kbd>
-
-- [Deploying the Netflix API](http://techblog.netflix.com/2013/08/deploying-netflix-api.html)
-
-<kbd><img src="diapositivas/integracion-entrega-continua.061.png" width="800px"></kbd>
-
-<kbd><img src="diapositivas/integracion-entrega-continua.062.png" width="800px"></kbd>
-
-<kbd><img src="diapositivas/integracion-entrega-continua.063.png" width="800px"></kbd>
-
 - Continuous Integration at CartoDB:
    - [Slideshare](https://www.slideshare.net/juanignaciosl/continuous-integration-at-cartodb-march-16)
    - [YouTube](https://www.youtube.com/watch?list=PLKxa4AIfm4pWYrMY88Obx2JNVIjfXEm4v&time_continue=13&v=fRB_rlUtxys)
    - [Repositorio CartDB en GitHub](https://github.com/CartoDB/cartodb)
 
-<kbd><img src="diapositivas/integracion-entrega-continua.064.png" width="800px"></kbd>
+<kbd><img src="diapositivas/integracion-entrega-continua.059.png" width="800px"></kbd>
 
-<kbd><img src="diapositivas/integracion-entrega-continua.065.png" width="800px"></kbd>
+<kbd><img src="diapositivas/integracion-entrega-continua.060.png" width="800px"></kbd>
 
 - [ThoughtWorks - Continuous Delivery](https://www.thoughtworks.com/continuous-delivery)
