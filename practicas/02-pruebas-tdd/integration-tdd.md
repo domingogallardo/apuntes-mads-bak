@@ -610,8 +610,8 @@ Detalles
     * Las etiquetas aparecerán en la lista de tareas, a la derecha del
     nombre de la tarea.
     * En la página de modificar tarea' habrá también un campo texto en el que usuario podrá
-    modificar las etiquetas de la tarea, añadiendo nuevas etiquetas,
-    borrando las ya existentes o modificando su nombre.
+    modificar las etiquetas de la tarea, añadiendo nuevas etiquetas o
+    borrando las ya existentes.
     * Definiremos una relación N:N entre etiquetas y tareas. 
 ```
 
