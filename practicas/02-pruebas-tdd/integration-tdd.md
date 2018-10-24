@@ -689,26 +689,23 @@ etiquetas y se ha añadido, pero no lo hacemos para simplificar el test.
 **Fichero `test/models/EtiquetaTest.java**:
 ```java
 public class EtiquetaTest {
-     static private Injector injector;
+    static private Injector injector;
 
-     @BeforeClass
-     static public void initApplication() {
-         GuiceApplicationBuilder guiceApplicationBuilder =
-                 new GuiceApplicationBuilder().in(Environment.simple());
-         injector = guiceApplicationBuilder.injector();
-         injector.instanceOf(JPAApi.class);
-     }
-
-     public void crearEtiqueta() {
-         Etiqueta etiqueta = new Etiqueta("Importante");
-         assertEquals("Importante", etiqueta.getTexto());
-
-     public void addEtiquetaDB() {
-         EtiquetaRepository etiquetaRepository = injector.instanceOf(EtiquetaRepository.class);
-         Etiqueta etiqueta = new Etiqueta("Importante");
-         etiqueta = etiquetaRepository.add(etiqueta);
-         assertNotNull(etiqueta.getId());
-     }
+    @BeforeClass
+    static public void initApplication() {
+        GuiceApplicationBuilder guiceApplicationBuilder =
+                new GuiceApplicationBuilder().in(Environment.simple());
+        injector = guiceApplicationBuilder.injector();
+        injector.instanceOf(JPAApi.class);
+    }
+    
+    @Test
+    public void addEtiquetaDB() {
+        EtiquetaRepository etiquetaRepository = injector.instanceOf(EtiquetaRepository.class);
+        Etiqueta etiqueta = new Etiqueta("Importante");
+        etiqueta = etiquetaRepository.add(etiqueta);
+        assertNotNull(etiqueta.getId());
+    }
 }
 ```
 
@@ -751,6 +748,9 @@ public class EtiquetaTest {
 En el cuarto test definimos la relación muchos a muchos entre
 etiquetas y tareas. Añadimos en _data set_ ejemplos de la relación y
 comprobamos que funciona correctamente.
+
+Deberás añadir también algo más **en el fichero de test** para que el
+test funcione correctamente.
 
 **Fichero `test/models/EtiquetaTest.java**:
 ```java
@@ -796,18 +796,6 @@ creado al asignarla a una de sus tareas.
 **Fichero `test/models/EtiquetaTest.java**:
 ```java
 public class EtiquetaTest {
-    ...
-
-    @Before
-    public void initData() throws Exception {
-        JndiDatabaseTester databaseTester = new JndiDatabaseTester("DBTodoList");
-        IDataSet initialDataSet = new FlatXmlDataSetBuilder().build(new
-                FileInputStream("test/resources/test_dataset.xml"));
-        databaseTester.setDataSet(initialDataSet);
-        databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
-        databaseTester.onSetup();
-    }
-
     ...
     
     @Test
