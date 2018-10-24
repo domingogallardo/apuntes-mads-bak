@@ -455,6 +455,19 @@ características.
 
 <kbd><img src="diapositivas/integracion-entrega-continua.050.png" width="800px"></kbd>
 
+Explicación del libro de Jeff Humble:
+
+> Cada cambio que se realiza sobre la configuración de la aplicación, su
+> código fuente o sus datos, lanza la creación de una nueva instancia de
+> la tubería. Uno de los primeros pasos en la tubería es crear los
+> binarios y los instaladores. El resto de la tubería ejecuta una serie
+> de tests sobre los binarios para probar que pueden ser lanzados. Cada
+> test que pasa el candidato a release nos da más confianza de que
+> funcionará correctamente esta combinación particular de código
+> binario, información de configuración, entorno y datos. Si el
+> candidato a release pasa todos los tests, puede ser lanzado.
+
+
 <kbd><img src="diapositivas/integracion-entrega-continua.051.png" width="800px"></kbd>
 
 <kbd><img src="diapositivas/integracion-entrega-continua.052.png" width="800px"></kbd>
