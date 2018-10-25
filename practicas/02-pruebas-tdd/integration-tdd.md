@@ -605,13 +605,18 @@ vez asignadas, podrán modificar esa asignación.
 Detalles
 
     * En la página de 'añadir tarea' habrá un campo de texto en el que el usuario
-    podrá introducir las etiquetas separadas entre comas.
-    * Las etiquetas serán una palabra sin espacios.
+    podrá introducir las etiquetas separadas entre comas. Podrá haber
+    espacios entre las comas y las etiquetas. Las etiquetas serán una
+    palabra sin espacios. Si el usuario introdujera espacio en una
+    palabra entre las comas el comportamiento del algoritmo será
+    indeterminado (no hace falta mostrar un mensaje de error).
+    * Ejemplo: la cadena "  Hoy,     Importante, Trabajo  " deberá
+    crear las etiquetas "Hoy", "Importante" y "Trabajo".
     * Las etiquetas aparecerán en la lista de tareas, a la derecha del
     nombre de la tarea.
-    * En la página de modificar tarea' habrá también un campo texto en el que usuario podrá
-    modificar las etiquetas de la tarea, añadiendo nuevas etiquetas o
-    borrando las ya existentes.
+    * En la página de modificar tarea' habrá también un campo texto en
+    el que usuario modificar las etiquetas de la tarea,
+    añadiendo nuevas etiquetas o borrando las ya existentes.
     * Definiremos una relación N:N entre etiquetas y tareas. 
 ```
 

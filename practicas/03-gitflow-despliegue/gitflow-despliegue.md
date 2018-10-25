@@ -6,8 +6,7 @@
 En esta práctica se pretende conseguir:
 
 
-1. Formar equipos de trabajo y configurar GitHub para el trabajo
-   conjunto.
+1. Crear los equipos de trabajo en GitHub
 2. Adaptar el flujo de trabajo en Git y GitHub al trabajo en equipo.
     - Implementar GitFlow.
     - Desarrollar nuevas features con GitFlow.
@@ -15,7 +14,7 @@ En esta práctica se pretende conseguir:
 3. Despliegue de una nueva versión.
 
 
-## 2. Formación de equipos  ##
+## 1. Formación de equipos  ##
 
 Debéis formar equipos de **3 personas**. Utilizad el enlace de GitHub
 Classroom que enviaré al foro de Moodle para crear un equipo nuevo o
