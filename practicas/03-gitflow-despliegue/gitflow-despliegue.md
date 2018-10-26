@@ -93,17 +93,13 @@ en repositorios y ramas remotas.
 
 - Subir una rama al repositorio remoto:
 
-    ```
-    $ git checkout -b nueva-rama
-    $ git push -u origin nueva-rama
-    ```
+        $ git checkout -b nueva-rama
+        $ git push -u origin nueva-rama
 
 - Descargar una rama del repositorio remoto:
 
-    ```
-    $ git fetch 
-    $ git checkout -b nueva-rama origin/nueva-rama
-    ```
+        $ git fetch 
+        $ git checkout -b nueva-rama origin/nueva-rama
 
     El comando `git fetch` se descarga todos los cambios pero no los
     mezcla con las ramas locales. Los deja en ramas cacheadas a las
@@ -117,46 +113,36 @@ en repositorios y ramas remotas.
 - Actualizar una rama con cambios que otros compañeros han subido al
   repositorio remoto:
 
-    ```
-    $ git checkout nueva-rama
-    $ git pull
-    ```
+        $ git checkout nueva-rama
+        $ git pull
 
     El comando `git pull` es equivalente a un `git fetch` seguido de
     un `git merge`. Algunos recomiendan no usar `git pull`, sino hacer
     siempre el merge manual. Por ejemplo:
 
-    ```
-    $ git checkout nueva-rama
-    $ git fetch
-    $ git merge origin/nueva-rama
-    ```
+        $ git checkout nueva-rama
+        $ git fetch
+        $ git merge origin/nueva-rama
 
 - Subir cambios de la rama actual:
 
-    ```
-    (estando en la rama que queremos subir)
-    $ git push
-    ```
+        (estando en la rama que queremos subir)
+        $ git push
 
     El comando `git push` funcionará correctamente sin más parámetros
     si previamente hemos subido la rama con un `git push -u`.
 
 - Comprobar el estado de las ramas locales y remotas:
 
-    ```
-    $ git branch -vv
-    ```
+        $ git branch -vv
 
     Este comando no accede directamente al servidor, sino que muestra
     la información de la última vez que se accedió a él. Si queremos
     la información actualizada podemos hacer un `git fetch --all`
     antes:
 
-    ```
-    $ git fetch --all
-    $ git branch -vv
-    ```
+        $ git fetch --all
+        $ git branch -vv
 
     Es importante recordar que `git fetch` (a diferencia de `git
     pull`) no modifica los repositorios locales, sino que baja las
@@ -164,16 +150,12 @@ en repositorios y ramas remotas.
 
 - Información de los repositorios remotos:
 
-    ```
-    $ git remote show origin
-    ```
+        $ git remote show origin
 
     Proporciona información del repositorio remoto, todas sus ramas,
     del local y de la conexión entre ambos.
 
-    ```
-    git remote -v update
-    ```
+        $ git remote -v update
 
     Proporciona información del estado de las ramas remotas y locales
     (si están actualizadas o hay cambios en algunas no bajadas o
@@ -181,10 +163,8 @@ en repositorios y ramas remotas.
 
 - Borrado de ramas remotas desde el terminar:
 
-    ```
-    $ git push origin --delete nueva-rama
-    $ git remote prune origin
-    ```
+        $ git push origin --delete nueva-rama
+        $ git remote prune origin
 
 - Si necesitamos en la rama de _feature_ código que se haya añadido en
   la rama `master`.
