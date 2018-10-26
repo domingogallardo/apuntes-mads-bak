@@ -59,11 +59,9 @@ Utilizaremos _GitHub Classroom_ para crear el _team_ y el repositorio.
 
 ## Nuevo flujo de trabajo para los _issues_ ##
 
-Como ya tenemos equipos de trabajo, debemos adaptar el flujo de
-trabajo tanto en GitHub a más de una persona.
-
-En cuanto a la gestión de los _issues_ y tablero del proyecto
-cambiaremos lo siguiente:
+Debemos adaptar el flujo de trabajo en GitHub al trabajo en equipo. En
+cuanto a la gestión de los _issues_ y tablero del proyecto cambiaremos
+lo siguiente:
 
 - **Selección del _issue_**: Al pasar un _issue_ de `To do`a `In
   progress` se debe asignar un responsable.
@@ -84,13 +82,14 @@ cambiaremos lo siguiente:
 - **Integración del pull request**: Cuando todos dan el OK, el
   responsable de la tarea integra el pull request.
 
-A continuación explicamos con más detalle algunos aspectos del flujo
-de trabajo.
+Para implementar el trabajo en equipo será necesario trabajar sobre
+ramas remotas compartidas. A continuación explicamos con más detalle
+algunos aspectos comandos de Git necesarios.
 
-### Comandos Git para el trabajo en equipo ###
+### Comandos Git ###
 
 Veamos algunos comandos de Git relacionados con el trabajo compartido
-con repositorios remotos.
+en repositorios y ramas remotas.
 
 - Subir una rama al repositorio remoto:
 
@@ -187,22 +186,64 @@ con repositorios remotos.
     $ git remote prune origin
     ```
 
+- Si necesitamos en la rama de _feature_ código que se haya añadido en
+  la rama `master`.
+  
+    Podemos hacer un _merge_ de la rama `master` en la rama de
+    _feature_ para incorporar los avances de código que se han hecho
+    en `master` y que necesitamos en nuestra nueva rama:
+    
+    ```
+    $ git checkout nueva-rama
+    $ git merge master
+    ```
+
+- Solución de conflictos en un _pull request_:
+
+    Recordamos lo que hemos visto en teoría sobre la solución de
+    conflictos detectados en un _pull request_.
+    
+    Supongamos que hay un conflicto entre la nueva rama y
+    `master`. GitHub detectará el conflicto en la página de _pull
+    request_. Para arreglar el conflicto:
+    
+    ```
+    $ git checkout master
+    $ git pull
+    $ git checkout nueva-rama
+    $ git merge master
+    # arreglar el conflicto
+    $ git push
+    # ya se puede hacer el merge en GitHub
+    ```
+    
 ### Pasos a seguir ###
 
-- Probad todos los comandos anteriores en una rama en la que se
-  implemente la página "Acerca de" en la que se muestre una con los
-  miembros del equipo y el número de versión de la aplicación
-  (`1.3-SNAPSHOT`).
+- Probad el nuevo flujo de trabajo en el tablero del proyecto creando
+  un nuevo _issue_ denominado `Actualizar la página Acerca de`. En la
+  descripción de _issue_ comentad que se debe modificar la página para
+  que muestren todos los miembros del equipo y el nuevo número de
+  versión de la aplicación (`1.3-SNAPSHOT`).
 
-- Cread un _issue_ en el que participen todos los miembros del
-  equipo. Crear una rama en la que desarrollar los cambios. Cada
-  miembro del equipo deberá realizar un commit en el que se añade su
-  nombre a la lista.
+- Probad los comandos Git anteriores en una rama en la que se resuelva
+  el _issue_. Cada miembro del equipo deberá realizar un commit en el
+  que se añada su nombre a la lista de autores de la aplicación.
 
-- Crear el pull request en GitHub, revisar el código y aceptarlo.
+- Cread el pull request en GitHub.
+
+- Provocad un conflicto y arregladlo. Para ello se debe añadir un
+  commit en `master` que entre en conflicto con los cambios realizados
+  en la rama. Después se arreglará el conflicto y se subirá la
+  solución al pull request.
+
+- Por último, revisad el código, aceptadlo e integrad el PR en _master_.
 
 
-### Configuración de la rama production y publicación de v1.0 ###
+
+
+
+
+## Configuración de GitFlow ##
 
 El flujo de trabajo Git que vamos a seguir es muy similar al flujo de
 trabajo GitFlow (recordad la [clase de
