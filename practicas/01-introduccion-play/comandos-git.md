@@ -26,10 +26,10 @@ múltiples versiones (PDF, eBook, HTML y mobi).
         $ git remote add origin https://github.com/<usuario>/<nombre-repo>.git
         $ git push -u origin master
 
-El nombre del repositorio remoto será `origin` (nombre estándar del
-repositorio remoto en el caso en el que sólo haya uno). Subimos al
-repositorio la rama `master` (la rama por defecto que se crea al
-inicializar el repositorio local).
+    El nombre del repositorio remoto será `origin` (nombre estándar
+    del repositorio remoto en el caso en el que sólo haya
+    uno). Subimos al repositorio la rama `master` (la rama por defecto
+    que se crea al inicializar el repositorio local).
 
 - Comprobar el estado del repositorio local: 
 
@@ -95,8 +95,8 @@ inicializar el repositorio local).
 
         $ git diff <hash-previo> <hash-nuevo>
 
-Devuelve las cambios que se han introducido desde el commit
-identificado por <hash-previo> y hasta el <hash-nuevo>.
+    Devuelve las cambios que se han introducido desde el commit
+    identificado por <hash-previo> y hasta el <hash-nuevo>.
     
 
 ### Ramas
