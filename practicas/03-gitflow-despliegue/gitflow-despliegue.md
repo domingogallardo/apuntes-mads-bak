@@ -193,10 +193,9 @@ en repositorios y ramas remotas.
     _feature_ para incorporar los avances de código que se han hecho
     en `master` y que necesitamos en nuestra nueva rama:
     
-    ```
-    $ git checkout nueva-rama
-    $ git merge master
-    ```
+        $ git checkout nueva-rama
+        $ git merge master
+
 
 - Solución de conflictos en un _pull request_:
 
@@ -207,15 +206,13 @@ en repositorios y ramas remotas.
     `master`. GitHub detectará el conflicto en la página de _pull
     request_. Para arreglar el conflicto:
     
-    ```
-    $ git checkout master
-    $ git pull
-    $ git checkout nueva-rama
-    $ git merge master
-    # arreglar el conflicto
-    $ git push
-    # ya se puede hacer el merge en GitHub
-    ```
+        $ git checkout master
+        $ git pull
+        $ git checkout nueva-rama
+        $ git merge master
+        # arreglar el conflicto
+        $ git push
+        # ya se puede hacer el merge en GitHub
     
 ### Pasos a seguir ###
 
