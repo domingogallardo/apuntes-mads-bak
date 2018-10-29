@@ -61,7 +61,6 @@ Las sesiones tienen una duración variable, entre 45 y 90 minutos.
 - S08: [Integración y entrega continua](sesiones/08-integracion-entrega-continua/integracion-entrega-continua.md)
   - Martin Fowler - [Continuous Integration](lecturas/martin-fowler_continuous-integration.pdf)
 
-<!--
 
 ### Bloque 3: Desarrollo centrado en el usuario: historias de usuario y desarrollo dirigido por características (2 semanas)
 
@@ -70,7 +69,6 @@ Las sesiones tienen una duración variable, entre 45 y 90 minutos.
 - S10: [Jeff Patton - User Story Mapping](sesiones/10-mapping-de-historias-de-usuario/mapping-de-historias-de-usuario.md)
   - Jeff Patton - [It's all in how you slice it](lecturas/jeff-patton-how-you-slice-it.pdf)
 
--->
 
 ### Bloque 4: Metodologías ágiles: Scrum y Kanban (4 semanas)
 
