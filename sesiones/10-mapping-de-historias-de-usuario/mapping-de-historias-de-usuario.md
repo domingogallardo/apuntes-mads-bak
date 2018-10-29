@@ -129,22 +129,22 @@ de mesas, organizando las tarjetas sobre ellas.
 
     1. Escribir historias de usuario (tareas, en la terminología del
        mapping) en las **tarjetas blancas**
-           - Escribir la historia de usuario con el formato que hemos
-           visto en clase (tipo de usuario, acción, resultado u objetivo).
-           - Escribir las condiciones de satisfacción en la parte de
-           detrás de la tarjeta.
-           - Estimar el tamaño de la historia (`S`-_Small_, `M`-_Medium_,
-           `L`-_Large_) y escribirlo en una esquina de la tarjeta.
+        - Escribir la historia de usuario con el formato que hemos
+         visto en clase (tipo de usuario, acción, resultado u objetivo).
+        - Escribir las condiciones de satisfacción en la parte de
+          detrás de la tarjeta.
+        - Estimar el tamaño de la historia (`S`-_Small_, `M`-_Medium_,
+         `L`-_Large_) y escribirlo en una esquina de la tarjeta.
 
     2. Agrupar las historias de usuario en grandes áreas
        (actividades). 
-           - Escribir el nombre de las actividades en las tarjetas
-             rojas y colocarlas sobre las actividades.
-           - Intentar que las actividades se puedan leer de izquierda
-             a derecha en forma de historia: "Un usuario entra en la
-             web, después hace X, después Y, ..., también puede hacer
-             Z, ... ". X, Y, Z son grandes áreas (actividades) que
-             están compuestas de tareas (tarjetas blancas debajo).
+        - Escribir el nombre de las actividades en las tarjetas
+          rojas y colocarlas sobre las tareas.
+        - Intentar que las actividades se puedan leer de izquierda
+          a derecha en forma de historia: "Un usuario entra en la
+          web, después hace X, después Y, ..., también puede hacer
+          Z, ... ". X, Y, Z son grandes áreas (actividades) que
+          están compuestas de tareas (tarjetas blancas debajo).
 
     3. Ordenar las tareas en vertical, en función del valor que
        proporcionan (más valor arriba y menos abajo), de forma que
