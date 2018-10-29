@@ -292,6 +292,21 @@ ejecución trabajando sobre la **base de datos real MySQL**. De esta forma
 podemos introducir datos y reutilizarlos en posteriores pruebas
 manuales.
 
+Para poner en marcha la base de datos MySQL recomendamos usar
+Docker. El siguiente comando lanza un contenedor llamado `play-mysql`
+con una base de datos MySQL trabajando en el puerto interno `3306` y en
+el puerto del host `3316` con el usuario `root` con la contraseña `mads`:
+
+```
+$ docker run -d -p 3316:3306 --name play-mysql -e MYSQL_ROOT_PASSWORD=mads -e MYSQL_DATABASE=mads mysql:5
+```
+
+!!! Warning "Importante"
+
+    En los laboratorios de la EPS está instalada la
+    imagen Docker 5.7.18 de MySQL. Hay que definir explícitamente esa versión
+    en el comando docker, escribiendo `mysql:5.7.18`.
+
 También durante el desarrollo hay que implementar y lanzar **tests
 automáticos**. Recomendamos en este caso usar la **base de datos de
 memoria**, en lugar de la base de datos MySQL, para que la ejecución de
@@ -300,7 +315,9 @@ introducidos en las pruebas manuales.
 
 Debemos configurar el entorno de trabajo para que sea posible realizar
 los dos tipos de pruebas, manuales y automáticas,
-simultáneamente. Dependiendo de si utilizamos o no IntelliJ lo haremos
+simultáneamente. 
+
+Dependiendo de si utilizamos o no IntelliJ lo haremos
 de forma distinta.
 
 #### Configuración de trabajo usando Visual Studio Code ####
