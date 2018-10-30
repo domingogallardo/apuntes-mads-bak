@@ -23,7 +23,7 @@ los miembros del equipo. Se formará también un _team_ en la
 organización `mads-ua-18` en el que participarán todos los miembros
 del equipo.
 
-<img src="imagenes/equipos-mads-ua.png" width="700px"/>
+<img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/03-gitflow-despliegue/imagenes/equipos-mads-ua.png" width="700px"/>
 
 Utilizaremos _GitHub Classroom_ para crear el _team_ y el repositorio.
 
