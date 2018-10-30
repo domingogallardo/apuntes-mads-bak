@@ -332,8 +332,8 @@ Recomendamos trabajar con tres pestañas de terminal abiertas en el editor:
   comando docker para lanzar la aplicación usando la base de datos
   MySQL.
 
-        $ docker run --link play-mysql --rm -it -p 9000:9000 -e \
-        DB_URL="jdbc:mysql://play-mysql:3306/mads" -e DB_USER_NAME="root" -e \
+        $ docker run --link db-mysql --rm -it -p 9000:9000 -e \
+        DB_URL="jdbc:mysql://db-mysql:3306/mads" -e DB_USER_NAME="root" -e \
         DB_USER_PASSWD="mads" -v "${PWD}:/code" domingogallardo/playframework
 
 Y desde la consola sbt modificamos la preferencia `config.file` para
@@ -486,7 +486,7 @@ Recomendamos la siguiente configuración:
 
     Lanza MySQL con Docker:
    
-        $ docker run -d -p 3316:3306 --name play-mysql -e MYSQL_ROOT_PASSWORD=mads -e MYSQL_DATABASE=mads mysql:5
+        $ docker run -d -p 3316:3306 --name db-mysql -e MYSQL_ROOT_PASSWORD=mads -e MYSQL_DATABASE=mads mysql:5
 
     !!! Warning "Importante"
 
@@ -502,13 +502,13 @@ Recomendamos la siguiente configuración:
    
         $ docker container ls
         CONTAINER ID        IMAGE               CREATED             STATUS              PORTS                               NAMES
-        bd057639b6ac        mysql:5             30 minutes ago      Up 22 minutes       33060/tcp, 0.0.0.0:3316->3306/tcp   play-mysql
+        bd057639b6ac        mysql:5             30 minutes ago      Up 22 minutes       33060/tcp, 0.0.0.0:3316->3306/tcp   db-mysql
         $ docker container stop bd057639b6ac
         CONTAINER ID        IMAGE               CREATED             STATUS                     PORTS               NAMES
-        bd057639b6ac        mysql:5             31 minutes ago      Exited (0) 7 seconds ago                       play-mysql
+        bd057639b6ac        mysql:5             31 minutes ago      Exited (0) 7 seconds ago                       db-mysql
         $ docker container start bd057639b6ac
         CONTAINER ID        IMAGE               CREATED             STATUS              PORTS                               NAMES
-        bd057639b6ac        mysql:5             32 minutes ago      Up 5 seconds        33060/tcp, 0.0.0.0:3316->3306/tcp   play-mysql
+        bd057639b6ac        mysql:5             32 minutes ago      Up 5 seconds        33060/tcp, 0.0.0.0:3316->3306/tcp   db-mysql
 
     Ahora ya podemos lanzar la aplicación con docker para que trabaje
     con la base de datos del contenedor, definiendo ahora en variables
@@ -517,8 +517,8 @@ Recomendamos la siguiente configuración:
     `link` de docker para definir el nombre lógico del contenedor al
     que debe conectarse la aplicación.
 
-        $ docker run --link play-mysql --rm -it -p 9000:9000 -e \
-        DB_URL="jdbc:mysql://play-mysql:3306/mads" -e DB_USER_NAME="root" -e \
+        $ docker run --link db-mysql --rm -it -p 9000:9000 -e \
+        DB_URL="jdbc:mysql://db-mysql:3306/mads" -e DB_USER_NAME="root" -e \
         DB_USER_PASSWD="mads" -v "${PWD}:/code" domingogallardo/playframework
 
     Y desde la consola sbt modificamos la preferencia `config.file`
