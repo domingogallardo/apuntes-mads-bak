@@ -750,6 +750,15 @@ public class EtiquetaTest {
 
 ### Cuarto test ###
 
+<!--
+TODO
+Dividirlo en dos tests:
+- Primero con el método findById y la etiqueta 1001
+- Después con la relación etiqueta-tarea
+Asignar la etiqueta a otra tarea para que no falle el test anterior en 
+el que se borra una tarea con una etiqueta asignada (foreign key)
+-->
+
 En el cuarto test definimos la relación muchos a muchos entre
 etiquetas y tareas. Añadimos en _data set_ ejemplos de la relación y
 comprobamos que funciona correctamente.

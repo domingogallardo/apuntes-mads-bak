@@ -99,26 +99,26 @@ en repositorios y ramas remotas.
 - Descargar una rama del repositorio remoto:
 
         $ git fetch 
-        $ git checkout -b nueva-rama origin/nueva-rama
+        $ git checkout nueva-rama 
 
     El comando `git fetch` se descarga todos los cambios pero no los
     mezcla con las ramas locales. Los deja en ramas cacheadas a las
     que les da el nombre del servidor y la rama
     (`origin/nueva-rama`). 
 
-    En el caso del comando anterior, una vez cacheada la rama
-    `origin/nueva-rama` se crea la `nueva-rama` local con todos sus
-    commits.
+    En el caso del comando anterior, el comando `git checkout
+    nueva-rama` es equivalente a `git checkout -b nueva-rama
+    origin/nueva-rama`. Se crea una rama local `nueva-rama` conectada
+    a la rama `origin/nueva-rama`.
 
 - Actualizar una rama con cambios que otros compañeros han subido al
   repositorio remoto:
 
-        $ git checkout nueva-rama
         $ git pull
 
     El comando `git pull` es equivalente a un `git fetch` seguido de
-    un `git merge`. Algunos recomiendan no usar `git pull`, sino hacer
-    siempre el merge manual. Por ejemplo:
+    un `git merge`. El comando `git fetch` actualiza la rama remota
+    `origin/nueva-rama`. El comando `git pull` es equivalente a hacer:
 
         $ git checkout nueva-rama
         $ git fetch
@@ -200,13 +200,18 @@ en repositorios y ramas remotas.
   un nuevo _issue_ denominado `Actualizar la página Acerca de`. En la
   descripción de _issue_ comentad que se debe modificar la página para
   que muestren todos los miembros del equipo y el nuevo número de
-  versión de la aplicación (`1.3-SNAPSHOT`).
+  versión de la aplicación (`1.3.0-SNAPSHOT`).
+
+- Escoged una persona del equipo como responsable del _issue_. El
+  responsable del _issue_ será el responsable de integrarlo en
+  `master` y de solucionar los conflictos que puedan surgir.
 
 - Probad los comandos Git anteriores en una rama en la que se resuelva
   el _issue_. Cada miembro del equipo deberá realizar un commit en el
   que se añada su nombre a la lista de autores de la aplicación.
 
-- Cread el pull request en GitHub.
+- Cread el pull request en GitHub, poniendo como responsable del PR al
+  mismo responsable del _issue_.
 
 - Provocad un conflicto y arregladlo. Para ello se debe añadir un
   commit en `master` que entre en conflicto con los cambios realizados
@@ -216,10 +221,6 @@ en repositorios y ramas remotas.
 - Por último, revisad el código, aceptadlo e integrad el PR en _master_.
 
 
-
-
-
-
 ## Configuración de GitFlow ##
 
 El flujo de trabajo Git que vamos a seguir es muy similar al flujo de
@@ -227,328 +228,492 @@ trabajo GitFlow (recordad la [clase de
 teoría](https://github.com/domingogallardo/apuntes-mads/blob/master/sesiones/07-git-workflows/git-workflows.md)). Pero
 vamos a introducir alguna variante en la nomenclatura de las ramas.
 
-#### Ramas de largo recorrido ####
+### Ramas de largo recorrido ###
 
-En la versión original de GitFlow se publican las distintas versiones
-del proyecto en la rama _long-lived_ `master` y se hace el desarrollo en
-la rama `develop`. Nosotros vamos a adoptar esta idea, pero cambiando
-el nombre de las ramas. La rama de desarrollo será la rama
-**`master`** en la que hemos trabajado desde el principio, y la rama
-con las versiones lanzadas la llamaremos **`production`**.
+En GitFlow se publican las distintas versiones del proyecto en la rama
+_long-lived_ `master` y se hace el desarrollo en la rama
+`develop`. A partir de ahora no desarrollaremos directamente en
+`master` sino en `develop`.
 
-#### Ramas de feature ####
+En la página de configuración del repositorio en GitHub en `Settings >
+Branches > Default branch` se puede configurar la rama por defecto
+contra la que se realizarán los commits y la que aparecerá en la
+página del proyecto. Tendréis que definir `develop`.
+
+### Ramas de feature ###
 
 Desde el comienzo de trabajo con Git en las prácticas 1 y 2 estamos
 haciendo un desarrollo basado en ramas de corto recorrido,
 equivalentes a las ramas de _features_ de GitFlow. 
 
-La diferencia es que en GitFlow estas ramas se integran con la rama de
-desarrollo manualmente haciendo `merge`, mientras que nosotros las
-integramos haciendo un pull request.
+Tal y como se comenta en GitFLow estas ramas saldrán de `develop` y se
+integrarán en `develop`. La diferencia es que en GitFlow estas ramas
+se integran con la rama de desarrollo manualmente haciendo `merge`,
+mientras que nosotros las integramos haciendo un pull request.
 
-#### Configuración paso a paso ####
+### Ramas de release ###
 
-El equipo elegirá un responsable de integración que se encargue de
-crear la rama **`production`** y publicar en ella la primera versión
-**v1.0** del proyecto. 
+Hasta ahora hemos hecho los _releases_ en la rama `master`. A partir
+de ahora seguiremos la estrategia de GitFlow y haremos ramas de
+_release_ que salen de `develop` y se integran en `master` y en
+`develop`.
 
-Cread un _issue_ con la tarea `Lanzar release v1.0` que tendrá como
-responsable esta persona escogida.
+Haremos también la integración haciendo pull request.
 
-Una vez que se ha integrado en `master` el pull request con la página
-"Acerca de" que contiene la lista de desarrolladores del proyecto y el
-número de versión "Versión 0.3-SNAPSHOT", el responsable de
-integración deberá publicar la nueva versión siguiendo los pasos de GitFlow:
+### Pasos a seguir ###
 
-- Crear la rama `production` y publicarla en GitHub.
-- Crear la rama local `release-v1.0` a partir de `master`.
-- Realizar en esta rama los cambios específicos de la versión. En
-  nuestro caso:
-  - Cambiar en la página "Acerca de" "Versión 0.3-SNAPSHOT" por
-    "Versión 1.0"
-  - Añadir en la página la fecha de publicación de la versión.
-  - Cambiar la versión en el `build.sbt` a `1.0`.
-- Publicar la rama `release-v1.0` en GitHub y hacer un pull request
-  sobre `production`.
-- Mezclar también la rama de release con `master`.
-- Por último, hacer un commit en `master` cambiando el número  de
-  versión a `1.1-SNAPSHOT` (en el "Acerca de" y en el `build.sbt`).
+- El equipo elegirá un **responsable de integración** que se encargue de
+crear la rama **`develop`** y configurarla como rama principal del
+proyecto en GitHub. Todos los otros miembros deberán descargarla y
+moverse a ella en sus repositorios locales. Esta rama pasará a ser la
+de desarrollo principal. Habrá también que modificar la configuración
+de Travis, para que también se lancen los builds en los PR contra esta
+rama. 
 
-Una vez hecho esto ya se puede borrar la rama `release-v1.0` y las
-ramas `production` y `master` estarán actualizadas a las nuevas
-versiones.
+- Haced un PR de prueba en la rama `develop`para comprobar que todo
+  funciona bien.
 
-La rama `production` también será integrada por Travis. Debemos
+- Cread un _issue_ con la tarea _Lanzar release 1.3.0_ que tendrá como
+responsable también al responsable de integración.
+
+- El responsable de integración deberá publicar la nueva versión
+siguiendo los pasos de GitFlow:
+    - Crear la rama local **`release-1.3.0`** a partir de `develop`.
+    - Realizar en esta rama los cambios específicos de la versión. En
+      nuestro caso:
+        - Cambiar en la página "Acerca de" "Versión 1.3.0-SNAPSHOT" a
+          "Versión 1.3.0" y añadir la fecha de publicación.
+        - Cambiar el fichero `build.sbt`.
+    - Publicar la rama `release-1.3.0` en GitHub y hacer un pull
+      request sobre `master`. Una vez mezclado el PR añadir la
+      etiqueta con la nueva versión `1.3.0` en `master` creando la
+      página de release en GitHub. Por último, subir a Docker Hub la
+      nueva versión.
+    - Mezclar también la rama de release con `develop` (se puede hacer
+      también con un PR).
+    - Por último hacer un commit en `develop` cambiando el número de
+      versión a `1.4.0-SNAPSHOT` (en el "Acerca de" y en el
+      `build.sbt`).
+
+- Una vez hecho esto ya se puede borrar la rama `release-1.3.0` y las
+  ramas `master` y `develop` estarán actualizadas a las nuevas
+  versiones.
+
+- La rama `develop` también será integrada por Travis. Debemos
 comprobar que pasan todos los tests.
 
-### 5.4. Publicación automática de nuevas versiones ###
+- Por último, deberéis realizar un _bug fix_, siguiendo el flujo de
+  trabajo de GitFlow.
 
-Implementad en `master` un nuevo _issue_ en el que hagáis lo siguiente:
+## Despliegue ##
 
-   - Modificar el fichero de configuración de Travis para que la
-     versión de la máquina docker sea la definida por el número de
-     build de Travis (en la variable de entorno
-     `TRAVIS_BUILD_NUMBER`).
-   - Añadir en la configuración de Travis la publicación de la máquina
-     docker en Docker Hub cada vez que se realice un build en la rama
-     `master` (consultar en la página de información de Travis [Using
-     Docker in
-     Builds](https://docs.travis-ci.com/user/docker/)). Deberéis
-     publicar dos versiones de la máquina: la versión con el último
-     número de build y la versión `latest`. De esta forma, en Docker
-     Hub estará siempre actualizada la versión `latest` a última
-     versión compilada en `master` y también se tendrá un histórico de
-     todas las versiones compilads.
+El objetivo del despliegue es poner en producción la última versión
+lanzada de la aplicación. Como no ha sido posible encontrar ningún
+servicio gratuito de hosting que soporte Play Framework (o Docker) y
+MySQL, se realizará el despliegue en un ordenador de uno de los
+miembros del equipo.
 
-## 6. Desarrollo de características adicionales en equipo ##
+El **responsable de despliegue** deberá desplegar la aplicación docker
+correspondiente a la última versión en modo producción (trabajando con
+el fichero de configuración `production.conf`) y sobre una base de
+datos de producción MySQL que contendrá todos los datos guardados en
+todas las ejecuciones de la aplicación en este entorno de producción.
 
-En esta parte desarrollaréis tres características (historias de
-usuario) adicionales en el proyecto. 
+Para que funcione correctamente, se deberá actualizar el esquema de
+datos de la base de datos de producción en el caso en que se haya
+modificado dicho esquema en el desarrollo.
 
-Debéis definir una página en la wiki para cada una de ellas, y crear
-la página principal de la wiki con el título **Versión 1.1** y con dos
-tablas (_pendientes_ y _terminadas_) que contenga los títulos, enlaces
-y una breve descripción de cada una de las características (como hemos
-hecho en la wiki en las prácticas 1 y 2).
+Vamos a ver primero los elementos que necesitamos para realizar el
+despliegue y después enumeraremos paso a paso las actividades a
+realizar en la práctica.
 
-También igual que en las prácticas 1 y 2, se creará una etiqueta para
-cada una de las historias de usuario y se marcarán con ella los
-_issues_ que las conforman. Una de historia de usuario puede contener
-varios _issues_ o sólo uno.
+### Ejecución de la aplicación en producción ###
 
-También se marcarán los issues/pull requests con el `milestone 1.1`, que
-será el número de versión definitiva de la aplicación cuando se
-termine esta práctica 3.
+En la configuración de producción en lugar de dejar que JPA cree las
+tablas de la base de datos, vamos nosotros a inicializar la base de
+datos MySQL con los esquemas y datos predefinidos. JPA va a validar
+que las tablas se corresponden con el esquema de datos. Para ello
+podemos usar el siguiente fichero de configuración
+`conf/production.conf`
 
-Cada historia de usuario deberá tener un responsable distinto, que
-será se encargará de realizar la formulación de la historia en
-la página wiki, descomponerla en issues y de probar que se cumplen las
-condiciones de satisfacción antes de darla por terminada. Escribid el
-responsable de la historia en su página.
+```text
+include "application.conf"
 
-Aunque lo normal es que los issues en los que se descompone una
-historia tengan el mismo responsable que la historia, también se
-pueden definir otros responsables (por ejemplo, si es un _issue_
-orientado a crear las vistas y en el equipo hay una persona que domina
-Bootstrap y el diseño de interfaces de usuario).
+play.crypto.secret="abcdefghijkl"
 
-### 6.1. Funcionalidades adicionales ###
+jpa.default = production
 
-Proponemos tres historias de usuario pequeñas, que se pueden
-desarrollar todas en una semana. Para las historias 2 y 3 se deben
-realizar tests, como hemos venido haciendo en las prácticas 1
-y 2. Aunque no es obligatorio, puedes desarrollarlas usando TDD.
+db.default.driver=com.mysql.jdbc.Driver
+db.default.url=${?DB_URL}
+db.default.username=${?DB_USER_NAME}
+db.default.password=${?DB_USER_PASSWD}
+```
 
-1. Arreglo de la interfaz de usuario de tareas y tableros, definiendo
-   una [barra de
-   navegación](https://bootstrapdocs.com/v3.3.6/docs/components/#navbar)
-   de Bootstrap con las opciones: `TodoList` (título de la aplicación), `Mis tareas`
-   (enlace a la página de tareas), `Mis tableros` (enlace a la página de
-   tableros) y a la derecha un desplegable con el nombre del usuario y
-   las opciones `Perfil` (enlace al perfil, si está implementado) y
-   `Salir` (salir y enlace a login).
+Este fichero define como unidad de persistencia de JPA la unidad
+denominada `default` que está definida en el fichero de configuración
+de JPA `conf/META-INF/persistence.xml`:
 
-2. Añadir los siguientes campos adicionales a la tarea :
-   `fechaCreacion`. Poner como fecha de creación la fecha y hora en la
-   que se crea la tarea (hacerlo de forma automática, sin pedírselo al
-   usuario, ni que el usuario pueda modificarlo). Y dejar que el
-   usuario introduzca opcionalmente la fecha límite en la página de
-   creación/edición de una tarea.
-   
-   En la tabla con el listado de tareas no mostrar la fecha de
-   creación (es un atributo interno, que por ahora no mostramos) pero
-   sí la fecha límite.
 
-3. Añadir un campo adicional de `terminado` a las tareas. Añadir una
-   acción en el listado de tareas para terminar una tarea. En el
-   listado de tareas aparecerán solo las tareas que no se hayan
-   terminado. Pon un enlace `Terminadas` para mostrar las tareas terminadas.
+```text
 
-Si queréis incluir alguna funcionalidad opcional que hayáis
-implementado, podéis hacerlo además de lo anterior. Debéis añadir la
-página correspondiente con la funcionalidad en la wiki.
+<!-- MySQL Persistence Unit - Production: hbm2ddl.auto = VALIDATE -->
 
-### 6.2. Publicación de la versión 1.1  ###
+<persistence-unit name="production" transaction-type="RESOURCE_LOCAL">
+   <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+   <non-jta-data-source>DBTodoList</non-jta-data-source>
+   <class>models.Usuario</class>
+   <class>models.Tarea</class>
+   <class>models.Equipo</class>
+   <class>models.Admin</class>
+   <class>models.Etiqueta</class>
+   <properties>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
+      <property name="hibernate.hbm2ddl.auto" value="validate"/>
+   </properties>
+</persistence-unit>
+```
 
-Una vez terminadas y probadas todas las historias de usuario, se
-deberá crear una rama para la versión 1.1 e integrarla en la rama
-`production` tal y como se ha hecho con la versión 1.0. 
+Vemos que en esta configuración el valor de la propiedad
+`hibernate.hbm2ddl.auto` es `validate`. De esta forma JPA validará que
+el esquema de base de datos existente se mapea correctamente con las
+entidades definidas.
 
-Realizar en la rama de versión los commits necesarios para el cambio
-de versión (en el fichero `build.sbt` y en la página `Acerca de`) y
-para actualizar los ficheros relacionados con el esquema de datos (el
-fichero `schema.sql` y `upgradeXX.sql`).
+Para ejecutar la aplicación Play en modo producción lanzamos el
+contenedor play de la misma forma que hacíamos para ejecutar los tests
+de integración (definiendo las variables de entorno para que la
+configuración se conecte con la BD y lanzando el shell bash), pero
+usando el fichero `conf/production.conf` como fichero de inicialización.
 
-Igual que se hizo con la versión 1.0, terminar integrando esta rama
-también en `master` y modificando el número de versión a `1.2-SNAPSHOT`.
+```text
+$ docker run --link db-mysql:mysql --rm -it -p 9000:9000 -e \
+DB_URL="jdbc:mysql://db-mysql:3306/mads" -e DB_USER_NAME="root" -e \
+DB_USER_PASSWD="mads" domingogallardo/mads-todolist:1.3.0 \
+/bin/bash -c "sbt '; set javaOptions += \"-Dconfig.file=conf/production.conf\"; run'"
+```
 
-## 7. Entrega y evaluación ##
+### Gestión de la base de datos de producción  ###
 
-- La práctica tiene una duración de 2 semanas y debe estar terminada
-  el martes 21 de noviembre.
-- La calificación de la práctica tiene un peso de un 7% en la nota
+La base de datos de producción deberá crearse inicialmente con el
+esquema de datos necesario. Después deberá actualizarse con cada nueva
+versión que modifique el esquema de datos.
+
+La base de datos de producción contendrá todos los datos introducidos
+por distintas pruebas realizadas, simulando usuarios reales que
+utilizan la aplicación.
+
+#### Exportación del esquema de datos inicial ####
+
+Para conseguir el esquema de datos inicial de la aplicación podemos
+exportarlo una vez creado por la aplicación ejecutándose en modo
+develop.
+ 
+Para ello lanzamos la aplicación como lo hemos hecho hasta ahora,
+trabajando contra el contenedor MySQL recién arrancado. Al arrancar la
+aplicación JPA crea en la base de datos el esquema necesario para que
+la aplicación funcione.  No hace falta añadir ningún dato, porque solo
+nos interesa el esquema de datos.  
+
+Una incializado el esquema de datos podemos exportarlo con el
+siguiente comando `mysqldum` lanzado al contenedor `db-mysql` en
+marcha:
+
+```text
+$ docker exec db-mysql sh -c 'exec mysqldump --no-data mads -uroot -pmads' > schema.sql
+```
+
+El comando anterior ejecuta el comando `mysqldump` en el contenedor
+docker. Este comando exporta el esquema de datos (sin los datos
+añadidos) y lo graba el fichero `schema.sql` en el directorio
+actual. 
+
+El fichero debería ser parecido a este:
+
+```sql
+-- MySQL dump 10.13  Distrib 5.7.23, for Linux (x86_64)
+--
+-- Host: localhost    Database: mads
+-- ------------------------------------------------------
+-- Server version	5.7.23
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `Admin`
+--
+
+DROP TABLE IF EXISTS `Admin`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Admin` (
+  `usuario_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`usuario_id`),
+  CONSTRAINT `FKk02c1a5a0iytp4s5ijsk8i038` FOREIGN KEY (`usuario_id`) REFERENCES `Usuario` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `Equipo`
+--
+
+DROP TABLE IF EXISTS `Equipo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Equipo` (
+  `id` bigint(20) NOT NULL,
+  `nombre` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `Equipo_Usuario`
+--
+
+DROP TABLE IF EXISTS `Equipo_Usuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Equipo_Usuario` (
+  `fk_equipo` bigint(20) NOT NULL,
+  `fk_usuario` bigint(20) NOT NULL,
+  PRIMARY KEY (`fk_equipo`,`fk_usuario`),
+  KEY `FKfhluff2qt31bph8boc2xiadfd` (`fk_usuario`),
+  CONSTRAINT `FKfhluff2qt31bph8boc2xiadfd` FOREIGN KEY (`fk_usuario`) REFERENCES `Usuario` (`id`),
+  CONSTRAINT `FKhiod88sx7eufxk2p9379o37wh` FOREIGN KEY (`fk_equipo`) REFERENCES `Equipo` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `Etiqueta`
+--
+
+DROP TABLE IF EXISTS `Etiqueta`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Etiqueta` (
+  `id` bigint(20) NOT NULL,
+  `texto` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `Etiqueta_Tarea`
+--
+
+DROP TABLE IF EXISTS `Etiqueta_Tarea`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Etiqueta_Tarea` (
+  `fk_etiqueta` bigint(20) NOT NULL,
+  `fk_tarea` bigint(20) NOT NULL,
+  PRIMARY KEY (`fk_etiqueta`,`fk_tarea`),
+  KEY `FKpok50kklbh3b9c4h3gyxug37a` (`fk_tarea`),
+  CONSTRAINT `FK2x5gddvr7tkl4crl8dgcxiojc` FOREIGN KEY (`fk_etiqueta`) REFERENCES `Etiqueta` (`id`),
+  CONSTRAINT `FKpok50kklbh3b9c4h3gyxug37a` FOREIGN KEY (`fk_tarea`) REFERENCES `Tarea` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `Tarea`
+--
+
+DROP TABLE IF EXISTS `Tarea`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Tarea` (
+  `id` bigint(20) NOT NULL,
+  `titulo` varchar(255) DEFAULT NULL,
+  `usuarioId` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKepne2t52y8dmn8l9da0dd7l51` (`usuarioId`),
+  CONSTRAINT `FKepne2t52y8dmn8l9da0dd7l51` FOREIGN KEY (`usuarioId`) REFERENCES `Usuario` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `Usuario`
+--
+
+DROP TABLE IF EXISTS `Usuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Usuario` (
+  `id` bigint(20) NOT NULL,
+  `apellidos` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `fechaNacimiento` date DEFAULT NULL,
+  `login` varchar(255) DEFAULT NULL,
+  `nombre` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `hibernate_sequence`
+--
+
+DROP TABLE IF EXISTS `hibernate_sequence`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `hibernate_sequence` (
+  `next_val` bigint(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2018-10-30 10:50:52
+```
+
+
+
+#### Inicialización de la imagen docker MySQL ####
+
+Para inicializar los datos de la base de datos de producción 
+podemos utilizar el directorio `/docker-entrypoint-initdb.d`. Lo
+primero que hace el contenedor docker recién inicializado es consultar
+ese directorio y ejecutar todos los ficheros con la extensión `.sql`
+que encuentre ahí. Los ejecuta en el orden alfabético del nombre de
+fichero.
+
+Por ejemplo, si colocamos el fichero `schema.sql` en el directorio
+actual, podemos lanzar el contenedor docker de la siguiente forma, para
+que cargue este fichero nada más arrancar:
+
+```
+$ docker run -d --name db-mysql -v ${PWD}:/docker-entrypoint-initdb.d -e MYSQL_ROOT_PASSWORD=mads -e MYSQL_DATABASE=mads mysql
+```
+
+De esta forma se lanza MySQL cargando el esquema y los datos que hayamos
+incluido en el fichero `schema.sql`.
+
+
+#### Grabado de los datos ####
+
+Es posible volcar los datos de la base de datos del contenedor
+de producción con el siguiente comando:
+
+```
+$ docker exec db-mysql sh -c 'exec mysqldump mads -uroot -pmads' > schema.sql
+```
+
+De esta forma podemos hacer una copia de seguridad de los datos
+añadidos y del esquema de datos actual.
+
+
+#### Actualización del esquema de datos ####
+
+Cuando se despliegue una nueva versión de la aplicación que contenga un
+cambio en el modelo de datos se deberá actualizar el esquema de datos
+de la base de datos para que la aplicación funcione
+correctamente. Esta actualización deberá hacerse sin modificar los
+datos existentes.
+
+Para ello, definiremos un fichero `upgrade.sql` en el que
+introduciremos las instrucciones necesarias para actualizar el modelo
+de datos. Este fichero `upgrade.sql` lo colocaremos en el mismo
+directorio de inicialización y el contenedor lo ejecutará después del
+fichero `schema.sql` (por tener un nombre con orden alfabético
+posterior). 
+
+En esta primera versión añadiremos en el fichero `upgrade.sql` la
+inicialización de la tabla de secuencias de Hibernate, necesaria para
+que Hibernate genere las claves primarias de las entidades:
+
+
+```sql
+--
+-- Dumping data for table `hibernate_sequence`
+--
+
+LOCK TABLES `hibernate_sequence` WRITE;
+/*!40000 ALTER TABLE `hibernate_sequence` DISABLE KEYS */;
+INSERT INTO `hibernate_sequence` VALUES (1),(1);
+/*!40000 ALTER TABLE `hibernate_sequence` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+```
+
+En las siguientes releases, en cada versión nueva que conlleve una
+modificación del esquema de datos, deberemos:
+
+1. Grabar los datos en un fichero `schema.sql` y parar y borrar el
+   contenedor docker.
+2. Colocar ese fichero `schema.sql` junto con el fichero `upgrade.sql`
+   que contiene los comandos ALTER TABLE necesarios para la nueva
+   versión en el mismo directorio.
+3. Volver a arrancar el contenedor docker sobre el directorio en el
+   que se encuentran los ficheros `schema.sql` y `upgrade.sql`. Los
+   datos se volverán a cargar en la base de datos y se ejecutarán los
+   comandos de actualización de las tablas.
+
+
+### Pasos a seguir ###
+
+- Cread un nuevo _issue_ con el título `Esquema de datos`. El equipo
+  escogerá un **responsable de base de datos**, que se encargará de
+  este _issue_ abriendo un nuevo PR en `develop`.
+
+- Para resolver el _issue_ se deberá obtener el fichero `schema.sql`
+  con el esquema inicial de la aplicación y añadirlo en un nuevo
+  directorio `sql` en la raíz del proyecto Play.
+  
+- Se deberá crear también dentro de ese directorio el fichero
+  `upgrade.sql` con el contenido necesario para actualizar la tabla de
+  secuencias de Hibernate.
+  
+- Lanzad una nueva release `1.3.1` desde `develop` y realizad su
+  despliegue en producción. Añadid algunos ejemplos de usuarios,
+  tareas y equipos en producción. Una vez añadidos, volcad la base de
+  datos resultante y guardadla con el nombre de `bd-producion-1.sql`.
+
+- Añadid un nuevo _issue_ con el título `Prueba actualización bd
+  producción`. Abrid un PR desde `develop` y modificad alguna entidad
+  (por ejemplo, añadid un atributo de texto `direccion` al usuario) y
+  lanzad una nueva release `1.3.2` desde `develop`. 
+  
+- En la rama de release el responsable de base de datos deberá
+  comprobar el esquema de datos que se genera con los cambios
+  introducidos en la nueva release, y modificar el fichero
+  `upgrade.sql` para que contemple esos cambios.
+  
+- Una vez terminado el release el responsable de despliegue actualizar
+  la base de datos de producción con los nuevos cambios. Se deberá
+  por último añadir algún dato más y volcar la base de datos
+  resultante con el nombre de `bd-produccion-2.sql`.
+
+## Entrega y evaluación ##
+
+- La práctica tiene una duración de 3 semanas y debe estar terminada
+  el martes 20 de noviembre.
+- La calificación de la práctica tiene un peso de un 5% en la nota
   final de la asignatura.
 - Para realizar la entrega uno de los miembros del equipo debe subir a
-  Moodle un ZIP que contenga todo el proyecto, incluyendo la historia
-  Git. Para ello comprime el directorio local del proyecto **después
-  de haber hecho un `clean`**. Debes dejar también en Moodle la URL
-  del repositorio en GitHub.
+  Moodle un ZIP que contenga todo el proyecto y los ficheros
+  `bd-produccion-1.sql` y `bd-produdcción-2.sql`. Debes dejar también
+  en Moodle la URL del repositorio en GitHub.
 
 Para la evaluación se tendrá en cuenta:
 
 - Desarrollo continuo (los _commits_ deben realizarse a lo largo de
-  las 2 semanas y no dejar todo para la última semana).
+  las 3 semanas y no dejar todo para la última semana).
 - Correcto desarrollo de la metodología.
 - Corrección del código.
 
-
-<!--
-
-## 5. Representación de _features_ en Trello
-
-Una _feature_ (funcionalidad) va a agrupar varios tickets. Vamos a
-guardar las _features_ en el mismo tablero, pero usando **etiquetas**
-para poder visualizarlas y filtrarlas fácilmente. También utilizaremos
-una nomenclatura especial para numerarlas.
-
-Cada funcionalidad en desarrollo tendrá una etiqueta específica, que
-pondremos en todos los tickets de esa funcionalidad. De esta forma
-podemos filtrar por esa etiqueta y observar rápidamente todos los
-tickets asociados.
-
-Todas las funcionalidades (en cualquier estado: en espera, desarrollo
-o terminadas) tendrán una etiqueta especial denominada `Feature`
-(color amarillo). Sólo se debe asignar esa etiqueta a las
-funcionalidades, no a los tickets asociadas. De esta forma podremos
-filtrar por esa etiqueta y observar sólo las funcionalidades que hay
-en el tablero.
-
-En cuanto a la **nomenclatura**, precederemos el nombre de la
-funcionalidad con el prefijo "FT-1", "FT-2", ... (de _FeaTure_). Y los
-tickets asociados a cada funcionalidad los numeraremos con dos
-números: primero el correspondiente a la funcionalidad y después un
-número correlativo correspondiente al número de ticket. Por ejemplo:
-"TIC-1.1", "TIC-1.2".
-
-Por ejemplo, podríamos definir la funcionalidad "FT-1 Gestión
-básica de tareas" con la descripción:
-
-```
-FT-1 Gestión básica de tareas:
-Un usuario deberá poder listar, añadir, borrar y modificar tareas,
-para poder visualizar las tareas que está realizando
-```
-
-Y esta funcionalidad podría tener los siguientes tickets: "TIC-1.1
-Entidad tarea", "TIC-1.2 Añadir tarea por usuario", "TIC-1.3 Listar
-tareas de un usuario", ...
-
-Las siguientes imágenes muestran un ejemplo.
-
-Suponemos que se ha definido una funcionalidad llamada "FT-1 CRUD
-Tareas" y que hemos creado 4 tickets: 
-
-- "TIC-1.1 Listar tareas de usuario" (terminado)
-- "TIC-1.2 Añadir tarea a usuario" (en pull request)
-- "TIC-1.3 Borrar tarea de un usuario" (en pull request)
-- "TIC-1.4 Editar tarea de usuario" (en marcha). 
-
-El tablero se vería de la siguiente forma:
-
-<img src="imagenes/tablero-features.png" width="800px">
-
-Las etiquetas creadas son las siguientes:
-
-<img src="imagenes/etiquetas.png" width="250px">
-
-Las etiquetas son muy útiles para filtrar las tarjetas. Por ejemplo,
-podemos definir un filtro para mostrar únicamente la etiqueta "CRUD
-Tareas" (y sus tickets):
-
-<img src="imagenes/filtro-feature-1.png" width="800px">
-
-El filtro es el siguiente:
-
-<img src="imagenes/filtro-feature.png" width="250px">
-
-También podríamos ver sólo las tarjetas de tipo _Feature_:
-
-<img src="imagenes/filtro-features.png" width="700px">
-
-## 6. Desarrollo de 2 features en equipo
-
-Utilizando el flujo de trabajo visto, tenéis que implementar y
-documentar dos funcionalidades nuevas.
-
-Junto con cada _feature_ se debe incluir una documentación técnica y
-de usuario que explica brevemente los cambios introducidos por la
-funcionalidad. En la documentación técnica se debe explicar los
-cambios añadidos en cada una de las capas de la aplicación. Y en la
-documentación de usuario una breve explicación de la funcionalidad con
-alguna imagen explicativa de las pantallas y elementos de interacción
-que intervienen.
-
-### 6.1. Feature 1: Login, registro y tamaño estimado de tareas
-
-Tamaño: pequeño.
-
-**Funcionalidad**: Un usuario podrá utilizar la aplicación para
-logearse, gestionar sus tareas y sus datos y salir. Se puede asignar
-un tamaño estimado a cada tarea. El tamaño puede tener uno de los
-siguientes valores: pequeño, mediano o grande.
-
-Las pantallas deben estar organizadas de forma que la navegación por
-las distintas opciones sea sencilla y lógica. No gestionaremos la
-seguridad (proteger las URLs para que sólo un usuario puede acceder a
-sus datos), eso lo dejamos para el futuro.
-
-### 6.2. Feature 2: Proyectos 
-
-Tamaño: mediano.
-
-**Funcionalidad**: Un usuario podrá agrupar las tareas por proyectos
-para organizarlas mejor. En principio, un proyecto tendrá únicamente
-un nombre.
-
-El usuario podrá crear, cambiar el nombre y borrar proyectos. Deberá
-poder asignar tareas a proyectos y presentar de forma organizada las
-tareas, ordenadas por proyectos.
-
-### 7. Publicación de la versión 1.1
-
-**Una vez terminada la documentación** (la documentación debe estar
-incluida en la release) el responsable de integración abrirá la nueva
-rama `release-v1.1`, hará allí los cambios propios de la release (el
-número de versión y la fecha de publicación) y realizará el pull
-request para publicar la versión en `production`.
-
-
-## 8. Entrega y evaluación
-
-- La práctica tiene una duración de 3 semanas y debe estar terminada
-  el **martes 15 de noviembre**.
-- La calificación de la práctica tiene un peso de un 5% en la nota
-  final de la asignatura.
-- Durante el desarrollo se debe añadir el código en el repositorio en
-  GitHub `mads-todolist` compartido con el profesor, y los tickets en
-  el tablero Trello compartido con el profesor.
-- En la fecha de la entrega se debe subir a Moodle un ZIP que contenga
-  todo el proyecto y dejar la URL del repositorio en GitHub
-
-Para la evaluación se tendrá en cuenta:
-
-- Desarrollo contínuo (commits realizados a lo largo de las 3 semanas)
-- Buen desarrollo y descripción de los cambios (commits bien
-  documentados, ordenados, ramas de características visibles en la
-  historia de commits)
-- Tablero Trello bien ordenado
-- Correcto desarrollo de las funcionalidades de la práctica
-- Cuidado en el aspecto de la aplicación, la terminación, control de
-  errores
-- Características adicionales desarrolladas
-- Para cada funcionalidad se debe realizar un documento técnico y un
-  pequeño manual de usuario. Escribir una página `.md` para cada
-  funcionalidad nueva.
-
-
--->
