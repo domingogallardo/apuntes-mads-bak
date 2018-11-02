@@ -274,7 +274,7 @@ rama.
     la página para sincronizar este nuevo repositorio desde la página
     principal de Travis, pulsando el botón `+`:
     
-    <img src="imagenes/builds-travis-add.png" width="600px"/>
+    <img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/03-gitflow-despliegue/imagenes/builds-travis-add.png" width="600px"/>
 
 - Haced un PR de prueba en la rama `develop`para comprobar que todo
   funciona bien.
