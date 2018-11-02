@@ -49,10 +49,8 @@ Utilizaremos _GitHub Classroom_ para crear el _team_ y el repositorio.
     Subidlo al nuevo repositorio, cambiando la URL del `origin` del
     repositorio local y haciendo un push:
 
-    ```
-    $ git remote set-url origin https://github.com/mads-ua/todolistgrupo-2018-NOMBRE-EQUIPO.git
-    $ git push -u origin master
-    ```
+        $ git remote set-url origin https://github.com/mads-ua-18/todolistgrupo-2018-NOMBRE-EQUIPO.git
+        $ git push -u origin master
 
     Por último, los otros miembros del equipo deberán clonar el
     repositorio para que los tres podáis trabajar con él en local.
@@ -611,7 +609,7 @@ Es posible volcar los datos de la base de datos del contenedor
 de producción con el siguiente comando:
 
 ```
-$ docker exec db-mysql sh -c 'exec mysqldump mads -uroot -pmads' > schema.sql
+$ docker exec db-mysql sh -c 'exec mysqldump mads -uroot -pmads' > backup.sql
 ```
 
 De esta forma podemos hacer una copia de seguridad de los datos
@@ -629,9 +627,10 @@ datos existentes.
 Para ello, definiremos un fichero `upgrade.sql` en el que
 introduciremos las instrucciones necesarias para actualizar el modelo
 de datos. Este fichero `upgrade.sql` lo colocaremos en el mismo
-directorio de inicialización y el contenedor lo ejecutará después del
-fichero `schema.sql` (por tener un nombre con orden alfabético
-posterior). 
+directorio de inicialización junto con el fichero `backup.sql` que
+contiene los datos y el esquema anterior. El contenedor cargará ambos
+ficheros en el orden correcto (primero `backup.sql` y después
+`upgrade.sql`). 
 
 En esta primera versión añadiremos en el fichero `upgrade.sql` la
 inicialización de la tabla de secuencias de Hibernate, necesaria para
