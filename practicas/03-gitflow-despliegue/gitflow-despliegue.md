@@ -269,12 +269,12 @@ de Travis, para que también se lancen los builds en los PR contra esta
 rama. 
 
     Para integrar el repositorio en Travis hay que acceder a la cuenta
-    personal en Travis.com y sincronizar el nuevo repositorio en la
-    organización `mads-ua-18`. Puedes acceder a la página para
-    sincronizar este nuevo repositorio desde la página principal de
-    Travis, pulsando el botón `+`:
+    personal en Travis.com y sincronizar el nuevo repositorio
+    `todolistgrupo` en la organización `mads-ua-18`. Puedes acceder a
+    la página para sincronizar este nuevo repositorio desde la página
+    principal de Travis, pulsando el botón `+`:
     
-    <img src="imagenes/build-travis-add.png" width="600px"/>
+    <img src="imagenes/builds-travis-add.png" width="600px"/>
 
 - Haced un PR de prueba en la rama `develop`para comprobar que todo
   funciona bien.
