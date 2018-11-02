@@ -274,7 +274,7 @@ rama.
     sincronizar este nuevo repositorio desde la página principal de
     Travis, pulsando el botón `+`:
     
-    <img src="images/build-travis-add.png" width="600px"/>
+    <img src="imagenes/build-travis-add.png" width="600px"/>
 
 - Haced un PR de prueba en la rama `develop`para comprobar que todo
   funciona bien.
