@@ -632,15 +632,15 @@ de la base de datos para que la aplicación funcione
 correctamente. Esta actualización deberá hacerse sin modificar los
 datos existentes.
 
-Para ello, definiremos un fichero `upgrade.sql` en el que
+Para ello, definiremos un fichero `upgradeXXX.sql` en el que
 introduciremos las instrucciones necesarias para actualizar el modelo
-de datos. Este fichero `upgrade.sql` lo colocaremos en el mismo
+de datos. Este fichero `upgradeXXX.sql` lo colocaremos en el mismo
 directorio de inicialización junto con el fichero `backup.sql` que
 contiene los datos y el esquema anterior. El contenedor cargará ambos
 ficheros en el orden correcto (primero `backup.sql` y después
-`upgrade.sql`). 
+`upgradeXXX.sql`). 
 
-En esta primera versión añadiremos en el fichero `upgrade.sql` la
+En esta primera versión añadiremos en el fichero `upgrade001.sql` la
 inicialización de la tabla de secuencias de Hibernate, necesaria para
 que Hibernate genere las claves primarias de las entidades:
 
@@ -698,8 +698,9 @@ modificación del esquema de datos, deberemos:
   
 - En la rama de release el responsable de base de datos deberá
   comprobar el esquema de datos que se genera con los cambios
-  introducidos en la nueva release, y modificar el fichero
-  `upgrade.sql` para que contemple esos cambios.
+  introducidos en la nueva release, y añadir un nuevo fichero
+  `upgradeXXX.sql` (incrementando el número) para que contemple esos
+  cambios.
   
 - Una vez terminado el release el responsable de despliegue actualizar
   la base de datos de producción con los nuevos cambios. Se deberá
