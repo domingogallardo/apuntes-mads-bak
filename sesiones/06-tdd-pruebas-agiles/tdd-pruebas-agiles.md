@@ -31,6 +31,28 @@
 
 <kbd><img src="diapositivas/tdd-pruebas-agiles.011.png" width="800px"></kbd>
 
+La pirámide de la automatización de tests es una figura muy usada que
+indica los porcentajes de la cantidad de tests que debe haber en un
+proyecto. 
+
+La base de la pirámide (el mayor porcentaje de tests) debe estar
+formada por tests unitarios. Además de constituir el mayor número de
+tests del proyecto, son ejecutados muchas más veces y su mantenimiento
+es mayor, ya que en general son realizados y probados por los propios
+desarrolladores en sus equipos.
+
+Sobre ellos se construyen los tests de integración o tests a nivel de
+API. Son menos que los tests unitarios, prueban funcionalidades de
+mayor nivel y normalmente se ejecutan sólo en el servidor de
+integración continua.
+
+Sobre los tests de integración se construyen también tests automáticos
+de los aspectos de interfaz de usuario. Son menos cantidad que los
+tests de integración, pero también son automáticos.
+
+Y, por último, se realizan una cantidad pequeña (en proporción a los
+anteriores) de tests manuales no automatizados.
+
 <kbd><img src="diapositivas/tdd-pruebas-agiles.012.png" width="800px"></kbd>
 
 <kbd><img src="diapositivas/tdd-pruebas-agiles.013.png" width="800px"></kbd>
