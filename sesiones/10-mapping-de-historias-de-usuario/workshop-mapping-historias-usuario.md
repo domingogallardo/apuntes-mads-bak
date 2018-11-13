@@ -51,11 +51,18 @@ Cada grupo deberá hacer lo siguiente:
       detrás de la tarjeta. También se puede dibujar un borrador de la
       interfaz de usuario como condición de satisfacción.
     - Hacer **planning pocker** para estimar el tamaño de la historia
-      y escribirlo en una esquina de la tarjeta. El tamaño puede ser 1
-      (pequeña), 2 (mediana) o 4 (grande). El tiempo de terminar una
-      historia mediana será el doble de una pequeña, y el de una
-      grande el doble de una mediana. Si la historia es más grande de
-      4, hay que subdividirla en historias más pequeñas.
+      y escribirlo en una esquina de la tarjeta. El tamaño puede ser:
+      
+        - 1 (XS - extra pequeña)
+        - 2 (S - pequeña)
+        - 3 (M - mediana)
+        - 4 (L - grande)
+        - 5 (XL - extra grande)
+      
+      El tiempo de terminar una historia mediana será el doble de una
+      extra pequeña, y el de una grande el doble de una pequeña. Si la
+      historia es más grande de 5, hay que subdividirla en historias
+      más pequeñas.
 
 2. Agrupar las historias de usuario en grandes áreas (actividades). 
     - Escribir el nombre de las actividades en las **tarjetas
