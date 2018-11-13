@@ -72,7 +72,7 @@ Las sesiones tienen una duración variable, entre 45 y 90 minutos.
 - S09: [Historias de usuario](sesiones/09-historias-de-usuario/historias-de-usuario.md)
 - S10: [Jeff Patton - User Story Mapping](sesiones/10-mapping-de-historias-de-usuario/mapping-de-historias-de-usuario.md)
   - Jeff Patton - [It's all in how you slice it](lecturas/jeff-patton-how-you-slice-it.pdf)
-
+  - [Workshop de mapping de historias de usuario](sesiones/10-mapping-de-historias-de-usuario/workshop-mapping-historias-usuario.md)
 
 ### Bloque 4: Metodologías ágiles: Scrum y Kanban (4 semanas)
 
