@@ -297,9 +297,6 @@ siguiendo los pasos de GitFlow:
       nueva versión.
     - Mezclar también la rama de release con `develop` (se puede hacer
       también con un PR).
-    - Por último hacer un commit en `develop` cambiando el número de
-      versión a `1.4.0-SNAPSHOT` (en el "Acerca de" y en el
-      `build.sbt`).
 
 - Una vez hecho esto ya se puede borrar la rama `release-1.3.0` y las
   ramas `master` y `develop` estarán actualizadas a las nuevas
@@ -308,8 +305,8 @@ siguiendo los pasos de GitFlow:
 - La rama `develop` también será integrada por Travis. Debemos
 comprobar que pasan todos los tests.
 
-- Por último, deberéis realizar un _bug fix_, siguiendo el flujo de
-  trabajo de GitFlow.
+- Por último, deberéis realizar un _hot fix_, siguiendo el flujo de
+  trabajo de GitFlow, y actualizando el número de versión a `1.3.1`.
 
 ## Despliegue ##
 
@@ -599,7 +596,7 @@ ese directorio y ejecutar todos los ficheros con la extensión `.sql`
 que encuentre ahí. Los ejecuta en el orden alfabético del nombre de
 fichero.
 
-Por ejemplo, si colocamos el fichero `schema.sql` en el directorio
+Por ejemplo, si colocamos el fichero `backup.sql` en el directorio
 actual, podemos lanzar el contenedor docker de la siguiente forma, para
 que cargue este fichero nada más arrancar:
 
@@ -608,7 +605,7 @@ $ docker run -d --name db-mysql -v ${PWD}:/docker-entrypoint-initdb.d -e MYSQL_R
 ```
 
 De esta forma se lanza MySQL cargando el esquema y los datos que hayamos
-incluido en el fichero `schema.sql`.
+incluido en el fichero `backup.sql`.
 
 
 #### Grabado de los datos ####
@@ -661,13 +658,13 @@ UNLOCK TABLES;
 En las siguientes releases, en cada versión nueva que conlleve una
 modificación del esquema de datos, deberemos:
 
-1. Grabar los datos en un fichero `schema.sql` y parar y borrar el
+1. Grabar los datos en un fichero `backup.sql` y parar y borrar el
    contenedor docker.
-2. Colocar ese fichero `schema.sql` junto con el fichero `upgrade.sql`
+2. Colocar ese fichero `backup.sql` junto con el fichero `upgradeXXX.sql`
    que contiene los comandos ALTER TABLE necesarios para la nueva
    versión en el mismo directorio.
 3. Volver a arrancar el contenedor docker sobre el directorio en el
-   que se encuentran los ficheros `schema.sql` y `upgrade.sql`. Los
+   que se encuentran los ficheros `backup.sql` y `upgradeXXX.sql`. Los
    datos se volverán a cargar en la base de datos y se ejecutarán los
    comandos de actualización de las tablas.
 
@@ -686,7 +683,7 @@ modificación del esquema de datos, deberemos:
   `upgrade.sql` con el contenido necesario para actualizar la tabla de
   secuencias de Hibernate.
   
-- Lanzad una nueva release `1.3.1` desde `develop` y realizad su
+- Lanzad una nueva release `1.3.2` desde `develop` y realizad su
   despliegue en producción. Añadid algunos ejemplos de usuarios,
   tareas y equipos en producción. Una vez añadidos, volcad la base de
   datos resultante y guardadla con el nombre de `bd-producion-1.sql`.
@@ -694,11 +691,11 @@ modificación del esquema de datos, deberemos:
 - Añadid un nuevo _issue_ con el título `Prueba actualización bd
   producción`. Abrid un PR desde `develop` y modificad alguna entidad
   (por ejemplo, añadid un atributo de texto `direccion` al usuario) y
-  lanzad una nueva release `1.3.2` desde `develop`. 
+  lanzad una nueva release `1.3.3` desde `develop`. 
   
 - En la rama de release el responsable de base de datos deberá
   comprobar el esquema de datos que se genera con los cambios
-  introducidos en la nueva release, y añadir un nuevo fichero
+  introducidos en la nueva release y añadir un nuevo fichero
   `upgradeXXX.sql` (incrementando el número) para que contemple esos
   cambios.
   
