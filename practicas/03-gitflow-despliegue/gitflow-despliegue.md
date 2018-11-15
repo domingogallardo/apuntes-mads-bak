@@ -63,18 +63,18 @@ Utilizaremos _GitHub Classroom_ para crear el _team_ y el repositorio.
   `mads-todolist-equipo-XX`). Podéis usar como usuario de Docker Hub
   el propietario del repositorio escogido.
 
-  Haced un commit directamente en `master` con estos cambios.
+    Haced un commit directamente en `master` con estos cambios.
   
-  Para conectar el repositorio con Travis hay que acceder a la cuenta
-  personal en Travis.com y sincronizar el nuevo repositorio
-  `todolistgrupo` en la organización `mads-ua-18`. Puedes acceder a la
-  página para sincronizar este nuevo repositorio desde la página
-  principal de Travis, pulsando el botón `+`:
+    Para conectar el repositorio con Travis hay que acceder a la
+    cuenta personal en Travis.com y sincronizar el nuevo repositorio
+    `todolistgrupo` en la organización `mads-ua-18`. Puedes acceder a
+    la página para sincronizar este nuevo repositorio desde la página
+    principal de Travis, pulsando el botón `+`:
     
     <img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/03-gitflow-despliegue/imagenes/builds-travis-add.png" width="600px"/>
 
-  Aseguraos que funciona correctamente la nueva imagen subida
-  probando a ejecutar la aplicación:
+    Aseguraos que funciona correctamente la nueva imagen subida
+    probando a ejecutar la aplicación:
   
         $ docker run -d --rm -p 9000:9000 <usuario>/mads-todolist-equipo-XX
 
