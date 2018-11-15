@@ -76,7 +76,10 @@ Utilizaremos _GitHub Classroom_ para crear el _team_ y el repositorio.
     Aseguraos que funciona correctamente la nueva imagen subida
     probando a ejecutar la aplicación:
   
-        $ docker run -d --rm -p 9000:9000 <usuario>/mads-todolist-equipo-XX
+        $ docker run -it --rm -p 9000:9000 <usuario>/mads-todolist-equipo-XX
+
+    El flag `-it` permite visualizar en el terminal de forma interactiva
+    la salida estándar de la aplicación Play y terminarla haciendo un `CTRL-C`.
 
 ## Nuevo flujo de trabajo para los _issues_ ##
 
