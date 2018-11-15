@@ -403,10 +403,14 @@ se conecte con la BD y usando el fichero `conf/production.conf` como
 fichero de inicialización.
 
 ```text
-$ docker run --link db-mysql --rm -d -p 9000:9000 \
+$ docker run --link db-mysql --rm -it -p 9000:9000 \
 -e DB_URL="jdbc:mysql://db-mysql:3306/mads" -e DB_USER_NAME="root" \
 -e DB_USER_PASSWD="mads" -e CONFIG_FILE="conf/production.conf" domingogallardo/mads-todolist:1.1.0
 ```
+
+El flag `-it` permite visualizar en el terminal de forma interactiva
+la salida estándar de la aplicación Play y terminarla haciendo un `CTRL-C`.
+
 
 ### Gestión de la base de datos de producción  ###
 

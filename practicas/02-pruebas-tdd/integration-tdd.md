@@ -338,14 +338,17 @@ Lo más sencillo es ejecutar la aplicación trabajando con la base de
 datos en memoria:
 
 ```
-$ docker run -d --rm -p 9000:9000 domingogallardo/mads-todolist:1.1.0
+$ docker run -it --rm -p 9000:9000 domingogallardo/mads-todolist:1.1.0
 ```
+
+El flag `-it` permite visualizar en el terminal de forma interactiva
+la salida estándar de la aplicación Play y terminarla haciendo un `CTRL-C`.
 
 También podemos lanzar la aplicación para que trabaje con MySQL,
 definiendo las variables de entorno necesarias.
 
 ```
-$ docker run --link db-mysql --rm -d -p 9000:9000 \
+$ docker run --link db-mysql --rm -it -p 9000:9000 \
      -e DB_URL="jdbc:mysql://db-mysql:3306/mads" -e DB_USER_NAME="root" \
      -e DB_USER_PASSWD="mads" -e CONFIG_FILE="conf/develop-mysql.conf" domingogallardo/mads-todolist:1.1.0
 ```
