@@ -405,7 +405,7 @@ fichero de inicialización.
 ```text
 $ docker run --link db-mysql --rm -it -p 9000:9000 \
 -e DB_URL="jdbc:mysql://db-mysql:3306/mads" -e DB_USER_NAME="root" \
--e DB_USER_PASSWD="mads" -e CONFIG_FILE="conf/production.conf" domingogallardo/mads-todolist:1.1.0
+-e DB_USER_PASSWD="mads" -e CONFIG_FILE="conf/production.conf" <usuario>/mads-todolist-equipo-XX
 ```
 
 El flag `-it` permite visualizar en el terminal de forma interactiva
