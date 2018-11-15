@@ -619,7 +619,7 @@ actual, podemos lanzar el contenedor docker de la siguiente forma, para
 que cargue este fichero nada más arrancar:
 
 ```
-$ docker run -d --name db-mysql -v ${PWD}:/docker-entrypoint-initdb.d -e MYSQL_ROOT_PASSWORD=mads -e MYSQL_DATABASE=mads mysql
+$ docker run -d --name db-mysql -v ${PWD}:/docker-entrypoint-initdb.d -e MYSQL_ROOT_PASSWORD=mads -e MYSQL_DATABASE=mads mysql:5
 ```
 
 De esta forma se lanza MySQL cargando el esquema y los datos que hayamos
