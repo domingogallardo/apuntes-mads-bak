@@ -55,6 +55,29 @@ Utilizaremos _GitHub Classroom_ para crear el _team_ y el repositorio.
     Por último, los otros miembros del equipo deberán clonar el
     repositorio para que los tres podáis trabajar con él en local.
 
+- Cambiad el nombre del proyecto en el fichero `build.sbt` a
+  `mads-todolist-equipo-XX`. También deberéis cambiar el fichero
+  `Dockerfile` para actualizar el nombre de la aplicación a ejecutar,
+  y el fichero `.travis.yml` para modificar el nombre de la máquina a
+  publicar en Docker Hub (podéis llamarla también
+  `mads-todolist-equipo-XX`). Podéis usar como usuario de Docker Hub
+  el propietario del repositorio escogido.
+
+  Haced un commit directamente en `master` con estos cambios.
+  
+  Para conectar el repositorio con Travis hay que acceder a la cuenta
+  personal en Travis.com y sincronizar el nuevo repositorio
+  `todolistgrupo` en la organización `mads-ua-18`. Puedes acceder a la
+  página para sincronizar este nuevo repositorio desde la página
+  principal de Travis, pulsando el botón `+`:
+    
+    <img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/03-gitflow-despliegue/imagenes/builds-travis-add.png" width="600px"/>
+
+  Aseguraos que funciona correctamente la nueva imagen subida
+  probando a ejecutar la aplicación:
+  
+        $ docker run -d --rm -p 9000:9000 <usuario>/mads-todolist-equipo-XX
+
 ## Nuevo flujo de trabajo para los _issues_ ##
 
 Debemos adaptar el flujo de trabajo en GitHub al trabajo en equipo. En
@@ -264,17 +287,10 @@ Haremos también la integración haciendo pull request.
 crear la rama **`develop`** y configurarla como rama principal del
 proyecto en GitHub. Todos los otros miembros deberán descargarla y
 moverse a ella en sus repositorios locales. Esta rama pasará a ser la
-de desarrollo principal. Habrá también que modificar la configuración
-de Travis, para que también se lancen los builds en los PR contra esta
-rama. 
+de desarrollo principal. 
 
-    Para integrar el repositorio en Travis hay que acceder a la cuenta
-    personal en Travis.com y sincronizar el nuevo repositorio
-    `todolistgrupo` en la organización `mads-ua-18`. Puedes acceder a
-    la página para sincronizar este nuevo repositorio desde la página
-    principal de Travis, pulsando el botón `+`:
-    
-    <img src="https://raw.githubusercontent.com/domingogallardo/apuntes-mads/master/practicas/03-gitflow-despliegue/imagenes/builds-travis-add.png" width="600px"/>
+- Habrá que fichero de configuración de Travis, para que también se
+lancen los builds en los PR contra esta rama.
 
 - Haced un PR de prueba en la rama `develop`para comprobar que todo
   funciona bien.
@@ -381,17 +397,15 @@ Vemos que en esta configuración el valor de la propiedad
 el esquema de base de datos existente se mapea correctamente con las
 entidades definidas.
 
-Para ejecutar la aplicación Play en modo producción lanzamos el
-contenedor play de la misma forma que hacíamos para ejecutar los tests
-de integración (definiendo las variables de entorno para que la
-configuración se conecte con la BD y lanzando el shell bash), pero
-usando el fichero `conf/production.conf` como fichero de inicialización.
+Para ejecutar la aplicación Play en modo producción lanzamos nuestra
+imagen definiendo las variables de entorno para que la configuración
+se conecte con la BD y usando el fichero `conf/production.conf` como
+fichero de inicialización.
 
 ```text
-$ docker run --link db-mysql:mysql --rm -it -p 9000:9000 -e \
-DB_URL="jdbc:mysql://db-mysql:3306/mads" -e DB_USER_NAME="root" -e \
-DB_USER_PASSWD="mads" domingogallardo/mads-todolist:1.3.0 \
-/bin/bash -c "sbt '; set javaOptions += \"-Dconfig.file=conf/production.conf\"; run'"
+$ docker run --link db-mysql --rm -d -p 9000:9000 \
+-e DB_URL="jdbc:mysql://db-mysql:3306/mads" -e DB_USER_NAME="root" \
+-e DB_USER_PASSWD="mads" -e CONFIG_FILE="conf/production.conf" domingogallardo/mads-todolist:1.1.0
 ```
 
 ### Gestión de la base de datos de producción  ###
