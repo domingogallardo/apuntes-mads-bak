@@ -670,7 +670,6 @@ LOCK TABLES `hibernate_sequence` WRITE;
 INSERT INTO `hibernate_sequence` VALUES (1),(1);
 /*!40000 ALTER TABLE `hibernate_sequence` ENABLE KEYS */;
 UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 ```
 
 En las siguientes releases, en cada versión nueva que conlleve una
