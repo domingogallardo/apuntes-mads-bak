@@ -312,17 +312,22 @@ siguiendo los pasos de GitFlow:
     - Publicar la rama `release-1.3.0` en GitHub y hacer un pull
       request sobre `master`. Una vez mezclado el PR añadir la
       etiqueta con la nueva versión `1.3.0` en `master` creando la
-      página de release en GitHub. Por último, subir a Docker Hub la
-      nueva versión.
+      página de release en GitHub. 
     - Mezclar también la rama de release con `develop` (se puede hacer
       también con un PR).
+    - Por último, subir a Docker Hub la nueva versión 1.3.0. Docker
+      Hub hace el papel de "repositorio de artefactos" de nuestra
+      cadena de integración continua. Publicaremos allí todas las
+      releases compiladas en forma de imágenes docker que vayamos
+      generando.
 
 - Una vez hecho esto ya se puede borrar la rama `release-1.3.0` y las
   ramas `master` y `develop` estarán actualizadas a las nuevas
   versiones.
 
 - La rama `develop` también será integrada por Travis. Debemos
-comprobar que pasan todos los tests.
+comprobar que pasan todos los tests y que sube a Docker Hub la imagen
+con la etiqueta `latest`.
 
 - Por último, deberéis realizar un _hot fix_, siguiendo el flujo de
   trabajo de GitFlow, y actualizando el número de versión a `1.3.1`.
@@ -336,8 +341,9 @@ MySQL, se realizará el despliegue en un ordenador de uno de los
 miembros del equipo.
 
 El **responsable de despliegue** deberá desplegar la aplicación docker
-correspondiente a la última versión en modo producción (trabajando con
-el fichero de configuración `production.conf`) y sobre una base de
+correspondiente a la última versión (que se estará publicada en Docker
+Hub).  Deberá realizar el despliegue en modo producción, trabajando
+con el fichero de configuración `production.conf`, y sobre una base de
 datos de producción MySQL que contendrá todos los datos guardados en
 todas las ejecuciones de la aplicación en este entorno de producción.
 
