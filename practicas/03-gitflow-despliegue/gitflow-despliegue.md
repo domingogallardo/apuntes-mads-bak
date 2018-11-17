@@ -355,71 +355,6 @@ Vamos a ver primero los elementos que necesitamos para realizar el
 despliegue y después enumeraremos paso a paso las actividades a
 realizar en la práctica.
 
-### Ejecución de la aplicación en producción ###
-
-En la configuración de producción en lugar de dejar que JPA cree las
-tablas de la base de datos, vamos nosotros a inicializar la base de
-datos MySQL con los esquemas y datos predefinidos. JPA va a validar
-que las tablas se corresponden con el esquema de datos. Para ello
-podemos usar el siguiente fichero de configuración
-`conf/production.conf`
-
-```text
-include "application.conf"
-
-play.crypto.secret="abcdefghijkl"
-
-jpa.default = production
-
-db.default.driver=com.mysql.jdbc.Driver
-db.default.url=${?DB_URL}
-db.default.username=${?DB_USER_NAME}
-db.default.password=${?DB_USER_PASSWD}
-```
-
-Este fichero define como unidad de persistencia de JPA la unidad
-denominada `default` que está definida en el fichero de configuración
-de JPA `conf/META-INF/persistence.xml`:
-
-
-```text
-
-<!-- MySQL Persistence Unit - Production: hbm2ddl.auto = VALIDATE -->
-
-<persistence-unit name="production" transaction-type="RESOURCE_LOCAL">
-   <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-   <non-jta-data-source>DBTodoList</non-jta-data-source>
-   <class>models.Usuario</class>
-   <class>models.Tarea</class>
-   <class>models.Equipo</class>
-   <class>models.Admin</class>
-   <class>models.Etiqueta</class>
-   <properties>
-      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
-      <property name="hibernate.hbm2ddl.auto" value="validate"/>
-   </properties>
-</persistence-unit>
-```
-
-Vemos que en esta configuración el valor de la propiedad
-`hibernate.hbm2ddl.auto` es `validate`. De esta forma JPA validará que
-el esquema de base de datos existente se mapea correctamente con las
-entidades definidas.
-
-Para ejecutar la aplicación Play en modo producción lanzamos nuestra
-imagen definiendo las variables de entorno para que la configuración
-se conecte con la BD y usando el fichero `conf/production.conf` como
-fichero de inicialización.
-
-```text
-$ docker run --link db-mysql --rm -it -p 9000:9000 \
--e DB_URL="jdbc:mysql://db-mysql:3306/mads" -e DB_USER_NAME="root" \
--e DB_USER_PASSWD="mads" -e CONFIG_FILE="conf/production.conf" <usuario>/mads-todolist-equipo-XX
-```
-
-El flag `-it` permite visualizar en el terminal de forma interactiva
-la salida estándar de la aplicación Play y terminarla haciendo un `CTRL-C`.
-
 
 ### Gestión de la base de datos de producción  ###
 
@@ -612,6 +547,71 @@ CREATE TABLE `hibernate_sequence` (
 -- Dump completed on 2018-10-30 10:50:52
 ```
 
+
+### Ejecución de la aplicación en producción ###
+
+En la configuración de producción en lugar de dejar que JPA cree las
+tablas de la base de datos, vamos nosotros a inicializar la base de
+datos MySQL con los esquemas y datos predefinidos. JPA va a validar
+que las tablas se corresponden con el esquema de datos. Para ello
+podemos usar el siguiente fichero de configuración
+`conf/production.conf`
+
+```text
+include "application.conf"
+
+play.crypto.secret="abcdefghijkl"
+
+jpa.default = production
+
+db.default.driver=com.mysql.jdbc.Driver
+db.default.url=${?DB_URL}
+db.default.username=${?DB_USER_NAME}
+db.default.password=${?DB_USER_PASSWD}
+```
+
+Este fichero define como unidad de persistencia de JPA la unidad
+denominada `default` que está definida en el fichero de configuración
+de JPA `conf/META-INF/persistence.xml`:
+
+
+```text
+
+<!-- MySQL Persistence Unit - Production: hbm2ddl.auto = VALIDATE -->
+
+<persistence-unit name="production" transaction-type="RESOURCE_LOCAL">
+   <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+   <non-jta-data-source>DBTodoList</non-jta-data-source>
+   <class>models.Usuario</class>
+   <class>models.Tarea</class>
+   <class>models.Equipo</class>
+   <class>models.Admin</class>
+   <class>models.Etiqueta</class>
+   <properties>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
+      <property name="hibernate.hbm2ddl.auto" value="validate"/>
+   </properties>
+</persistence-unit>
+```
+
+Vemos que en esta configuración el valor de la propiedad
+`hibernate.hbm2ddl.auto` es `validate`. De esta forma JPA validará que
+el esquema de base de datos existente se mapea correctamente con las
+entidades definidas.
+
+Para ejecutar la aplicación Play en modo producción lanzamos nuestra
+imagen definiendo las variables de entorno para que la configuración
+se conecte con la BD y usando el fichero `conf/production.conf` como
+fichero de inicialización.
+
+```text
+$ docker run --link db-mysql --rm -it -p 9000:9000 \
+-e DB_URL="jdbc:mysql://db-mysql:3306/mads" -e DB_USER_NAME="root" \
+-e DB_USER_PASSWD="mads" -e CONFIG_FILE="conf/production.conf" <usuario>/mads-todolist-equipo-XX
+```
+
+El flag `-it` permite visualizar en el terminal de forma interactiva
+la salida estándar de la aplicación Play y terminarla haciendo un `CTRL-C`.
 
 
 #### Inicialización de la imagen docker MySQL ####
