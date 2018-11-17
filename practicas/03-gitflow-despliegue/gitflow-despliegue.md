@@ -706,7 +706,7 @@ la salida estándar de la aplicación Play y terminarla haciendo un `CTRL-C`.
   directorio `sql` en la raíz del proyecto Play.
   
 - Se deberá crear también dentro de ese directorio el fichero
-  `upgrade.sql` con el contenido necesario para actualizar la tabla de
+  `upgrade001.sql` con el contenido necesario para actualizar la tabla de
   secuencias de Hibernate.
   
 - Lanzad una nueva release `1.3.2` desde `develop` y realizad su
@@ -722,8 +722,7 @@ la salida estándar de la aplicación Play y terminarla haciendo un `CTRL-C`.
 - En la rama de release el responsable de base de datos deberá
   comprobar el esquema de datos que se genera con los cambios
   introducidos en la nueva release y añadir un nuevo fichero
-  `upgradeXXX.sql` (incrementando el número) para que contemple esos
-  cambios.
+  `upgrade002.sql` para que contemple esos cambios.
   
 - Una vez terminado el release el responsable de despliegue actualizar
   la base de datos de producción con los nuevos cambios. Se deberá
