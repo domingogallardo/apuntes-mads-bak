@@ -30,16 +30,12 @@ de la asignatura.
   de trabajo Git y GitHub modificado para el trabajo en
   equipo. Despliegue y actualización de base de datos de producción.
 
-<!--
-
-- P04 (4 semanas):
-  [Sprint de Scrum](practicas/04-iteracion-scrum/iteracion-scrum.md) para realizar una iteración de desarrollo.
-  seleccionamos las historias de usuario de un ejercicio de _mapping
+- P04 (4 semanas): [Sprint de Scrum](practicas/04-iteracion-scrum/iteracion-scrum.md) para realizar una iteración de desarrollo.
+  Seleccionamos las historias de usuario de un ejercicio de _mapping
   de historias de usuario_ y las desarrollamos durante una iteración
   de Scrum, practicando alguno de sus elementos (artefactos,
   reuniones). Mejoraremos también el tablero de GitHub para acercarlo
   a un tablero de Kanban.
--->
 
 ## Diapositivas y lecturas
 
@@ -73,13 +69,13 @@ Las sesiones tienen una duración variable, entre 45 y 90 minutos.
 - S10: [Jeff Patton - User Story Mapping](sesiones/10-mapping-de-historias-de-usuario/mapping-de-historias-de-usuario.md)
   - Jeff Patton - [It's all in how you slice it](lecturas/jeff-patton-how-you-slice-it.pdf)
   - [Workshop de mapping de historias de usuario](sesiones/10-mapping-de-historias-de-usuario/workshop-mapping-historias-usuario.md)
+- S11: [Scrum](sesiones/11-scrum/scrum.md)
+  - Schwaber y Sutherland - [The Scrum Guide](lecturas/schwaver-sutherland_scrum-guide.pdf)
 
 ### Bloque 4: Metodologías ágiles: Scrum y Kanban (4 semanas)
 
 <!--
 
-- S11: [Scrum](sesiones/11-scrum/scrum.md)
-  - Schwaber y Sutherland - [The Scrum Guide](lecturas/schwaver-sutherland_scrum-guide.pdf)
   - Henrik Kniberg - [Agile Product Ownership in a Nutshell](lecturas/henrik-kniberg_agile-product-ownership.pdf)
 - S12: [Kanban](sesiones/12-kanban/kanban.md)
 - S13: [Kanban vs. Scrum](sesiones/13-kanban-y-scrum/kanban-y-scrum.md)
