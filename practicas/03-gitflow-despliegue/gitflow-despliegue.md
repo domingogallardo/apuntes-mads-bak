@@ -292,10 +292,10 @@ proyecto en GitHub. Todos los otros miembros deberán descargarla y
 moverse a ella en sus repositorios locales. Esta rama pasará a ser la
 de desarrollo principal. 
 
-- Habrá que fichero de configuración de Travis, para que también se
-lancen los builds en los PR contra esta rama.
+- Habrá que modificar el fichero de configuración de Travis, para que
+también se lancen los builds en esta rama.
 
-- Haced un PR de prueba en la rama `develop`para comprobar que todo
+- Haced un PR de prueba en la rama `develop` para comprobar que todo
   funciona bien.
 
 - Cread un _issue_ con la tarea _Lanzar release 1.3.0_ que tendrá como
