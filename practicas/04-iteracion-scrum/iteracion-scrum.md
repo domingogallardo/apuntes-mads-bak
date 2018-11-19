@@ -3,22 +3,26 @@
 ## Objetivos y resumen de la práctica
 
 En esta práctica seguiremos trabajando con los mismos equipos y
-proyecto que la práctica 3.
+proyecto que en la práctica 3.
 
 Durante las 4 semanas de la práctica el equipo realizará una iteración
 para desarrollar un incremento de la aplicación
 `todolist`. Usaremos el mismo flujo de trabajo de la práctica 3 para
-desarrollar sobre la rama `master`:
+desarrollar sobre la rama `develop`:
 
-- Una página en la Wiki de GitHub y un issue y pull request para
-  cada historia de usuario. 
+- Una página en la Wiki de GitHub para cada historia de usuario. La
+  historia de usuario se puede descomponer en mas de un issue, o
+  seguir como hasta ahora haciendo un issue por historia de usuario.
+- Cada issue se resuelve en una rama y se integra en `develop` con un
+  pull request.
 - En el tablero en GitHub se representan el estado de los issues y
   pull requests
 - El repositorio está conectado a Travis que comprueba de forma
   automática los tests en las integraciones de los pull requests en
-  master y sube una imagen docker a Docker Hub.
+  `develop` y sube una imagen docker a Docker Hub cuando se realiza la
+  integración.
 - En Docker Hub se tienen numerados todos los builds exitosos de
-  master, y está etiquetada como `latest` la última versión de la
+  `develop`, y está etiquetada como `latest` la última versión de la
   imagen.
 
 Al final de la práctica se lanzará una nueva versión (`1.4.0`), usando
@@ -30,8 +34,8 @@ Además, aplicaremos algunos elementos de Scrum y prácticas de XP:
 - Reuniones de _scrum diario_
 - Revisión del sprint (se hará el último día de clases de la asignatura)
 - Retrospectiva del sprint
-- Al menos dos sesiones de _pair programming_ de 1,5 h. cada una.
-
+- Al menos dos sesiones de _pair programming_ en las que participen
+  todos los miembros del equipo.
 
 ## Planificación del sprint
 
@@ -41,24 +45,22 @@ condiciones de satisfacción.
 
 ### Artefactos del sprint ###
 
-Cada equipo creará un tablero Trello compartido en el que se anotarán
-en forma de tarjeta las historias de usuario a realizar en el
-proyecto. Utilizaremos la wiki de GitHub para anotar más detalles de
-las historias de usuario escogidas para el sprint.
-
-Por último, utilizaremos el tablero del proyecto para realizar el
-backlog del sprint.
-
+El equipo utilizará un tablero Trello, la wiki y el tablero de GitHub
+para documentar el backlog del producto y el backlog del sprint.
 
 #### Tablero Trello ####
 
-El tablero Trello servirá para trabajar con las historias de usuario
+Cada equipo creará un tablero Trello compartido en el que se anotarán
+en forma de tarjeta las historias de usuario candidatas para realizar en el
+sprint.
+
+El tablero Trello servirá para trabajar con estas historias de usuario
 en formato de tarjeta, escribirlas rápidamente, estimarlas y ordenarlas.
 
 #### Wiki ####
 
-La wiki del proyecto deberá contener las historias de usuario
-escogidas para realizar en el sprint.
+La wiki del proyecto deberá contener los detalles de las historias de
+usuario escogidas para realizar en el sprint.
 
 Como hasta ahora, se definirá una página de la wiki para cada historia
 de usuario. En la página se escribirá el título de la historia, su
@@ -70,6 +72,9 @@ la wiki en
 GitHub](https://help.github.com/articles/adding-images-to-wikis/)). No
 es necesario que se haga con ninguna herramienta de mockup, puede
 ser un dibujo sencillo hecho a mano.
+
+También se actualizará la página _home_ y el índice lateral para
+incluir las nuevas historias de usuario.
 
 #### Tablero ####
 
@@ -86,8 +91,8 @@ según se vayan desarrollando.
 
 Tendremos las siguientes columnas:
 
-- **Sprint backlog**: Issues con las historias de usuario (o subtareas
-  de las mismas) y los bugs a terminar en el sprint.
+- **Sprint backlog**: Issues que implementan las historias de usuario
+  (o subtareas de las mismas) y los bugs a terminar en el sprint.
   
 - **In progress**: Historias de usuario y bugs que se están
   desarrollando.
@@ -98,7 +103,7 @@ Tendremos las siguientes columnas:
 
 - **In pull request**: issues que tienen un pull request abierto (se
   archivará la tarjeta del issue y se dejará sólo la tarjeta del
-  pull request.
+  pull request).
 
 - **QA**: Historias de usuario a las que se les está realizando
   pruebas funcionales y de rendimiento. 
@@ -115,17 +120,18 @@ Tendremos las siguientes columnas:
 
 ### Selección del backlog ###
 
-El equipo seleccionará las posibles historias de usuario a realizar en
-la iteración y estimará su tamaño. Las anotarán en un tablero Trello
-compartido con el equipo y con el profesor. El profesor validará la
-selección y la estimación de tamaños.
+Al comienzo de la práctica el equipo seleccionará las posibles
+historias de usuario a realizar en la iteración y estimará su
+tamaño. Las anotarán en un tablero Trello compartido con el equipo y
+con el profesor. El profesor validará la selección y la estimación de
+tamaños.
 
-Podrán escogerse cualquiera de las definidas en el _workshop_ de
+Podrán escogerse cualquiera de las historias definidas en el taller de
 _mapping_ de historias de usuario realizado en clase, o idear alguna
 nueva.
 
-El resultado del _mapping_ de historias de usuario está recogido en
-los siguientes tableros:
+El resultado del taller de _mapping_ de historias de usuario está
+recogido en los siguientes tableros:
 
 - [https://trello.com/b/KbUefDdN/mapa-1-todolist](https://trello.com/b/KbUefDdN/mapa-1-todolist)
 - [https://trello.com/b/OyMQTu3W/mapa-2-todolist](https://trello.com/b/OyMQTu3W/mapa-2-todolist)
@@ -150,14 +156,8 @@ de determinar el alcance de la historia.
 
 Al incluir la historia se realizará un _planning pocker_ para volver a
 consensuar su tamaño (considerad el tamaño previo de la historia como
-una indicación, pero podéis modificarlo). El profesor no participará
-en el _planning pocker_, pero podrá pedir aclaraciones sobre el tamaño
-de las historias.
-
-En la tarjeta de Trello se escribirá el título, el tamaño (etiqueta) y
-la descripción de la historia. 
-
-### Planificación del sprint ###
+una indicación, pero podéis modificarlo). El tamaño será un número del
+1 al 4.
 
 Se deben incluir en el sprint historias por un tamaño total 4 puntos x
 número de personas del equipo:
@@ -165,16 +165,17 @@ número de personas del equipo:
 - Equipo de 3 personas: 12 puntos
 - Equipo de 4 personas: 16 puntos
 
-Suponemos la siguiente asignación de puntos al tamaño de las tareas:
+El profesor no participará en el _planning pocker_, pero podrá pedir
+aclaraciones sobre el tamaño de las historias.
 
-- S: 1 punto
-- M: 2 puntos (el doble que una S)
-- L: 4 puntos (el doble que una M)
+En la tarjeta de Trello se escribirá el título, el tamaño (etiqueta) y
+la descripción de la historia. 
+
 
 ### Responsables de historia de usuario ###
 
 Una vez seleccionadas todas las historias los miembros del equipo
-elegirán responsables para cada historia y se creará el issue (o
+elegirán responsables para cada historia, se creará el issue (o
 issues) correspondiente a la historia de usuario y se añadirá el
 responsable al issue.
 
@@ -195,26 +196,15 @@ duración y su desarrollo:
 1. Scrum diario (al menos simular 2 reuniones: la segunda y tercera
    semana). En nuestro "tiempo simulado" en las prácticas, una semana
    es como un día de trabajo completo en una empresa.
-2. Retrospectiva del sprint
+2. Retrospectiva del sprint.
 3. 2 sesiones de pair programming con turnos de 20 minutos (en cada
    sesión se deben hacer 4 turnos). Se podrán hacer estas sesiones en
    clase de prácticas.
 
-### Resumen del desarrollo ###
+### Tablero Kanban ###
 
-- Cada miembro del equipo selecciona el issue a desarrollar. Lo normal
-  es que cada miembro desarrolle un único issue de forma concurrente,
-  aunque podría darse el caso de ser más (por ejemplo, si algún issue
-  no puede terminarse por estar bloqueado por otro).
-
-- Ramas para los issues y pull requests con revisión de código para
-  integrar los pull requests en master. Es suficiente con que haya una
-  única aprobación para integrar el pull request. 
-
-- Cada issue debe contener **tests automáticos** que prueben los
-  cambios. En el caso de no poder incluirse (por ejemplo en issues
-  que desarrollan el controller y la vista) se debe especificar
-  en la wiki de la historia de usuario del issue **los tests manuales que habría que hacer**.
+Debemos modificar el tablero del proyecto para acercarlo a un
+tablero Kanban real.
 
 - Límite de _Work In Progress_ (WIP): Estimar un número de límite de
   WIP para las columnas `In progress` e `In pull request`. No se podrá
@@ -238,15 +228,31 @@ duración y su desarrollo:
       realizado la integración `master` y Travis da el OK. No se puede
       pasar a `QA` porque la columna ha alcanzado su límite WIP.
 
+### Desarrollo de los issues ###
+
+- Cada miembro del equipo selecciona el issue a desarrollar. Lo normal
+  es que cada miembro desarrolle un único issue de forma concurrente,
+  aunque podría darse el caso de ser más (por ejemplo, si algún issue
+  no puede terminarse por estar bloqueado por otro).
+
+- Se deben crear ramas para los issues y pull requests con revisión de
+  código para integrar los pull requests en master. Es suficiente con
+  que haya una única aprobación para integrar el pull request.
+
+- Cada issue debe contener **tests automáticos** que prueben los
+  cambios. También se debe especificar en la wiki de la historia de
+  usuario del issue **los tests manuales que habría que hacer**
+  (asociados a las condiciones de satisfacción).
+
 - Seguimos usando Travis para la integración continua.
 
-### 3.2. Publicación de nueva versión  ###
+### Publicación de nueva versión  ###
 
 Al final del desarrollo se deberá lanzar una nueva release (1.4.0) en
 la rama `master`, y subir a DockerHub la imagen resultante con la
 etiqueta `1.4.0`.
 
-### 3.3. Documentación del desarrollo ###
+### Documentación del desarrollo ###
 
 - Documentar los dailys, para incluir un informe en el documento.
 - Documentar las sesiones de pair programming.
@@ -254,14 +260,14 @@ etiqueta `1.4.0`.
   desarrollo (pull requests por semana, velocidad de la semana,
   gráfica de burndown, etc.).
 
-## 4. Entrega y evaluación
+## Entrega y evaluación
 
-La práctica tiene una duración de 4 semanas:
-
-- Se realizará una **revisión del sprint** de 20 minutos en las **clases de
-teoría y práctica del 19 de diciembre** (presentación de las funcionalidades
-introducidas (diapositivas) y demo).
-- La fecha límite de entrega es el **viernes 21 de diciembre**.
+- La práctica tiene una duración de 4 semanas.
+    - Se realizará una **revisión del sprint** de 20 minutos en las
+      **clases de teoría y práctica del 19 de diciembre**
+      (presentación de las funcionalidades introducidas (diapositivas)
+      y demo).
+    - La fecha límite de entrega es el **viernes 21 de diciembre**.
 
 Se deberá tener disponible en esa fecha:
 
@@ -284,6 +290,9 @@ Se deberá tener disponible en esa fecha:
       scrum diario, revisión) y sobre las sesiones de pair programming.
     - Resultado de la retrospectiva: qué ha ido bien y qué se podría
       mejorar.
+
+La calificación de la práctica tiene un peso de un 15% en la nota
+final de la asignatura.
 
 Para la evaluación se tendrá en cuenta:
 
