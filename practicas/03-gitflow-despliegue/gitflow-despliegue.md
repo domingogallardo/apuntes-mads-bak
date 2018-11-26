@@ -694,6 +694,13 @@ $ docker run --link db-mysql --rm -it -p 9000:9000 \
 El flag `-it` permite visualizar en el terminal de forma interactiva
 la salida estándar de la aplicación Play y terminarla haciendo un `CTRL-C`.
 
+<!-- 
+Añadir fichero 'schema-latest.sql' en el directorio sql con la
+última versión del esquema de datos, tal y como expliqué en clase. 
+Por ejemplo, el equipo 12 lo ha hecho así.
+
+https://github.com/mads-ua-18/todolistgrupo-2018-equipo-12/pull/18/files
+-->
 
 ### Pasos a seguir ###
 

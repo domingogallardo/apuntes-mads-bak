@@ -69,9 +69,8 @@ descripción y sus condiciones de satisfacción.
 También se deberá incluir en cada historia de usuario un borrador del
 aspecto de la interfaz de usuario resultante ([cómo añadir imágenes a
 la wiki en
-GitHub](https://help.github.com/articles/adding-images-to-wikis/)). No
-es necesario que se haga con ninguna herramienta de mockup, puede
-ser un dibujo sencillo hecho a mano.
+GitHub](https://help.github.com/articles/adding-images-to-wikis/)). Debe
+ser un borrador hecho a mano y fotografiado o escaneado. 
 
 También se actualizará la página _home_ y el índice lateral para
 incluir las nuevas historias de usuario.
