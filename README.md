@@ -74,10 +74,10 @@ Las sesiones tienen una duración variable, entre 45 y 90 minutos.
 
 - S11: [Scrum](sesiones/11-scrum/scrum.md)
   - Schwaber y Sutherland - [The Scrum Guide](lecturas/2017-Scrum-Guide-US.pdf)
-
+- S11b: [Ampliación Scrum](sesiones/11b-ampliacion-scrum/ampliacion-scrum.md)
+  - Henrik Kniberg - [Agile Product Ownership in a Nutshell](lecturas/henrik-kniberg_agile-product-ownership.pdf)
 
 <!--
-  - Henrik Kniberg - [Agile Product Ownership in a Nutshell](lecturas/henrik-kniberg_agile-product-ownership.pdf)
 - S12: [Kanban](sesiones/12-kanban/kanban.md)
 - S13: [Kanban vs. Scrum](sesiones/13-kanban-y-scrum/kanban-y-scrum.md)
   - Henrik Kniberg - [Kanban and Scrum](lecturas/henrik-kniberg-kanban-and-scrum.pdf)
