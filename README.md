@@ -73,7 +73,7 @@ Las sesiones tienen una duración variable, entre 45 y 90 minutos.
 ### Bloque 4: Metodologías ágiles: Scrum y Kanban (4 semanas)
 
 - S11: [Scrum](sesiones/11-scrum/scrum.md)
-  - Schwaber y Sutherland - [The Scrum Guide](lecturas/schwaver-sutherland_scrum-guide.pdf)
+  - Schwaber y Sutherland - [The Scrum Guide](lecturas/2017-Scrum-Guide-US.pdf)
 
 
 <!--
