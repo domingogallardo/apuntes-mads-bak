@@ -85,8 +85,6 @@
 
 <kbd><img src="diapositivas/ampliacion-scrum.020.png" width="800px"></kbd>
 
-<kbd><img src="diapositivas/ampliacion-scrum.020.png" width="800px"></kbd>
-
 [DevOps Culture](https://martinfowler.com/bliki/DevOpsCulture.html)
 
 <kbd><img src="diapositivas/ampliacion-scrum.021.png" width="800px"></kbd>
