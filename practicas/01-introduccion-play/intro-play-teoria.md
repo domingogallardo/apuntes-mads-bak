@@ -629,11 +629,11 @@ Podemos utilizar Docker para poner en marcha un servidor MySQL con el
 siguiente comando:
 
 ```text
-$ docker run -d -p 3316:3306 --name play-mysql -e MYSQL_ROOT_PASSWORD=mads -e MYSQL_DATABASE=mads mysql:5
+$ docker run -d -p 3316:3306 --name db-mysql -e MYSQL_ROOT_PASSWORD=mads -e MYSQL_DATABASE=mads mysql:5
 ```
 
 El comando pone en marcha un servidor MySQL escuchando en el puerto
-3316 del host con el nombre docker `play-mysql`, con la contraseña de
+3316 del host con el nombre docker `db-mysql`, con la contraseña de
 root indicada y creando la base de datos `mads`.
 
 El puerto del host 3316 se mapea con el puerto interno del
@@ -653,7 +653,7 @@ Podemos comprobar que el contenedor está funcionando con el comando
 ```text
 $ docker container ls
 CONTAINER ID  IMAGE  COMMAND                  CREATED         STATUS         PORTS                  NAMES
-7c1bed0b5b7e  mysql  "docker-entrypoint..."   6 seconds ago   Up 4 seconds   0.0.0.0:3316->3306/tcp play-mysql
+7c1bed0b5b7e  mysql  "docker-entrypoint..."   6 seconds ago   Up 4 seconds   0.0.0.0:3316->3306/tcp db-mysql
 ```
 
 Para parar y volver a poner en marcha el contenedor mysql puedes usar
@@ -666,21 +666,21 @@ parados.
 ```text
 $ docker container ls
 CONTAINER ID        IMAGE                CREATED             STATUS              PORTS                               NAMES
-bd057639b6ac        mysql:5              30 minutes ago      Up 22 minutes       33060/tcp, 0.0.0.0:3316->3306/tcp   play-mysql
+bd057639b6ac        mysql:5              30 minutes ago      Up 22 minutes       33060/tcp, 0.0.0.0:3316->3306/tcp   db-mysql
 $ docker container stop bd057639b6ac
 $ docker container ls -a
 CONTAINER ID        IMAGE                CREATED             STATUS                     PORTS               NAMES
-bd057639b6ac        mysql:5              31 minutes ago      Exited (0) 7 seconds ago                       play-mysql
+bd057639b6ac        mysql:5              31 minutes ago      Exited (0) 7 seconds ago                       db-mysql
 $ docker container start bd057639b6ac
 $ docker container ls
 CONTAINER ID        IMAGE                CREATED             STATUS              PORTS                               NAMES
-bd057639b6ac        mysql:5              32 minutes ago      Up 5 seconds        33060/tcp, 0.0.0.0:3316->3306/tcp   play-mysql
+bd057639b6ac        mysql:5              32 minutes ago      Up 5 seconds        33060/tcp, 0.0.0.0:3316->3306/tcp   db-mysql
 ```
 
 Podemos usar el identificador o el nombre del contenedor para pararlo:
 
 ```text
-$ docker container stop play-mysql
+$ docker container stop db-mysql
 ```
 
 Para borrar un contenedor debe estar parado y debemos usar el comando
@@ -701,8 +701,8 @@ definir el nombre lógico del contenedor al que debe conectarse la
 aplicación.
 
 ```text
-$ docker run --link play-mysql --rm -it -p 9000:9000 -e \
-DB_URL="jdbc:mysql://play-mysql:3306/mads" -e DB_USER_NAME="root" -e \
+$ docker run --link db-mysql --rm -it -p 9000:9000 -e \
+DB_URL="jdbc:mysql://db-mysql:3306/mads" -e DB_USER_NAME="root" -e \
 DB_USER_PASSWD="mads" -v "${PWD}:/code" domingogallardo/playframework
 ```
 
@@ -1955,9 +1955,9 @@ ejecución del contenedor de Play las variables de entorno `DB_URL`,
 a la base de datos MySQL.
 
 ```text
-$ docker run -d --rm -p 3306:3306 --name play-mysql -e MYSQL_ROOT_PASSWORD=mads -e MYSQL_DATABASE=mads mysql
-$ docker run --link play-mysql --rm -it -p 9000:9000 -e \
-DB_URL="jdbc:mysql://play-mysql:3306/mads" -e DB_USER_NAME="root" -e \
+$ docker run -d --rm -p 3306:3306 --name db-mysql -e MYSQL_ROOT_PASSWORD=mads -e MYSQL_DATABASE=mads mysql
+$ docker run --link db-mysql --rm -it -p 9000:9000 -e \
+DB_URL="jdbc:mysql://db-mysql:3306/mads" -e DB_USER_NAME="root" -e \
 DB_USER_PASSWD="mads" -v "${PWD}:/code" domingogallardo/playframework
 [mads-todolist-inicial] $ set javaOptions += "-Dconfig.file=conf/develop-mysql.conf"
 [mads-todolist-inicial] $ test

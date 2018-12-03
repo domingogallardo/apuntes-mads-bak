@@ -349,8 +349,8 @@ definiendo las variables de entorno necesarias.
 
 ```
 $ docker run --link db-mysql --rm -it -p 9000:9000 \
-     -e DB_URL="jdbc:mysql://db-mysql:3306/mads" -e DB_USER_NAME="root" \
-     -e DB_USER_PASSWD="mads" -e CONFIG_FILE="conf/develop-mysql.conf" domingogallardo/mads-todolist:1.1.0
+-e DB_URL="jdbc:mysql://db-mysql:3306/mads" -e DB_USER_NAME="root" \
+-e DB_USER_PASSWD="mads" -e CONFIG_FILE="conf/develop-mysql.conf" domingogallardo/mads-todolist:1.1.0
 ```
 
 El comando se conecta con el contenedor `db-mysql` en el que hemos
@@ -372,7 +372,7 @@ CONTAINER ID        IMAGE                                STATUS              POR
 $ docker container logs 19986a063c03
 [info] application - Creating Pool for datasource 'default'
 [info] p.a.d.HikariCPConnectionPool - datasource [default] bound to JNDI as DBTodoList
-[info] p.a.d.DefaultDBApi - Database [default] connected at jdbc:mysql://play-mysql:3306/mads
+[info] p.a.d.DefaultDBApi - Database [default] connected at jdbc:mysql://db-mysql:3306/mads
 [info] application - ApplicationTimer demo: Starting application at 2018-10-06T11:57:24.119Z
 [info] play.api.Play - Application started (Prod)
 [info] p.c.s.NettyServer - Listening for HTTP on /0.0.0.0:9000
