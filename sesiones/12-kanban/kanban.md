@@ -262,4 +262,5 @@ comprometerse a demasiado trabajo a la vez.
 
 - Marcus Hammarberg, Joakim Sunden - Kanban in Action ([eBook Biblioteca UA](http://proquest.safaribooksonline.com/9781617291050?tocview=true))
 - Henrik Kniberg - [Kanban and Scrum](https://www.infoq.com/minibooks/kanban-scrum-minibook)
+- Mike Burrows - [Kanban from the inside](https://www.amazon.com/Kanban-Inside-Understand-connect-introduce/dp/0985305193)
 - David J. Anderson - Kanban ([Catálogo UA](http://gaudi.ua.es/uhtbin/cgisirsi/x/0/0/5/?searchdata1=(OCoLC)865158880))
