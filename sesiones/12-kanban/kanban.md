@@ -208,6 +208,8 @@ comprometerse a demasiado trabajo a la vez.
   tareas en desarrollo del equipo. El segundo funcionalidades o
   historias de usuario.
 
+<kbd><img src="diapositivas/kanban.039a.png" width="800px"></kbd>
+
 <kbd><img src="diapositivas/kanban.039b.png" width="800px"></kbd>
 
 <kbd><img src="diapositivas/kanban.040.png" width="800px"></kbd>
