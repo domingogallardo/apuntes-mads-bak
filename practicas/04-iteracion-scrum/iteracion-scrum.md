@@ -206,11 +206,11 @@ Debemos modificar el tablero del proyecto para acercarlo a un
 tablero Kanban real.
 
 - Límite de _Work In Progress_ (WIP): Estimar un número de límite de
-  WIP para las columnas `In progress` e `In pull request`. No se podrá
-  incluir en esas columnas más tarjetas que las definidas en el número
-  límite de WIP (las tarjetas en las columna `In progress - Done` se
-  suman a las que hay en la columna `In progress`, y lo mismo con las
-  columnas `In pull request - Done` y `In pull request`).
+  WIP para las columnas `In progress`, `In pull request` y `QA`. No se
+  podrá incluir en esas columnas más tarjetas que las definidas en el
+  número límite de WIP (las tarjetas en las columna `In progress -
+  Done` se suman a las que hay en la columna `In progress`, y lo mismo
+  con las columnas `In pull request - Done` y `In pull request`).
   
     Estimar el límite WIP para conseguir un flujo de trabajo
     correcto. Si se define un límite WIP demasiado bajo habrá personas
