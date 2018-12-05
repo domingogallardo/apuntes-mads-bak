@@ -7,10 +7,16 @@
 
 <kbd><img src="diapositivas/kanban.003.png" width="800px"></kbd>
 
+<kbd><img src="diapositivas/kanban.004.png" width="800px"></kbd>
+
 - Kanban es un método para **mejorar los procesos** usados por los
   equipos ágiles. Los equipos que usan Kanban empiezan analizando y
   comprendiendo la forma que utilizan para construir el software, y lo
   utilizan para mejorar este proceso.
+  
+- Kanban nos ayuda a ir cambiando el prisma de ¿Qué hacen las
+  personas? a **¿Cómo va el trabajo?**. En la línea de los valores
+  ágiles, Kanban refuerza los valores de **Colaboración** y **Respeto**.
 
 - El objetivo de Kanban es conseguir pequeñas mejoras en el proceso de
   desarrollo, empezando por el sistema que actualmente usa el equipo y
@@ -20,8 +26,6 @@
 - Kanban utiliza elementos de la **metodología _lean_**, como el _lead
   time_ (tiempo de terminación) o el flujo para medir el
   funcionamiento del equipo. 
-
-<kbd><img src="diapositivas/kanban.004.png" width="800px"></kbd>
 
 <kbd><img src="diapositivas/kanban.005.png" width="800px"></kbd>
 
