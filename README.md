@@ -79,10 +79,8 @@ Las sesiones tienen una duración variable, entre 45 y 90 minutos.
 - S12: [Kanban](sesiones/12-kanban/kanban.md)
 - S13: [Kanban vs. Scrum](sesiones/13-kanban-y-scrum/kanban-y-scrum.md)
   - Henrik Kniberg - [Kanban and Scrum](lecturas/henrik-kniberg-kanban-and-scrum.pdf)
-<!--
 - S14: [Escalando Ágil](sesiones/14-escalando-agil/escalando-agil.md) - ¿Cómo coordinar múltiples equipos ágiles?
--->
-
+  - Henrik Kniberg - [Spotify Engineering Culture Part 1](lecturas/spotify-engineering-culture-part1.zip)
 
 ## Evaluación
 

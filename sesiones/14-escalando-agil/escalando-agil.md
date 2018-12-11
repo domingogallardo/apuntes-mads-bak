@@ -59,8 +59,11 @@
 
 <kbd><img src="diapositivas/escalando-agil.026.png" width="800px"></kbd>
 
-- [Henrik Kniberg - Spotify Engineering Culture](https://vimeo.com/85490944)
-
 <kbd><img src="diapositivas/escalando-agil.027.png" width="800px"></kbd>
 
+- [Henrik Kniberg - Spotify Engineering Culture](https://labs.spotify.com/2014/03/27/spotify-engineering-culture-part-1/)
+- [Vídeo con subtítulos en castellano e imagen](lecturas/spotify-engineering-culture-part1.zip)
 
+<kbd><img src="diapositivas/escalando-agil.028.png" width="800px"></kbd>
+
+- [https://less.works](https://less.works)
