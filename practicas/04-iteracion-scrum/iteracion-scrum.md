@@ -265,7 +265,7 @@ etiqueta `1.4.0`.
       **clases de teoría y práctica del 19 de diciembre**
       (presentación de las funcionalidades introducidas (diapositivas)
       y demo).
-    - La fecha límite de entrega es el **viernes 21 de diciembre**.
+    - La fecha límite de entrega es el **domingo 23 de diciembre**.
 
 Se deberá tener disponible en esa fecha:
 
@@ -275,8 +275,8 @@ Se deberá tener disponible en esa fecha:
   - Tablero de issues completados
   - Wiki con las historias de usuario
 - Directorio `doc` en el repositorio del proyecto en el que se incluirá un documento
-  markdown con el informe de la práctica y un PDF con las diapositivas
-  presentadas en la demo. En el informe de la práctica se incluirá:
+  PDF o Markdown con la memoria de la práctica y un PDF con las diapositivas
+  presentadas en la demo. En la memoria de la práctica se incluirá:
     - Historias de usuario escogidas para el sprint (copiar la
       descripción, las condiciones de satisfacción y el borrador de
       interfaz de usuario tal y como aparecen en la wiki).
