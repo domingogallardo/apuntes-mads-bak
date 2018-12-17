@@ -260,34 +260,44 @@ etiqueta `1.4.0`.
 
 ## Entrega y evaluación
 
-- La práctica tiene una duración de 4 semanas.
-    - Se realizará una **revisión del sprint** de 20 minutos en las
-      **clases de teoría y práctica del 19 de diciembre**
-      (presentación de las funcionalidades introducidas (diapositivas)
-      y demo).
-    - La fecha límite de entrega es el **domingo 23 de diciembre**.
+La práctica tiene una duración de 4 semanas.
 
-Se deberá tener disponible en esa fecha:
+- Se realizará una **revisión del sprint** de 20 minutos en las
+  **clases de teoría y práctica del 19 de diciembre**. La revisión
+  constará de:
+    - Presentación con diapositivas en la que se explicará la
+      **metodología seguida** en el sprint y las **nuevas funcionalidades** introducidas.
+    - Demostración de las nuevas funcionalidades utilizando la última
+      imagen docker subida a Docker Hub.
 
-- Versión 1.4.0 de la máquina Docker en DockerHub
-- Tablero Trello
-- Repositorio GitHub
-  - Tablero de issues completados
-  - Wiki con las historias de usuario
-- Directorio `doc` en el repositorio del proyecto en el que se incluirá un documento
-  PDF o Markdown con la memoria de la práctica y un PDF con las diapositivas
-  presentadas en la demo. En la memoria de la práctica se incluirá:
-    - Historias de usuario escogidas para el sprint (copiar la
-      descripción, las condiciones de satisfacción y el borrador de
-      interfaz de usuario tal y como aparecen en la wiki).
-    - Funcionalidades implementadas (breve descripción para el usuario
-      y breve descripción técnica).
-    - Informe sobre la metodología seguida (ejemplos de evolución del
-      tablero, alguna métrica del desarrollo realizado en el sprint)
-    - Informes sobre las reuniones de Scrum (planificación del sprint,
-      scrum diario, revisión) y sobre las sesiones de pair programming.
-    - Resultado de la retrospectiva: qué ha ido bien y qué se podría
-      mejorar.
+- La fecha de entrega de la práctica será el **domingo 23 de
+  diciembre**. En esa fecha se deberá tener disponible:
+    - Entrega en Moodle la última versión del proyecto subida a
+      GitHub (comprimida, sin el directorio `target` con los binarios
+      y ejecutables). Deberá contener:
+        - Directorio `doc` en el repositorio del proyecto en el que se
+          incluirá un documento PDF o Markdown con la memoria de la
+          práctica y un PDF con las diapositivas presentadas en la
+          demo. En la memoria de la práctica se incluirá:
+            - Sprint Backlog: historias de usuario escogidas para el
+              sprint (copiar la descripción, las condiciones de
+              satisfacción y el borrador de interfaz de usuario tal y
+              como aparecen en la Wiki).
+            - Funcionalidades implementadas (breve descripción para el
+              usuario y breve descripción técnica).
+            - Informe sobre la metodología seguida (ejemplos de
+              evolución del tablero, alguna métrica del desarrollo
+              realizado en el sprint, etc.)
+            - Informes sobre las reuniones de Scrum (planificación del
+              sprint, scrum diario, revisión) y sobre las sesiones de
+              pair programming.
+            - Resultado de la retrospectiva: qué ha ido bien y qué se
+              podría mejorar.
+    - Versión 1.4.0 de la máquina Docker en Docker Hub (es la máquina
+      que voy a usar para revisar la ejecución de la práctica).
+    - El repositorio GitHub deberá incluir el tablero de issues/PR
+      completados y la Wiki con las historias de usuario que se debían
+      implementar en el sprint..
 
 La calificación de la práctica tiene un peso de un 15% en la nota
 final de la asignatura.
